@@ -1,0 +1,331 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Data Abstraction</h1><p class="page-description">Period 5 Student led teaching on Data Abstraction</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-04T00:00:00-07:00" itemprop="datePublished">
+        Oct 4, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nandan, Arnav, Torin, Remy</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#31-variables-and-assignments">3.1 Variables And Assignments</a><ul><li>Data Types:</li></ul></li><li><a href="#31-variables-and-assignments-1">3.1 Variables And Assignments</a></li><li><a href="#32-data-abstraction---lists--strings">3.2 Data Abstraction - Lists &amp; Strings</a></li><li><a href="#32-data-abstraction">3.2 Data Abstraction</a><ul><li>JSON</li></ul></li></ul></li><li><a href="#hack-1">Hack 1</a></li><li><a href="#hack-2">Hack 2</a></li></ul><h2 id="31-variables-and-assignments">3.1 Variables And Assignments</h2>
+
+<p>Variables are considered abstraction as they assign a value to another value. In other words, they basically describe values to each other. Variables are important as it can be used in many different uses such as they can store useful information, especially if you have a long lines of code. Variables are mostly used to store data such as numbers (we are going to go over integers today), booleans, lists, strings and dictionaries.</p>
+
+<blockquote>
+  <p>Note:
+ A variable needs to have a proper name, cannot have spaces inside of them and needs to be reasonable.</p>
+</blockquote>
+
+<p>For example:</p>
+
+<ul>
+  <li>
+    <p>highScore is a better and shorter way of saying highestScoreInTheGame</p>
+  </li>
+  <li>
+    <p>firstName is more specific than n</p>
+  </li>
+  <li>
+    <p>instead of is raining (because it has spaced) israining or is_it_raining is a better way of looking at the variable</p>
+  </li>
+  <li>
+    <p>phonenumber is better than saying 555-number (it just looks neater to look at)</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Nandan"</span> <span class="c1"># this is a string
+</span><span class="k">print</span><span class="p">(</span><span class="n">firstName</span><span class="p">)</span>
+
+<span class="n">highScore</span> <span class="o">=</span> <span class="mi">33</span> <span class="c1"># this is an integer
+</span><span class="k">print</span><span class="p">(</span><span class="n">highScore</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nandan
+33
+</code></pre></div></div>
+
+<p style="color:DodgerBlue;">Popcorn Hack#1 - Make your own variable either with a number or a string and print it out</p>
+
+<h3>Data Types:</h3>
+
+<p>Integer: A whole number</p>
+<p>Boolean: True or False based on operators</p>
+<p>String: Anything that contains "{text is stored in here}"</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### BOOLEAN EXAMPLES
+</span><span class="n">age</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Here is the number example
+</span><span class="k">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>  
+
+<span class="k">print</span><span class="p">(</span><span class="n">age</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">PASS_POINTS</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">FAIL_POINTS</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">if</span> <span class="n">PASS_POINTS</span> <span class="o">&lt;</span> <span class="n">FAIL_POINTS</span><span class="p">:</span>
+    <span class="n">passed</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">passed</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">if</span> <span class="n">passed</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Student has passed"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Student failed"</span><span class="p">)</span>
+
+
+<span class="c1">## STRING EXAMPLE
+</span>
+<span class="n">age</span> <span class="o">=</span> <span class="s">"16"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+False
+Student failed
+16
+</code></pre></div></div>
+
+<p style="color:DodgerBlue;">Popcorn Hack #2 - Use the variable types and print all the different types of them, boolean, string, and integer.</p>
+
+<h2 id="31-variables-and-assignments-1">3.1 Variables And Assignments</h2>
+
+<p>Assignments and variables are fundamental ideas in computer programming. They give programmers the ability to manage, store, and alter data. In the realm of programming and computer science, knowing how to declare and assign values to variables is an essential ability.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">currentName</span> <span class="o">=</span> <span class="s">"Arnav"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">currentName</span><span class="p">)</span>
+
+<span class="n">currentName</span> <span class="o">=</span> <span class="s">"Nandan"</span> <span class="c1"># Because this variable is declared second, even though it was already declared, it will print the most recent declaration
+</span><span class="k">print</span><span class="p">(</span><span class="n">currentName</span><span class="p">)</span>
+
+<span class="n">bigNumber</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">isWednesday</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">firstName</span> <span class="o">=</span> <span class="s">"Arnav Nadar"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bigNumber</span><span class="p">)</span> <span class="o">+</span> <span class="s">"  "</span>  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">isWednesday</span><span class="p">)</span> <span class="o">+</span> <span class="s">"  "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">firstName</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Arnav
+Nandan
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num1</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">num3</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="n">num3</span> 
+<span class="n">num3</span> <span class="o">=</span> <span class="n">num1</span>
+<span class="n">num1</span> <span class="o">=</span> <span class="n">num2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">num2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">num3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>30
+30
+25
+</code></pre></div></div>
+
+<p style="color:DodgerBlue;">Popcorn Hack #3 - Use the variable types and the variable changing and create a small program that incorporates the changing of variables</p>
+
+<h2 id="32-data-abstraction---lists--strings">3.2 Data Abstraction - Lists &amp; Strings</h2>
+<p>
+Lists and strings are a simple method of data abstraction in which a number of values (list elements or characters) are stored in a single variable. Each value in a list or string can be referred to with its natural-number index.
+</p>
+<p>
+A string is simply a sequence of characters; letters, numbers, special characters, etc.
+</p>
+<p>
+A list is an ordered sequence of variables (elements), each of which contains some data value. The elements need not be all the same data type. 
+
+</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Each element in a list/string is referred to with a natural-number index.
+#FOR THE PURPOSES OF THE AP EXAM ONLY, the indexes start at 1.
+#IN PYTHON (and most other languages), the indexes start at 0.
+</span>
+<span class="c1">#Example string
+</span><span class="n">name</span> <span class="o">=</span> <span class="s">"llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch"</span>
+
+<span class="c1">#Returning the 18th character in the string ('y') - Remember that Python indices start at 0!
+</span><span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span>
+
+<span class="c1">#Example list
+</span><span class="n">rn_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Ramskoeldia consimilis"</span><span class="p">,</span> <span class="mf">187.52</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">"987654"</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span>
+
+<span class="c1">#Returning the 1st, 4th, and 7th elements in the list
+</span><span class="k">print</span><span class="p">(</span><span class="n">rn_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rn_list</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rn_list</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>y
+Ramskoeldia consimilis
+True
+987654
+</code></pre></div></div>
+
+<p style="color:DodgerBlue;">Popcorn Hack #4 - Make your own list based on your intersts and access the items in the list according to your interest</p>
+
+<h2 id="32-data-abstraction">3.2 Data Abstraction</h2>
+<blockquote>
+  <p>Data abstraction is the process of hiding certain details and showing only essential information to the user. Abstraction can be achieved with either abstract classes or interfaces (which you will learn more about in the next chapter). You can also use the abstract keyword to create abstract methods that must be overridden in the subclass.You do this by putting information in lists, dictionaries, and objects. You can also create your own data types using classes. This is called data abstraction. Here is an example of data abstraction:</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+ <span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Hello my name is "</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This is a class called Person. It takes in two parameters, name and age. It also has a method called myfunc that prints out a message with the name of the person and their age. Lets see this as a list. Lets make a function that takes in a list of people and prints out their names and ages.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_people</span><span class="p">(</span><span class="n">people</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">" is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s">" years old"</span><span class="p">)</span> <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="k">print</span> <span class="n">out</span> <span class="n">the</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">value</span>
+</code></pre></div></div>
+<p>This function takes in a list of people and prints out their names and ages. Lets see this as a dictionary. Lets make a function that takes in a dictionary of people and prints out their names and ages. First lets make the dictionary.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">people</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"John"</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="s">"Rob"</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="s">"Amanda"</span><span class="p">:</span> <span class="mi">19</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Then we can make the function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">people</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"John"</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="s">"Rob"</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+    <span class="s">"Amanda"</span><span class="p">:</span> <span class="mi">19</span>
+<span class="p">}</span> <span class="o">//</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">dictionary</span>
+<span class="k">def</span> <span class="nf">print_people</span><span class="p">(</span><span class="n">people</span><span class="p">):</span> <span class="o">//</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">function</span>
+    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="o">//</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="k">for</span> <span class="n">loop</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">person</span> <span class="o">+</span> <span class="s">" is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">person</span><span class="p">])</span> <span class="o">+</span> <span class="s">" years old"</span><span class="p">)</span> <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="k">print</span> <span class="n">out</span> <span class="n">the</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">value</span>
+</code></pre></div></div>
+
+<h1 id="converting-string-to-and-from-json">Converting string to and from JSON</h1>
+<p>First we need to import the json module. Then we can use the json.dumps() function to convert a string to JSON. We can also use the json.loads() function to convert JSON to a string. Here is an example of converting a string to JSON:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="nb">dict</span> <span class="o">=</span> <span class="s">'{"name": "John", "age": 30, "city": "New York"}'</span>
+<span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+<blockquote>
+  <ul>
+    <li>You can use the type() function to find out what type of data type a variable is as shown below:
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div>      </div>
+    </li>
+    <li>You can use the isinstance() function to check if a variable is a certain data type as shown below:
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span>
+</code></pre></div>      </div>
+    </li>
+    <li>You can use the dir() function to find out what methods an object has as shown below:
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div>      </div>
+    </li>
+  </ul>
+</blockquote>
+
+<h1 id="homework">Homework</h1>
+<blockquote>
+  <ul>
+    <li>Create a class called Person with the attributes name and age. Then create a function called print_people that takes in a list of people and prints out their names and ages.</li>
+    <li>Create a function that takes in a dictionary of people and their ages and prints out the name of the oldest person.</li>
+  </ul>
+</blockquote>
+
+<h4>JSON</h4>
+
+<p>JSON is used to represent structured data, especially lists in JavaScript. However you can also use this in python as well.</p>
+
+<h1 id="converting-string-to-and-from-json-1">Converting string to and from JSON</h1>
+<p>First we need to import the json module. Then we can use the json.dumps() function to convert a string to JSON. We can also use the json.loads() function to convert JSON to a string. Here is an example of converting a string to JSON:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Torin"</span><span class="p">,</span> <span class="s">"Remy"</span><span class="p">,</span> <span class="s">"Nandan"</span><span class="p">,</span> <span class="s">"Arnav"</span><span class="p">]</span>
+<span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>["Torin", "Remy", "Nandan", "Arnav"]
+</code></pre></div></div>
+
+<p style="color:DodgerBlue;">Popcorn Hack #5 - Try using some of the lists in order to assign it to variables many times. Do JSON with a different list as well. </p>
+
+<h2 id="hack-1">Hack 1</h2>
+<p>Identify the correct variable types for each of the practice problems</p>
+<ul>
+  <li>String</li>
+  <li>Boolean</li>
+  <li>Integer</li>
+  <li>List</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">secretNumber</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="k">print</span><span class="p">(</span><span class="n">secretNumber</span><span class="p">)</span>
+
+<span class="n">food</span> <span class="o">=</span> <span class="s">"Pizza"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">food</span><span class="p">)</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Nandan"</span><span class="p">,</span> <span class="s">"Arnav"</span><span class="p">,</span> <span class="s">"Torin"</span><span class="p">,</span> <span class="s">"Remy"</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+<span class="n">IamCool</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">IamCool</span><span class="p">)</span>
+
+<span class="c1">##Bonus Problem:
+</span>
+<span class="n">names_2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Nandan"</span><span class="p">:</span> <span class="s">"TeamMate1"</span><span class="p">,</span>
+    <span class="s">"Arnav"</span><span class="p">:</span> <span class="s">"TeamMate2"</span><span class="p">,</span>
+    <span class="s">"Torin"</span><span class="p">:</span> <span class="s">"TeamMate3"</span><span class="p">,</span>
+    <span class="s">"Remy"</span><span class="p">:</span> <span class="s">"TeamMate4"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">names_2</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>15
+Pizza
+['Nandan', 'Arnav', 'Torin', 'Remy']
+True
+{'Nandan': 'TeamMate1', 'Arnav': 'TeamMate2', 'Torin': 'TeamMate3', 'Remy': 'TeamMate4'}
+</code></pre></div></div>
+
+<h2 id="hack-2">Hack 2</h2>
+
+<p>Create a program of interest using the variable types, lists, and assignment operators that have been discussed in the lesson. This could be anything, use what you learned and are interested in to create a small program showcasing what you’ve learnt so far.</p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/04/CSP-Data_Abstraction-P5_IPYNB_2_.html" hidden></a>
+</article>

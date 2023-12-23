@@ -1,0 +1,165 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Anatomy of GitHub Pages</h1><p class="page-description">Learn the Files and development work flow of GitHub Pages.  This includes working with you home page, theme, markdown, and more.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-23T00:00:00-07:00" itemprop="datePublished">
+        Aug 23, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.0">C5.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#overview-of-github-pages-files">Overview of GitHub Pages files</a></li><li><a href="#files-and-directories-in-this-project">Files and Directories in this Project</a></li><li><a href="#changing-the-theme">Changing the Theme</a></li><li><a href="#hacks">Hacks</a><ul><li><a href="#customize-home-page">Customize Home Page</a></li><li><a href="#change-title">Change Title</a></li><li><a href="#github-page-github-github-raw-broken-links">GitHub Page, GitHub, GitHub Raw; Broken Links</a></li><li><a href="#making-a-submenu">Making a Submenu</a></li><li><a href="#style-hack">Style Hack</a></li></ul></li></ul><h2 id="overview-of-github-pages-files">Overview of GitHub Pages files</h2>
+<blockquote>
+  <p>Discuss how to develop a home page, code, run local server test, and then sync to deploy to GitHub Pages.</p>
+  <ul>
+    <li>Review tools setup and make in README.md to support this lesson.</li>
+  </ul>
+</blockquote>
+
+<h2 id="files-and-directories-in-this-project">Files and Directories in this Project</h2>
+<blockquote>
+  <p>Here are some defintion to key files and directories in this project</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">README.md</code>: This file contains instructions and background information about the project. It is a standard file present in all properly set up GitHub projects.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">index.md</code>: This is the source file for the home page of the project. It is a standard file for all GitHub Pages projects. Note that Markdown (.md) files are converted to HTML by the Jekyll build process. HTML files are the only file type that is rendered on a website.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">_notebooks</code>: This directory contains Jupyter Notebook (.ipynb) files. These files are converted to Markdown (.md) files by the Makefile rules in the build process. The Markdown files are then converted to HTML by the Jekyll build process.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">_posts</code>: This directory contains Markdown (.md) files that will be part of the website. These files are formatted similarly to index.md and include frontmatter (metadata coded in YAML) and Markdown, HTML, JavaScript, and CSS source code. You will also find Liquid code in these files, which is used to generate Markdown, HTML, JavaScript, and CSS.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">_data</code>: This directory is the standard location for storing data files that support the _posts or _notebooks directories.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">images</code>: This directory is the standard location for storing image files (JPEG, PNG, etc.) that support the _posts or _notebooks directories.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">_config.yml</code>: This file contains YAML definitions (key-value properties) used to build the Jekyll website.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">.gitignore</code>: This file specifies elements to be excluded from version control. Files are excluded when they are derived from the original source and not considered part of the project’s source code. In the VSCode Explorer, you may notice some files appearing dimmed, indicating that they are purposely excluded by the rules in .gitignore.</p>
+  </li>
+</ul>
+
+<p>Please note that there are many other key files and directories in a GitHub Pages project, but we will highlight those as the development progresses.</p>
+
+<h2 id="changing-the-theme">Changing the Theme</h2>
+<blockquote>
+  <p>Google “github pages themes”  or this <a href="https://pages.github.com/themes/">theme link</a>.   The purpose of this section is to help you change your Theme options.</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">_config.yml</code> contains commented out alternatives to themes (see ‘# theme requirements’ cell below).  Try these themes by commenting out midnight them with # at front and remove comment # from the front of theme of choice.  After changing theme you will need to do a <code class="language-plaintext highlighter-rouge">make clean</code>  followed by a <code class="language-plaintext highlighter-rouge">make</code> to test.</li>
+    <li><code class="language-plaintext highlighter-rouge">_includes/head.html</code> this file contains code to ensure page loads the proper JavaScript.  This is a partial effort at support.  You will need to follow README.md instruction of theme provider to finish convertion. FYI, th head.html is included from <code class="language-plaintext highlighter-rouge">_layouts/default.html</code>  Go to <a href="https://pages.github.com/themes/">Themes</a>  click on Theme and scroll down to README.md and review requirements.  Look their _layouts.html to understand requirements for integration.</li>
+    <li>Reading README.md should become common practice when using a repository.  You should make sure your README has instructions.  Also, in the Theme case, the best way to understand and make your own customizations is to understand how Theme providers customized theirs.  Review these diligently if you want to become proficient and customizing your page.</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># theme requirements
+</span><span class="n">remote_theme</span><span class="p">:</span> <span class="n">pages</span><span class="o">-</span><span class="n">themes</span><span class="o">/</span><span class="n">midnight</span><span class="o">@</span><span class="n">v0</span><span class="p">.</span><span class="mf">2.0</span>
+<span class="c1"># remote_theme: pages-themes/dinky@v0.2.0
+# remote_theme: pages-themes/minimal@v0.2.0
+# remote_theme: pages-themes/hacker@v0.2.0
+# remote_theme: pages-themes/cayman@v0.2.0
+# remote_theme: pages-themes/time-machine@v0.2.0
+</span><span class="n">plugins</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">remote</span><span class="o">-</span><span class="n">theme</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<blockquote>
+  <p>Perform customization to your ‘student’.  This is an opportunity to learn a few concepts from ‘teacher’ repository and then customize your own page to your course needs and personal interests.</p>
+</blockquote>
+
+<h3 id="customize-home-page">Customize Home Page</h3>
+<p>The home page to  other pages is a common first step in building a project.  To start you will need to form your <code class="language-plaintext highlighter-rouge">index.md</code> in your project, which behind the scenes is generated into an <code class="language-plaintext highlighter-rouge">index.html</code> by the GitHub Pages build process.</p>
+
+<h3 id="change-title">Change Title</h3>
+<p>Every page should have a <code class="language-plaintext highlighter-rouge">title</code>.  Here is frontmatter sample…</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">default</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">My Title</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<h3 id="github-page-github-github-raw-broken-links">GitHub Page, GitHub, GitHub Raw; Broken Links</h3>
+<p>Home Page usually is an information page describing the project.  This often contains nice visuals and links to further content.  Review the <code class="language-plaintext highlighter-rouge">index.md</code> of the <a href="https://github.com/nighthawkcoders/teacher/blob/main/index.md">teacher repository</a>.</p>
+
+<p>GitHub displays information in three forms.</p>
+<ul>
+  <li>GitHub Pages, <a href="https://nighthawkcoders.github.io/teacher/">Fully rendered link</a>.  This is the link we share with friends or community.</li>
+  <li>GitHub, <a href="https://github.com/nighthawkcoders/teacher/blob/main/index.md">Partial rendered link</a>.  This is the link developer typically uses to discover a file in a project, GitHub tries to present markdown in a pretty form by default.</li>
+  <li>GitHub raw, <a href="https://raw.githubusercontent.com/nighthawkcoders/teacher/main/index.md">Source link</a>.  The raw link is in the project, but requires a 2nd click after discovery in GitHub.  This contains the source the developer creates when building the pages.</li>
+</ul>
+
+<p>Learn to add <code class="language-plaintext highlighter-rouge">/student2.0</code> when referening files in project to avoid broken links. File locations on localhost and on github.io can be different, this makes sure they are always found.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">csse</span><span class="p">](</span><span class="sx">/student2.0/images/ccr.png</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="making-a-submenu">Making a Submenu</h3>
+<blockquote>
+  <p>This is made from markdown and references images from the <code class="language-plaintext highlighter-rouge">image</code> foler.</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">index.md</code> is the file that contains markdown for this page</li>
+    <li><code class="language-plaintext highlighter-rouge">_includes/nav_home.html</code> contains code for submenu, it is included in every page in this dialog</li>
+    <li><code class="language-plaintext highlighter-rouge">/student2.0</code> refers to baseurl defined in _config.yml, this is the localtion of all files in WebSite.   Note, this changes as you run on localhost and deployed; make sure you remember to use this for locations of files in site.</li>
+  </ul>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;table&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;img</span> <span class="na">src=</span><span class="s">"/student2.0//images/logo.png"</span> <span class="na">height=</span><span class="s">"60"</span> <span class="na">title=</span><span class="s">"Frontend"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/student2.0/index"</span><span class="nt">&gt;</span>Course<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/student2.0/home/table"</span><span class="nt">&gt;</span>Table<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/student2.0/home/about"</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+</code></pre></div></div>
+
+<h3 id="style-hack">Style Hack</h3>
+<blockquote>
+  <p>The Style submenu is using a Calculator as an example.</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">/assets/css/style.css</code> contains import of style customization per rules defined by GitHub Pages themse.  Read the description on how Stye customization are handled by <a href="https://github.com/pages-themes/midnight#readme">midnight</a> in the README.md.  This is a way to use there repo of customization, but also add individual spice.  This is much faster than trying to do this by yourself.</li>
+    <li><code class="language-plaintext highlighter-rouge">/_posts/&lt;date&gt;Example-calculator.md</code> contains code for Calculator in the project.  Only the top output is generating completely custom style, the remainder comes from adjusting style.css.</li>
+    <li>A Calculator is a great way to learn customizations of things like buttons, which are common elements in a Theme.  Also, it is great way to learn Math operations.  Suggested Hacks are inside this file.</li>
+    <li>As you view the content of this file you will see CSS, HTML, and JavaScipt.  To enhance this you would need to start to learn the basic structures and use a Cheat Sheet for reference.   Also, putting this code into ChatGPT and aking for overview is a great way to understand line by line.</li>
+  </ul>
+</blockquote>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/c5.0/2023/08/23/github_pages_anatomy_IPYNB_2_.html" hidden></a>
+</article>

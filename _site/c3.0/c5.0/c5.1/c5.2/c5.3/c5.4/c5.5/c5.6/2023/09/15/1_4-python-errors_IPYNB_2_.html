@@ -1,0 +1,259 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">1.4 Correcting errors</h1><p class="page-description">Practice with identifying and correcting code blocks</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-15T00:00:00-07:00" itemprop="datePublished">
+        Sep 15, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sean Yeung</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C3.0">C3.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.0">C5.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.1">C5.1</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.2">C5.2</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.3">C5.3</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.4">C5.4</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.5">C5.5</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.6">C5.6</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><p><a href="https://apclassroom.collegeboard.org/103/home?unit=1">College Board Big Idea 1</a></p>
+
+<h2 id="identifying-and-correcting-errors-unit-14">Identifying and Correcting Errors (Unit 1.4)</h2>
+<blockquote>
+  <p>Become familiar with types of errors and strategies to fixing them</p>
+  <ul>
+    <li>Lightly Review Videos and take notes on topics with Blog</li>
+    <li>Complete assigned MCQ questions</li>
+  </ul>
+</blockquote>
+
+<h1 id="here-are-some-code-segments-you-can-practice-fixing">Here are some code segments you can practice fixing:</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Create a list of the alphabet
+</span>
+<span class="n">alphabet</span> <span class="o">=</span> <span class="s">"abcdefghijklmnopqrstuvwxyz"</span>
+
+<span class="n">alphabetList</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">alphabetList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The intended outcome is to determine where the letter is in the alphabet using a while loop</p>
+<ul>
+  <li>What is a good test case to check the current outcome? Why?</li>
+  <li>Make changes to get the intended outcome.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="n">letter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"What letter would you like to check?"</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">alphabetList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">letter</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"The letter "</span> <span class="o">+</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">" is the "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">" letter in the alphabet"</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+</code></pre></div></div>
+
+<p>The intended outcome is to determine where the letter is in the alphabet using a for loop</p>
+<ul>
+  <li>What is a good test case to check the current outcome? Why?</li>
+  <li>Make changes to get the intended outcome.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="n">letter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"What letter would you like to check?"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">alphabetList</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">letter</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"The letter "</span> <span class="o">+</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">" is the "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s">" letter in the alphabet"</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+</code></pre></div></div>
+
+<p>This code outputs the even numbers from 0 - 10 using a while loop.</p>
+<ul>
+  <li>Analyze this code to determine what can be changed to get the outcome to be odd numbers. (Code block below)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">evens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">evens</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">evens</span><span class="p">)</span>    
+
+
+</code></pre></div></div>
+
+<p>This code should output the odd numbers from 0 - 10 using a while loop.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">odds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">odds</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">odds</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This code outputs the even numbers from 0 - 10 using a for loop.</p>
+<ul>
+  <li>Analyze this code to determine what can be changed to get the outcome to be odd numbers. (Code block below)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">evens</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">evens</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">evens</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<p>This code should output the odd numbers from 0 - 10 using a for loop.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">odds</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">odds</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">odds</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The intended outcome is printing a number between 1 and 100 once, if it is a multiple of 2 or 5</p>
+<ul>
+  <li>What values are outputted incorrectly. Why?</li>
+  <li>Make changes to get the intended outcome.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">newNumbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">newNumbers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">newNumbers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">newNumbers</span><span class="p">)</span> 
+
+
+</code></pre></div></div>
+
+<h1 id="challenge">Challenge</h1>
+
+<p>This code segment is at a very early stage of implementation.</p>
+<ul>
+  <li>What are some ways to (user) error proof this code?</li>
+  <li>The code should be able to calculate the cost of the meal of the user</li>
+</ul>
+
+<p>Hint:</p>
+<ul>
+  <li>write a “single” test describing an expectation of the program of the program</li>
+  <li>test - input burger, expect output of burger price</li>
+  <li>run the test, which should fail because the program lacks that feature</li>
+  <li>write “just enough” code, the simplest possible, to make the test pass</li>
+</ul>
+
+<p>Then repeat this process until you get program working like you want it to work.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">menu</span> <span class="o">=</span>  <span class="p">{</span><span class="s">"burger"</span><span class="p">:</span> <span class="mf">3.99</span><span class="p">,</span>
+         <span class="s">"fries"</span><span class="p">:</span> <span class="mf">1.99</span><span class="p">,</span>
+         <span class="s">"drink"</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">}</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">#shows the user the menu and prompts them to select an item
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Menu"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">menu</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="s">"  $"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="c1">#why does v have "str" in front of it?
+</span>
+<span class="c1">#ideally the code should prompt the user multiple times
+</span><span class="n">item</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Please select an item from the menu"</span><span class="p">)</span>
+
+<span class="c1">#code should add the price of the menu items selected by the user 
+</span><span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<blockquote>
+  <p>Now is a good time to think about Testing of your teams final project…</p>
+  <ul>
+    <li>What errors may arise in your project?</li>
+    <li>What are some test cases that can be used?</li>
+    <li>Make sure to document any bugs you encounter and how you solved the problem.</li>
+    <li>What are “single” tests that you will perform on your project? Or, your part of the project?
+      <ul>
+        <li>As Hack Design and Test plan action … Divide these “single” tests into Issues for Scrum Board prior to coding. FYI, related tests could be in same Issue by using markdown checkboxes to separate tests.</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+  </div><a class="u-url" href="/student2.0/c3.0/c5.0/c5.1/c5.2/c5.3/c5.4/c5.5/c5.6/2023/09/15/1_4-python-errors_IPYNB_2_.html" hidden></a>
+</article>

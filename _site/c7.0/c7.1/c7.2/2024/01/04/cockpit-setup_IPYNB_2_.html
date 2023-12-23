@@ -1,0 +1,215 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Cockpit Setup</h1><p class="page-description">A guide to setting up Cockpit</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2024-01-04T00:00:00-08:00" itemprop="datePublished">
+        Jan 4, 2024
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Lily Wu</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C7.0">C7.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C7.1">C7.1</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C7.2">C7.2</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#setting-up-cockpit">Setting up Cockpit</a><ul><li><a href="#overview">Overview</a></li></ul></li><li><a href="#install-cockpit">Install Cockpit</a></li><li><a href="#accessing">Accessing</a></li><li><a href="#configure-subdomain">Configure subdomain</a></li><li><a href="#nginx">Nginx</a></li><li><a href="#cockpit-navigation">Cockpit Navigation</a><ul><li><a href="#overview-1">Overview</a></li><li><a href="#logs">Logs</a></li><li><a href="#storage">Storage</a></li><li><a href="#networking">Networking</a></li><li><a href="#accounts">Accounts</a></li><li><a href="#services">Services</a></li><li><a href="#software-updates">Software Updates</a></li><li><a href="#terminal">Terminal</a></li><li><a href="#update-hostname-and-system-time">Update hostname and system time</a></li><li><a href="#user-account-settings">User account settings</a></li></ul></li><li><a href="#congratulations">Congratulations!</a></li></ul><h2 id="setting-up-cockpit">Setting up Cockpit</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>Cockpit is a tool that provides a GUI interface on the web. It allows an administrator to manage applications and services running on the server. While Linux configurations are mostly done through a command line, Cockpit provides a helpful visualization for features such as CPU and memory utilization. Cockpit also provides a terminal on the web interface, making it helpful if you need to access the server remotely.</p>
+
+<h2 id="install-cockpit">Install Cockpit</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">cockpit</span>
+</code></pre></div></div>
+
+<p>Start the Cockpit service</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Start</span> <span class="n">the</span> <span class="n">Cockpit</span> <span class="n">service</span>
+</code></pre></div></div>
+
+<h2 id="accessing">Accessing</h2>
+
+<p>Cockpit runs on port 9090. This port needs to be allowed on the EC2 instance. Click on “Security Groups” in the left sidebar:</p>
+
+<p><img src="/student2.0/images/securityGroups.jpg" alt="" /></p>
+
+<p>Next, search for your security group. Click the check box next to the group name, scroll down, and click on “Inbound rules”. Click on “Edit inbound rules”, and add a rule that allows “Port range” of 9090 and “Source type” of Anywhere-IPv4.</p>
+
+<p><img src="/student2.0/images/editRules.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>Access Cockpit with the link: <code class="language-plaintext highlighter-rouge">&lt;EC2 IP address&gt;:9090</code>. There are a variety of ways to find the IP address of the instance. One way is to locate the IP address under “Public IPv4 address” on the “Instances” page:</p>
+
+<p><img src="/student2.0/images/ip.jpg" alt="" /></p>
+
+<p>In this case, the IP address of the instance is 3.145.69.15. Accessing http://3.145.69.15:9090 shows the Cockpit login screen:</p>
+
+<p><img src="/student2.0/images/cockpitHomepage.jpg" alt="" /></p>
+
+<p><br />
+Login with the same username and password used to login to the EC2 instance.</p>
+
+<h2 id="configure-subdomain">Configure subdomain</h2>
+
+<ol>
+  <li>
+    <p>Go to AWS Route 53 -&gt; Hosted zone -&gt; nighthawkcodingsociety.com</p>
+  </li>
+  <li>
+    <p>Click on “Create record”</p>
+  </li>
+  <li>
+    <p>Configure a subdomain, keep the “Record type” as “A”, and add the IP address of the instance in the “Value” section.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<p>Now you can access Cockpit at <code class="language-plaintext highlighter-rouge">&lt;subdomain&gt;:9090</code>.</p>
+
+<h2 id="nginx">Nginx</h2>
+
+<p>Use Nginx to configure a reverse proxy for Cockpit:</p>
+
+<p>Create an nginx file in <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-available/&lt;your file name&gt;</code> and add the following lines for Cockpit. Be sure to replace <code class="language-plaintext highlighter-rouge">&lt;your domain name&gt;</code> with the subdomain you configured:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    server_name    &lt;your domain name&gt;;
+
+    location / {
+        # Required to proxy the connection to Cockpit
+        proxy_pass https://127.0.0.1:9090;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Required for web sockets to function
+        proxy_http_version 1.1;
+        proxy_buffering off;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        # Pass ETag header from Cockpit to clients.
+        # See: https://github.com/cockpit-project/cockpit/issues/5239
+        gzip off;
+    }
+}
+</code></pre></div></div>
+
+<p>Activate the Nginx configuration with:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/&lt;</span><span class="n">your</span> <span class="nb">file</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/&lt;</span><span class="n">your</span> <span class="nb">file</span> <span class="n">name</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>Create a certificate for the website to access over HTTPS.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Make Certbot edit Nginx configuration to enable HTTPS
+</span><span class="n">sudo</span> <span class="n">certbot</span> <span class="o">--</span><span class="n">nginx</span>
+
+<span class="c1"># Restart Nginx
+</span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">nginx</span>
+</code></pre></div></div>
+
+<h2 id="cockpit-navigation">Cockpit Navigation</h2>
+
+<p>This portion will cover Cockpit’s features. Login to Cockpit by accessing your subdomain.</p>
+
+<p>The left navigation bar in Cockpit presents a few options that you can select:</p>
+
+<h3 id="overview-1">Overview</h3>
+
+<p>The overview section provides a summary of health, usage, system, and configuration information. Click on “View details and history” to check CPU, memory, and network  settings.</p>
+
+<h3 id="logs">Logs</h3>
+
+<p>These provide information about the system, such as a failed login. Logs can be filtered based on criteria such as time or priority.</p>
+
+<h3 id="storage">Storage</h3>
+
+<p>See disk read and write settings and storage logs.</p>
+
+<h3 id="networking">Networking</h3>
+
+<p>This portion shows the network traffic of the server and interface information. VLANs and bridges can also be added here.</p>
+
+<h3 id="accounts">Accounts</h3>
+
+<p>This setting allows the administrator to create and manage accounts. You can click on a user to edit user settings, such as changing the password and adding SSH keys.</p>
+
+<h3 id="services">Services</h3>
+
+<p>Click on a service to view its settings. A service can be reloaded, restarted, or stopped by clicking on the three dots. The dropdown under “Show relationships” includes information such as a service’s dependencies and when it starts in relation with other services (what services start before and after this service)</p>
+
+<h3 id="software-updates">Software Updates</h3>
+
+<p>If you are running Ubuntu 17.10 or later, a “Loading available updates failed” error message will appear. This is because Ubuntu changed the network management from network-manager to netplan.io, which has not been updated in Cockpit. A way to fix this is to change netplan’s configuration file to manage one interface with network-manager.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">netplan</span><span class="o">/</span><span class="mi">50</span><span class="o">-</span><span class="n">cloud</span><span class="o">-</span><span class="n">init</span><span class="p">.</span><span class="n">yaml</span>
+</code></pre></div></div>
+
+<p>Next, add the following line under <code class="language-plaintext highlighter-rouge">network:</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>renderer: NetworkManager
+</code></pre></div></div>
+
+<p>Then, execute</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>netplan try
+</code></pre></div></div>
+
+<p>Refresh Cockpit, and the “Software Updates” page should work. Updates can now be installed.</p>
+
+<h3 id="terminal">Terminal</h3>
+
+<p>A command line interface that is the same as the machine’s terminal on AWS EC2.</p>
+
+<h3 id="update-hostname-and-system-time">Update hostname and system time</h3>
+
+<p>Go to Overview -&gt; Configuration -&gt; Click on “edit” next to “Hostname” and configure a hostname for the server.</p>
+
+<p>Click on the time next to “System time” to set the time zone.</p>
+
+<h3 id="user-account-settings">User account settings</h3>
+
+<p>Go to Accounts -&gt; Click on “Create new account” and fill out the boxes</p>
+
+<p>After the user is created, click on the user. You can check “Server administrator” to give the user <code class="language-plaintext highlighter-rouge">sudo</code> privileges.</p>
+
+<p>You can also configure account expiration and password expiration settings by clicking on “edit” next to the two settings.</p>
+
+<p><br /></p>
+
+<p>To test the new user account created, logout, and then login with the new user credentials. If the user has administrative privileges, you can click on the button that says “Limited access” at the top right corner to gain those privileges.</p>
+
+<p><strong>Note</strong>: If the user was not configured as a “Server administrator” and tried to gain admin privileges by clicking the button, the attempt will fail and will be logged. You can view the log by clicking on “Logs” in the sidebar:</p>
+
+<p><img src="/student2.0/images/logs.jpg" alt="" /></p>
+
+<h2 id="congratulations">Congratulations!</h2>
+
+<p>Congratulations on deploying your site and setting up Cockpit with AWS! A special thanks to Azeem Khan, Samit Poojary, Ethan Tran, Sophie Park, Edwin Abraham, Mr. Mortensen and Jeffrey Fonseca for helping put this together.</p>
+
+  </div><a class="u-url" href="/student2.0/c7.0/c7.1/c7.2/2024/01/04/cockpit-setup_IPYNB_2_.html" hidden></a>
+</article>

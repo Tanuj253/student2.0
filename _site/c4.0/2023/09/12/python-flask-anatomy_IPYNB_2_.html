@@ -1,0 +1,137 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Anatomy of Python Flask</h1><p class="page-description">A discussion of key elements in a Python Flask backend project.  This includes preparing a project for deployment.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-12T00:00:00-07:00" itemprop="datePublished">
+        Sep 12, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.0">C4.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h2 id="overview-of-flask">Overview of Flask</h2>
+<p>This article overviews key considerations in setting up a Python Flask backend project.</p>
+
+<h2 id="overview-of-python-files-to-support-a-flask-server">Overview of Python files to support a Flask server</h2>
+<blockquote>
+  <p>Discuss how to develop a home page, code, run local server test, and then sync to deploy to GitHub Pages.</p>
+  <ul>
+    <li>Review tools setup and make in README.md to support this lesson.</li>
+  </ul>
+</blockquote>
+
+<h2 id="files-and-directories-in-this-project">Files and Directories in this Project</h2>
+<blockquote>
+  <p>These are some of the key files and directories in this project</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">README.md</code>: This file contains instructions for setting up the necessary tools and cloning the project. A README file is a standard component of all properly set up GitHub projects.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">requirements.txt</code>: This file lists the dependencies required to turn this Python project into a Flask/Python project. It may also include other backend dependencies, such as dependencies for working with a database.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">main.py</code>: This Python source file is used to run the project. Running this file starts a Flask web server locally on localhost. During development, this is the file you use to run, test, and debug the project.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Dockerfile</code> and <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>: These files are used to run and test the project in a Docker container. They allow you to simulate the project’s deployment on a server, such as an AWS EC2 instance. Running these files helps ensure that your tools and dependencies work correctly on different machines.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">instances</code>: This directory is the standard location for storing data files that you want to remain on the server. For example, SQLite database files can be stored in this directory.  Files stored in this location will persist after web application restart, everyting outside of instances will be recreated at restart.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">static</code>: This directory is the standard location for files that you want to be cached by the web server. It is typically used for image files (JPEG, PNG, etc.) or JavaScript files that remain constant during the execution of the web server.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">api</code>: This directory contains code that receives and responds to requests from external servers. It serves as the interface between the external world and the logic and code in the rest of the project.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">model</code>: This directory contains files that implement the backend functionality for many of the files in the api directory. For example, there may be files in the model directory that directly interact with the database.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">templates</code>: This directory contains files and subdirectories used to support the home and error pages of the website.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">.gitignore</code>: This file specifies elements to be excluded from version control. Files are excluded when they are derived and not considered part of the project’s original source. In the VSCode Explorer, you may notice some files appearing dimmed, indicating that they are intentionally excluded from version control based on the rules defined in .gitignore.</p>
+  </li>
+</ul>
+
+<p>Please note that there are many other key files and directories in a Flask Python backend server, but we will highlight them as the development progresses.</p>
+
+<h3 id="dockerfile-and-docker-composeyml">Dockerfile and docker-compose.yml</h3>
+<blockquote>
+  <p>Make sure your docker files are created using these examples.  These files are the best way to determine if your web application is ready for deployment.</p>
+</blockquote>
+
+<p>Examining and understanding these files will help you understand a great deal about your project.</p>
+
+<ul>
+  <li>Dockerfile
+    <ul>
+      <li>python 3.10 environment is used as or deployment container</li>
+      <li>python3-pip is installed, as pip is the package manager</li>
+      <li>requirement.txt is used to update project dependencies in the container</li>
+      <li>gunicorn is used to run a production version of python/flask, in this configuration 3 workers or 3 instances of the server are run.  This balances load.</li>
+      <li>main:app means the main.py is the primary file and app contains server configuration</li>
+    </ul>
+  </li>
+  <li>docker-compose.yml
+    <ul>
+      <li>image name the docker container</li>
+      <li>port declares address for web application on web server</li>
+      <li>volumes declares that the instance directory contains persistant data</li>
+      <li>restart tells web applciation to come back up if something like power outage or reboot takes down web server</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">FROM</span> <span class="n">docker</span><span class="o">.</span><span class="na">io</span><span class="o">/</span><span class="nl">python:</span><span class="mf">3.10</span>
+
+<span class="no">WORKDIR</span> <span class="o">/</span>
+
+<span class="err">#</span> <span class="o">---</span> <span class="o">[</span><span class="nc">Install</span> <span class="n">python</span> <span class="n">and</span> <span class="n">pip</span><span class="o">]</span> <span class="o">---</span>
+<span class="no">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span> <span class="o">-</span><span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="err">\</span>
+    <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">python3</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">git</span>
+<span class="no">COPY</span> <span class="o">.</span> <span class="o">/</span>
+
+<span class="no">RUN</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="n">dir</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="na">txt</span>
+<span class="no">RUN</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">gunicorn</span>
+
+<span class="no">ENV</span> <span class="no">GUNICORN_CMD_ARGS</span><span class="o">=</span><span class="s">"--workers=3 --bind=0.0.0.0:8080"</span>
+
+<span class="no">EXPOSE</span> <span class="mi">8080</span>
+
+<span class="no">CMD</span> <span class="o">[</span> <span class="s">"gunicorn"</span><span class="o">,</span> <span class="s">"main:app"</span> <span class="o">]</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">version:</span> <span class="sc">'3'</span>
+<span class="nl">services:</span>
+        <span class="nl">web:</span>
+                <span class="nl">image:</span> <span class="n">flask_port_v1</span> <span class="err">#</span> <span class="nc">Change</span> <span class="n">the</span> <span class="n">image</span> <span class="n">name</span> <span class="n">to</span> <span class="n">something</span> <span class="n">unique</span> <span class="n">to</span> <span class="n">your</span> <span class="n">project</span><span class="o">,</span> <span class="n">aka</span> <span class="n">my_unique_name_v1</span>
+                <span class="nl">build:</span> <span class="o">.</span>
+                <span class="nl">ports:</span>
+                        <span class="o">-</span> <span class="s">"8---:8080"</span> <span class="err">#</span> <span class="nc">Edit</span> <span class="n">the</span> <span class="n">number</span> <span class="n">on</span> <span class="n">the</span> <span class="n">left</span> <span class="n">to</span> <span class="n">match</span> <span class="n">the</span> <span class="n">port</span> <span class="n">you</span> <span class="n">selected</span>
+                <span class="nl">volumes:</span>
+                        <span class="o">-</span> <span class="o">./</span><span class="nl">volumes:</span><span class="o">/</span><span class="n">volumes</span>
+                        <span class="o">-</span> <span class="o">./</span><span class="nl">instance:</span><span class="o">/</span><span class="n">instance</span>
+                <span class="nl">restart:</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/student2.0/c4.0/2023/09/12/python-flask-anatomy_IPYNB_2_.html" hidden></a>
+</article>

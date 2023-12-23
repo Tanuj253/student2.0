@@ -1,0 +1,842 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U2 Using Objects - Student P3</h1><p class="page-description">Object are instances of Classes.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-05T00:00:00-07:00" itemprop="datePublished">
+        Oct 5, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">grace</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      20 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#unit-21--objects-instances-of-classes">Unit 2.1- Objects: Instances of Classes</a><ul><li><a href="#what-are-objects">What are objects?</a></li><li><a href="#what-are-classes">What are classes?</a></li><li><a href="#objects-are-instances-of-classes">Objects are Instances of Classes</a></li><li><a href="#example">Example</a></li><li><a href="#learning-objectives">Learning Objectives</a></li><li><a href="#essential-knowledge">Essential Knowledge</a></li></ul></li></ul></li><li><a href="#unit-22--creating-and-storing-objects-instantiation">Unit 2.2- Creating and Storing Objects (Instantiation)</a><ul><li><a href="#constructor-overloads">Constructor Overloads</a></li><li><a href="#null-objects">Null Objects</a></li><li><a href="#learning-objectives-1">Learning Objectives</a></li></ul></li></ul></li><li><a href="#unit-23--calling-a-void-method">Unit 2.3- Calling a Void Method</a><ul><li><a href="#learning-objective">Learning Objective</a></li><li><a href="#unit-24--calling-a-void-method-with-parameters">Unit 2.4- Calling a Void Method With Parameters</a></li><li><a href="#unit-25--calling-a-non-void-method">Unit 2.5- Calling a Non-Void Method</a></li><li><a href="#26-string-objects-concatenation-literals-and-more">2.6 String Objects: Concatenation, Literals, and More</a><ul><li><a href="#escape-characters">Escape Characters</a></li><li><a href="#string-concatenation">String Concatenation</a></li></ul></li><li><a href="#27-string-methods">2.7 String Methods</a><ul><li><a href="#intro-to-external-libraries-and-apis">Intro to External Libraries and APIs</a></li><li><a href="#about-the-string-class">About the String Class</a></li></ul></li><li><a href="#accessing-substrings">Accessing Substrings</a></li><li><a href="#28-wrapper-classes-integer-and-double">2.8 Wrapper Classes: Integer and Double</a><ul><li><a href="#the-integer-wrapper-class">The integer Wrapper Class</a></li><li><a href="#double-wrapper-classes">Double Wrapper Classes</a></li><li><a href="#autoboxing">Autoboxing</a></li></ul></li><li><a href="#29-using-the-math-class">2.9 Using the Math Class</a></li></ul></li><li><a href="#hack-1-025">Hack 1: (0.25)</a></li><li><a href="#hack-2-025">Hack 2: (0.25)</a></li><li><a href="#hack-3-025">Hack 3: (0.25)</a></li><li><a href="#hack-4-025">Hack 4: (0.25)</a></li></ul><h2 id="unit-21--objects-instances-of-classes">Unit 2.1- Objects: Instances of Classes</h2>
+
+<h4 id="what-are-objects">What are objects?</h4>
+
+<p>An <strong>Object</strong> is created from a class by calling the class constructor.</p>
+
+<h4 id="what-are-classes">What are classes?</h4>
+
+<p>A <strong>Class</strong> is a template that defines an object is like and what it can do.</p>
+
+<h4 id="objects-are-instances-of-classes">Objects are Instances of Classes</h4>
+
+<p>For example, if the class is a blueprint for a house, the object is a particular house.</p>
+
+<h4 id="example">Example</h4>
+
+<p>Here is an example of creating a Student class in Java. It contains instance variables that define the characteristics of a student.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+
+    <span class="c1">// instance variables</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">teacher</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">period</span><span class="o">;</span>
+  
+    <span class="c1">// constructor</span>
+    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">teacher</span><span class="o">,</span> <span class="kt">int</span> <span class="n">period</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">teacher</span> <span class="o">=</span> <span class="n">teacher</span><span class="o">;</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">period</span> <span class="o">=</span> <span class="n">period</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now, using our class, we can create student objects by initializing two students</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Student</span> <span class="n">grace</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Grace"</span><span class="o">,</span> <span class="s">"Mr. Mort"</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="nc">Student</span> <span class="n">alice</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">,</span> <span class="s">"Mr. Mort"</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>We can printout information about each student</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">grace</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Grace
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">alice</span><span class="o">.</span><span class="na">period</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
+<h4 id="learning-objectives">Learning Objectives</h4>
+
+<ul>
+  <li>Explain the relationship between a class and an object.</li>
+</ul>
+
+<details>
+<summary>Answer</summary>
+
+A class in object-oriented programming serves as a blueprint or template, defining the structure and behavior of objects. Objects, on the other hand, are instances of a class, representing real-world entities or concepts in code. Each object created from a class inherits its attributes and methods, allowing multiple objects to share a common structure while having their own unique data and behaviors.
+
+</details>
+
+<h4 id="essential-knowledge">Essential Knowledge</h4>
+
+<ul>
+  <li>An object is a specific instance of a class with defined attributes.</li>
+  <li>A class is the formal implementation, or blueprint, of the attributes and behaviors of an object.</li>
+</ul>
+
+<h2 id="unit-22--creating-and-storing-objects-instantiation">Unit 2.2- Creating and Storing Objects (Instantiation)</h2>
+
+<p>So, after we learned about <strong>classes</strong>, how are <strong>objects</strong> actually made?</p>
+
+<p>Using our previous code, we can see created our constructor using</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Student(String name, String teacher, int period) {
+      this.name = name;
+      this.teacher = teacher;
+      this.period = period;
+    }
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+
+    <span class="c1">// instance variables</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">teacher</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">period</span><span class="o">;</span>
+  
+    <span class="c1">// constructor</span>
+    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">teacher</span><span class="o">,</span> <span class="kt">int</span> <span class="n">period</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">teacher</span> <span class="o">=</span> <span class="n">teacher</span><span class="o">;</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">period</span> <span class="o">=</span> <span class="n">period</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <strong>Student</strong> is the name of the class. The first letter is capitalized according to Java naming conventions (camel-case naming conventions). Then, using the <strong>new</strong> keyword, we call the constructor to make a new <strong>Student</strong>. Inside the parentheses, we have the parameter list, where the values and characteristics of the object are entered.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Student grace = new Student("Grace", "Mr. Mort", 3);
+</code></pre></div></div>
+
+<p>The <strong>parameters</strong> in this case are “Grace”, “Mr. Mort”, and 3.</p>
+
+<h4 id="constructor-overloads">Constructor Overloads</h4>
+
+<p>A class can have multiple constructors, however, the number of parameters must be different or the order must be different. This is an example of <strong>overloading</strong> the constructor.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Constructor 1
+Student(String name, String teacher, int period)
+
+
+// Constructor 2
+Student(String teacher, String name, int period)
+</code></pre></div></div>
+
+<p>This two constructors are not allowed. For example, if we call</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Student("Grace", "Mr. Mort", 3);
+</code></pre></div></div>
+
+<p>we would not know whether Grace or Mr. Mort is the student.</p>
+
+<p>However, constructors with different data types or different number of parameters are allowed when overloading. Here are some examples…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Student(String name, String teacher, int period)
+Student(String name, String teacher)
+Student()
+</code></pre></div></div>
+
+<h4 id="null-objects">Null Objects</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Student</span> <span class="n">rachit</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Null basically states that no object exists, and it is not stored in memory. You cannot call methods on an object that is declared as null since null objects do not have any information or characteristics set to that object. This will create a NullPointerException</p>
+
+<h4 id="learning-objectives-1">Learning Objectives</h4>
+
+<ul>
+  <li>Identify, using its signature, the correct constructor being called.</li>
+  <li>Note: Method Signature in java is defined as the structure of a method that is designed by the programmer</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Student {
+
+    // instance variables
+    String name;
+    String teacher;
+    int period;
+  
+    // constructor
+    public Student(String name, String teacher, int period) {
+      this.name = name;
+      this.teacher = teacher;
+      this.period = period;
+    }
+  }
+</code></pre></div></div>
+
+<details>
+<summary>Answer</summary>
+
+```
+Student("Grace", "Mr. Mort", 3);
+```
+
+- For creating objects: (a) Create objects by calling constructors without parameters. (b) Create objects by calling constructors with parameters.
+- Define variables of the correct types to represent reference data.
+
+</details>
+
+<h2 id="unit-23--calling-a-void-method">Unit 2.3- Calling a Void Method</h2>
+
+<p><strong>method</strong>: code that is called in order to achieve a task</p>
+<ul>
+  <li>can be void or non-void, static or non-static</li>
+</ul>
+
+<p><strong>void method</strong>: do not return a value but instead change other things. These include changing characteristics of an object or printing text to the console. Here is an example…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public void methodName(parameterList)
+</code></pre></div></div>
+
+<p><strong>static method</strong>: general to the class and not tied to any particular object. The method is denoted by the Here is an example …</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void add() {
+  count++;
+}
+
+</code></pre></div></div>
+
+<p>To call a static method, we use dot notation, with the class name coming before the method separated by a dot as follows</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ClassName.add();
+</code></pre></div></div>
+
+<p><strong>non-static method</strong>: acts on a particular object. For example, printing a person’s name is a non-static method, since each person has a different name. For example…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public void printName() {
+  System.out.println(name);
+}
+</code></pre></div></div>
+
+<p>When calling a non-static method, we also use dot notation. But, instead of using the class name, we use the object name so we know what object the method acts on. Also, we don’t need to do dot notation of ClassName.objectName.methodName() because an object already acts on a certain class, so using the class name is just redundant.  We would use printName() as follows…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>objectName.printName();
+</code></pre></div></div>
+
+<p>Run the main method and see what the each of the methods prints out</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span> <span class="o">{</span>
+
+    <span class="c1">// Static method</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">staticMethod</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"This is a static method."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Non-static (instance) method</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">nonStaticMethod</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"This is a non-static method."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Method with void return type</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithVoidReturnType</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"This method has a void return type."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Calling the static method</span>
+        <span class="n">staticMethod</span><span class="o">();</span>
+
+        <span class="c1">// Creating an object of MyClass</span>
+        <span class="nc">MyClass</span> <span class="n">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyClass</span><span class="o">();</span>
+
+        <span class="c1">// Calling the non-static method on the object</span>
+        <span class="n">myObject</span><span class="o">.</span><span class="na">nonStaticMethod</span><span class="o">();</span>
+
+        <span class="c1">// Calling the method with void return type</span>
+        <span class="n">myObject</span><span class="o">.</span><span class="na">methodWithVoidReturnType</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="learning-objective">Learning Objective</h3>
+
+<ul>
+  <li>Call non-static void methods without parameters.</li>
+</ul>
+
+<h3 id="unit-24--calling-a-void-method-with-parameters">Unit 2.4- Calling a Void Method With Parameters</h3>
+
+<p>The method signature for writing void method with parameters is the same as a constructor, with the name of the method followed by the parameters and their types in parentheses. For example, here is a method that prints the perimeter of a rectangle…</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printRectanglePerimeter</span><span class="o">(</span><span class="kt">double</span> <span class="n">length</span><span class="o">,</span> <span class="kt">double</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="o">(</span><span class="n">length</span> <span class="o">+</span> <span class="n">width</span><span class="o">));</span>
+  <span class="o">}</span>   
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printRectanglePerimeter</span><span class="o">(</span><span class="mf">1.5</span><span class="o">,</span> <span class="mf">2.5</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>8.0
+</code></pre></div></div>
+
+<p>We can also overload methods as well. This overloading of the method is acceptable because there are different numbers of parameters.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// If 2 parameters are given, we will calculate the perimeter by adding the length and width and doubling it</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printRectanglePerimeter</span><span class="o">(</span><span class="kt">double</span> <span class="n">length</span><span class="o">,</span> <span class="kt">double</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="o">(</span><span class="n">length</span> <span class="o">+</span> <span class="n">width</span><span class="o">));</span>
+<span class="o">}</span>
+
+<span class="c1">// If 1 parameter is given, we assume the shape is a square</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printRectanglePerimeter</span><span class="o">(</span><span class="kt">double</span> <span class="n">side</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">side</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// No shape exists, no perimeter is calculated</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printRectanglePerimeter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="unit-25--calling-a-non-void-method">Unit 2.5- Calling a Non-Void Method</h3>
+
+<p><strong>Void methods</strong>: complete actions and represent tasks. They are used when you want a method to perform a task or operation without producing a result that needs to be used elsewhere in your program. Void methods are typically used for actions like printing a message, updating a data structure, or modifying the state of an object.</p>
+
+<p>Format for a non-void method:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public (static) dataType methodName(parameterListOptional)
+</code></pre></div></div>
+
+<p>Which method in this class is a non-void method? Edit the cell below to call the Calculator method.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculator</span> <span class="o">{</span>
+    <span class="c1">// A non-void method that adds two numbers and returns the result</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Calculator</span> <span class="n">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculator</span><span class="o">();</span>
+
+        <span class="c1">// Calling the non-void method and capturing the result</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+
+        <span class="c1">// Printing the result</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sum: "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span> <span class="c1">// Output: Sum: 8</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">Calculator</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum: 8
+</code></pre></div></div>
+
+<h3 id="26-string-objects-concatenation-literals-and-more">2.6 String Objects: Concatenation, Literals, and More</h3>
+
+<p>Guess what’s crazy? String literals are not actually primitives, they are considered objects! String literals are part of the aptly named String class included in Java and have a set of methods that come along with it. We’ll see what we can do with the String class in the next topic!</p>
+
+<p>There are two ways to make strings: using a preinitialized string or by using a constructor.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">preInt</span> <span class="o">=</span> <span class="s">"Hello World!"</span><span class="o">;</span> <span class="c1">// How we usually initialize strings</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">preInt</span><span class="o">);</span>
+
+<span class="c1">// Using a constructor:</span>
+<span class="nc">String</span> <span class="n">newString</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">newString</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World!
+Hello World!
+</code></pre></div></div>
+
+<h4 id="escape-characters">Escape Characters</h4>
+<p>Sometimes, you want to put a quote in a string. However, you quickly find out that the opening quotation in the quote marks the “end” of the string and you can’t type out your quote unless you want the program to crash. What can you do?</p>
+
+<p><img src="https://media.discordapp.net/attachments/1010780182476496908/1159224994707021945/image.png?ex=65303f68&amp;is=651dca68&amp;hm=d8ba25c57cc1d41eb20fd2f3621f2ae0472efb874dba76d7078415c0d0b34613&amp;=&amp;width=2268&amp;height=622" alt="Alt text" /></p>
+
+<p>Challenge: Display the background of the quote while displaying the quote in one line: “Give me liberty or give me death!” - Patrick Henry.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"This is a famous quote written by Patrick Henry in the Virginia Convention: \n\"Give me liberty or give me death!\""</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a famous quote written by Patrick Henry in the Virginia Convention: 
+"Give me liberty or give me death!"
+</code></pre></div></div>
+
+<h4 id="string-concatenation">String Concatenation</h4>
+
+<p>When we combine two strings together, we call that string concatenation. We use the ‘+’ operator to concatenate two strings.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"I am"</span> <span class="o">+</span> <span class="s">"hungry"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I amhungry
+</code></pre></div></div>
+
+<p>Notice how there is no space between am and hungry. This is because the java ‘+’ operator does not add a space, but instead, joins the strings together without adding anything in between. To fix this, we add a space in between.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"I am"</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="s">"hungry"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I am hungry
+</code></pre></div></div>
+
+<p>However, when we want to use variables with our strings, we can also use the ‘+=’ operator to concatenate our strings. The ‘+’ operator still works, however.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a1</span> <span class="o">=</span> <span class="s">"Hello "</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">a2</span> <span class="o">=</span> <span class="s">"World"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a1</span> <span class="o">+</span> <span class="n">a2</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a1</span> <span class="o">+=</span> <span class="n">a2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World
+Hello World
+</code></pre></div></div>
+
+<p>Can you guess what happens when we try to change a string object?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="c1">// String literal</span>
+<span class="nc">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="c1">// String literal</span>
+<span class="nc">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s1</span><span class="o">;</span> <span class="c1">// same reference</span>
+
+<span class="c1">//Changing the value of s1</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="s">"Java"</span><span class="o">;</span>
+
+<span class="c1">//Updating with concat() operation</span>
+<span class="n">s2</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" World"</span><span class="o">);</span>
+
+<span class="c1">//The concatenated String will be created as a new instance and an object should refer to that instance to get the concatenated value.</span>
+<span class="nc">String</span> <span class="n">newS3</span> <span class="o">=</span> <span class="n">s3</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="s">" Scaler"</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"s1 refers to "</span> <span class="o">+</span> <span class="n">s1</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"s2 refers to "</span> <span class="o">+</span> <span class="n">s2</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"s3 refers to "</span> <span class="o">+</span> <span class="n">s3</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"newS3 refers to "</span> <span class="o">+</span> <span class="n">newS3</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s1 refers to Java
+s2 refers to Hello
+s3 refers to Hello
+newS3 refers to Hello Scaler
+</code></pre></div></div>
+
+<p>The strings are immutable! This is because immutable strings allows Java to be safe in multithread applications (no changes that were not supposed to happen at that time in the program), and it makes the string object very efficient, as the strings are stored in a “string pool” that Java uses, which allows strings to only be created once but used over and over again if the same string object is created multiple times.</p>
+
+<p>One last cool thing about strings is that primitive types change to string objects when concatenated. You have been doing this all the time, but here is the proof!</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Here is the key: "</span><span class="o">;</span>
+<span class="kt">double</span> <span class="n">key</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">;</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span> <span class="o">+</span> <span class="n">key</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Here is the key: 0.5
+</code></pre></div></div>
+
+<h3 id="27-string-methods">2.7 String Methods</h3>
+
+<h4 id="intro-to-external-libraries-and-apis">Intro to External Libraries and APIs</h4>
+<p>There is a lot you can do with the factory version of Java, however, just like Python and many other languages, there are many new things you can do with the Java external libraries and APIs (application program interfaces). 
+All Java classes, libraries, and APIs come with documentation, which lists the methods of the class and also how to use the class and its methods. Here is the official Java documentation for the String class:</p>
+
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">Java Docs</a></p>
+
+<p>Courtesy of Java.</p>
+
+<h4 id="about-the-string-class">About the String Class</h4>
+<p><strong>The String class is a class in the java.lang package that comes when you install Java on your computer.</strong></p>
+<h3 id="accessing-substrings">Accessing Substrings</h3>
+<p>With strings, we can access substrings and characters in the string. A substring is a string that is included within a larger string, and a character is a substring with a length of 1. First, we need to figure out the length of a string, which is the number of characters in the string. To do this, we use the following method:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Kaiden Do"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">())</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9
+</code></pre></div></div>
+
+<p>We can also get a index for the strings. For example, if we take “Kaiden Do”…</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Character</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>K</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>i</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>d</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>e</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>o</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Kaiden Do"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">6</span><span class="o">));</span> <span class="c1">// Range is [_,_)</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">9</span><span class="o">));</span> <span class="c1">// Range is [_,_)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kaiden
+Do
+</code></pre></div></div>
+
+<p>How would we get the nth character of a string? Write a program to find it with an integer n that you can change to get the nth character in the cell below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Pizza is yummy"</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">));</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P
+</code></pre></div></div>
+
+<p>Question: If we have a string, what is its lower bound index and what is its upper bound index, if the string length is equal to the variable ‘str’?</p>
+
+<p>Answer:</p>
+
+<p>Lower Bound Index: 0</p>
+
+<p>Upper Bound Index: str - 1</p>
+
+<p>Question: What is the error for an out of bound string? Display it in the cell below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1000</span><span class="o">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+java.lang.StringIndexOutOfBoundsException: Range [0, 1000) out of bounds for length 5
+
+	at java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:55)
+
+	at java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:52)
+
+	at java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:213)
+
+	at java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:210)
+
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:98)
+
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckFromToIndex(Preconditions.java:112)
+
+	at java.base/jdk.internal.util.Preconditions.checkFromToIndex(Preconditions.java:349)
+
+	at java.base/java.lang.String.checkBoundsBeginEnd(String.java:4608)
+
+	at java.base/java.lang.String.substring(String.java:2720)
+
+	at .(#21:1)
+</code></pre></div></div>
+
+<p>To do a ctrl-F search through a string, we can use the following process:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">"He stared out the window at the snowy field. He'd been stuck in the house for close to a month and his only view of the outside world was through the window. There wasn't much to see. It was mostly just the field with an occasional bird or small animal who ventured into the field. As he continued to stare out the window, he wondered how much longer he'd be shackled to the steel bar inside the house."</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"animal"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>246
+</code></pre></div></div>
+
+<p>As you can see, the first instance of animal starts at the index of 246.</p>
+
+<p>To compare two strings to each other, we use two functions:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// To check if a string is equal to another string:</span>
+<span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Does string 1 equal string 2? True or false: "</span> <span class="o">+</span> <span class="n">str1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"I am not hungry"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Does string 1 equal string 2? True or false: "</span> <span class="o">+</span> <span class="n">str1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Does string 1 equal string 2? True or false: true
+Does string 1 equal string 2? True or false: false
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// To compare the lengths of the strings</span>
+
+<span class="c1">// Case 1: String 1 is shorter than string 2</span>
+<span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"I am not hungry"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span> <span class="c1">// Returns less than 0</span>
+
+<span class="c1">// Case 2: String 1 is equal string 2</span>
+<span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span> <span class="c1">// Returns 0</span>
+
+<span class="c1">// Case 3: String 1 is longer than string 2</span>
+<span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"I am hungry"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"Hello!"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">str2</span><span class="o">));</span> <span class="c1">// Returns greater than 0</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-6
+0
+1
+</code></pre></div></div>
+
+<p>compareTo() returns the difference of first unmatched character in the two compared strings. If no unmatch is found, and one string comes out as shorter than other one, then the length difference is returned. It also checks to see if a string comes before or after another string alphabetically.</p>
+
+<h3 id="28-wrapper-classes-integer-and-double">2.8 Wrapper Classes: Integer and Double</h3>
+<p>You probably know what an integer is (if you don’t see me after class immediatley!), and you probably know what a double is (again, if you don’t see me after class immediatley!).</p>
+
+<details>
+<summary>But did you know...</summary>
+<br />
+Integers and Doubles are classes called <strong>wrapper classes</strong>!
+</details>
+
+<p>Why would we want to do this? Answer the question in this cell.</p>
+
+<p>Maybe we want to pass a variable as an integer but the program only accepts objects.</p>
+
+<details>
+<summary>Answer</summary>
+<br />
+These classes convert primitive data types (int/double) to a reference data type (object). We convert these because different data structures in java require different types of variables, some of which are only objects. By parsing the values of the primitive data to an object, we can send values to methods and structures that only take object values, like ArrayList, for example. 
+</details>
+
+<h4 id="the-integer-wrapper-class">The integer Wrapper Class</h4>
+<p>The Integer class in Java is a wrapper class for the primitive data type int. It provides several methods that can be used to perform operations on int values. The constructor looks like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>An example of this running is:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">hungerRating</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span> <span class="c1">// Send to an Object</span>
+<span class="kt">int</span> <span class="n">hungerRatingNum</span> <span class="o">=</span> <span class="n">hungerRating</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span> <span class="c1">// Turn back into a primitive</span>
+</code></pre></div></div>
+
+<p>An example of it being utilized is:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;();</span>  <span class="c1">// This will cause a compile-time error</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   ArrayList&lt;int&gt; list = new ArrayList&lt;int&gt;();  // This will cause a compile-time error
+
+unexpected type
+
+  required: reference
+
+  found:    int
+
+
+
+|   ArrayList&lt;int&gt; list = new ArrayList&lt;int&gt;();  // This will cause a compile-time error
+
+unexpected type
+
+  required: reference
+
+  found:    int
+</code></pre></div></div>
+
+<p>The above code will not work because ArrayList requires on object type, while we are passing a primitive type.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>  <span class="c1">// Autoboxing will automatically convert the int 5 to an Integer object</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[5]
+</code></pre></div></div>
+
+<p>This code works because the 5 is being converted by the list.add, since the list uses integer objects.</p>
+
+<p>Moreover, we can also get other data from the integer class, which is related to how Java functions.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Integer Min Value: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Integer Max Value: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Integer Min Value: -2147483648
+Integer Max Value: 2147483647
+</code></pre></div></div>
+
+<p>These numbers are the bounds of integers in java. For example, we can try going outside the range to see what happens.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">pleaseBreak</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">2147483648</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   Integer pleaseBreak = new Integer(2147483648);
+
+integer number too large
+</code></pre></div></div>
+
+<h4 id="double-wrapper-classes">Double Wrapper Classes</h4>
+
+<p>Double wrapper classes are basically the same thing as integer classes, however, they deal with double varaiables instead of integer variables. You write it like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Double</span><span class="o">(</span><span class="nc">Double</span> <span class="nc">Value</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Here is an example of using Double object:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// My actual height in real life (in feet)</span>
+<span class="nc">Double</span> <span class="n">height</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Double</span><span class="o">(</span><span class="mf">6.6</span><span class="o">);</span> <span class="c1">// Send to an Object</span>
+<span class="kt">double</span> <span class="n">primitiveHeight</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="na">doubleValue</span><span class="o">();</span> <span class="c1">// Turn back into a primitive</span>
+</code></pre></div></div>
+
+<p>And here is an example of when it works and when it does not.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;();</span>  <span class="c1">// This will cause a compile-time error</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   ArrayList&lt;double&gt; list = new ArrayList&lt;double&gt;();  // This will cause a compile-time error
+
+unexpected type
+
+  required: reference
+
+  found:    double
+
+
+
+|   ArrayList&lt;double&gt; list = new ArrayList&lt;double&gt;();  // This will cause a compile-time error
+
+unexpected type
+
+  required: reference
+
+  found:    double
+</code></pre></div></div>
+
+<p>Again, the ArrayList needs an object type, but we are passing a primitive type.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">3.14</span><span class="o">);</span>  <span class="c1">// Autoboxing will automatically convert the double 3.14 to a Double object</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true
+</code></pre></div></div>
+
+<p>This code works because the 3.14 is being converted by the list.add, since the list uses double objects.</p>
+
+<h4 id="autoboxing">Autoboxing</h4>
+<p>Autoboxing is when Java automatically changes a basic data type into its object form. The Java compiler does this for us. Think of it as putting the data into a box. Java can also unbox an object, which is the exact opposite of autoboxing. When an Integer object is assigned to a primitive int type, Java will automatically use the primitive int version of the number and assign it to the int variable.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Boxing</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+<span class="nc">Integer</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Unboxing</span>
+<span class="nc">Integer</span> <span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="29-using-the-math-class">2.9 Using the Math Class</h3>
+
+<p>Java has a built in math class called <strong>Math</strong>? It is a part of the java.lang class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(-</span><span class="mi">5</span><span class="o">))</span> <span class="c1">// Absolute Value</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span> <span class="c1">// Power: base, exponent</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>25.0
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Two ways to calculate square roots</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">25</span><span class="o">,</span> <span class="mf">0.5</span><span class="o">));</span> <span class="c1">// Allows for different roots</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">25</span><span class="o">))</span> <span class="c1">// Square Root</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5.0
+5.0
+</code></pre></div></div>
+
+<p>Finally, arguably the most important class in math: The random class! Many purposes, especially in game development. What is one purpose?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">())</span> <span class="c1">// Always returns zero because the range of math.random is [0, 1)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+</code></pre></div></div>
+
+<p>In the cell below, experiment and try to figure out a way to call Math.random and impliment bounds, with your bounds being integer bounds of a and b.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Intended Solution</span>
+
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">60</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="kt">int</span><span class="o">)((</span><span class="kt">double</span><span class="o">)</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="o">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">)</span> <span class="o">+</span> <span class="n">a</span><span class="o">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>26
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks!</h1>
+<p>Note: This is due <strong>Monday</strong>! Write your hacks in a Jupyter Notebook and then DM them to us over slack by Monday Morning at 8:00 AM. For full credit, all criteria in the hacks must be completed and show some originality.</p>
+
+<h2 id="hack-1-025">Hack 1: (0.25)</h2>
+<p>Create a void method that takes an integer input and adds it to an ArrayList. Then, add a non-void method that is able to call a certain index from the ArrayList.</p>
+
+<h2 id="hack-2-025">Hack 2: (0.25)</h2>
+<p>Create a simple guessing game with random numbers in math, except the random number is taken to a random exponent (also includes roots), and the person has to find out what the root and exponent is (with hints!). Use at least one static and one non-static method in your class.</p>
+
+<h2 id="hack-3-025">Hack 3: (0.25)</h2>
+<p>Create a class of your choosing that has multiple parameters of different types (int, boolean, String, double) and put 5 data values in that list. Show that you can access the information by givng some samples.</p>
+
+<h2 id="hack-4-025">Hack 4: (0.25)</h2>
+<p>Using your preliminary knowlege of loops, use a for loop to iterate through a person’s first and last name, seperated by a space, and create methods to call a person’s first name and a person’s last name by iterating through the string.</p>
+
+<p>Total: 1/1</p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/05/java-objects-P3_IPYNB_2_.html" hidden></a>
+</article>

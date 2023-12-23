@@ -1,0 +1,308 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JPA</h1><p class="page-description">How to use the JPA repository and create your own query methods</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-16T00:00:00-07:00" itemprop="datePublished">
+        Oct 16, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h1 id="what-is-jpa">What is JPA?</h1>
+
+<p>JPA, which stands for Java Persistence API, is a specification for persisting data with Java objects. (Persistence means that the object is stored in a database). JPA has multiple implementations, the most popular being Hibernate. Hibernate is an ORM tool. ORM, or Object Relational Mapping, maps a Java object to a database. This allows us to do CRUD operations (create, read, update, and delete data) on the object.</p>
+
+<p>Note that Spring Data JPA and JPA are two different things. Spring Data JPA abstracts JPA. It reduces the amount of boilerplate code that programmers have to write by providing repositories for CRUD operations. This means that SQL knowledge isn’t required to work with Spring Boot. However, knowing SQL can help you perform more powerful queries.</p>
+
+<p>Below is a helpful visualization of the relationship between JPA, Spring Data JPA, Hibernate, and ORM (credit to Amigoscode):</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/jpa.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="setup">Setup</h1>
+
+<p>Within the mvc folder in spring_portfolio, create a new folder and give it a name. The new folder will hold the POJO (entity class), API controller, and JPA repository. You can name the files anything, but the convention for JPA repository is to include <code class="language-plaintext highlighter-rouge">JpaRepository</code> or <code class="language-plaintext highlighter-rouge">Repository</code> within the name. In this example, the JPA repository file is named <code class="language-plaintext highlighter-rouge">UserJpaRepository.java</code>.</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/userJpaRepositoryFile.jpg" alt="" /></p>
+
+<p>This blog will use a user database as an example. For reference, this is what the User POJO (<code class="language-plaintext highlighter-rouge">User.java</code>) looks like. Attributes of the user include the user’s email, password, and name. Note that there are lots of annotations (the lines that start with a <code class="language-plaintext highlighter-rouge">@</code>) that can add more features to the attributes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">Data</span>
+<span class="o">@</span><span class="n">AllArgsConstructor</span>
+<span class="o">@</span><span class="n">NoArgsConstructor</span>
+<span class="o">@</span><span class="n">Entity</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="o">@</span><span class="n">Id</span>
+    <span class="o">@</span><span class="n">GeneratedValue</span><span class="p">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">GenerationType</span><span class="p">.</span><span class="n">AUTO</span><span class="p">)</span>
+    <span class="n">private</span> <span class="n">Long</span> <span class="nb">id</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="n">String</span> <span class="n">email</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="n">String</span> <span class="n">password</span><span class="p">;</span>
+   
+    <span class="n">private</span> <span class="n">String</span> <span class="n">firstName</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="n">String</span> <span class="n">lastName</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is what the user table looks like:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/userTable.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>There are many ways to perform CRUD operations in Spring. This blog will cover derived queries, JPQL, and native queries.</p>
+
+<h1 id="derived-queries">Derived Queries</h1>
+
+<p>Derived queries are simple methods such as <code class="language-plaintext highlighter-rouge">findBy</code>, <code class="language-plaintext highlighter-rouge">readBy</code>, <code class="language-plaintext highlighter-rouge">getBy</code>, etc. Spring Data translates the derived queries into the JPQL (Java Persistence Query Language) query (which is then translated into SQL), making things easier for you.</p>
+
+<p>To create derived queries, open the JPA repository file. The file looks similar to this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">public</span> <span class="n">interface</span> <span class="n">UserJpaRepository</span> <span class="n">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>One thing to note is that the generic (ex: <code class="language-plaintext highlighter-rouge">&lt;User, Long&gt;</code>) takes in two type parameters. The first is the entity type (the name of the POJO class), in this case, <code class="language-plaintext highlighter-rouge">User</code>. The second is the type of the ID found in the POJO (since ID was declared as <code class="language-plaintext highlighter-rouge">private Long id;</code> in <code class="language-plaintext highlighter-rouge">User.java</code>, the second type parameter is <code class="language-plaintext highlighter-rouge">Long</code>).</p>
+
+<p>You can create derived queries within the interface. Let’s say we want to obtain a list of users based on their last name. The <code class="language-plaintext highlighter-rouge">findBy</code> method can be used to achieve this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">public</span> <span class="n">interface</span> <span class="n">UserJpaRepository</span> <span class="n">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByLastName</span><span class="p">(</span><span class="n">String</span> <span class="n">lastName</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">findBy&lt;Attribute&gt;</code> finds the column in the table that is associated with the attribute. For example, when Spring sees <code class="language-plaintext highlighter-rouge">findByLastName</code>, it will look at the column that is associated with <code class="language-plaintext highlighter-rouge">LastName</code>. Note that SQL tables and Java have different naming conventions. When declaring a variable in Java, an uppercase letter is used to symbolize a space (ex: <code class="language-plaintext highlighter-rouge">lastName</code> for last name). In an SQL table’s column names, spaces are separated by a “_”.</p>
+
+<p>For example, the user table’s column has <code class="language-plaintext highlighter-rouge">first_name</code> and <code class="language-plaintext highlighter-rouge">last_name</code>, not <code class="language-plaintext highlighter-rouge">firstName</code> and <code class="language-plaintext highlighter-rouge">lastName</code>. This difference is important to note, an example of this will be covered later.</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/columnName.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>Additionally, the return type of the method is <code class="language-plaintext highlighter-rouge">List&lt;User&gt;</code>. This is because there can be multiple User objects that have the last name we are looking for, so a list of users needs to be returned.</p>
+
+<p><code class="language-plaintext highlighter-rouge">findByLastName</code> tells Spring to look at the <code class="language-plaintext highlighter-rouge">last_name</code> column in the user database. Spring will then return the users that have the requested last name in a list. Something to note here is that the first letter of the attribute in the <code class="language-plaintext highlighter-rouge">findBy</code> method is capitalized. In this case, the “l” in <code class="language-plaintext highlighter-rouge">findByLastName</code> is capitalized. This tells Spring to look for the column name associated with the attribute <code class="language-plaintext highlighter-rouge">lastName</code>. The Spring Data JPA <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-property-expressions">documentation</a> provides an interesting read on how Spring determines the attribute from the query method.</p>
+
+<p>Lastly, <code class="language-plaintext highlighter-rouge">(String lastName)</code> takes in a last name as an input.</p>
+
+<p><code class="language-plaintext highlighter-rouge">findByLastName(String lastName)</code> can be tested with an API Controller.</p>
+
+<p>The API Controller class (<code class="language-plaintext highlighter-rouge">UserApiController.java</code>) looks like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">RestController</span>
+<span class="o">@</span><span class="n">RequestMapping</span><span class="p">(</span><span class="s">"/api/users"</span><span class="p">)</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">UserApiController</span> <span class="p">{</span>
+
+    <span class="o">@</span><span class="n">Autowired</span>
+    <span class="n">private</span> <span class="n">UserJpaRepository</span> <span class="n">userRepo</span><span class="p">;</span> 
+    
+
+    <span class="o">@</span><span class="n">GetMapping</span><span class="p">(</span><span class="s">"/search"</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span> <span class="n">search</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="n">findByLastName</span><span class="p">(</span><span class="s">"Van Pelt"</span><span class="p">),</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The first thing we want to do in the API Controller class is to autowire the JPA repository:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="nc">UserJpaRepository</span> <span class="n">userRepo</span><span class="o">;</span> 
+</code></pre></div></div>
+
+<p>Autowire does dependency injection, which means it injects beans into the class it’s in. This is a long and interesting topic that I may write another blog post about when I have time. In simplified terms, Autowire has Spring instantiate objects so that programmers don’t need to do it themselves.</p>
+
+<p>Afterwards, create an endpoint that returns the User objects with a last name of “Van Pelt” in JSON. Here, the <code class="language-plaintext highlighter-rouge">findByLastName</code> method (which was defined in the JPA repository) is called, with an input of “Van Pelt” as the last name. When a GET request is sent to the endpoint, Spring will search the user table for users that have a last name of “Van Pelt”.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">userRepo</span><span class="o">.</span><span class="na">findByLastName</span><span class="o">(</span><span class="s">"Van Pelt"</span><span class="o">),</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Accessing the endpoint on Postman returns the two users who have a last name of “Van Pelt”:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/postman.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<h2 id="other-query-methods">Other query methods</h2>
+
+<ul>
+  <li>
+    <p><code>List&lt;<em>entity class</em>&gt; findBy<em>Attribute</em>Containing(String a);</code>: Returns a list of objects whose attribute has a substring that matches the input’s string</p>
+  </li>
+  <li>
+    <p><code>List&lt;<em>entity class</em>&gt; findBy<em>Attribute</em>NotNull();</code>: Returns a list of objects whose attribute is not null</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="example">Example</h3>
+
+<h4 id="jpa-repository">JPA repository</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">public</span> <span class="n">interface</span> <span class="n">UserJpaRepository</span> <span class="n">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByLastName</span><span class="p">(</span><span class="n">String</span> <span class="n">lastName</span><span class="p">);</span>
+    
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByFirstNameContaining</span><span class="p">(</span><span class="n">String</span> <span class="n">letters</span><span class="p">);</span>
+    
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByLastNameNotNull</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="api-controller">API Controller</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">RestController</span>
+<span class="o">@</span><span class="n">RequestMapping</span><span class="p">(</span><span class="s">"/api/users"</span><span class="p">)</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">UserApiController</span> <span class="p">{</span>
+
+    <span class="o">@</span><span class="n">Autowired</span>
+    <span class="n">private</span> <span class="n">UserJpaRepository</span> <span class="n">userRepo</span><span class="p">;</span> 
+    
+
+    <span class="o">@</span><span class="n">GetMapping</span><span class="p">(</span><span class="s">"/search"</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span> <span class="n">search</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="n">findByLastName</span><span class="p">(</span><span class="s">"Van Pelt"</span><span class="p">),</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="o">@</span><span class="n">GetMapping</span><span class="p">(</span><span class="s">"/partial"</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span> <span class="n">partial</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="n">findByFirstNameContaining</span><span class="p">(</span><span class="s">"oo"</span><span class="p">),</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="o">@</span><span class="n">GetMapping</span><span class="p">(</span><span class="s">"/haslastname"</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span> <span class="n">hasLastName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="n">findByLastNameNotNull</span><span class="p">(),</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In this example, <code class="language-plaintext highlighter-rouge">findByFirstNameContaining</code> outputs users whose first name contains the substring “oo”:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/partial.jpg" alt="" /></p>
+
+<p>In this example, <code class="language-plaintext highlighter-rouge">findByLastNameNotNull</code> outputs users who have a last name:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/haslastname.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="jpql-query">JPQL Query</h1>
+
+<p>Sometimes simply creating methods using derived queries is not enough. JPQL is more flexible in that it provides a query language that looks similar to SQL. One important thing to note is that JPQL is based on entities, so JPQL queries are based on classes and attributes. JPQL queries are not based on the database tables, which makes it different from SQL. The database, however, still uses SQL. JPA implementations like Hibernate translate the JPQL query into SQL to work with the database.</p>
+
+<p>Here’s an example of a JPQL query that does the same thing as <code class="language-plaintext highlighter-rouge">findByLastName()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">Query</span><span class="p">(</span><span class="s">"SELECT u FROM User u where u.lastName = ?1"</span><span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByLastNameQuery</span><span class="p">(</span><span class="n">String</span> <span class="n">lastName</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>First, use the <code class="language-plaintext highlighter-rouge">@Query</code> annotation, and then define the query in JPQL. In this example, the query selects the User entity and finds the user objects where the user’s last name matches the input. Additionally, the <code class="language-plaintext highlighter-rouge">u</code> in the query is an alias for the <code class="language-plaintext highlighter-rouge">User</code> class. You can think of it as a variable that refers to the <code class="language-plaintext highlighter-rouge">User</code> class. This alias makes it quicker when referring to <code class="language-plaintext highlighter-rouge">User</code> in the query. The alias can be anything. For instance, “SELECT a FROM User a where a.lastName = ?1” would also work.</p>
+
+<p>Next, add the method declaration after the annotation. You can name the method name (ex: <code class="language-plaintext highlighter-rouge">findByLastNameQuery</code>) anything.</p>
+
+<h2 id="positional-parameters-and-named-parameters">Positional parameters and named parameters</h2>
+
+<p>In the query <code class="language-plaintext highlighter-rouge">SELECT u FROM User u where u.lastName = ?1"</code>, <code class="language-plaintext highlighter-rouge">?1</code> is a positional parameter. This means that <code class="language-plaintext highlighter-rouge">?1</code> will correspond to the 1st parameter in the method (ex: <code class="language-plaintext highlighter-rouge">lastName</code>). So when <code class="language-plaintext highlighter-rouge">findByLastNameQuery("Van Pelt")</code> is called, the query becomes <code class="language-plaintext highlighter-rouge">SELECT u FROM User u where u.lastName = 'Van Pelt'</code>.</p>
+
+<p>You can have multiple positional parameters in the query. Here is an example of searching for a user based on both first and last name:</p>
+
+<p>JPA repository:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">Query</span><span class="p">(</span><span class="s">"SELECT u FROM User u where u.lastName = ?1 and u.firstName = ?2"</span><span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByName</span><span class="p">(</span><span class="n">String</span> <span class="n">lastName</span><span class="p">,</span> <span class="n">String</span> <span class="n">firstName</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>API Controller:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">GetMapping</span><span class="p">(</span><span class="s">"/search"</span><span class="p">)</span>
+<span class="n">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span> <span class="n">search</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">userRepo</span><span class="p">.</span><span class="n">findByName</span><span class="p">(</span><span class="s">"Brown"</span><span class="p">,</span> <span class="s">"Charlie"</span><span class="p">),</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Endpoint:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/search2.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<p>You could also assign names instead of numbers to the parameters. Below is an example of using named parameters:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">Query</span><span class="p">(</span><span class="s">"SELECT u FROM User u where u.lastName = :last and u.firstName = :first"</span><span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">findByName</span><span class="p">(</span><span class="o">@</span><span class="n">Param</span><span class="p">(</span><span class="s">"last"</span><span class="p">)</span> <span class="n">String</span> <span class="n">lastName</span><span class="p">,</span> <span class="o">@</span><span class="n">Param</span><span class="p">(</span><span class="s">"first"</span><span class="p">)</span> <span class="n">String</span> <span class="n">firstName</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Replace <code class="language-plaintext highlighter-rouge">?1</code> and <code class="language-plaintext highlighter-rouge">?2</code> with <code class="language-plaintext highlighter-rouge">:&lt;parameter name&gt;</code>, and refer to them in the method with <code class="language-plaintext highlighter-rouge">@Param("&lt;parameter name&gt;")</code>.</p>
+
+<p><br /></p>
+
+<h1 id="native-queries">Native Queries</h1>
+
+<p>While JPQL provides more flexibility than derived queries, it doesn’t have all of the features of SQL. Native queries allows the programmer to execute SQL queries. The syntax of a native query is similar to a JPQL query:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">Query</span><span class="p">(</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s">"SELECT email FROM user"</span><span class="p">,</span>
+    <span class="n">nativeQuery</span> <span class="o">=</span> <span class="n">true</span>
+<span class="p">)</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">findEmail</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>In this example, the SQL query is <code class="language-plaintext highlighter-rouge">"SELECT email FROM user"</code>, which returns all of the emails from the <code class="language-plaintext highlighter-rouge">email</code> column in the database. One thing to note is that unlike JPQL, which is based on the entity class, native queries are based on the database. Therefore, native queries should use names from the database and table columns.</p>
+
+<p>Accessing the endpoint returns a list of email strings:</p>
+
+<p><img src="/student2.0/images/jpa-lesson-images/email.jpg" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+<p>While coding in Spring Boot, it is very likely that at some point you’ll encounter errors that’ll prevent you from being able to run your backend framework. While coding in Spring for this blog, I encountered many error messages. This is what I do to resolve these errors:</p>
+
+<ol>
+  <li>
+    <p>Make sure the terminal window is long enough to view the entire error message. Usually, the most important error message is at the beginning, so you’ll want to be able to scroll to the beginning of the message. One of the error messages I encountered while coding looked like this:</p>
+
+    <p><img src="/student2.0/images/jpa-lesson-images/walloftext.jpg" alt="" /></p>
+
+    <p>The error message was so long that it couldn’t fit in my terminal, so I couldn’t see the top part of the error message. I pasted the error message that occurred towards the middle of the output (similar to the the message next to the blue text in the picture) and spent a lot of time trying to figure out what was going on. I couldn’t find anything to help me fix the problem, and that was because I was searching for the wrong error.</p>
+
+    <p>In order to see the beginning of the output, it helps to expand your terminal. The “Spring” banner is very helpful in marking where the error message starts.</p>
+
+    <p><img src="/student2.0/images/jpa-lesson-images/largeterminal.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Copy the error and paste it into Google. ChatGPT is also a helpful tool, but it’s best to verify it by Googling. I’ve asked ChatGPT to explain some Spring Boot concepts, but found that ChatGPT provided some wrong information after double checking with Google.</p>
+  </li>
+  <li>
+    <p>Research. Look at StackOverflow posts where people have had similar errors. Usually, you’ll learn something new after discovering how to fix the bug. For instance, while researching the error I had, I learned that derived queries were an abstraction for JPQL queries, and I learned about Hibernate and ORM. Researching about JPQL also helped me understand more about SQL. Troubleshooting can be time consuming and requires patience, but the deeper understanding gained after figuring out the solution makes the amount of time spent into it worth it.</p>
+  </li>
+</ol>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/16/java_jpa_IPYNB_2_.html" hidden></a>
+</article>

@@ -1,0 +1,289 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">2.4b SQL Data</h1><p class="page-description">Using Programs with Data is focused on SQL and database actions.  Part B focuses on learning SQL commands, connections, and curses using an Imperative programming style.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-19T00:00:00-07:00" itemprop="datePublished">
+        Sep 19, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#database-programming-is-program-with-data">Database Programming is Program with Data</a><ul><li><a href="#schema-of-users-table-in-sqlitedb">Schema of Users table in Sqlite.db</a></li><li><a href="#reading-users-table-in-sqlitedb">Reading Users table in Sqlite.db</a></li><li><a href="#create-a-new-user-in-table-in-sqlitedb">Create a new User in table in Sqlite.db</a></li><li><a href="#updating-a-user-in-table-in-sqlitedb">Updating a User in table in Sqlite.db</a></li><li><a href="#delete-a-user-in-table-in-sqlitedb">Delete a User in table in Sqlite.db</a></li></ul></li><li><a href="#menu-interface-to-crud-operations">Menu Interface to CRUD operations</a></li><li><a href="#hacks">Hacks</a></li></ul><h1 id="database-programming-is-program-with-data">Database Programming is Program with Data</h1>
+<blockquote>
+  <p>Each Tri’s Final Project should be an example of a Program with Data.</p>
+</blockquote>
+
+<blockquote>
+  <p>Prepare to use SQLite in common Imperative Technique</p>
+  <ul>
+    <li>Explore <a href="https://www.tutorialspoint.com/python_data_access/python_sqlite_establishing_connection.htm">SQLite Connect object</a> to establish database connection</li>
+    <li>Explore <a href="https://www.tutorialspoint.com/python_data_access/python_sqlite_cursor_object.htm">SQLite Cursor Object</a> to fetch data from a table within a database</li>
+  </ul>
+</blockquote>
+
+<h2 id="schema-of-users-table-in-sqlitedb">Schema of Users table in Sqlite.db</h2>
+<blockquote>
+  <p>Uses PRAGMA statement to read schema.</p>
+</blockquote>
+
+<p>Describe Schema, here is resource <a href="https://www.sqlite.org/index.html">Resource</a></p>
+<ul>
+  <li>What is a database schema?</li>
+  <li>What is the purpose of identity Column in SQL database?</li>
+  <li>What is the purpose of a primary key in SQL database?</li>
+  <li>What are the Data Types in SQL table?</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="s">'instance/sqlite.db'</span> <span class="c1"># this is location of database
+</span>
+<span class="k">def</span> <span class="nf">schema</span><span class="p">():</span>
+    
+    <span class="c1"># Connect to the database file
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+
+    <span class="c1"># Create a cursor object to execute SQL queries
+</span>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="c1"># Fetch results of Schema
+</span>    <span class="n">results</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"PRAGMA table_info('users')"</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="c1"># Print the results
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="c1"># Close the database connection
+</span>    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="n">schema</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h2 id="reading-users-table-in-sqlitedb">Reading Users table in Sqlite.db</h2>
+<blockquote>
+  <p>Uses SQL SELECT statement to read data</p>
+</blockquote>
+
+<ul>
+  <li>What is a connection object?  After you google it, what do you think it does?</li>
+  <li>Same for cursor object?</li>
+  <li>Look at conn object and cursor object in VSCode debugger.  What attributes are in the object?</li>
+  <li>Is “results” an object?  How do you know?</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
+    <span class="c1"># Connect to the database file
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+
+    <span class="c1"># Create a cursor object to execute SQL queries
+</span>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="c1"># Execute a SELECT statement to retrieve data from a table
+</span>    <span class="n">results</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * FROM users'</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="c1"># Print the results
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Table is empty"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="c1"># Close the cursor and connection objects
+</span>    <span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="n">read</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h2 id="create-a-new-user-in-table-in-sqlitedb">Create a new User in table in Sqlite.db</h2>
+<blockquote>
+  <p>Uses SQL INSERT to add row</p>
+  <ul>
+    <li>Compore create() in both SQL lessons.  What is better or worse in the two implementations?</li>
+    <li>Explain purpose of SQL INSERT.   Is this the same as User <strong>init</strong>?</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your name:"</span><span class="p">)</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your user id:"</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your password"</span><span class="p">)</span>
+    <span class="n">dob</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your date of birth 'YYYY-MM-DD'"</span><span class="p">)</span>
+    
+    <span class="c1"># Connect to the database file
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+
+    <span class="c1"># Create a cursor object to execute SQL commands
+</span>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Execute an SQL command to insert data into a table
+</span>        <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO users (_name, _uid, _password, _dob) VALUES (?, ?, ?, ?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">dob</span><span class="p">))</span>
+        
+        <span class="c1"># Commit the changes to the database
+</span>        <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"A new user record </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s"> has been created"</span><span class="p">)</span>
+                
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error while executing the INSERT:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+
+
+    <span class="c1"># Close the cursor and connection objects
+</span>    <span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="c1">#create()
+</span></code></pre></div></div>
+
+<h2 id="updating-a-user-in-table-in-sqlitedb">Updating a User in table in Sqlite.db</h2>
+<blockquote>
+  <p>Uses SQL UPDATE to modify password</p>
+  <ul>
+    <li>What does the hacked part do?</li>
+    <li>Explain try/except, when would except occur?</li>
+    <li>What code seems to be repeated in each of these examples to point, why is it repeated?</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter user id to update"</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter updated password"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s">"hacked"</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s">'gothackednewpassword123'</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s">"successfully updated"</span>
+
+    <span class="c1"># Connect to the database file
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+
+    <span class="c1"># Create a cursor object to execute SQL commands
+</span>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Execute an SQL command to update data in a table
+</span>        <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"UPDATE users SET _password = ? WHERE _uid = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">uid</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">cursor</span><span class="p">.</span><span class="n">rowcount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># The uid was not found in the table
+</span>            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"No uid </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s"> was not found in the table"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The row with user id </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s"> the password has been </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error while executing the UPDATE:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        
+    
+    <span class="c1"># Close the cursor and connection objects
+</span>    <span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="c1">#update()
+</span>
+</code></pre></div></div>
+
+<h2 id="delete-a-user-in-table-in-sqlitedb">Delete a User in table in Sqlite.db</h2>
+<blockquote>
+  <p>Uses a delete function to remove a user based on a user input of the id.</p>
+  <ul>
+    <li>Is DELETE a dangerous operation?  Why?</li>
+    <li>In the print statemements, what is the “f” and what does {uid} do?</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">delete</span><span class="p">():</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter user id to delete"</span><span class="p">)</span>
+
+    <span class="c1"># Connect to the database file
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+
+    <span class="c1"># Create a cursor object to execute SQL commands
+</span>    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"DELETE FROM users WHERE _uid = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">uid</span><span class="p">,))</span>
+        <span class="k">if</span> <span class="n">cursor</span><span class="p">.</span><span class="n">rowcount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># The uid was not found in the table
+</span>            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"No uid </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s"> was not found in the table"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># The uid was found in the table and the row was deleted
+</span>            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The row with uid </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s"> was successfully deleted"</span><span class="p">)</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error while executing the DELETE:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        
+    <span class="c1"># Close the cursor and connection objects
+</span>    <span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    
+<span class="c1">#delete()
+</span></code></pre></div></div>
+
+<h1 id="menu-interface-to-crud-operations">Menu Interface to CRUD operations</h1>
+<blockquote>
+  <p>CRUD and Schema interactions from one location by running menu. Observe input at the top of VSCode, observe output underneath code cell.</p>
+  <ul>
+    <li>Why does the menu repeat?</li>
+    <li>Could you refactor this menu?  Make it work with a List?</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Menu, to run other cells from one control point
+</span><span class="k">def</span> <span class="nf">menu</span><span class="p">():</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter: (C)reate (R)ead (U)pdate or (D)elete or (S)chema"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">operation</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'c'</span><span class="p">:</span>
+        <span class="n">create</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">operation</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'r'</span><span class="p">:</span>
+        <span class="n">read</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">operation</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'u'</span><span class="p">:</span>
+        <span class="n">update</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">operation</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'d'</span><span class="p">:</span>
+        <span class="n">delete</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">operation</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'s'</span><span class="p">:</span>
+        <span class="n">schema</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># Escape Key
+</span>        <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Please enter c, r, u, or d"</span><span class="p">)</span> 
+    <span class="n">menu</span><span class="p">()</span> <span class="c1"># recursion, repeat menu
+</span>        
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">menu</span><span class="p">()</span> <span class="c1"># start menu
+</span><span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Perform Jupyter 'Run All' prior to starting menu"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+<ul>
+  <li>Add this Blog to you own Blogging site.  In the Blog add notes and observations on each code cell.</li>
+  <li>In this implementation, do you see procedural abstraction?</li>
+  <li>In 2.4a or 2.4b lecture
+    <ul>
+      <li>Do you see data abstraction?  Complement this with Debugging example.</li>
+      <li>Use Imperative or OOP style to Create a new Table or do something that applies to your CPT project.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Reference… <a href="https://www.sqlitetutorial.net/sqlite-python/creating-tables/">sqlite documentation</a></p>
+
+
+  </div><a class="u-url" href="/student2.0/cpt/db-b" hidden></a>
+</article>

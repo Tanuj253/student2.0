@@ -1,0 +1,238 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P4 Developing Algorithms</h1><p class="page-description">Lesson for developing algorithms in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-12T00:00:00-07:00" itemprop="datePublished">
+        Oct 12, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Patrick, Kaiyu, Aidan, Miguel</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#developing-algorithms">Developing Algorithms</a><ul><li><a href="#what-is-an-algorithm">What is an Algorithm</a></li><li><a href="#purpose-of-developing-algorithms">Purpose of developing Algorithms</a></li><li><a href="#same-goal-different-process">Same goal, different Process</a></li><li><a href="#algorithms-in-statisticmathematical-calculation">Algorithms in statistic/mathematical calculation</a></li><li><a href="#popcorn-hack-1">Popcorn Hack #1</a></li><li><a href="#using-algorithms-to-organize-lists">Using algorithms to organize lists</a></li><li><a href="#popcorn-hack-2">Popcorn Hack #2</a></li></ul></li><li><a href="#homework-hacks">Homework Hacks</a><ul><li><a href="#homework-hack-1">Homework Hack 1</a></li><li><a href="#homework-hack-2">Homework Hack 2</a></li></ul></li></ul></li></ul><h1 id="developing-algorithms">Developing Algorithms</h1>
+
+<h3 id="what-is-an-algorithm">What is an Algorithm</h3>
+<p>An algorithm is a set of instructions for solving a specific problem or performing a particular task.</p>
+
+<h3 id="purpose-of-developing-algorithms">Purpose of developing Algorithms</h3>
+<ul>
+  <li>Automate and simplify repetitive code</li>
+  <li>More efficient functions</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Example of algorithm
+</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="c1"># Define min and max values
+</span><span class="n">min_num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">max_num</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># Generate Random Number
+</span><span class="n">random_number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="n">min_num</span><span class="p">,</span> <span class="n">max_num</span><span class="p">)</span>
+<span class="c1"># Output
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Random number: </span><span class="si">{</span><span class="n">random_number</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Random number: 9
+</code></pre></div></div>
+
+<p><img src="image.png" alt="image.png" /></p>
+
+<h3 id="same-goal-different-process">Same goal, different Process</h3>
+<p>The examples show different processes to see if you got an A, passed, or failed on a test. However, these two algorithms yield different results. The first algorithm uses three different “if” statements which will check each condition independently so two messages can be displayed. The second algorithm uses an elif statement to ensure that only one of the three conditions will be displayed.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="s">"What did you get on your test?"</span><span class="p">)</span>
+<span class="n">testScore</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">testScore</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"You got an A!"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">testScore</span> <span class="o">&gt;</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"Congragulations. You didn't fail."</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">testScore</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"You failed."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'What did you get on your test?'
+
+
+
+'You failed.'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="s">"What did you get on your test?"</span><span class="p">)</span>
+<span class="n">testScore</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">testScore</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"You got an A!"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">testScore</span> <span class="o">&gt;</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"Congratulations. You didn't fail."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="s">"You failed."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'What did you get on your test?'
+
+
+
+'You failed.'
+</code></pre></div></div>
+
+<h3 id="algorithms-in-statisticmathematical-calculation">Algorithms in statistic/mathematical calculation</h3>
+<p>Algorithms in statistical and mathematical calculations refer to systematic step-by-step procedures or methods for solving specific problems, performing computations, or making decisions. These algorithms are designed to ensure in various mathematical and statistical tasks.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Mean
+</span><span class="n">numberlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numberlist</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numberlist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Mean:"</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean: 9.0
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Median
+</span><span class="n">numberlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numberlist</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">median</span> <span class="o">=</span> <span class="p">(</span><span class="n">numberlist</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">numberlist</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">median</span> <span class="o">=</span> <span class="n">numberlist</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Median:"</span><span class="p">,</span> <span class="n">median</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Median: 9
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Mode
+</span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">def</span> <span class="nf">find_mode</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="n">max_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">count</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">modes</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">count</span><span class="p">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">freq</span> <span class="o">==</span> <span class="n">max_count</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">modes</span> 
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">modes</span> <span class="o">=</span> <span class="n">find_mode</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">modes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The mode is </span><span class="si">{</span><span class="n">modes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"There are multiple modes:"</span><span class="p">,</span> <span class="n">modes</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The mode is 9
+</code></pre></div></div>
+
+<h3 id="popcorn-hack-1">Popcorn Hack #1</h3>
+<p>Create your own algorithm using numbers to calculate a value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Insert your popcorn hack here:
+</span></code></pre></div></div>
+
+<h3 id="using-algorithms-to-organize-lists">Using algorithms to organize lists</h3>
+<p>There are two different ways in which data can be sorted.</p>
+<ul>
+  <li>SELECTION SORT: Splits list into sorted &amp; unsorted, takes the greatest or smallest value and puts it into sorted section, repeat</li>
+  <li>INSERTION SORT: Splits list into sorted &amp; unsorted, takes any value from list, inserts into correct position on sorted section, repeat</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Selection sort example
+</span><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
+    <span class="n">min_index</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">min_index</span><span class="p">]:</span>
+            <span class="n">min_index</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">min_index</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Smallest to Biggest: "</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Smallest to Biggest:  [2, 3, 5, 6, 9]
+</code></pre></div></div>
+
+<ul>
+  <li>i represents the position of the value in the list that is being evaluated and is the starting value that it chosen as the smallest</li>
+  <li>j represents the position of a value outside the sorted position of the list</li>
+  <li>If j is smaller than the original minimum index, the new minimum index will be the value of j</li>
+  <li>Process of sortining most minimum number into index is continued until all numbers are in order from least to greatest</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Insertion sort example
+</span><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="nb">list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="nb">list</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">insertion_sort</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Smallest to Biggest:"</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Smallest to Biggest: [11, 12, 22, 25, 64]
+</code></pre></div></div>
+
+<ul>
+  <li>i is starting point of unsorted section</li>
+  <li>key=list[i] is the current variable that is inserted into the sorted section, list[i] is the element at i index position</li>
+  <li>j+1 portion places the key in the proper location of the sorted section</li>
+</ul>
+
+<h3 id="popcorn-hack-2">Popcorn Hack #2</h3>
+<p>Use one of the two sorting methods to organize the following list from BIGGEST to SMALLEST:</p>
+
+<p>[1,5,34,2,6,7,65,90,42]</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### Insert your popcorn hack here:
+</span></code></pre></div></div>
+
+<h2 id="homework-hacks">Homework Hacks</h2>
+
+<h3 id="homework-hack-1">Homework Hack 1</h3>
+<p>Create your own algorithm using a loop until you reach a desired value. Be creative!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example algorithm of loop
+</span>
+<span class="c1"># Initialize a counter to keep track of the count of odd numbers
+</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Loop through numbers from 1 to 10
+</span><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  
+ <span class="c1"># Check if the number is odd
+</span> <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> 
+        <span class="c1"># Increment the count if the number is odd
+</span>        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>  
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Count of odd numbers from 1 to 10:"</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count of odd numbers from 1 to 10: 5
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Insert your code here:
+</span></code></pre></div></div>
+
+<h3 id="homework-hack-2">Homework Hack 2</h3>
+<p>Write two different algorithms of your own choosing that reach the same end output. Refer to the examples in the lesson above for support.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Insert your code here:
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/12/P4_DevelopingAlgorithms_IPYNB_2_.html" hidden></a>
+</article>

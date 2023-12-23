@@ -1,0 +1,175 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Libraries</h1><p class="page-description">Lesson for libraries in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-21T00:00:00-07:00" itemprop="datePublished">
+        Oct 21, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Abdullah, Lincoln, Sergi, Ishan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li>3.14 Libraries<ul><li>Types of Libraries</li><li>Popcorn Hack 1<ul><li><a href="#popcorn-hack-2">Popcorn Hack 2</a></li></ul></li><li><a href="#popcorn-hack-3">Popcorn Hack 3</a></li><li><a href="#popcorn-hack-4">Popcorn Hack 4</a></li></ul></li><li>Optional Popcorn Hack</li><li>Homework!</li><li>Thank You!</li></ul><h1>3.14 Libraries</h1>
+<p>A file that contains procedures that can be used in a program is called a library. An Application Program Interface, or API, contains specifications for how the procedures in a library behave and can be used. It allows the imported procedures from the library to interact with the rest of your code.</p>
+<h2>Types of Libraries</h2>
+<p>There are many types of libraries that modern day companies use, such as Requests, Pillow, Pandas, NumPy, SciKit-Learn, TensorFlow, and Matplotlib. Requests: The Requests library simplifies making HTTP requests in Python, making it easy to interact with web services and retrieve data from websites.</p>
+
+<p>Pandas: Pandas is a data manipulation and analysis library for efficiently working with structured data, including data import, cleaning, transformation, and analysis in tabular form.</p>
+
+<p>Scikit-Learn: Scikit-Learn is a machine learning library that offers simple and efficient tools for data analysis and modeling, including classification, regression, and clustering.</p>
+
+<p>TensorFlow: TensorFlow is an open-source machine learning framework that facilitates deep learning and neural network development, supporting tasks like image recognition and natural language processing.</p>
+
+<p>Matplotlib: Matplotlib is a versatile plotting library for creating 2D and 3D visualizations and figures in Python, enabling a wide range of plots, charts, and graphs for data visualization and analysis.</p>
+
+<p>Libraries are, at their heart, a collection of other people’s code, and it would be difficult to understand how the procedures should be used without documentation. APIs explain how two separate pieces of software interact with each other, and they also need documentation to keep this communication going.</p>
+
+<h2>Popcorn Hack 1</h2>
+<p>We have now hopefully all done or seen this type of question about getting a robot from point a to point b. But this can be very tedious because it may take a lot of code to do that. Luckily, there’s a saving grace called procedures, procedures essentially shorten the amount of code that is needed. So for a robot example we have displayed, we will use the procedure “moveBackwards” to shorten the amount of code we would normally need. This will rotate our triangle 180 degrees. Here is the example and solution
+<img src="/student2.0/images/robotexample.png" alt="" />
+<img src="/student2.0/images/solutionrobot.png" alt="" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Code goes here
+</span></code></pre></div></div>
+
+<p>Pillow: Pillow is a powerful image processing library for opening, manipulating, and saving various image formats in Python.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># Example usage:
+</span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="s">'/home/lincolnc2008/vscode/student3/images/frog-game.jpg'</span><span class="p">)</span><span class="c1">#This is the path of the image
+</span><span class="n">image</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="output_4_0.png" alt="png" /></p>
+
+<p>from PIL import Image:</p>
+
+<p>This line imports the Image module from the PIL library. PIL stands for Python Imaging Library, which is used for opening, manipulating, and saving image files.</p>
+
+<p>image = Image.open(‘/home/lincolnc2008/vscode/student3/images/frog-game.jpg’):</p>
+
+<p>This line opens an image file named ‘/home/lincolnc2008/vscode/student3/images/frog-game.jpg’ using the Image.open() method. It creates an Image object and assigns it to the variable image.</p>
+
+<p>image.show():</p>
+
+<p>This line displays the image using the show() method. This will open the default image viewer on your system and display the image.</p>
+
+<h3 id="popcorn-hack-2">Popcorn Hack 2</h3>
+<p>Do this same thing but with a different image. Make it personallized!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<p>NumPy: NumPy is a fundamental library for numerical computing in Python, providing support for multidimensional arrays and a wide range of mathematical functions.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Example usage:
+</span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1 2 3 4 5]
+</code></pre></div></div>
+
+<p>import numpy as np:</p>
+
+<p>This line imports the Numpy library with the alias np. Numpy is a powerful library in Python for numerical computations, particularly with arrays and matrices.</p>
+
+<p>arr = np.array([1, 2, 3, 4, 5]):</p>
+
+<p>This line creates a Numpy array named arr using the np.array() function. The array is initialized with the values [1, 2, 3, 4, 5].</p>
+
+<p>print(arr):</p>
+
+<p>This line prints the array arr to the console</p>
+
+<h2 id="popcorn-hack-3">Popcorn Hack 3</h2>
+<p>You are given two 1-dimensional Numpy arrays, A and B, of the same length. Perform the following element-wise operations and return the results:</p>
+
+<p>Add each element of array A to the corresponding element of array B.
+Multiply each element of array A by the corresponding element of array B.
+Square each element of array A.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Example usage:
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="output_13_0.png" alt="png" /></p>
+
+<p>import matplotlib.pyplot as plt:</p>
+
+<p>This line imports the pyplot module from the Matplotlib library with the alias plt. Matplotlib is a powerful library in Python for creating visualizations and plots.</p>
+
+<p>x = np.linspace(0, 10, 100)
+y = np.sin(x):</p>
+
+<p>These lines create two Numpy arrays x and y. x is generated using np.linspace() which creates an array of 100 equally spaced points between 0 and 10. y is generated by taking the sine of each element in x.</p>
+
+<p>plt.plot(x, y):</p>
+
+<p>This line creates a line plot using the plot() function from Matplotlib. It takes x and y as the data for the x and y coordinates of the plot.</p>
+
+<p>plt.show():</p>
+
+<p>This line displays the plot using the show() function. It opens a window with the generated plot.</p>
+
+<h2 id="popcorn-hack-4">Popcorn Hack 4</h2>
+<p>You have a dataset representing the monthly sales of a company over a year. The data is provided as two lists: months (containing the names of the months) and sales (containing the corresponding sales figures).</p>
+
+<p>Your task is to create a bar chart to visualize the monthly sales.</p>
+
+<p>Write a Python function that takes the lists months and sales as input and generates a bar chart using Matplotlib. The function should also label the x-axis with the months and the y-axis with “Sales (in thousands)”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here
+</span><span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Jan'</span><span class="p">,</span> <span class="s">'Feb'</span><span class="p">,</span> <span class="s">'Mar'</span><span class="p">,</span> <span class="s">'Apr'</span><span class="p">,</span> <span class="s">'May'</span><span class="p">,</span> <span class="s">'Jun'</span><span class="p">,</span> <span class="s">'Jul'</span><span class="p">,</span> <span class="s">'Aug'</span><span class="p">,</span> <span class="s">'Sep'</span><span class="p">,</span> <span class="s">'Oct'</span><span class="p">,</span> <span class="s">'Nov'</span><span class="p">,</span> <span class="s">'Dec'</span><span class="p">]</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">190</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h1>Optional Popcorn Hack</h1>
+<p>Now for extra credit, create a program(s) using all the libraries we provided (Pillow, NumPy, TensorFlow, etc). Try showing a basic understanding of how to use each one of these libraries. Try doing something fun or creative!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<h1>Homework!</h1>
+<p>For our homework hack, Write a Python program that uses the NumPy library to generate an array of values for the sine and cosine functions over a specified range, and then use Matplotlib to create a plot that shows both functions on the same graph. The program should:
+Import the necessary libraries (NumPy and Matplotlib).
+Define a range of angles in degrees, e.g., from 0 to 360 degrees.
+Use NumPy to calculate the sine and cosine values for each angle in the range.
+Create a Matplotlib plot with the angles on the x-axis and the sine and cosine values on the y-axis.
+Label the plot with appropriate titles, axis labels, and a legend.
+Display the plot on the screen.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<h1>Thank You!</h1>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/21/P5_Libraries_IPYNB_2_.html" hidden></a>
+</article>

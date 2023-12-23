@@ -1,0 +1,222 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Procedures</h1><p class="page-description">Lesson for developing procedures in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-03T00:00:00-07:00" itemprop="datePublished">
+        Oct 3, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Eric, Gurshawn, Hanlun, Yeongsu</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li>- CB 3.12,3.13 Developing Procedures</li><li>What is a return value?<ul><li>A return value is the value that is returned when a function or a method is called.</li><li>That return value can be assigned or printed</li><li>Popcorn Hack 1</li></ul></li></ul></li><li>What Are Functions?</li><li>What Are The Components of a Function?<ul><li>Popcorn Hack 2:<ul><li>1. Make a function that returns the difference of two numbers</li></ul></li></ul></li><li>What is a Class?</li><li>How Does a Class Work?<ul><li>Popcorn Hack 3:<ul><li>1. Create a Car class which has the attributes model, vehicle name, and price</li><li>2. Create instances of the following cars</li></ul></li></ul></li><li>Homework:<ul><li>Assignment 1: How do you use functions?<ul><li>Create a turtle python function that...</li><li>Hint: </li></ul></li><li>Assignment 2:<ul><li>Create a student class that...</li></ul></li></ul></li></ul><h1>- CB 3.12,3.13 Developing Procedures</h1>
+
+<p>What is a procedure?</p>
+
+<p>A procedure is a named group of code that has paramaters and return values. Procedures are known as methods or functions depending on the language.</p>
+
+<p>A procedure executes the statements within it on the parameters to provide a return value.</p>
+
+<p>What are parameters?</p>
+
+<p>Paramaters are input values of a procedure that are specified by arguments.Arguments specify the values of the parameters when a procedure is called.</p>
+
+<p>By creating theses algorithms the readibility of code increases and the complexity decreases. This is becasue a function’s name can tell the reader what action it will perform, and by calling it, the code becomes more clean and easy to understand.</p>
+
+<h1>What is a return value?</h1>
+<h3>A return value is the value that is returned when a function or a method is called.</h3>
+<h3>That return value can be assigned or printed</h3>
+
+<p><img src="/passionProject/_notebooks/images.png" /></p>
+
+<p>Procedures are used to create algorthims that can perform certain actions or return values. When a procedure returns a value, theis information must be stored in a variable for later use. However some procedures like the MOVE_FORWARD() perform an action, and don’t return a value. The image above provides an example of where procedures that don’t output a value would be used.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="mi">60</span><span class="err">$</span> <span class="n">item</span> <span class="n">recieves</span> <span class="n">a</span> <span class="mi">20</span><span class="o">%</span> <span class="n">discount</span> <span class="ow">and</span> <span class="n">taxed</span> <span class="n">at</span> <span class="mi">8</span><span class="o">%</span><span class="p">.</span>
+<span class="n">PROCEDURE</span> <span class="n">applyDiscount</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">percentDiscounted</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">temp</span> <span class="err">←</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">percentDiscounted</span>
+    <span class="n">temp</span><span class="err">←</span> <span class="n">temp</span><span class="o">/</span> <span class="mi">100</span>
+    <span class="n">cost</span> <span class="err">←</span> <span class="n">cost</span> <span class="o">*</span><span class="n">temp</span>
+    <span class="n">RETURN</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">price</span> <span class="err">←</span> <span class="n">applyDiscount</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">how</span> <span class="n">we</span> <span class="n">get</span> <span class="n">the</span> <span class="n">final</span> <span class="n">price</span> <span class="k">with</span> <span class="n">the</span> <span class="n">discount</span> <span class="n">by</span> <span class="n">calling</span> <span class="n">the</span> <span class="n">procedure</span> <span class="ow">and</span> <span class="n">assigning</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="n">price</span> <span class="n">variable</span><span class="p">.</span>
+
+
+<span class="n">PROCEDURE</span> <span class="n">applyTax</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">percentTaxed</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">temp</span> <span class="err">←</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">percentTaxed</span>
+    <span class="n">temp</span><span class="err">←</span> <span class="n">temp</span><span class="o">/</span> <span class="mi">100</span>
+    <span class="n">cost</span> <span class="err">←</span> <span class="n">cost</span> <span class="o">*</span><span class="n">temp</span>
+    <span class="n">RETURN</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">price</span> <span class="err">←</span> <span class="n">applyTax</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">This</span> <span class="n">applys</span> <span class="n">the</span> <span class="mi">8</span><span class="o">%</span> <span class="n">tax</span> <span class="n">to</span> <span class="n">the</span> <span class="n">price</span> <span class="n">determined</span> <span class="n">after</span> <span class="n">the</span> <span class="n">discount</span><span class="p">.</span>
+</code></pre></div></div>
+
+<h3>Popcorn Hack 1</h3>
+<p>Given the applyTax procedure above:
+How would you call the procedure to get it to find the price using cost = 50, and percentTaxed = 10, and what value will it return?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#code here
+</span></code></pre></div></div>
+
+<h1>What Are Functions?</h1>
+<ul>
+    <li>Collections of code</li>
+    <li>Divides large program into smaller chunks</li>
+    <li>Better readability</li>
+    <li>Less repetitive code</li>
+    <li>More efficient code</li>
+    <li>Good organization</li>
+</ul>
+
+<h1>What Are The Components of a Function?</h1>
+<ul>
+    <li>The function declaration</li>
+    <li>The parameters (input). This is also referred to as an argument when a value is being passed to the actual function.</li>
+    <li>The functionality</li>
+    <li>The return value (output)</li>
+    <li>Calling the function</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Defining Functions
+#
+# def function_name(parameter1, parameter2, etc..):
+#     code here...
+#
+#     return return_value;
+</span>
+<span class="c1"># return the value of parameter1 plus parameter2;
+</span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">):</span> <span class="c1"># creates a function that takes in two parameters
+</span>    <span class="n">solution</span> <span class="o">=</span> <span class="n">parameter1</span> <span class="o">+</span> <span class="n">parameter2</span><span class="p">;</span> <span class="c1"># sets solution to the sum of parameter1 and parameter2
+</span>    <span class="k">return</span> <span class="n">solution</span><span class="p">;</span> <span class="c1"># return solution
+</span>    
+<span class="k">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1"># prints the return value of add(5,5)
+</span></code></pre></div></div>
+
+<h2 style="font-weight:bold">Popcorn Hack 2:</h2>
+<h3>1. Make a function that returns the difference of two numbers</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code here
+</span></code></pre></div></div>
+
+<h1>What is a Class?</h1>
+<ul>
+    <li>A class is an outline for a set of nested functions and variables.</li>
+    <li>There are instance variables</li>
+    <li>Functions</li>
+    <ul>
+        <li>Constructor method (Required)</li>
+        <li>To String method</li>
+        <li>Getter method</li>
+        <li>Setter method</li>
+    </ul>
+</ul>
+<h1>How Does a Class Work?</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Defining Classes
+</span><span class="k">class</span> <span class="nc">person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="p">):</span> <span class="c1"># constructor
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+    
+    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># method to create get name
+</span>        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+    
+    <span class="k">def</span> <span class="nf">getAge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># method to create get age
+</span>        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="p">;</span>
+    
+    <span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span> <span class="c1"># method to create set name
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        
+    <span class="k">def</span> <span class="nf">setAge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span> <span class="c1"># method to create set age
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+        
+    <span class="k">def</span> <span class="nf">yearOlder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># method to increment age by 1
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># method that returns a string when the object is printed
+</span>        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s">"My name is </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> and I am </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">age</span><span class="si">}</span><span class="s"> years old."</span><span class="p">)</span>
+
+<span class="n">Person1</span> <span class="o">=</span> <span class="n">person</span><span class="p">(</span><span class="s">"John Doe"</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Person1</span><span class="p">)</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="n">Person1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 style="font-weight:bold">Popcorn Hack 3:</h2>
+<h3>1. Create a Car class which has the attributes model, vehicle name, and price</h3>
+<h3>2. Create instances of the following cars</h3>
+<ul>
+    <li>Name: Honda Civic , Model Year: 2018 , Price: $13,000 </li>
+    <li>Name: Toyota Prius, Model Year: 2023 , Price: $28,000 </li>
+    <li>Name: Chevrolet Impala, Model Year: 2020 , Price: $22,000 </li>
+</ul>
+
+<h1>Homework:</h1>
+<h2>Assignment 1: How do you use functions?</h2>
+<h3>Create a turtle python function that...</h3>
+<ol>
+    <li>Takes a single parameter as the number of sides</li>
+    <li>Outputs a shape corresponding to the number of sides</li>
+    <li>Call the function with the argument being a variable with the user input</li>
+</ol>
+<h3>Hint: </h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="n">pen</span> <span class="o">=</span> <span class="n">turtle</span><span class="p">.</span><span class="n">Turtle</span><span class="p">();</span> <span class="c1"># pen is the instance of Turtle which has methods that do certain actions
+</span>
+<span class="c1"># Necessary methods:
+# .forward(50) - moves the pen forward 50 units
+# .right(angle) - turns the pen angle degrees right   
+# OR
+# .left(angle) - turns the pen angle degrees left
+</span>
+<span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="n">sides</span><span class="p">):</span>
+    <span class="c1">#code here
+</span>
+<span class="n">numsides</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'How many sides do yoUUUU wnat in YOUUUURRRR shape?!?!!?!: '</span><span class="p">)</span>
+<span class="n">shape</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">numsides</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<h2>Assignment 2:</h2>
+<h3>Create a student class that...</h3>
+<ol>
+    <li>Has a constructor that takes three parameters as attributes</li>
+    <li>
+        <ul>
+            <li>email</li>
+            <li>name</li>
+            <li>grade</li>
+        </ul>
+    </li>
+    <li>Three getter methods to access the name, email, and grade</li>
+    <li>Three setter methods to modify the name, email, and grade</li>
+    <li>A to string method that returns the three instance variables in this format - "My name is {name}. My email is {email}. My grade is {grade}</li>
+    <li>Create an instance of the class that corresponds with you</li>
+</ol>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/03/P5_developingProcedures_IPYNB_2_.html" hidden></a>
+</article>

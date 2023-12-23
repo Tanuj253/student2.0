@@ -1,0 +1,182 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P4 Procedures</h1><p class="page-description">Lesson for developing procedures in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-24T00:00:00-07:00" itemprop="datePublished">
+        Oct 24, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Howie, Will, Nihar, Jayden</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#312-313-developing-procedures">3.12-3.13 Developing Procedures</a></li><li><a href="#what-is-a-procedure">What is a procedure?</a></li><li><a href="#learning-objective">Learning Objective:</a></li><li><a href="#name-parameters-algorithm-return-values-and-calling-a-procedure">Name, Parameters, Algorithm, Return Values, and Calling a Procedure</a></li><li><a href="#popcorn-hack-1">Popcorn Hack #1:</a></li><li><a href="#costructing-classes-for-names--data-with-procedures">Costructing Classes for Names &amp; Data with Procedures</a></li><li><a href="#popcorn-hack-2">Popcorn Hack #2:</a></li><li><a href="#calling-methods-of-an-object-w-procedures">Calling Methods of an Object w/ Procedures</a></li><li><a href="#hw-hacks">HW Hacks!!</a></li></ul><h2 id="312-313-developing-procedures">3.12-3.13 Developing Procedures</h2>
+
+<h2 id="what-is-a-procedure">What is a procedure?</h2>
+
+<p>A procedure is a named group of programming instructions</p>
+
+<p>2 Main Types of Procedures:</p>
+<ul>
+  <li>Procedure that returns a value of data</li>
+  <li>Procedure that executes a block of statements</li>
+</ul>
+
+<h2 id="learning-objective">Learning Objective:</h2>
+<p>Be able to look at code and determine the purpose, and be able to write a procedure to manage complexity of program. understand the following terms and what they look like as well as how to use them in code</p>
+
+<ul>
+  <li>Procedure Parameters: variables that are defined within the procedure’s parentheses and serve as placeholders for values that can be passed to the procedure when it is called, allowing the procedure to operate on different data or values each time it is executed.</li>
+  <li>Procedure Algorithms: a step-by-step set of instructions that defines a specific task or operation to be performed within a computer program</li>
+  <li>Procedure Return Values: data or results that a procedure can send back to the part of the program that called it, allowing the procedure to provide information or perform a specific task and then share the outcome with the rest of the program.</li>
+</ul>
+
+<h2 id="name-parameters-algorithm-return-values-and-calling-a-procedure">Name, Parameters, Algorithm, Return Values, and Calling a Procedure</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## Example of Procedure that Updates A Quiz Grade
+</span><span class="k">def</span> <span class="nf">updatequiz</span><span class="p">(</span><span class="n">currentgrade</span><span class="p">,</span> <span class="n">quizgrade</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">quizgrade</span> <span class="o">&gt;</span> <span class="n">currentgrade</span><span class="p">:</span>
+        <span class="n">currentgrade</span> <span class="o">=</span> <span class="n">quizgrade</span>
+    <span class="k">return</span> <span class="n">currentgrade</span>
+
+<span class="n">currentgrade</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">quizgrade</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="n">currentgrade</span> <span class="o">=</span> <span class="n">updatequiz</span><span class="p">(</span><span class="n">currentgrade</span><span class="p">,</span> <span class="n">quizgrade</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">currentgrade</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>88
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-1">Popcorn Hack #1:</h2>
+<p>Identify the name of the procedure below, tell us the purpose and parameters of the procedure and identify the algorithm return value:</p>
+
+<ul>
+  <li>Name:</li>
+  <li>Parameters:</li>
+  <li>Algorithm (paste lines):</li>
+  <li>Return Value:</li>
+  <li>Calling Procedure Line</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">updateweather</span><span class="p">(</span><span class="n">currentweather</span><span class="p">,</span> <span class="n">weather</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">currentweather</span><span class="o">&gt;</span> <span class="n">weather</span><span class="p">:</span>
+        <span class="n">weather</span> <span class="o">=</span> <span class="n">currentweather</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"today is warmer than yesterday"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"today is colder than yesterday"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">currentgrade</span>
+
+<span class="n">currentweather</span> <span class="o">=</span> <span class="mi">71</span>
+<span class="n">weather</span> <span class="o">=</span> <span class="mi">66</span>
+<span class="n">currentgrade</span> <span class="o">=</span> <span class="n">updateweather</span><span class="p">(</span><span class="n">currentweather</span><span class="p">,</span> <span class="n">weather</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"the temperature right now is"</span><span class="p">,</span> <span class="n">currentweather</span><span class="p">,</span> <span class="s">"degrees"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>today is warmer than yesterday
+the temperature right now is 71 degrees
+</code></pre></div></div>
+
+<h2 id="costructing-classes-for-names--data-with-procedures">Costructing Classes for Names &amp; Data with Procedures</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Class Construction
+</span><span class="k">class</span> <span class="nc">Short</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">Tall</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Procedure to Classify as Short or Tall
+</span><span class="k">def</span> <span class="nf">classify_person</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">height</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">short_person</span> <span class="o">=</span> <span class="n">Short</span><span class="p">()</span>
+        <span class="n">short_person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">short_person</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tall_person</span> <span class="o">=</span> <span class="n">Tall</span><span class="p">()</span>
+        <span class="n">tall_person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">tall_person</span>
+</code></pre></div></div>
+
+<p>Class Definitions: The code defines two classes, “Short” and “Tall,” each having two attributes: name and height. These attributes can be used to store the name and height of individuals.</p>
+
+<p>Classification Procedure: The classify_person function takes two parameters: name and height. Depending on the provided height, it creates an instance of either the “Short” or “Tall” class. It sets the name attribute for the person and returns the corresponding instance.</p>
+
+<h2 id="popcorn-hack-2">Popcorn Hack #2:</h2>
+<p>Use the example above to use a procedure to create two classes of your choosing. Create at least 2 objects and class them with your procedure</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Popcorn Hack 2
+</span></code></pre></div></div>
+
+<h2 id="calling-methods-of-an-object-w-procedures">Calling Methods of an Object w/ Procedures</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating Classes
+</span><span class="k">class</span> <span class="nc">Short</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">class</span> <span class="nc">Tall</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">#Procedure to classify as short or tall
+</span><span class="k">def</span> <span class="nf">classify_height</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">height</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">short_person</span> <span class="o">=</span> <span class="n">Short</span><span class="p">()</span>
+        <span class="n">short_person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">short_person</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tall_person</span> <span class="o">=</span> <span class="n">Tall</span><span class="p">()</span>
+        <span class="n">tall_person</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">tall_person</span>
+
+<span class="c1"># Create objects and classify them as short or tall
+</span><span class="n">person1</span> <span class="o">=</span> <span class="n">classify_height</span><span class="p">(</span><span class="s">"Nihar"</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">person2</span> <span class="o">=</span> <span class="n">classify_height</span><span class="p">(</span><span class="s">"Will"</span><span class="p">,</span> <span class="mi">76</span><span class="p">)</span>
+<span class="n">person3</span> <span class="o">=</span> <span class="n">classify_height</span><span class="p">(</span><span class="s">"Jayden"</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+<span class="n">person4</span> <span class="o">=</span> <span class="n">classify_height</span><span class="p">(</span><span class="s">"Howie"</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="c1"># Display results for all four objects
+</span><span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="p">[</span><span class="n">person1</span><span class="p">,</span> <span class="n">person2</span><span class="p">,</span> <span class="n">person3</span><span class="p">,</span> <span class="n">person4</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> is </span><span class="si">{</span><span class="s">'Short'</span> <span class="k">if</span> <span class="n">person</span> <span class="ow">is</span> <span class="n">Short</span> <span class="k">else</span> <span class="s">'Tall'</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nihar is Tall.
+Will is Tall.
+Jayden is Tall.
+Howie is Tall.
+</code></pre></div></div>
+
+<h2 id="hw-hacks">HW Hacks!!</h2>
+<ol>
+  <li>Create a procedure that replaces a value with a new one (ex. update height)</li>
+  <li>Create a procedure that constructs classes of your choosing and create at least 4 objects to be sorted into your classes. Call your procedure to display your objects.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># HW Hack 1
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># HW Hack 2
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/24/DevelopingProcedures_IPYNB_2_.html" hidden></a>
+</article>

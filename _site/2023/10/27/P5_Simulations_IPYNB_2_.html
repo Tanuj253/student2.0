@@ -1,0 +1,316 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Simulation</h1><p class="page-description">Lesson for simulations in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-27T00:00:00-07:00" itemprop="datePublished">
+        Oct 27, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ronit, Vance, Ashwin, Jared</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#simulations">Simulations</a></li><li><a href="#college-board-essential-knowledge">College Board Essential Knowledge</a></li><li><a href="#rolling-the-dice">Rolling the Dice</a></li><li><a href="#random">Random</a></li><li><a href="#more-complex-usage-of-random-coin-toss-simulation">More complex usage of “random”; Coin Toss Simulation</a></li><li><a href="#popcorn-hack-1">Popcorn Hack #1</a></li><li><a href="#algorithms">Algorithms</a></li><li><a href="#example-algorithm-in-a-function">Example Algorithm in a function</a></li><li><a href="#mathematics">Mathematics</a></li><li><a href="#popcorn-hack-2">Popcorn Hack #2</a></li><li><a href="#popcorn-hack-3">Popcorn Hack #3</a></li><li><a href="#bonus-popcorn-hack">BONUS POPCORN HACK</a></li><li><a href="#quiz-time">QUIZ TIME</a></li><li><a href="#homework-hack-1">HOMEWORK HACK #1</a></li><li><a href="#homework-hack-2">HOMEWORK HACK #2</a></li></ul><h2 id="simulations">Simulations</h2>
+
+<blockquote>
+  <p>A simulation is the use of a computer software to represent the dynamic responses of one system by the behaviour of another system modeled after it. A simulation uses a mathematical descriptions, or models, of a real system in the form of a computer program.</p>
+</blockquote>
+
+<p><img src="https://www.simscale.com/wp-content/uploads/2022/11/dron-quadcopter-simulation.png" alt="simulation" /></p>
+
+<h2 id="college-board-essential-knowledge">College Board Essential Knowledge</h2>
+
+<blockquote>
+  <p>Simulation are absractions of more complex objects or phenomena for a specific purpose</p>
+</blockquote>
+
+<ul>
+  <li>Mimic Real World Events</li>
+  <li>Allows investigation of phenomenons without contraints of the Real World</li>
+  <li>Helps you draw accurate inferences</li>
+</ul>
+
+<blockquote>
+  <p>Simulations utilize varying sets of values to reflect the changings states of a phenomenon</p>
+</blockquote>
+
+<ul>
+  <li>simulations can simplfly things for functionality</li>
+  <li>Simulations can contain bias from real world elements, that were chosen to be included or excluded</li>
+</ul>
+
+<blockquote>
+  <p>Simulations work best when the real world experemnts are too impractical or time consuming. For example, simulating how different cars behave when they crash, would be much better than crashng actual cars in the real world, which would be expensive and dangerous.</p>
+</blockquote>
+
+<p><a href="https://ibb.co/f4jKcBY"><img src="https://i.ibb.co/NZck4Q6/simulations-vs-experiments.png" alt="simulations-vs-experiments" border="0" /></a></p>
+
+<h2 id="rolling-the-dice">Rolling the Dice</h2>
+
+<p><a href="https://ibb.co/PGBhfPD"><img src="https://i.ibb.co/XxmsvKY/craps-rolling-seven-7.jpg" alt="craps-rolling-seven-7" border="0" /></a></p>
+
+<blockquote>
+  <p>Simulating something like a dice roll in real life would require accounting for things like: weight, flaws in design, thrust, and gravity.</p>
+  <ul>
+    <li>KEEP IT SIMPLE! just use a random-number generator! Ignore minor causes of variablility</li>
+  </ul>
+</blockquote>
+
+<h2 id="random">Random</h2>
+
+<ul>
+  <li>“Random” is a built-in python function that allow the user to draw a random value from a set range.</li>
+  <li>A Random Number Generator (RNG) is a common simulation that selects a random value from an array.</li>
+  <li>The following code cell utilizes “random” to select a number from 1 to 100.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#imports random module so we can use it in our code
+</span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1">#sets variable random_number as a random number between 1 and 100
+</span><span class="n">random_number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#Printing out your random Number
+</span><span class="k">print</span><span class="p">(</span><span class="n">random_number</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="more-complex-usage-of-random-coin-toss-simulation">More complex usage of “random”; Coin Toss Simulation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="k">def</span> <span class="nf">flip_coin</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="s">"Heads"</span><span class="p">,</span> <span class="s">"Tails"</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">coin_flip_simulation</span><span class="p">(</span><span class="n">num_flips</span><span class="p">):</span>
+    <span class="n">heads_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tails_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_flips</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">flip_coin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s">"Heads"</span><span class="p">:</span>
+            <span class="n">heads_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tails_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">heads_count</span><span class="p">,</span> <span class="n">tails_count</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">num_flips</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1">#This is the number of coin flips you want to simulate
+</span>    <span class="n">heads</span><span class="p">,</span> <span class="n">tails</span> <span class="o">=</span> <span class="n">coin_flip_simulation</span><span class="p">(</span><span class="n">num_flips</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Number of Heads: "</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">heads</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Number of Tails: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tails</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Heads Probability: "</span><span class="o">+</span> <span class="nb">str</span><span class="p">({</span><span class="n">heads</span> <span class="o">/</span> <span class="n">num_flips</span><span class="p">}))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Tails Probability: "</span><span class="o">+</span> <span class="nb">str</span><span class="p">({</span><span class="n">tails</span> <span class="o">/</span> <span class="n">num_flips</span><span class="p">}))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number of Heads: 501
+Number of Tails: 499
+Heads Probability: {0.501}
+Tails Probability: {0.499}
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-1">Popcorn Hack #1</h2>
+
+<p>Utilize “random” to create a basic simulation of a rolling TWO dice. Print the sum of both dice rolls. Remember to practice good syntax when naming your variables.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1">#Code, Code, Code
+</span></code></pre></div></div>
+
+<h2 id="algorithms">Algorithms</h2>
+<blockquote>
+  <p>Simulations often utilize algorithms and equations to perform tasks because simulations don’t always have the same output</p>
+  <ul>
+    <li>the output of a simulation depends on the input</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>An algorithm is a finite sequence of instructions used to solve problems or perform computations.</p>
+  <ul>
+    <li>commonly used alongside functions</li>
+  </ul>
+</blockquote>
+
+<h2 id="example-algorithm-in-a-function">Example Algorithm in a function</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Defining Function
+</span><span class="k">def</span> <span class="nf">algorithm</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    
+    <span class="c1">#Manipulating input and preparing it for the output.  
+</span>    <span class="n">output</span> <span class="o">=</span> <span class="nb">input</span><span class="o">+</span><span class="mi">2</span>
+    
+    <span class="c1">#Return the output
+</span>    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1">#Call the Function to start the algorithm
+</span><span class="n">algorithm</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>7
+</code></pre></div></div>
+
+<h2 id="mathematics">Mathematics</h2>
+<ul>
+  <li>Math can also prove to be very useful in certain types of situations.</li>
+  <li>Commonly used along with Algorithms when simulating various things</li>
+</ul>
+
+<p><img src="https://pythontutorialhome.files.wordpress.com/2019/05/image-2.png" alt="math" /></p>
+
+<h2 id="popcorn-hack-2">Popcorn Hack #2</h2>
+
+<p>Simulate how long an object will fall for using an algorithm, with user-inputed variables for height dropped. Use the following formula as a reference.</p>
+
+<p><img src="https://hepweb.ucsd.edu/ph110b/110b_notes/img272.png" alt="gravity " /></p>
+
+<ul>
+  <li>t = time (output)</li>
+  <li>h = height dropped from (input)</li>
+  <li>g = constant (given)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Constant, Acceleration due to gravity (m/s^2)
+</span><span class="n">G</span> <span class="o">=</span> <span class="mf">9.81</span> 
+
+<span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">height_dropped</span><span class="p">):</span>
+    <span class="c1"># Code Code Code
+</span></code></pre></div></div>
+
+<h1 id="using-loops-in-simulations">Using Loops in Simulations</h1>
+
+<blockquote>
+  <p>For loops can also be used in simulations</p>
+  <ul>
+    <li>They can simulate events that repeat but don’t always have the same output</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example For Loop
+</span>
+<span class="c1">#Creating For Loop to repeat 4 times
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    
+    <span class="c1">#Action that happens inside for loop
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"This is run number: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is run number: 0
+This is run number: 1
+This is run number: 2
+This is run number: 3
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-3">Popcorn Hack #3</h2>
+
+<p>You are gambling addict (sigma).</p>
+
+<p>Each session you roll 2 dice.</p>
+
+<p>If your dice roll is greater than or equal to 9 you win the session.</p>
+
+<p>If you win over 5 sessions, you win the jackpot.</p>
+
+<p>Simulate your odds to predict if you will hit the jackpot (how many rounds did you win?) using a for loop and random.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code Code Code
+</span></code></pre></div></div>
+
+<h2 id="bonus-popcorn-hack">BONUS POPCORN HACK</h2>
+<blockquote>
+  <p>Welcome to Flight Simulator! Your goal is to complete a Python program that simulates a flight We’ve set up some initial values for altitude, speed, and fuel. Your task is to update these values to make the flight more realistic.</p>
+</blockquote>
+
+<ul>
+  <li>Your mission:</li>
+</ul>
+
+<ol>
+  <li>Use random changes to simulate altitude, speed, and fuel changes.</li>
+  <li>Keep the flight going until it reaches 10,000 feet or runs out of fuel.</li>
+  <li>Make sure altitude, speed, and fuel remain realistic.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Initial parameters
+</span><span class="n">altitude</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">fuel</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Welcome to Flight Simulator!"</span><span class="p">)</span>
+
+<span class="c1"># Code Code Code
+</span></code></pre></div></div>
+
+<h2 id="quiz-time">QUIZ TIME</h2>
+
+<ul>
+  <li>Quick true or false quiz, whoever answers this correctly(raise your hand) gets a piece of gum or a dinero.</li>
+</ul>
+<hr />
+
+<blockquote>
+  <p>T or F</p>
+  <ul>
+    <li>A simulation will always have the same result.
+T or F</li>
+    <li>A simulation investigates a phenomenom without real-world constraints of time, money, or safety.
+T or F</li>
+    <li>A simulation has results which are more accurate than an experiment,
+T or F</li>
+    <li>A simulation can model real-worl events that are not practical for experiments</li>
+  </ul>
+</blockquote>
+
+<h2 id="homework-hack-1">HOMEWORK HACK #1</h2>
+
+<p>First finish Popcorn Hack #3. Expand the simulation to involve your own money.</p>
+
+<p>starting money: $100</p>
+
+<p>(Dice Roll &lt;= 3) → lose $70</p>
+
+<p>( 6&gt; Dice Roll &gt;3) → lose $40</p>
+
+<p>( 9&gt; Dice Roll &gt;=6) → win $20</p>
+
+<p>( Dice Roll&gt;= 9 + Session Win) → win $50</p>
+
+<p>Jackpot → win $100</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code Code Code
+</span></code></pre></div></div>
+
+<h2 id="homework-hack-2">HOMEWORK HACK #2</h2>
+
+<blockquote>
+  <p>Given initial parameters for a car simulation, including its initial speed, acceleration rate, deceleration rate, maximum speed, and initial distance, write a  program to simulate the car’s journey and determine the final speed, distance covered, and time taken before it either covers 1000 meters or slows down to below 5 m/s?</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Initial parameters
+</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial speed
+</span><span class="n">acceleration</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Acceleration rate in m/s^2
+</span><span class="n">deceleration</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Deceleration rate in m/s^2
+</span><span class="n">max_speed</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># Maximum speed in m/s
+</span><span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial distance
+</span><span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial time
+</span>
+<span class="c1">#Code Code Code
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/27/P5_Simulations_IPYNB_2_.html" hidden></a>
+</article>

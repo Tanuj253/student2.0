@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<style>
+  body {
+    background: #292b2f;
+  }
+  
+  h2 {
+      color: #FFFFEE;
+  }
+
+  h1 {
+    color: #FFFFFF
+  }
+
+  p {
+    color: #dddddd;
+  }
+
+  li {
+    color: #dddd;
+  }
+  
+</style><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>JS Output w/ Objects | Student 2.0</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="JS Output w/ Objects" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Quick launch into Variables, Functions, Arrays, Classes, Objects." />
+<meta property="og:description" content="Quick launch into Variables, Functions, Arrays, Classes, Objects." />
+<link rel="canonical" href="http://localhost:4100/student2.0/2023/09/13/javascript_output_objects_IPYNB_2_.html" />
+<meta property="og:url" content="http://localhost:4100/student2.0/2023/09/13/javascript_output_objects_IPYNB_2_.html" />
+<meta property="og:site_name" content="Student 2.0" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-13T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="JS Output w/ Objects" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-13T00:00:00-07:00","datePublished":"2023-09-13T00:00:00-07:00","description":"Quick launch into Variables, Functions, Arrays, Classes, Objects.","headline":"JS Output w/ Objects","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/student2.0/2023/09/13/javascript_output_objects_IPYNB_2_.html"},"url":"http://localhost:4100/student2.0/2023/09/13/javascript_output_objects_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/student2.0/assets/css/style.css"><link rel="shortcut icon" type="image/x-icon" href="/student2.0/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body>
+
+  <div class="wrapper">
+    <header><style>
+  
+    body {
+      background: #292b2f;
+    }
+  
+    .site-header {
+      font-family: monospace;
+      font-size: 15px;
+      
+      position: absolute;
+      transition: top 0.2s ease-in-out;
+      margin-top: 25px;
+      padding-top: 10px;
+      left: -80px;
+      margin-top: 275px;
+    }
+  
+    .site-footer {
+      text-align: left;
+      left: 240px;
+    }
+  
+    .headerbutton {
+      border: 1px solid #A455FF;
+  
+      background: rgb(0, 0, 0);
+      color:black;
+      font-weight: bold;
+      width: 270px;
+  
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+  
+    .headerbutton:hover {
+      background-color: #A455FF;
+    }
+  
+    img{
+      position:relative;
+      border: 3px solid;
+      border-color: #A455FF;
+    }
+  
+    .pfp {
+      border-radius: 30%;
+      position:absolute;
+      left: -100px;
+      object-fit: cover;
+      width: 260px;
+      height: 260px;
+    }
+  
+    a {
+      color: #C8A2C8;
+    }
+    
+    h2 {
+        color: #FFFFEE;
+    }
+  
+    h1 {
+      color: #FFFFFF
+    }
+  
+    p {
+      color: #dddddd;
+  
+    }
+  
+  </style>
+    <img src="/student/images/IMG_2714.jpg" class="pfp"> 
+  
+    <header class="site-header">
+    
+      <div id="header">
+        <nav>
+          <ul>
+              <li class="fork"><a href="/student2.0/">Home</a></li>
+              <li class="fork"><a href="/student2.0/timebox">Time Box</a></li>
+              <li class="fork"><a href="/student2.0/blogs">Blogs</a></li>
+              <li class="title"><a href="https://github.com/Tanuj253/student2.0#readme" target="_blank">View on GitHub</a></li>
+        </nav>
+      </div>
+    </header></header>
+
+
+    <section>
+      <h2 id="javascript-and-jupyter-references">JavaScript and Jupyter references</h2>
+<blockquote>
+  <p>JavaScript is the most important language you need to learn as a frontend developer.  Jupyter Notebooks is a convenient way to learn portions of the language without the overhead of creating a full Website.  Jupyter Notebooks have ChatGPT plugins to assist with design and troubleshooting problems.  This Notebook has colors on HTML pages that were designed with a dark mode background.</p>
+</blockquote>
+
+<ul>
+  <li>JavaScript / Jupyter General References
+    <ul>
+      <li><a href="https://www.w3schools.com/html/default.asp">W3Schools HTML Reference</a></li>
+      <li><a href="https://www.w3schools.com/js/">W3Schools JS Reference</a></li>
+      <li>ChatGPT AI assistant for <a href="https://chrome.google.com/webstore/detail/chatgpt-jupyter-ai-assist/dlipncbkjmjjdpgcnodkbdobkadiejll">Chrome/Jupyter</a></li>
+      <li>Theme setup for Jupyter <a href="https://linuxhint.com/change-theme-jupyter-notebook/">Article</a>.  Or do these commands from shell…
+        <ul>
+          <li>Install pip: pip install jupyterthemes</li>
+          <li>Revert to original theme: jt -r</li>
+          <li>List themes: jt -l</li>
+          <li>Install with Theme, Name, Logo: jt -t onedork -T -N -kl</li>
+        </ul>
+      </li>
+      <li><a href="https://developer.chrome.com/docs/devtools/">Chrome Dev Tools</a></li>
+    </ul>
+  </li>
+  <li>Coding with jQuery
+    <ul>
+      <li>Jupyter Notebook <a href="https://github.com/nighthawkcoders/APCSP/blob/master/_notebooks/2022-09-19-PBL-javascript_tutorial.ipynb">GitHub</a>, wget: https://raw.githubusercontent.com/nighthawkcoders/APCSP/master/_notebooks/2022-09-19-PBL-javascript_tutorial.ipynb</li>
+      <li>Markdown <a href="https://nighthawkcoders.github.io/APCSP/frontend/jquery">Fetch example</a> in GitHub project for <a href="https://github.com/nighthawkcoders/APCSP/blob/master/_posts/2023-06-01-jquery-sort.md">APCSP</a></li>
+      <li>HTML <a href="https://flask.nighthawkcodingsociety.com/table/">Static example</a> in GitHub project for <a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/templates/table.html">flask_portfolio</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="output-using-html-and-css">output using HTML and CSS</h3>
+<p>Multiple cells are used to setup HTML in this lesson. Many of the JavaScript cells will use the output tag(s) to write into the HTML that has been setup.</p>
+<ul>
+  <li>%%html is used to setup HTML code block</li>
+  <li>“style” tag enables visuals customization</li>
+  <li>“div” tag is setup to receive data</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+            <span class="c1">#output {
+</span>                <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#353b45;
+</span>                <span class="n">padding</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span>
+                <span class="n">border</span><span class="p">:</span> <span class="mi">3</span><span class="n">px</span> <span class="n">solid</span> <span class="c1">#ccc;
+</span>            <span class="p">}</span>
+        <span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span> <span class="nb">id</span><span class="o">=</span><span class="s">"data"</span> <span class="n">hidden</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"output"</span><span class="o">&gt;</span>
+            <span class="n">Hello</span><span class="err">!</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="other-outputs-explored">other outputs explored</h3>
+<p>There are several ways to ouput the classic introduction message: “Hello, World!”</p>
+<ul>
+  <li>Before you go further, open Console on your Browser. <mark>JavaScript developer leaves Console open</mark> all the time!!!</li>
+  <li>The function <mark>console.log()</mark> outputs to Console, this is often used for inspection or debugging.</li>
+  <li>“Hello, World” is a String literal. This is the referred to as <mark>Static text</mark>, as it does not change.  Developer call this a <mark>hard coded string</mark>.</li>
+  <li><mark>"Hello, World" literal is a parameter</mark> to console.log(), element.txt() and alert().</li>
+  <li>The element.textContent is part of <mark>Jupyter Notebook %%js magic</mark>.  This is convenient for Notebook and testing.</li>
+  <li>The <mark>alert command outputs the parameter to a dialog box</mark>, so you can see it in this Jupyter notebook. The alert commands are shown, but are commented out as the stop run all execution of the notebook.</li>
+  <li>Note, in a Web Application Debugging: An alert is often used for less savy Developers. Console is used by more savy developers; console often requires setting up a lot of outputs. Source level debugging is the most powerful solution for debugging and does not require alert or console commands.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span> <span class="o">//</span> <span class="n">required</span> <span class="n">to</span> <span class="n">allow</span> <span class="n">cell</span> <span class="n">to</span> <span class="n">be</span> <span class="n">JavaScript</span> <span class="n">enabled</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"JavaScript/Jupyter Output Intro"</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Browser</span> <span class="n">Console</span> <span class="n">output</span><span class="p">;</span> <span class="n">debugging</span> <span class="ow">or</span> <span class="n">tracing</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Set</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">HTML</span> <span class="n">above</span> <span class="n">using</span> <span class="n">DOM</span> <span class="p">(</span><span class="n">Document</span> <span class="n">Object</span> <span class="n">Model</span><span class="p">)</span>
+<span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Jupyter</span> <span class="n">built</span> <span class="ow">in</span> <span class="n">magic</span> <span class="n">element</span> <span class="k">for</span> <span class="n">testing</span> <span class="ow">and</span> <span class="n">convenience</span> <span class="n">of</span> <span class="n">development</span>
+<span class="n">element</span><span class="p">.</span><span class="n">textContent</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="p">;</span>  <span class="o">//</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">output</span> <span class="n">option</span> <span class="k">as</span> <span class="n">part</span> <span class="n">of</span> <span class="o">%%</span><span class="n">js</span> <span class="n">magic</span>
+
+<span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="multiple-outputs-using-one-variable">multiple outputs using one variable</h3>
+<p>This second example is a new <mark>sequence of code</mark>, two or more lines of code forms a sequence.  This example defines a variable, thank goodness!!! In the previous example we were typing the string <code class="language-plaintext highlighter-rouge">"Hello, World" over and over</code>.  Observe with the variable <code class="language-plaintext highlighter-rouge">msg="Hello, World!";</code> we type the string once and now use <code class="language-plaintext highlighter-rouge">msg</code> over and over.</p>
+<ul>
+  <li>The variable “var msg =” is used to capture the data</li>
+  <li>The console.log(msg) outputs to console, be sure to Inspect it!</li>
+  <li>The element.text() is part of Jupyter Notebooks and displays as output blow the code on this page. Until we build up some more interesting data for Web Site, we will not use be using the Python HTML, CSS technique.</li>
+  <li>The alert(msg) works the same as previous, but as the other commands uses msg as parameter.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Variable Definition"</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello, World Again!"</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Use</span> <span class="n">msg</span> <span class="n">to</span> <span class="n">output</span> <span class="n">code</span> <span class="n">to</span> <span class="n">Console</span> <span class="ow">and</span> <span class="n">Jupyter</span> <span class="n">Notebook</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>  <span class="o">//</span><span class="n">right</span> <span class="n">click</span> <span class="n">browser</span> <span class="n">select</span> <span class="n">Inspect</span><span class="p">,</span> <span class="n">then</span> <span class="n">select</span> <span class="n">Console</span> <span class="n">to</span> <span class="n">view</span>
+<span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">msg</span><span class="p">;</span>
+<span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h3 id="output-showing-use-of-a-function">output showing use of a function</h3>
+<p>This example passes the defined variable “msg” to the newly defined “function logIt(output)”.</p>
+<ul>
+  <li>There are multiple steps in this code..
+    <ul>
+      <li>The “definition of the function”: “function logIt(output) {}” and everything between curly braces is the definitions of the function. Passing a parameter is required when you call this function.</li>
+      <li>The “call to the function:”logIt(msg)” is the call to the function, this actually runs the function.  The variable “msg” is used a parameter when calling the logIt function.</li>
+    </ul>
+  </li>
+  <li>Showing reuse of function…
+    <ul>
+      <li>There are two calls to the logIt function</li>
+      <li>This is called Prodedural Abstraction, a term that means reusing the same code</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Function Definition"</span><span class="p">);</span>
+
+<span class="o">/*</span> <span class="n">Function</span><span class="p">:</span> <span class="n">logIt</span>
+ <span class="o">*</span> <span class="n">Parameter</span><span class="p">:</span> <span class="n">output</span>
+ <span class="o">*</span> <span class="n">Description</span><span class="p">:</span> <span class="n">The</span> <span class="n">parameter</span> <span class="ow">is</span> <span class="s">"output"</span> <span class="n">to</span> <span class="n">console</span> <span class="ow">and</span> <span class="n">jupyter</span> <span class="n">page</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">logIt</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span> 
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">msg</span><span class="p">;</span>
+    <span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">code</span> <span class="n">build</span> <span class="n">logIt</span> <span class="n">parameter</span> <span class="n">using</span> <span class="n">concatenation</span>
+<span class="n">var</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello, Students!"</span> <span class="o">//</span> <span class="n">replaces</span> <span class="n">content</span> <span class="n">of</span> <span class="n">variable</span>
+<span class="n">var</span> <span class="n">classOf</span> <span class="o">=</span> <span class="s">"Welcome CS class of 2023-2024."</span>
+<span class="n">logIt</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="s">"  "</span> <span class="o">+</span> <span class="n">classOf</span><span class="p">);</span> <span class="o">//</span> <span class="n">concatenation</span> <span class="n">of</span> <span class="n">strings</span>
+</code></pre></div></div>
+
+<h3 id="output-showing-loosely-typed-data">output showing Loosely typed data</h3>
+<p><mark>JavaScript is a loosely typed language</mark>, meaning you don’t have to specify what type of information will be stored in a variable in advance.</p>
+<ul>
+  <li>To define a variable you prefix the name with <mark>var or const</mark>.   The variable type is determined by JavaScript at runtime.</li>
+  <li>Python and many interpretive languages are loosely typed like JavaScript.  This is considered programmer friendly.</li>
+  <li>Java which is a compiled language is strongly typed, thus you will see terms like <mark>String, Integer, Double, and Object</mark> in the source code.</li>
+  <li>In JavaScript, the <mark>typeof keyword</mark> returns the type of the variable.  Become familiar with type as it is valuable in conversation and knowing type help you understand how to modify data.  Each variable type will have built in methods to manage content within the data type.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Examine Data Types"</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Function</span> <span class="n">to</span> <span class="n">add</span> <span class="n">typeof</span> <span class="n">to</span> <span class="n">output</span>
+<span class="n">function</span> <span class="n">getType</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">typeof</span> <span class="n">output</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Function</span> <span class="n">defintion</span>
+<span class="n">function</span> <span class="n">logIt</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">getType</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>  <span class="o">//</span> <span class="n">logs</span> <span class="n">string</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>          <span class="o">//</span> <span class="n">logs</span> <span class="nb">object</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">msg</span><span class="p">;</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">getType</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">+</span> <span class="s">" "</span><span class="p">);</span>  <span class="o">//</span> <span class="n">adds</span> <span class="n">to</span> <span class="n">Jupyter</span> <span class="n">output</span>
+    <span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">getType</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Common</span> <span class="n">Types</span>
+<span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Common Types "</span><span class="p">);</span>
+<span class="n">logIt</span><span class="p">(</span><span class="s">"Mr M"</span><span class="p">);</span> <span class="o">//</span> <span class="n">String</span>
+<span class="n">logIt</span><span class="p">(</span><span class="mi">1997</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Number</span>
+<span class="n">logIt</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Boolean</span>
+
+<span class="o">//</span> <span class="n">Object</span> <span class="n">Type</span><span class="p">,</span> <span class="n">this</span> <span class="n">definition</span> <span class="ow">is</span> <span class="n">often</span> <span class="n">called</span> <span class="n">a</span> <span class="n">array</span> <span class="ow">or</span> <span class="nb">list</span>
+<span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Object Type, array "</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">90</span><span class="p">,</span>
+    <span class="mi">80</span><span class="p">,</span> 
+    <span class="mi">100</span>
+<span class="p">];</span>  
+<span class="n">logIt</span><span class="p">(</span><span class="n">scores</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Complex</span> <span class="n">Object</span><span class="p">,</span> <span class="n">this</span> <span class="n">definition</span> <span class="ow">is</span> <span class="n">often</span> <span class="n">called</span> <span class="nb">hash</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="n">hashmap</span><span class="p">,</span> <span class="ow">or</span> <span class="n">dictionary</span>
+<span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Object Type, hash or dictionary "</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span> <span class="o">//</span> <span class="n">key</span><span class="p">:</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">seperated</span> <span class="n">by</span> <span class="n">comma</span>
+    <span class="s">"name"</span><span class="p">:</span> <span class="s">"Mr M"</span><span class="p">,</span> 
+    <span class="s">"role"</span><span class="p">:</span> <span class="s">"Teacher"</span>
+<span class="p">};</span> 
+<span class="n">logIt</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>
+<span class="n">logIt</span><span class="p">(</span><span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">person</span><span class="p">));</span>  <span class="o">//</span><span class="n">method</span> <span class="n">used</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">this</span> <span class="nb">object</span> <span class="n">into</span> <span class="n">readable</span> <span class="nb">format</span>
+</code></pre></div></div>
+
+<h3 id="build-a-person-object-json-and-show-output">Build a Person object, JSON, and show output</h3>
+<p>JavaScript and other languages have special properties and syntax to store and represent data.  In fact, a class in JavaScript is a special function.</p>
+
+<ul>
+  <li><mark>Definition of class allows for a collection of data</mark>, the “class Person” allows programmer to retain name, github id, and class of a Person.</li>
+  <li><mark>Instance of a class</mark>, the “const teacher = new Person(“Mr M”, “jm1021”, 1977)” makes an object “teacher” which is an object representation of “class Person”.</li>
+  <li><mark>Setting and Getting properties</mark> After creating teacher and student objects, observe that properties can be changed/muted or extracted/accessed.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Person objects"</span><span class="p">);</span>
+
+<span class="o">/*</span> <span class="n">class</span><span class="p">:</span> <span class="n">Person</span>
+ <span class="o">*</span> <span class="n">Description</span><span class="p">:</span> <span class="n">A</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">Person</span> <span class="n">data</span>
+<span class="o">*/</span>
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">constructor</span>
+   <span class="o">*</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">ghID</span> <span class="o">-</span> <span class="n">GitHub</span> <span class="n">ID</span><span class="p">,</span> <span class="n">classOf</span> <span class="o">-</span> <span class="n">Graduation</span> <span class="n">Class</span> 
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">returns</span> <span class="nb">object</span> <span class="n">when</span> <span class="s">"new Person()"</span> <span class="ow">is</span> <span class="n">called</span> <span class="k">with</span> <span class="n">matching</span> <span class="n">parameters</span>
+   <span class="o">*</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">ghID</span><span class="p">,</span> <span class="p">...</span> <span class="n">are</span> <span class="n">properties</span> <span class="n">retained</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">returned</span> <span class="nb">object</span>
+   <span class="o">*</span> <span class="n">default</span><span class="p">:</span> <span class="n">role</span> <span class="n">uses</span> <span class="n">a</span> <span class="n">default</span> <span class="nb">property</span><span class="p">,</span> <span class="n">it</span> <span class="ow">is</span> <span class="nb">set</span> <span class="n">to</span> <span class="s">"Student"</span>
+  <span class="o">*/</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ghID</span><span class="p">,</span> <span class="n">classOf</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"Student"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">ghID</span> <span class="o">=</span> <span class="n">ghID</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">classOf</span> <span class="o">=</span> <span class="n">classOf</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">role</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">setter</span>
+   <span class="o">*</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">role</span> <span class="o">-</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">classroom</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="ow">is</span> <span class="n">updated</span> <span class="k">from</span> <span class="n">default</span> <span class="n">value</span> <span class="n">to</span> <span class="n">value</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">role</span> <span class="n">parameter</span>
+  <span class="o">*/</span>
+  <span class="n">setRole</span><span class="p">(</span><span class="n">role</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">role</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">getter</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">turns</span> <span class="n">properties</span> <span class="n">of</span> <span class="nb">object</span> <span class="n">into</span> <span class="n">JSON</span> <span class="nb">object</span>
+   <span class="o">*</span> <span class="k">return</span> <span class="n">value</span><span class="p">:</span> <span class="n">JSON</span> <span class="nb">object</span>
+  <span class="o">*/</span>
+  <span class="n">getJSON</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">typeof</span> <span class="n">this</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ghID</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">ghID</span><span class="p">,</span> <span class="n">classOf</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">classOf</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">role</span><span class="p">};</span>
+    <span class="n">const</span> <span class="n">json</span> <span class="o">=</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">json</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">logIT</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">this</span> <span class="n">Person</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">logged</span> <span class="n">to</span> <span class="n">console</span>
+  <span class="o">*/</span>
+  
+  <span class="n">logIt</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">Person</span> <span class="n">Object</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+       
+    <span class="o">//</span> <span class="n">HTML</span> <span class="n">output</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">();</span>
+
+    <span class="o">//</span><span class="n">Log</span> <span class="n">to</span> <span class="n">Jupter</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="o">+</span> <span class="s">" object in JSON: "</span><span class="p">);</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">());</span>  
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">" "</span><span class="p">);</span>
+
+
+    <span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">());</span>
+  <span class="p">}</span>
+    
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">make</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Person</span> <span class="n">Object</span>
+<span class="n">const</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Mr M"</span><span class="p">,</span> <span class="s">"jm1021"</span><span class="p">,</span> <span class="mi">1977</span><span class="p">);</span> <span class="o">//</span> <span class="nb">object</span> <span class="nb">type</span> <span class="ow">is</span> <span class="n">easy</span> <span class="n">to</span> <span class="n">work</span> <span class="k">with</span> <span class="ow">in</span> <span class="n">JavaScript</span>
+<span class="o">//</span> <span class="n">update</span> <span class="n">role</span> <span class="n">to</span> <span class="n">Teacher</span>
+<span class="n">var</span> <span class="n">role</span> <span class="o">=</span> <span class="s">"Teacher"</span><span class="p">;</span>
+<span class="n">teacher</span><span class="p">.</span><span class="n">setRole</span><span class="p">(</span><span class="n">role</span><span class="p">);</span> <span class="o">//</span> <span class="nb">set</span> <span class="n">the</span> <span class="n">role</span>
+<span class="n">teacher</span><span class="p">.</span><span class="n">logIt</span><span class="p">();</span>  <span class="o">//</span> <span class="n">log</span> <span class="n">to</span> <span class="n">console</span>
+
+<span class="o">//</span> <span class="n">make</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Person</span> <span class="n">Object</span>
+<span class="n">const</span> <span class="n">student</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Jane Doe"</span><span class="p">,</span> <span class="s">"jane"</span><span class="p">,</span> <span class="mi">2007</span><span class="p">);</span> <span class="o">//</span> <span class="nb">object</span> <span class="nb">type</span> <span class="ow">is</span> <span class="n">easy</span> <span class="n">to</span> <span class="n">work</span> <span class="k">with</span> <span class="ow">in</span> <span class="n">JavaScript</span>
+<span class="n">student</span><span class="p">.</span><span class="n">logIt</span><span class="p">();</span> <span class="o">//</span> <span class="n">log</span> <span class="n">to</span> <span class="n">console</span>
+</code></pre></div></div>
+
+<h3 id="build-a-classroom-arraylist-of-persons-json-and-show-output">Build a Classroom Array/List of Persons, JSON, and show output</h3>
+<p>Many key elements are shown again.  New elements include…</p>
+<ul>
+  <li><mark>Building an Array</mark>, “var students” is an array of many persons</li>
+  <li>Building a Classroom, this show <mark>forEach iteration</mark> through an array and <mark>.push adding</mark> to an array.  These are key concepts in all programming languages.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Classroom object"</span><span class="p">);</span>
+
+<span class="o">/*</span> <span class="n">class</span><span class="p">:</span> <span class="n">Person</span>
+ <span class="o">*</span> <span class="n">Description</span><span class="p">:</span> <span class="n">A</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">Person</span> <span class="n">data</span>
+<span class="o">*/</span>
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">constructor</span>
+   <span class="o">*</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">ghID</span> <span class="o">-</span> <span class="n">GitHub</span> <span class="n">ID</span><span class="p">,</span> <span class="n">classOf</span> <span class="o">-</span> <span class="n">Graduation</span> <span class="n">Class</span> 
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">returns</span> <span class="nb">object</span> <span class="n">when</span> <span class="s">"new Person()"</span> <span class="ow">is</span> <span class="n">called</span> <span class="k">with</span> <span class="n">matching</span> <span class="n">parameters</span>
+   <span class="o">*</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">ghID</span><span class="p">,</span> <span class="p">...</span> <span class="n">are</span> <span class="n">properties</span> <span class="n">retained</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">returned</span> <span class="nb">object</span>
+   <span class="o">*</span> <span class="n">default</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">default</span> <span class="nb">property</span> <span class="n">retained</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">,</span> <span class="n">it</span> <span class="ow">is</span> <span class="nb">set</span> <span class="n">to</span> <span class="s">"Student"</span>
+  <span class="o">*/</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ghID</span><span class="p">,</span> <span class="n">classOf</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s">"Student"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">ghID</span> <span class="o">=</span> <span class="n">ghID</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">classOf</span> <span class="o">=</span> <span class="n">classOf</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">role</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">setter</span>
+   <span class="o">*</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">role</span> <span class="o">-</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">classroom</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="ow">is</span> <span class="n">updated</span> <span class="k">from</span> <span class="n">default</span> <span class="n">value</span> <span class="n">to</span> <span class="n">value</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">role</span> <span class="n">parameter</span>
+  <span class="o">*/</span>
+  <span class="n">setRole</span><span class="p">(</span><span class="n">role</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">role</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">getter</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">turns</span> <span class="n">properties</span> <span class="n">of</span> <span class="nb">object</span> <span class="n">into</span> <span class="n">JSON</span> <span class="nb">object</span>
+   <span class="o">*</span> <span class="k">return</span> <span class="n">value</span><span class="p">:</span> <span class="n">JSON</span> <span class="nb">object</span>
+  <span class="o">*/</span>
+  <span class="n">getJSON</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">typeof</span> <span class="n">this</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">ghID</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">ghID</span><span class="p">,</span> <span class="n">classOf</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">classOf</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">role</span><span class="p">};</span>
+    <span class="n">const</span> <span class="n">json</span> <span class="o">=</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">json</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">logIT</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">this</span> <span class="n">Person</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">logged</span> <span class="n">to</span> <span class="n">console</span>
+  <span class="o">*/</span>
+  <span class="n">logIt</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">Person</span> <span class="n">Object</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">HTML</span> <span class="n">output</span> <span class="n">tag</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">();</span>
+
+    <span class="o">//</span><span class="n">Log</span> <span class="n">to</span> <span class="n">Jupter</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Person json &lt;br&gt;"</span><span class="p">);</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">()</span> <span class="o">+</span> <span class="s">"&lt;br&gt;"</span><span class="p">);</span> 
+
+    <span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">getJSON</span><span class="p">());</span>
+  <span class="p">}</span>
+    
+<span class="p">}</span>
+
+<span class="o">/*</span> <span class="n">class</span><span class="p">:</span> <span class="n">Classroom</span>
+ <span class="o">*</span> <span class="n">Description</span><span class="p">:</span> <span class="n">A</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">Person</span> <span class="n">objects</span>
+<span class="o">*/</span>
+<span class="k">class</span> <span class="nc">Classroom</span> <span class="p">{</span>
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">constructor</span>
+   <span class="o">*</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">teacher</span> <span class="o">-</span> <span class="n">a</span> <span class="n">Person</span> <span class="nb">object</span><span class="p">,</span> <span class="n">students</span> <span class="o">-</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">Person</span> <span class="n">objects</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">returns</span> <span class="nb">object</span> <span class="n">when</span> <span class="s">"new Classroom()"</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">containing</span> <span class="n">properties</span> <span class="ow">and</span> <span class="n">methods</span> <span class="n">of</span> <span class="n">a</span> <span class="n">Classroom</span>
+   <span class="o">*</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">classroom</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">teacher</span><span class="p">,</span> <span class="p">...</span> <span class="n">are</span> <span class="n">properties</span> <span class="n">retained</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">returned</span> <span class="nb">object</span>
+  <span class="o">*/</span>
+  <span class="n">constructor</span><span class="p">(</span><span class="n">teacher</span><span class="p">,</span> <span class="n">students</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">/*</span> <span class="n">spread</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">classroom</span> <span class="n">contains</span> <span class="n">Teacher</span> <span class="nb">object</span> <span class="ow">and</span> <span class="nb">all</span> <span class="n">Student</span> <span class="n">objects</span>
+     <span class="o">*</span> <span class="nb">map</span><span class="p">:</span> <span class="n">this</span><span class="p">.</span><span class="n">json</span> <span class="n">contains</span> <span class="n">of</span> <span class="nb">map</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">JSON</span>
+    <span class="o">*/</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">teacher</span> <span class="o">=</span> <span class="n">teacher</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">students</span> <span class="o">=</span> <span class="n">students</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">classroom</span> <span class="o">=</span> <span class="p">[</span><span class="n">teacher</span><span class="p">,</span> <span class="p">...</span><span class="n">students</span><span class="p">];</span> <span class="o">//</span> <span class="p">...</span> <span class="n">spread</span> <span class="n">option</span>
+    <span class="n">this</span><span class="p">.</span><span class="n">json</span> <span class="o">=</span> <span class="s">'{"classroom":['</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">classroom</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">person</span> <span class="o">=&gt;</span> <span class="n">person</span><span class="p">.</span><span class="n">getJSON</span><span class="p">())</span> <span class="o">+</span> <span class="s">']}'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">/*</span> <span class="n">method</span><span class="p">:</span> <span class="n">logIT</span>
+   <span class="o">*</span> <span class="n">description</span><span class="p">:</span> <span class="n">this</span> <span class="n">Classroom</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">logged</span> <span class="n">to</span> <span class="n">console</span>
+  <span class="o">*/</span>
+  <span class="n">logIt</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">Classroom</span> <span class="nb">object</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">HTML</span> <span class="n">output</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"data"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="n">json</span><span class="p">;</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">textContent</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="n">json</span><span class="p">;</span>
+
+    <span class="o">//</span><span class="n">Classroom</span> <span class="n">json</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Classroom object in JSON: "</span><span class="p">);</span>
+    <span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">json</span><span class="p">);</span>
+
+    <span class="o">//</span><span class="n">alert</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">json</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">/*</span> <span class="n">function</span><span class="p">:</span> <span class="n">constructCompSciClassroom</span>
+ <span class="o">*</span> <span class="n">Description</span><span class="p">:</span> <span class="n">Create</span> <span class="n">data</span> <span class="k">for</span> <span class="n">Classroom</span> <span class="ow">and</span> <span class="n">Person</span> <span class="n">objects</span>
+ <span class="o">*</span> <span class="n">Returns</span><span class="p">:</span> <span class="n">A</span> <span class="n">Classroom</span> <span class="n">Object</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">constructCompSciClassroom</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">define</span> <span class="n">a</span> <span class="n">Teacher</span> <span class="nb">object</span>
+    <span class="n">const</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Mr M"</span><span class="p">,</span> <span class="s">"jm1021"</span><span class="p">,</span> <span class="mi">1977</span><span class="p">,</span> <span class="s">"Teacher"</span><span class="p">);</span>  <span class="o">//</span> <span class="n">optional</span> <span class="mi">4</span><span class="n">th</span> <span class="n">parameter</span>
+
+    <span class="o">//</span> <span class="n">define</span> <span class="n">a</span> <span class="n">student</span> <span class="n">Array</span> <span class="n">of</span> <span class="n">Person</span> <span class="n">objects</span>
+    <span class="n">const</span> <span class="n">students</span> <span class="o">=</span> <span class="p">[</span> 
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Anthony"</span><span class="p">,</span> <span class="s">"tonyhieu"</span><span class="p">,</span> <span class="mi">2022</span><span class="p">),</span>
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Bria"</span><span class="p">,</span> <span class="s">"B-G101"</span><span class="p">,</span> <span class="mi">2023</span><span class="p">),</span>
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Allie"</span><span class="p">,</span> <span class="s">"xiaoa0"</span><span class="p">,</span> <span class="mi">2023</span><span class="p">),</span>
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Tigran"</span><span class="p">,</span> <span class="s">"Tigran7"</span><span class="p">,</span> <span class="mi">2023</span><span class="p">),</span>
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Rebecca"</span><span class="p">,</span> <span class="s">"Rebecca-123"</span><span class="p">,</span> <span class="mi">2023</span><span class="p">),</span>
+        <span class="n">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">"Vidhi"</span><span class="p">,</span> <span class="s">"VidhiKulkarni"</span><span class="p">,</span> <span class="mi">2024</span><span class="p">)</span>
+    <span class="p">];</span>
+
+    <span class="o">//</span> <span class="n">make</span> <span class="n">a</span> <span class="n">CompSci</span> <span class="n">classroom</span> <span class="k">from</span> <span class="n">formerly</span> <span class="n">defined</span> <span class="n">teacher</span> <span class="ow">and</span> <span class="n">student</span> <span class="n">objects</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="n">Classroom</span><span class="p">(</span><span class="n">teacher</span><span class="p">,</span> <span class="n">students</span><span class="p">);</span>  <span class="o">//</span> <span class="n">returns</span> <span class="nb">object</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">assigns</span> <span class="n">compsci</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">object</span> <span class="n">returned</span> <span class="n">by</span> <span class="s">"constructCompSciClassroom()"</span> <span class="n">function</span>
+<span class="n">const</span> <span class="n">compsci</span> <span class="o">=</span> <span class="n">constructCompSciClassroom</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">output</span> <span class="n">of</span> <span class="n">Objects</span> <span class="ow">and</span> <span class="n">JSON</span> <span class="ow">in</span> <span class="n">CompSci</span> <span class="n">classroom</span>
+<span class="n">compsci</span><span class="p">.</span><span class="n">logIt</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<h3 id="for-loop-to-generate-table-rows-in-html-output">for loop to generate Table Rows in HTML output</h3>
+<p>This code extracts JSON text from HTML, that was placed in DOM in a previous JavaScript cell, then it parses text into a JavaScript object.  In addition, there is a for loop that iterates over the extracted object generating formated rows and columns in an HTML table.</p>
+
+<ul>
+  <li>Table generation is broken into parts…
+    <ul>
+      <li>table data is obtained from a classroom array inside of the extracted object.</li>
+      <li>the JavaScript for loop allows the construction of a new row of data for each Person hash object inside of the the Array.</li>
+      <li>in the loop a table row <code class="language-plaintext highlighter-rouge">&lt;tr&gt; ... &lt;/tr&gt;</code> is created for each Hash object in the Array.</li>
+      <li>in the loop table data, a table column, <code class="language-plaintext highlighter-rouge">&lt;td&gt; ... &lt;/td&gt;</code> is created for name, ghID, classOf, and role within the Hash object.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ----------------
+    |     HTML     |
+    |     DOM      | 
+    | data  output |  - ref: id="data", id="output"
+    ----------------
+       ⇓      ⇑
+      get    set
+    ----------------
+    | JavaScript   | - get data: 
+    |    code      |    const jsonText = document.getElementById("data").innerHTML;
+    |getElementById| - set output: 
+    ----------------    document.getElementById("output").innerHTML = htmlOut;
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Classroom Web Page"</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">extract</span> <span class="n">JSON</span> <span class="n">text</span> <span class="k">from</span> <span class="n">output</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">HTML</span> <span class="n">page</span>
+<span class="n">const</span> <span class="n">jsonText</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"data"</span><span class="p">).</span><span class="n">innerHTML</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">convert</span> <span class="n">JSON</span> <span class="n">text</span> <span class="n">to</span> <span class="n">a</span> <span class="n">JavaScript</span> <span class="n">Object</span> <span class="n">to</span> <span class="n">process</span>
+<span class="n">const</span> <span class="n">classroom</span> <span class="o">=</span> <span class="n">JSON</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="n">jsonText</span><span class="p">).</span><span class="n">classroom</span><span class="p">;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">classroom</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">make</span> <span class="n">an</span> <span class="n">HTML</span> <span class="n">Out</span> <span class="nb">format</span> <span class="k">for</span> <span class="n">pretty</span> <span class="n">display</span>
+<span class="o">/*</span> <span class="n">Template</span> <span class="n">literals</span> <span class="p">(</span><span class="err">`</span><span class="p">),</span> <span class="n">can</span> <span class="n">make</span> <span class="n">HTML</span> <span class="n">generation</span> <span class="n">more</span> <span class="n">concise</span><span class="p">;</span>
+ <span class="o">*</span> <span class="n">the</span> <span class="nb">map</span> <span class="n">functions</span> <span class="n">generates</span> <span class="n">row</span> <span class="n">strings</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">join</span> <span class="n">method</span> <span class="n">combines</span> <span class="n">them</span><span class="p">;</span>
+ <span class="o">*</span> <span class="n">this</span> <span class="n">replaces</span> <span class="n">longer</span> <span class="ow">and</span> <span class="n">ugly</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">and</span> <span class="n">string</span> <span class="n">concatenation</span><span class="p">.</span>
+<span class="o">*/</span>
+<span class="n">const</span> <span class="n">htmlOut</span> <span class="o">=</span> <span class="err">`</span>
+    <span class="o">&lt;</span><span class="n">table</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">thead</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Name</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">GitHub</span> <span class="n">ID</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Class</span> <span class="n">Of</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Role</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">thead</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">tbody</span><span class="o">&gt;</span>
+            <span class="err">$</span><span class="p">{</span><span class="n">classroom</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">row</span> <span class="o">=&gt;</span> <span class="err">`</span>
+                <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">row</span><span class="p">.</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">row</span><span class="p">.</span><span class="n">ghID</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">row</span><span class="p">.</span><span class="n">classOf</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">row</span><span class="p">.</span><span class="n">role</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="err">`</span><span class="p">).</span><span class="n">join</span><span class="p">(</span><span class="s">''</span><span class="p">)}</span>
+        <span class="o">&lt;/</span><span class="n">tbody</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+<span class="err">`</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">assign</span><span class="o">/</span><span class="nb">set</span> <span class="n">htmlOut</span> <span class="n">to</span> <span class="n">output</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">HTML</span> <span class="n">page</span>
+<span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"output"</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">htmlOut</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">show</span> <span class="n">raw</span> <span class="n">HTML</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">htmlOut</span><span class="p">);</span>
+<span class="n">element</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">htmlOut</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<blockquote>
+  <p>Work with output and objects.</p>
+  <ul>
+    <li>Adapt this tutorial to your own work and interests, how many steps do you understand?</li>
+    <li>Relate console output on last step to a previous hack</li>
+    <li>Explain, how console.log can help find errors in code?</li>
+    <li>Try out ChatGPT Jupyter features; though I prefer using Web and cut-copy-paste</li>
+  </ul>
+</blockquote>
+
+
+    </section>
+
+  </div>
+</body>
+
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<style>
+  body {
+    background: #292b2f;
+  }
+  
+  h2 {
+      color: #FFFFEE;
+  }
+
+  h1 {
+    color: #FFFFFF
+  }
+
+  p {
+    color: #dddddd;
+  }
+
+  li {
+    color: #dddd;
+  }
+  
+</style><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Alien World Background | Student 2.0</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Alien World Background" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Use JavaScript without external libararies to animate Mario moving across screen, OOP style." />
+<meta property="og:description" content="Use JavaScript without external libararies to animate Mario moving across screen, OOP style." />
+<link rel="canonical" href="http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-background-alien.html" />
+<meta property="og:url" content="http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-background-alien.html" />
+<meta property="og:site_name" content="Student 2.0" />
+<meta property="og:image" content="http://localhost:4100/student2.0/images/alien_planet.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-06T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4100/student2.0/images/alien_planet.jpg" />
+<meta property="twitter:title" content="Alien World Background" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-06T00:00:00-07:00","datePublished":"2023-09-06T00:00:00-07:00","description":"Use JavaScript without external libararies to animate Mario moving across screen, OOP style.","headline":"Alien World Background","image":"http://localhost:4100/student2.0/images/alien_planet.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-background-alien.html"},"url":"http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-background-alien.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/student2.0/assets/css/style.css"><link rel="shortcut icon" type="image/x-icon" href="/student2.0/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body>
+
+  <div class="wrapper">
+    <header><style>
+  
+    body {
+      background: #292b2f;
+    }
+  
+    .site-header {
+      font-family: monospace;
+      font-size: 15px;
+      
+      position: absolute;
+      transition: top 0.2s ease-in-out;
+      margin-top: 25px;
+      padding-top: 10px;
+      left: -80px;
+      margin-top: 275px;
+    }
+  
+    .site-footer {
+      text-align: left;
+      left: 240px;
+    }
+  
+    .headerbutton {
+      border: 1px solid #A455FF;
+  
+      background: rgb(0, 0, 0);
+      color:black;
+      font-weight: bold;
+      width: 270px;
+  
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+  
+    .headerbutton:hover {
+      background-color: #A455FF;
+    }
+  
+    img{
+      position:relative;
+      border: 3px solid;
+      border-color: #A455FF;
+    }
+  
+    .pfp {
+      border-radius: 30%;
+      position:absolute;
+      left: -100px;
+      object-fit: cover;
+      width: 260px;
+      height: 260px;
+    }
+  
+    a {
+      color: #C8A2C8;
+    }
+    
+    h2 {
+        color: #FFFFEE;
+    }
+  
+    h1 {
+      color: #FFFFFF
+    }
+  
+    p {
+      color: #dddddd;
+  
+    }
+  
+  </style>
+    <img src="/student/images/IMG_2714.jpg" class="pfp"> 
+  
+    <header class="site-header">
+    
+      <div id="header">
+        <nav>
+          <ul>
+              <li class="fork"><a href="/student2.0/">Home</a></li>
+              <li class="fork"><a href="/student2.0/timebox">Time Box</a></li>
+              <li class="fork"><a href="/student2.0/blogs">Blogs</a></li>
+              <li class="title"><a href="https://github.com/Tanuj253/student2.0#readme" target="_blank">View on GitHub</a></li>
+        </nav>
+      </div>
+    </header></header>
+
+
+    <section>
+      
+<canvas id="alienWorld"></canvas>
+
+<script>
+  const canvas = document.getElementById("alienWorld");
+  const ctx = canvas.getContext('2d');
+
+  const ASPECT_RATIO = 7000 / 2500;
+  const maxWidth = window.innerWidth;
+  const maxHeight = window.innerHeight;
+
+  // Set Dimensions to match the image width
+  const canvasWidth = 7000;
+  const canvasHeight = canvasWidth / ASPECT_RATIO;
+  const canvasLeft = 0; // Start from the left edge
+  const canvasTop = (maxHeight - canvasHeight) / 2;
+
+  // Set Style properties
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  canvas.style.width = `${canvasWidth}px`;
+  canvas.style.height = `${canvasHeight}px`;
+
+  canvas.style.position = 'absolute';
+  canvas.style.left = `${canvasLeft}px`;
+  canvas.style.top = `${canvasTop}px`;
+
+  var gameSpeed = 5;
+  class Layer {
+    constructor(image, speedRatio) {
+      this.x = 0;
+      this.y = 0;
+      this.width = 7000;
+      this.height =2500;
+      this.image = image
+      this.speedRatio = speedRatio
+      this.speed = gameSpeed * this.speedRatio;
+      this.frame = 0;
+    }
+    update() {
+      this.x = (this.x - this.speed) % this.width;
+    }
+    draw(){
+      ctx.drawImage(this.image, this.x, this.y);
+    }
+  }
+
+  const backgroundImg = new Image();
+  backgroundImg.src = '/student2.0/images/alien_planet.jpg';
+  var backgroundObj = new Layer(backgroundImg, 0.5)
+
+  function background() {
+    backgroundObj.update();
+    backgroundObj.draw();
+    requestAnimationFrame(background);
+  }
+  background();
+
+</script>
+
+
+    </section>
+
+  </div>
+</body>
+
+
+</html>

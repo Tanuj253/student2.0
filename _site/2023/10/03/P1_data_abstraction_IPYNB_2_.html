@@ -1,0 +1,362 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P1 Data Abstraction</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-03T00:00:00-07:00" itemprop="datePublished">
+        Oct 3, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sharon, Tara, Alisha, Alara, Grace</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#311---what-are-variables">3.1.1 - What are variables</a><ul><li><a href="#sharon-kodali">Sharon Kodali</a></li></ul></li></ul></li><li><a href="#different-data-types-to-store-variables-in">different data types to store variables in</a></li><li><a href="#correct-way-to-name-variables">Correct way to name variables</a></li><li><a href="#311-hacks">3.1.1 Hacks</a><ul><li><a href="#instructions-determine-what-would-be-the-the-best-variable-name-and-data-type-for-the-specific-prompt">instructions: Determine what would be the the best variable name and data type for the specific prompt</a><ul><li><a href="#homework-write-a-greeting-using-variables-in-python">Homework: write a greeting using variables in python</a></li></ul></li></ul></li></ul></li><li><a href="#naming-conventions">Naming Conventions</a></li><li><a href="#primitive-v-collection-data-types">Primitive v. Collection Data Types</a><ul><li><a href="#primitive-data-types">Primitive Data Types</a></li><li><a href="#collection-data-types">Collection Data Types</a></li></ul></li><li><a href="#concatenation">Concatenation</a><ul><li><a href="#joining-of-strings-and-other-types">‘Joining’ of strings and other types</a></li></ul></li><li><a href="#formatting-allows-us-to-display-values-using-pre-decided-rules">Formatting allows us to display values using pre-decided rules</a></li><li><a href="#conversions">Conversions</a></li><li><a href="#data-type-practice">Data Type Practice</a><ul><li><a href="#question-1-integer-operation">Question 1: Integer Operation</a></li><li><a href="#question-2-float-operation">Question 2: Float Operation</a></li><li><a href="#question-3-format-manipulation">Question 3: Format Manipulation</a></li></ul></li></ul></li><li><a href="#answers">Answers</a></li><li><a href="#-topic-32-"><code style="color: #4e804f">☆ Topic 3.2 ☆</code></a><ul><li><a href="#-using-lists-as-an-abstraction-to-manage-a-programs-complexity"><code style="color:#4e804f;">☆ Using lists as an abstraction to manage a program's complexity</code></a></li><li><a href="#-learn-about-the-lists-section-of-the-exam-reference-sheet"><code style="color:#4e804f;">☆ learn about the lists section of the exam reference sheet</code></a></li></ul></li><li><a href="#things-to-remember">Things to remember</a></li></ul></li><li><a href="#323-data-abstraction">3.2.3 Data Abstraction</a><ul><li><a href="#how-lists-help-with-complexity">How lists help with complexity</a></li><li><a href="#example">Example</a></li><li><a href="#would-be-simplified-like-this">Would be simplified like this!</a></li></ul></li></ul></li><li><a href="#activity---turn-this-into-a-list">Activity - Turn this into a list!</a></li></ul><h1 id="311---what-are-variables">3.1.1 - What are variables</h1>
+<h4 id="sharon-kodali">Sharon Kodali</h4>
+
+<p>Variables: an abstraction inside a program that can hold a value</p>
+
+<p>A variable can be thought of as a container or a box that holds information that your program can use or modify</p>
+
+<p>Variables help you manage and organize your work with data, making your code more organized, readable, and adaptable.</p>
+
+<h2 id="different-data-types-to-store-variables-in">different data types to store variables in</h2>
+<ul>
+  <li>integer 
+      used to store numbers that can later be used in mathematical operations
+      ex: age or temperature</li>
+  <li>Text(string)
+      Used to store texts lists and words that can later be referenced 
+      ex: Name, phone number, or address</li>
+  <li>Boolean
+     used to store simply of true or false
+     ex: is it raining</li>
+</ul>
+
+<h2 id="correct-way-to-name-variables">Correct way to name variables</h2>
+
+<p>incorrect:
+        my highs-coreinthegame or n</p>
+<ul>
+  <li>too long and can make the code messy</li>
+  <li>dashes are not allowed when naming variables</li>
+  <li>spaces are not allowed when naming variables</li>
+  <li>descriptive enough to easily recall what the variable repersents</li>
+</ul>
+
+<p>correct:
+    highscore or numstudents or israining</p>
+<ul>
+  <li>short</li>
+  <li>descriptive</li>
+  <li>easy to distingush type of variable</li>
+</ul>
+
+<h2 id="311-hacks">3.1.1 Hacks</h2>
+
+<h3 id="instructions-determine-what-would-be-the-the-best-variable-name-and-data-type-for-the-specific-prompt">instructions: Determine what would be the the best variable name and data type for the specific prompt</h3>
+
+<ul>
+  <li>storing if someones pet is a dog</li>
+  <li>storing someones birthday</li>
+  <li>storing the amount of money someone is spending</li>
+  <li>storing if it is sunny</li>
+</ul>
+
+<h4 id="homework-write-a-greeting-using-variables-in-python">Homework: write a greeting using variables in python</h4>
+
+<h1 id="naming-conventions">Naming Conventions</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Must start with a letter or an underscore
+- Cannot start with a number 
+- Can only have alphanumeric characters or underscores 
+- Are case sensitive 
+- Cannot be python keywords such as 'else'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myName</span> <span class="o">=</span> <span class="s">"Tara"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tara
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="n">Tara</span> <span class="o">=</span> <span class="s">"16"</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Cell In[2], line 1
+    1Tara = "16"
+    ^
+SyntaxError: invalid decimal literal
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myAge</span> <span class="o">=</span> <span class="mi">16</span> 
+<span class="n">myage</span> <span class="o">=</span> <span class="mi">46</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myAge</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myage</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="o">=</span> <span class="mi">22</span>
+</code></pre></div></div>
+
+<h1 id="primitive-v-collection-data-types">Primitive v. Collection Data Types</h1>
+
+<h2 id="primitive-data-types">Primitive Data Types</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- int 
+- string 
+- float 
+- boolean 
+</code></pre></div></div>
+
+<h2 id="collection-data-types">Collection Data Types</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- list 
+- dictionary 
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myInt</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">myString</span> <span class="o">=</span> <span class="s">"My name is Tara"</span>
+
+<span class="n">myFloat</span> <span class="o">=</span> <span class="mf">77.29</span>
+
+<span class="n">myBool</span> <span class="o">=</span> <span class="bp">False</span> 
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">agesOfMyFriendsList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">agesOfMyFriendsList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">agesOfMyFriendsDictionary</span> <span class="o">=</span> <span class="p">{</span> <span class="s">"Tara"</span> <span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s">"Tanisha"</span> <span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s">"Dylan"</span> <span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s">"Tara "</span> <span class="p">:</span> <span class="mi">17</span><span class="p">}</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="n">agesOfMyFriendsDictionary</span><span class="p">[</span><span class="s">"Tara"</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">agesOfMyFriendsDictionary</span><span class="p">[</span><span class="s">"Tara "</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<h1 id="concatenation">Concatenation</h1>
+
+<h2 id="joining-of-strings-and-other-types">‘Joining’ of strings and other types</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myFirstName</span> <span class="o">=</span> <span class="s">"Tara"</span>
+
+<span class="n">myLastName</span> <span class="o">=</span> <span class="s">"Sehdave"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myFirstName</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">myLastName</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myFirstInt</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">mySecondInt</span> <span class="o">=</span> <span class="mi">10</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="n">myFirstInt</span> <span class="o">+</span> <span class="n">mySecondInt</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="formatting-allows-us-to-display-values-using-pre-decided-rules">Formatting allows us to display values using pre-decided rules</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">message</span> <span class="o">=</span> <span class="s">"My first name is {0} and my last name is {1}"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"Tara"</span><span class="p">,</span> <span class="s">"Sehdave"</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"Tanisha"</span><span class="p">,</span> <span class="s">"Patil"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="p">.</span><span class="mi">77</span> 
+
+<span class="n">message</span> <span class="o">=</span> <span class="s">"Show this as a percentage {0:.0%}"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(.</span><span class="mi">25</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">message</span> <span class="o">=</span> <span class="s">"The binary value of {0} is {0:b} and the binary value of {1} is {1:b}"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6836</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h1 id="conversions">Conversions</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">myDictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s">"A"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">"B"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myDictionary</span><span class="p">)</span> 
+
+<span class="n">myStringDictionary</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">myDictionary</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myStringDictionary</span><span class="p">)</span>
+
+<span class="n">myDictionaryRecreated</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">myStringDictionary</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myDictionaryRecreated</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python Data Types in CB Pseudo Code 
+</span>
+<span class="c1">## Primitive Types 
+</span>
+<span class="n">a</span> <span class="o">&lt;--</span> <span class="n">expression</span> 
+<span class="o">-</span> <span class="n">myInt</span> <span class="o">&lt;--</span> <span class="mi">18</span>
+<span class="o">-</span> <span class="n">myString</span> <span class="o">&lt;--</span> <span class="s">"My name is Tara"</span>
+<span class="o">-</span> <span class="n">myFloat</span> <span class="o">&lt;--</span> <span class="mf">6.8</span>
+<span class="o">-</span> <span class="n">myBool</span> <span class="o">&lt;--</span> <span class="bp">False</span> 
+
+<span class="c1"># Collection Types 
+</span>
+<span class="o">-</span> <span class="n">myList</span> <span class="o">&lt;--</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">-</span> <span class="n">No</span> <span class="n">dictionary</span> 
+</code></pre></div></div>
+
+<h1 id="data-type-practice">Data Type Practice</h1>
+
+<h3 id="question-1-integer-operation">Question 1: Integer Operation</h3>
+<ol>
+  <li>Declare two integer variables, <code class="language-plaintext highlighter-rouge">num1Int</code> and <code class="language-plaintext highlighter-rouge">num2Int</code>, and assign them values of your choice.</li>
+  <li>Calculate the sum of <code class="language-plaintext highlighter-rouge">num1Int</code> and <code class="language-plaintext highlighter-rouge">num2Int</code></li>
+  <li>Print the sum</li>
+</ol>
+
+<h3 id="question-2-float-operation">Question 2: Float Operation</h3>
+<ol>
+  <li>Declare two float variables, <code class="language-plaintext highlighter-rouge">float1</code> and <code class="language-plaintext highlighter-rouge">float2</code>, and assign them values of your choice.</li>
+  <li>Calculate the quotient of ‘float1’ and ‘float2’</li>
+  <li>Print the quotient</li>
+</ol>
+
+<h3 id="question-3-format-manipulation">Question 3: Format Manipulation</h3>
+<ol>
+  <li>Write a message that equals a sentence with two placeholder variables</li>
+  <li>Write two strings with two placeholder variables to insert into the message</li>
+  <li>Print that message</li>
+</ol>
+
+<h1 id="answers">Answers</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Integer Operations
+</span>
+<span class="n">num1Int</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="n">num2Int</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">num1Int</span> <span class="o">+</span> <span class="n">num2Int</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Float Operation
+</span>
+<span class="n">float1</span> <span class="o">=</span> <span class="mf">1.00</span>
+
+<span class="n">float2</span> <span class="o">=</span> <span class="p">.</span><span class="mi">75</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="n">float1</span> <span class="o">/</span> <span class="n">float2</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Format Manipulation 
+</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s">"{0} is {1} years old"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"Tara"</span><span class="p">,</span> <span class="s">"16"</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"Sharon"</span><span class="p">,</span> <span class="s">"8"</span><span class="p">))</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"Dylan"</span><span class="p">,</span> <span class="s">"80"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h1 id="-topic-32-"><code style="color: #4e804f">☆ Topic 3.2 ☆</code></h1>
+<blockquote>
+  <h3 id="-using-lists-as-an-abstraction-to-manage-a-programs-complexity"><code style="color:#4e804f;">☆ Using lists as an abstraction to manage a program's complexity</code></h3>
+  <h3 id="-learn-about-the-lists-section-of-the-exam-reference-sheet"><code style="color:#4e804f;">☆ learn about the lists section of the exam reference sheet</code></h3>
+</blockquote>
+
+<h2 id="things-to-remember">Things to remember</h2>
+<ul>
+  <li>use lists to store multiple elements</li>
+  <li>data abstraction provides a seperation between abstract parts of a datatype and the actual details of it</li>
+  <li>it can be created using lists</li>
+  <li>the exam reference sheets has list notations</li>
+  <li>the reference sheet has a list structure with index values 1-#of elements in the list. if list index is less that 1 or greater than the list</li>
+  <li>variables must be <strong>bundled</strong> together
+    <ul>
+      <li>strings, characters, words, numbers</li>
+    </ul>
+  </li>
+  <li>give one name to a set of cells</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num</span> <span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">abc</span> <span class="o">=</span> <span class="p">[</span><span class="s">"a"</span><span class="p">,</span> <span class="s">"b"</span><span class="p">,</span> <span class="s">"c"</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="p">,</span> <span class="s">"blue"</span><span class="p">]</span>
+<span class="n">emptylist</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#replacing
+</span><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">blist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">alist</span> <span class="o">=</span> <span class="n">blist</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="c1">#what will be the output of this code?
+</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="nx">javascript</span>
+<span class="err">#</span> <span class="nx">Define</span> <span class="nx">an</span> <span class="nx">array</span> <span class="kd">with</span> <span class="nx">elements</span>
+<span class="kd">const</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Red</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Green</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Blue</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Yellow</span><span class="dl">"</span><span class="p">];</span>
+<span class="err">#</span> <span class="nx">Access</span> <span class="nx">elements</span> <span class="nx">using</span> <span class="nx">indexes</span>
+<span class="kd">const</span> <span class="nx">firstColor</span> <span class="o">=</span> <span class="nx">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// Index 0: "Red"</span>
+<span class="kd">const</span> <span class="nx">secondColor</span> <span class="o">=</span> <span class="nx">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// Index 1: "Green"</span>
+<span class="err">#</span>  <span class="nx">Modify</span> <span class="nx">an</span> <span class="nx">element</span> <span class="nx">at</span> <span class="nx">a</span> <span class="nx">specific</span> <span class="nx">index</span>
+<span class="nx">colors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Purple</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// Index 2 is changed from "Blue" to "Purple"</span>
+<span class="err">#</span> <span class="nx">Add</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">element</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">array</span>
+<span class="nx">colors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">Orange</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// Adds "Orange" to the end of the array</span>
+<span class="err">#</span> <span class="nx">Print</span> <span class="nx">elements</span> <span class="nx">and</span> <span class="nx">their</span> <span class="nx">indexes</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">First Color:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">firstColor</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Second Color:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">secondColor</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Updated Colors Array:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">colors</span><span class="p">);</span>
+<span class="err">#</span> <span class="nx">Define</span> <span class="nx">a</span> <span class="nx">string</span>
+<span class="kd">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+<span class="err">#</span> <span class="nx">Print</span> <span class="nx">the</span> <span class="nx">string</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h1 id="323-data-abstraction">3.2.3 Data Abstraction</h1>
+<p>-Manages complexity of data collection
+-Program easier to develop and maintain
+-Lists
+-If a list index is less than 1 or greater than the length of the list, an error message will be produced</p>
+<h3 id="how-lists-help-with-complexity">How lists help with complexity</h3>
+<p>-Less variables (like one variable that holds multiple numbers instead of one variable for each number)
+-Changes number of variables
+-Consistency
+-Helps readability</p>
+<h3 id="example">Example</h3>
+<p>variable1 = 2
+variable2 = 5
+variable3 = 4</p>
+<h3 id="would-be-simplified-like-this">Would be simplified like this!</h3>
+<p>scores = [2, 5, 4]</p>
+<h1 id="activity---turn-this-into-a-list">Activity - Turn this into a list!</h1>
+<p>variable1 = 7
+variable2 = 9
+variable3 = 2
+variable4 = 8</p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/03/P1_data_abstraction_IPYNB_2_.html" hidden></a>
+</article>

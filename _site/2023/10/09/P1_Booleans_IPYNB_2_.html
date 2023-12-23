@@ -1,0 +1,236 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P1 booleans and conditions</h1><p class="page-description">3.5 Boolean Expressions and 3.6 Conditionals</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-09T00:00:00-07:00" itemprop="datePublished">
+        Oct 9, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#booleans">Booleans</a></li><li><a href="#relational-operators">Relational Operators</a><ul><li><a href="#popcorn-hack-1"><strong>Popcorn Hack 1</strong></a></li></ul></li><li><a href="#not-operator">Not operator</a></li><li><a href="#and-operator">And operator</a></li><li><a href="#or-operator">Or operator</a><ul><li><a href="#popcorn-hack-2">Popcorn Hack 2</a></li></ul></li><li><a href="#example-ap-question">Example AP Question</a></li><li><a href="#conditionals">Conditionals</a><ul><li><a href="#example">Example</a></li><li><a href="#examples-2">Examples 2</a></li><li><a href="#popcorn-hack-2-1"><strong>Popcorn Hack 2</strong></a></li><li><a href="#popcorn-hack-3"><strong>Popcorn Hack 3</strong></a></li></ul></li></ul><h2 id="booleans">Booleans</h2>
+<ul>
+  <li>2 Values
+    <ul>
+      <li>True</li>
+      <li>False</li>
+    </ul>
+  </li>
+  <li>Example: my hair color is black: True</li>
+</ul>
+
+<h2 id="relational-operators">Relational Operators</h2>
+<ul>
+  <li>Equal to: a = b</li>
+  <li>Not equal to: a != b</li>
+  <li>Greater than: a &gt; b</li>
+  <li>Less than: a &lt; b</li>
+  <li>Greater than or equal to: a &gt;= b</li>
+  <li>Less than or equal to: a &lt;= b</li>
+</ul>
+
+<h3 id="popcorn-hack-1"><strong>Popcorn Hack 1</strong></h3>
+<ul>
+  <li>In most states, the minimum age to drive is 16. How would we write a boolean expression to check if someone is at least 16 years old?
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">16</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Write a boolean expression to check if the average of grade1, grade2, and grade3 is at least 70.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">grade1</span> <span class="o">+</span> <span class="n">grade2</span> <span class="o">+</span> <span class="n">grade3</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span> <span class="o">&gt;=</span> <span class="mi">70</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Write a code to check if the temperature is less than 90 degrees
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">90</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="not-operator">Not operator</h2>
+<ul>
+  <li>Not flips the condition</li>
+</ul>
+
+<p><img src="/student/images/NoneOperator.png" alt="NotOperator" /></p>
+
+<h2 id="and-operator">And operator</h2>
+<ul>
+  <li>And combines two conditions together
+<img src="/student/images/AndOperator.png" alt="AndOperator" /></li>
+</ul>
+
+<h2 id="or-operator">Or operator</h2>
+<ul>
+  <li>Or returns True if only one conditon is true
+ <img src="/student/images/OrOperator.png" alt="OrOperator" /></li>
+</ul>
+
+<h3 id="popcorn-hack-2">Popcorn Hack 2</h3>
+<ul>
+  <li>You can go out if you did your homework and you scored at least  an 80 on your exam. Write boolean expression for this
+<img src="/student/images/BooleanExpressionPractice.png" alt="BooleanExercise" /></li>
+</ul>
+
+<h2 id="example-ap-question">Example AP Question</h2>
+<p><img src="/student/images/Example3.5Question.png" alt="ExampleQuestions" />
+A. II only<br />
+B. I and II only<br />
+C. I and III only<br />
+D. II and III only<br /></p>
+
+<p>Correct Answer: D</p>
+
+<body>
+  <form name="quizForm" onsubmit="return validateForm()">
+    <p><b>Question 1: What will be the value of z?
+        <br />x = True
+        <br />y = False
+        <br />z = x and y</b>
+    </p>
+    <input type="radio" name="q1" value="A" />A. True<br />
+    <input type="radio" name="q1" value="B" />B. False<br />
+    <input type="radio" name="q1" value="C" />C. None<br />
+    <input type="radio" name="q1" value="D" />D. Syntax Error<br />
+    <br />
+    <p><b>Question 2: Which is the correct way to compare if two boolean variables a and b are equal in Python?</b></p>
+    <input type="radio" name="q2" value="A" />A. a = b<br />
+    <input type="radio" name="q2" value="B" />B. a == b<br />
+    <input type="radio" name="q2" value="C" />C. a and b<br />
+    <input type="radio" name="q2" value="D" />D. a equals b<br />
+    <input type="submit" value="Submit" />
+  </form>
+  <p id="result"></p>
+  <script>
+    function validateForm() {
+      var q1 = document.forms["quizForm"]["q1"].value;
+      var q2 = document.forms["quizForm"]["q2"].value;
+      var correctAnswers = 0;
+      if (q1 === "B") {
+        correctAnswers += 1;
+      } else {
+        alert("Question 1 is incorrect. The correct answer is B. False.");
+      }
+      if (q2 === "B") {
+        correctAnswers += 1;
+      } else {
+        alert("Question 2 is incorrect. The correct answer is B. a == b.");
+      }
+      document.getElementById("result").innerHTML = "You got " + correctAnswers + " out of 2 correct!";
+      return false; // Prevent form from submitting
+    }
+  </script>
+</body>
+
+<h2 id="conditionals">Conditionals</h2>
+<ul>
+  <li>
+    <p>Algorithm: a finite set of instructions that accomplish a specific task
+<img src="/student/images/Algorithm.png" alt="Algorithm" /></p>
+  </li>
+  <li>Condition statements: fundamental concept in programming and logic
+    <ul>
+      <li>used to control the flow of a program by allowing it to make decisions based on certain conditions or criteria.</li>
+    </ul>
+  </li>
+  <li>A condition statement typically consists of three main parts:
+    <ul>
+      <li>Condition: This is a Boolean expression or a logical test that evaluates to either true or false. It’s the criteria that the program checks.</li>
+      <li>True Block: This is the set of instructions or code that gets executed if the condition is true. If the condition evaluates to true, the true block is executed.</li>
+      <li>False Block (optional): This is the set of instructions or code that gets executed if the condition is false. In some cases, there might be an alternative set of instructions to execute when the condition is false.</li>
+    </ul>
+  </li>
+  <li>Example: If a student’s average grade on exams is at least 75, they are eligible to receive extra credit. Otherwise, they must attend tutorial.
+<img src="/student/images/GradeExample.png" alt="GradeExample" />
+<br /></li>
+</ul>
+
+<h3 id="example">Example</h3>
+<p>In this example, the condition statement checks whether the value of x is greater than 5. If it’s true, it executes the true block (printing “x is greater than 5”). Otherwise, it executes the false block (printing “x is not greater than 5”).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"x is greater than 5"</span><span class="p">)</span>  <span class="c1"># This is the true block
+</span><span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"x is not greater than 5"</span><span class="p">)</span>  <span class="c1"># This is the false block
+</span></code></pre></div></div>
+
+<h3 id="examples-2">Examples 2</h3>
+<p>Is another example of conditional statements using Elif. elif is a statement that is run right after the first if statement is run to be false. It is simply the condition after the If statement in the code if you want to implement more criteria to your code.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">score</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">attendance</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">attendance</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"Student receives an 'A+'."</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">attendance</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"Student receives a 'B' ."</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"Student needs improvement in both score and attendance."</span>
+</code></pre></div></div>
+
+<h3 id="popcorn-hack-2-1"><strong>Popcorn Hack 2</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Highest_score</span><span class="o">=</span><span class="bp">None</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">Highest_score</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">Highest_score</span> <span class="o">=</span> <span class="n">score</span>
+  <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">Highest_score</span><span class="p">:</span>
+    <span class="n">Highest_score</span> <span class="o">=</span> <span class="n">score</span>
+
+<span class="n">Highest_score</span> <span class="o">=</span> <span class="n">Highest_score</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">Highest_score</span><span class="p">)</span>
+
+<span class="c1"># What will be the final output of the program?
+</span></code></pre></div></div>
+
+<h3 id="popcorn-hack-3"><strong>Popcorn Hack 3</strong></h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter your age: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"You are an adult."</span><span class="p">)</span>
+    <span class="n">driving_license</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Do you have a driving license? (yes/no): "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">driving_license</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">"yes"</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"You can legally drive."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"You need to obtain a driving license to drive legally."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"You are a minor."</span><span class="p">)</span>
+    <span class="n">parental_consent</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Are you a teenager (yes/no): "</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parental_consent</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">"yes"</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"You can continue"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"You need to be at least a teenager to continue with the activity"</span><span class="p">)</span>
+
+<span class="c1"># If the age entered was 12, what would be all of the statements printed.
+</span></code></pre></div></div>
+
+<h1 id="homework">Homework</h1>
+<p><strong>Problem 1:</strong> Write a Python program that uses boolean logic to determine if a user is eligible to vote. The criteria for eligibility is that the user must be a citizen and must be 18 or older. Include comments in your code to explain each part of the program.</p>
+
+<p><strong>Problem 2:</strong> A company decided to give bonus of 5% to employee if his/her year of service is more than 5 years. Ask user for their salary and year of service and print the net bonus amount.</p>
+
+<p><strong>Problem 3:</strong> A school has following rules for grading system:
+<br />
+a. Below 25 - F<br />
+b. 25 to 45 - E<br />
+c. 45 to 50 - D<br />
+d. 50 to 60 - C<br />
+e. 60 to 80 - B<br />
+f. Above 80 - A<br />
+Ask user to enter marks and print the corresponding grade.</p>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/09/P1_Booleans_IPYNB_2_.html" hidden></a>
+</article>

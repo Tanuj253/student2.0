@@ -1,0 +1,227 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python/Flask in Jupyter</h1><p class="page-description">Quick launch into Flask, Functions, List, API, and HTML.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-06T00:00:00-07:00" itemprop="datePublished">
+        Sep 6, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.0">C4.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#introduction">Introduction</a><ul><li><a href="#understanding-web-servers">Understanding Web Servers</a></li><li><a href="#github-pages-vs-flask">GitHub Pages vs. Flask</a></li></ul></li><li><a href="#our-goals-for-today">Our Goals for Today</a><ul><li><a href="#show-pythonflask-process">Show Python/Flask process</a></li><li><a href="#access-api-with-python">Access API with Python</a></li><li><a href="#access-api-with-javascript">Access API with JavaScript</a></li><li><a href="#kill-pythonflask-process">Kill Python/Flask process</a></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="introduction">Introduction</h2>
+
+<p>Welcome to this journey into the world of web servers and the Flask framework! In the previous weeks, you’ve successfully set up a web server using GitHub Pages, converting Jupyter Notebooks into Markdown for a seamless online presentation. Today, we’ll take that knowledge to the next level as we dive into creating your very own web server using Flask.</p>
+
+<h3 id="understanding-web-servers">Understanding Web Servers</h3>
+<p>What is a Web Server?</p>
+
+<p>Traditionally, we had librarians at libraries that would help you find books or information. Today in the digital world, thousands upon thousands of home pages, search engines, and digital archives have been built using web servers.</p>
+
+<h3 id="github-pages-vs-flask">GitHub Pages vs. Flask</h3>
+
+<p>You’ve already experienced a form of web server through GitHub Pages. Think of GitHub Pages as a library that has established rules for publishing Markdown notes and Jupyter Notebooks neatly on a bookshelf.</p>
+
+<p>Now, let’s introduce Flask, your personal web server. Flask can create and manage any type of content, including customizing everything according to your preferences, and even serve additional information (like a database with APIs).</p>
+
+<p>The Flask Framework
+Flask is a micro web framework written in Python. It’s designed to be minimal and easy to use, making it perfect for building web applications, APIs, and, yes, even your web server. Today, we will start with the basics of Flask and see how it empowers you to create and manage web content.</p>
+
+<h2 id="our-goals-for-today">Our Goals for Today</h2>
+<p>Here’s what we’ll accomplish in this session:</p>
+
+<ul>
+  <li>Create a minimal Flask server.</li>
+  <li>Explore the Python/Flask process.</li>
+  <li>Access data from our Flask server using Python.</li>
+  <li>Access data from our Flask server using JavaScript.</li>
+  <li>Learn how to stop the Python/Flask process gracefully.</li>
+</ul>
+
+<p>Note: Jupyter magic commmand <code class="language-plaintext highlighter-rouge">%%python --bg</code> that follows runs the server in background.  This enables us to continue interacting with the subsequent Notebook cells.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">python</span> <span class="o">--</span><span class="n">bg</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+
+<span class="c1"># initialize a flask application (app)
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">supports_credentials</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">origins</span><span class="o">=</span><span class="s">'*'</span><span class="p">)</span>  <span class="c1"># Allow all origins (*)
+</span>
+<span class="c1"># ... your existing Flask
+</span>
+<span class="c1"># add an api endpoint to flask app
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="c1"># start a list, to be used like a information database
+</span>    <span class="n">InfoDb</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># add a row to list, an Info record
+</span>    <span class="n">InfoDb</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">"FirstName"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+        <span class="s">"LastName"</span><span class="p">:</span> <span class="s">"Mortensen"</span><span class="p">,</span>
+        <span class="s">"DOB"</span><span class="p">:</span> <span class="s">"October 21"</span><span class="p">,</span>
+        <span class="s">"Residence"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">,</span>
+        <span class="s">"Email"</span><span class="p">:</span> <span class="s">"jmortensen@powayusd.com"</span><span class="p">,</span>
+        <span class="s">"Owns_Cars"</span><span class="p">:</span> <span class="p">[</span><span class="s">"2015-Fusion"</span><span class="p">,</span> <span class="s">"2011-Ranger"</span><span class="p">,</span> <span class="s">"2003-Excursion"</span><span class="p">,</span> <span class="s">"1997-F350"</span><span class="p">,</span> <span class="s">"1969-Cadillac"</span><span class="p">]</span>
+    <span class="p">})</span>
+
+    <span class="c1"># add a row to list, an Info record
+</span>    <span class="n">InfoDb</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">"FirstName"</span><span class="p">:</span> <span class="s">"Shane"</span><span class="p">,</span>
+        <span class="s">"LastName"</span><span class="p">:</span> <span class="s">"Lopez"</span><span class="p">,</span>
+        <span class="s">"DOB"</span><span class="p">:</span> <span class="s">"February 27"</span><span class="p">,</span>
+        <span class="s">"Residence"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">,</span>
+        <span class="s">"Email"</span><span class="p">:</span> <span class="s">"slopez@powayusd.com"</span><span class="p">,</span>
+        <span class="s">"Owns_Cars"</span><span class="p">:</span> <span class="p">[</span><span class="s">"2021-Insight"</span><span class="p">]</span>
+    <span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">InfoDb</span><span class="p">)</span>
+
+<span class="c1"># add an HTML endpoint to flask app
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="n">html_content</span> <span class="o">=</span> <span class="s">"""
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hellox&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Hello, World!&lt;/h2&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+    """</span>
+    <span class="k">return</span> <span class="n">html_content</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="c1"># starts flask server on default port, http://127.0.0.1:5001
+</span>    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5001</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="show-pythonflask-process">Show Python/Flask process</h3>
+<p>This script discovers the running flask process</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># After app.run(), see the the Python process
+</span><span class="n">lsof</span> <span class="o">-</span><span class="n">i</span> <span class="p">:</span><span class="mi">5001</span>
+<span class="c1"># see the the Python app
+</span><span class="n">lsof</span> <span class="o">-</span><span class="n">i</span> <span class="p">:</span><span class="mi">5001</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">'/Python/ {print $2}'</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">ps</span>
+
+
+</code></pre></div></div>
+
+<h3 id="access-api-with-python">Access API with Python</h3>
+<p>This script extracts data from Web Server.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'http://127.0.0.1:5001/api/data'</span><span class="p">)</span>
+<span class="n">res</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="access-api-with-javascript">Access API with JavaScript</h3>
+<p>This code extracts data “live” from a local Web Server with JavaScript fetch.  Additionally, it formats the data into a table.</p>
+
+<!-- Head contains information to Support the Document -->
+
+<!-- HTML table fragment for page -->
+<table id="demo" class="table">
+  <thead>
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Residence</th>
+      </tr>
+  </thead>
+  <tbody id="result">
+    <!-- javascript generated data -->
+  </tbody>
+</table>
+
+<script>
+  // prepare HTML result container for new output
+  const resultContainer = document.getElementById("result");
+  
+  // prepare URL
+  url = "http://127.0.0.1:5001/api/data";
+
+  // set options for cross origin header request
+  const options = {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'include', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // fetch the API
+  fetch(url, options)
+    // response is a RESTful "promise" on any successful fetch
+    .then(response => {
+      // check for response errors and display
+      if (response.status !== 200) {
+          console.error(response.status);
+          return;
+      }
+      // valid response will contain json data
+      response.json().then(data => {
+          console.log(data);
+          for (const row of data) {
+            // tr and td build out for each row
+            const tr = document.createElement("tr");
+            const firstname = document.createElement("td");
+            const lastname = document.createElement("td");
+            const residence = document.createElement("td");
+            // data is specific to the API
+            firstname.innerHTML = row.FirstName; 
+            lastname.innerHTML = row.LastName; 
+            residence.innerHTML = row.Residence; 
+            // this builds each td into tr
+            tr.appendChild(firstname);
+            tr.appendChild(lastname);
+            tr.appendChild(residence);
+            // add HTML to container
+            resultContainer.appendChild(tr);
+          }
+      })
+  })
+  
+</script>
+
+<h3 id="kill-pythonflask-process">Kill Python/Flask process</h3>
+<p>This script ends Python/Flask process</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="n">lsof</span> <span class="o">-</span><span class="n">i</span> <span class="p">:</span><span class="mi">5001</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">'/Python/ {print $2}'</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
+
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<p>Edit, stop and start the web server.</p>
+<ul>
+  <li>Add to the Home Page</li>
+  <li>Add your own information to the Web API</li>
+  <li>Use from Template to start your own Team Flask project https://github.com/nighthawkcoders/flask_portfolio</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/c4.0/2023/09/06/python-flask_in_jupyter_IPYNB_2_.html" hidden></a>
+</article>

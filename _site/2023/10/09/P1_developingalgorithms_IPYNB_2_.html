@@ -1,0 +1,231 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P1 Developing Algorithms</h1><p class="page-description">Lesson for developing algorithms in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-09T00:00:00-07:00" itemprop="datePublished">
+        Oct 9, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Tarun, Tejas, Tanuj, Chris</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#developing-algorithms">Developing Algorithms</a><ul><li><a href="#how-to-do-simple-operators-in-js">How to do simple operators in JS</a></li><li><a href="#iterating">Iterating</a></li><li><a href="#randomization">Randomization</a></li><li><a href="#popcorn-hack-1-how-to-find-the-mean-in-js">Popcorn hack #1: How to find the mean in JS</a></li><li><a href="#how-to-calculate-the-median">How to calculate the median</a></li><li><a href="#how-to-calculate-the-mode-in-js">How to calculate the mode in JS</a></li><li><a href="#one-way-to-sort-a-list">One way to sort a list</a></li><li><a href="#another-way-to-sort-a-list">Another way to sort a list</a></li><li><a href="#what-does-this-code-do">What does this code do?</a></li><li><a href="#homework-hacks">Homework Hacks:</a></li></ul></li></ul><h1 id="developing-algorithms">Developing Algorithms</h1>
+
+<h2 id="how-to-do-simple-operators-in-js">How to do simple operators in JS</h2>
+
+<p>Use the “+” operator to add two numbers in JavaScript</p>
+
+<p>Use the “-“ operator to subtract two numbers in JavaScript</p>
+
+<p>Use the “*” operator to multiply two numbers in JavaScript</p>
+
+<p>Use the “/” operator to divide two numbers in JavaScript</p>
+
+<p>Use the “%” operator to get the remainder of a division operation in JavaScript</p>
+
+<h2 id="iterating">Iterating</h2>
+
+<p>Iteration is going through a set of laws or objectives for the loops to complete. This allows for the desired objective to be completed.</p>
+
+<h2 id="randomization">Randomization</h2>
+
+<p>Raandomization is used to generate a random number. For example, RANDOM(a,b) would generate any number from a to b. Each result from randomization is equally likely to occur. Each execution might produce a different result.</p>
+
+<h2 id="popcorn-hack-1-how-to-find-the-mean-in-js">Popcorn hack #1: How to find the mean in JS</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">an</span> <span class="n">array</span>
+<span class="n">var</span> <span class="n">arry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">38</span><span class="p">];</span>
+<span class="o">//</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">using</span> <span class="n">an</span> <span class="n">inputted</span> <span class="n">array</span>
+<span class="n">function</span> <span class="n">calculateAverageOfArray</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">add</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">values</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+    <span class="n">jQuery</span><span class="p">.</span><span class="n">each</span><span class="p">(</span><span class="n">arry</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="o">//</span> <span class="n">take</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span> <span class="ow">and</span> <span class="n">divide</span> <span class="n">it</span> <span class="n">by</span> <span class="n">the</span> <span class="n">length</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span>
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"The average of your list is "</span> <span class="o">+</span> <span class="n">calculateAverageOfArray</span><span class="p">(</span><span class="n">arry</span><span class="p">));</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+<h2 id="how-to-calculate-the-median">How to calculate the median</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">function</span> <span class="n">median</span> <span class="n">that</span> <span class="n">finds</span> <span class="n">the</span> <span class="n">median</span> <span class="n">of</span> <span class="n">an</span> <span class="n">array</span> <span class="n">numbers</span>
+<span class="n">function</span> <span class="n">median</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">sort</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">numbers</span>
+    <span class="n">const</span> <span class="nb">sorted</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="n">numbers</span><span class="p">).</span><span class="n">sort</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">);</span>
+    
+    <span class="o">//</span> <span class="n">find</span> <span class="n">the</span> <span class="n">index</span> <span class="n">of</span> <span class="n">the</span> <span class="n">middle</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span>
+    <span class="n">const</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">sorted</span><span class="p">.</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">see</span> <span class="k">if</span> <span class="n">the</span> <span class="n">array</span> <span class="n">has</span> <span class="n">an</span> <span class="n">even</span> <span class="n">length</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">sorted</span><span class="p">.</span><span class="n">length</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="k">if</span> <span class="n">it</span><span class="s">'s even then calculate the average of the middle two values
+        return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+
+    // if odd return the middle value
+    return sorted[middle];
+}
+
+// run median with the inputted array
+console.log(median([1, 3, 8, 2, 6]));
+
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+<h2 id="how-to-calculate-the-mode-in-js">How to calculate the mode in JS</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+
+<span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">function</span> <span class="n">that</span> <span class="n">finds</span> <span class="n">the</span> <span class="n">mode</span> <span class="n">of</span> <span class="n">an</span> <span class="n">array</span>
+<span class="n">var</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">function</span> <span class="n">mode</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">function</span> <span class="s">"reduce"</span> <span class="n">to</span> <span class="n">go</span> <span class="n">through</span> <span class="n">every</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span> <span class="k">while</span> <span class="n">collecting</span> <span class="n">the</span> <span class="n">data</span>
+    <span class="k">return</span> <span class="n">arr</span><span class="p">.</span><span class="nb">reduce</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">update</span> <span class="n">the</span> <span class="n">variable</span> <span class="s">"val"</span> <span class="k">with</span> <span class="n">the</span> <span class="n">frequency</span> <span class="n">of</span> <span class="s">"item"</span> <span class="ow">and</span> <span class="n">increase</span> <span class="n">it</span> <span class="n">by</span> <span class="mf">1.</span>
+        <span class="n">var</span> <span class="n">val</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="n">numMapping</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">numMapping</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        
+        <span class="o">//</span> <span class="n">check</span> <span class="k">if</span> <span class="n">the</span> <span class="n">mode</span> <span class="n">of</span> <span class="s">"item"</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">greatest</span> <span class="n">mode</span> <span class="n">so</span> <span class="n">far</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">current</span><span class="p">.</span><span class="n">greatestFreq</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="k">if</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">then</span> <span class="n">update</span> <span class="n">the</span> <span class="n">mode</span>
+            <span class="n">current</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">item</span><span class="p">;</span>
+            <span class="n">current</span><span class="p">.</span><span class="n">greatestFreq</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="o">//</span> <span class="k">return</span> <span class="n">the</span> <span class="n">updated</span> <span class="n">value</span> <span class="n">of</span> <span class="s">"current"</span> <span class="n">then</span> <span class="n">repeat</span> <span class="n">the</span> <span class="n">process</span>
+        <span class="k">return</span> <span class="n">current</span><span class="p">;</span>
+    <span class="p">},</span> <span class="p">{</span><span class="n">mode</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="n">greatestFreq</span><span class="p">:</span> <span class="o">-</span><span class="n">Infinity</span><span class="p">,</span> <span class="n">numMapping</span><span class="p">:</span> <span class="p">{}}).</span><span class="n">mode</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="o">//</span> <span class="n">run</span> <span class="n">the</span> <span class="n">mode</span> <span class="n">function</span> <span class="k">with</span> <span class="n">an</span> <span class="n">inputted</span> <span class="n">array</span> <span class="ow">and</span> <span class="k">print</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">mode</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">]));</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+<h2 id="one-way-to-sort-a-list">One way to sort a list</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="n">numList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+<span class="n">numList</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">numList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 2, 6, 32, 43, 96]
+</code></pre></div></div>
+
+<h2 id="another-way-to-sort-a-list">Another way to sort a list</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bubbleSort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">swapped</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># a boolean to keep track of whether a swap has occurred.
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># a loop to go iterate through the entire array
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># loop to compare adjacent elements
+</span>            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="c1"># if current element is greater than the next element then swap them
+</span>                <span class="n">swapped</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="c1"># if no swaps happen then the array is sorted
+</span>            <span class="k">return</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="n">bubbleSort</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>  <span class="c1"># call the function to sort the array
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Sorted array is:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"%d"</span> <span class="o">%</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s">" "</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sorted array is:
+11 12 22 25 34 64 90 
+</code></pre></div></div>
+
+<h2 id="what-does-this-code-do">What does this code do?</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="n">randomNumber</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">startGame</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Welcome to the Number Guessing Game!"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"I'm thinking of a number between 1 and 100."</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Try to guess the number."</span><span class="p">)</span>
+
+    <span class="n">askForGuess</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">askForGuess</span><span class="p">():</span>
+    <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter your guess (between 1 and 100): "</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">guessedNumber</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_str</span><span class="p">)</span>
+        <span class="n">checkGuess</span><span class="p">(</span><span class="n">guessedNumber</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Please enter a valid number."</span><span class="p">)</span>
+        <span class="n">askForGuess</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">checkGuess</span><span class="p">(</span><span class="n">guess</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">attempts</span>
+    <span class="k">if</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">randomNumber</span><span class="p">:</span>
+        
+        <span class="k">print</span><span class="p">(</span><span class="s">"Try a higher number."</span><span class="p">)</span>
+        <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">askForGuess</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">randomNumber</span><span class="p">:</span>
+        
+        <span class="k">print</span><span class="p">(</span><span class="s">"Try a lower number."</span><span class="p">)</span>
+        <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">askForGuess</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        
+        <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Congratulations! You guessed the number </span><span class="si">{</span><span class="n">randomNumber</span><span class="si">}</span><span class="s"> in </span><span class="si">{</span><span class="n">attempts</span><span class="si">}</span><span class="s"> attempts."</span><span class="p">)</span>
+<span class="n">startGame</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h2 id="homework-hacks">Homework Hacks:</h2>
+
+<ul>
+  <li>Find the median test grade of a class</li>
+  <li>Create a simple game using random numbers</li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/09/P1_developingalgorithms_IPYNB_2_.html" hidden></a>
+</article>

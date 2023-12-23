@@ -1,0 +1,443 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Javascript Data Types/Lists</h1><p class="page-description">A Tech Talk on javascript data types and how to use with lists</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-30T00:00:00-07:00" itemprop="datePublished">
+        Aug 30, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Rohan Juneja</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/basics/home">Home</a></td>
+        <td><a href="/student2.0/basics/html">HTML</a></td>
+        <td><a href="/student2.0/basics/datatypes">Data Types</a></td>
+        <td><a href="/student2.0/basics/dom">DOM</a></td>
+        <td><a href="/student2.0/basics/javascript">JavaScript</a></td>
+        <td><a href="/student2.0/basics/js-debug">JS Debugging</a></td>
+    </tr>
+</table>
+
+<h1 id="string-datatype">string datatype</h1>
+<ul>
+  <li>We discussed that strings store text</li>
+  <li>It is useful to know a few functions that can be used on string manipulation (see example below)</li>
+  <li>We can see the type of data using <code class="language-plaintext highlighter-rouge">typeof</code> operator</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="o">//</span> <span class="n">assign</span> <span class="n">variable</span>
+<span class="n">var</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: hello"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">seeing</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">this</span> <span class="n">data</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: hello check typeof"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">typeof</span> <span class="n">hello</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">add</span> <span class="n">strings</span> <span class="n">together</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"string concatenation: hello + Rohan!"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span> <span class="o">+</span> <span class="s">" Rohan!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script>
+
+// assign variable
+var hello = "Hello World";
+console.log("variable: hello")
+console.log(hello)
+
+// seeing the type of this data
+console.log("variable: hello check typeof")
+console.log(typeof hello)
+
+// add strings together
+console.log("string concatenation: hello + Rohan!")
+console.log(hello + " Rohan!")
+
+// getting a certain component of this text
+// (here the _ is a standin for the space character)
+// H  e  l  l  o  _  W  o  r  l  d
+// 0  1  2  3  4  5  6  7  8  9  10
+// if we want the hello component, we want characters 0-4, so we use the following function
+// (note how we use 0 and 5 as arguments, the last character is NOT INCLUSIVE)
+console.log("substring: hello 0, 5")
+console.log(hello.substring(0, 5))
+
+// useful functions to make string lowercase or uppercase
+console.log("string convert to upper case: hello toUpperCase")
+console.log(hello.toUpperCase())
+console.log("string convert to lower case: hello toLowerCase")
+console.log(hello.toLowerCase())
+
+// useful function to check if one string is contained in another
+console.log("string includes: hello includes Rohan")
+console.log(hello.includes("Rohan"))
+console.log("string includes: hello includes Hello")
+console.log(hello.includes("Hello"))
+</script>
+
+<h2 id="substring">.substring()</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">var</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">getting</span> <span class="n">a</span> <span class="n">certain</span> <span class="n">component</span> <span class="n">of</span> <span class="n">this</span> <span class="n">text</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">here</span> <span class="n">the</span> <span class="n">_</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">standin</span> <span class="k">for</span> <span class="n">the</span> <span class="n">space</span> <span class="n">character</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">H</span>  <span class="n">e</span>  <span class="n">l</span>  <span class="n">l</span>  <span class="n">o</span>  <span class="n">_</span>  <span class="n">W</span>  <span class="n">o</span>  <span class="n">r</span>  <span class="n">l</span>  <span class="n">d</span>
+<span class="o">//</span> <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">4</span>  <span class="mi">5</span>  <span class="mi">6</span>  <span class="mi">7</span>  <span class="mi">8</span>  <span class="mi">9</span>  <span class="mi">10</span>
+<span class="o">//</span> <span class="k">if</span> <span class="n">we</span> <span class="n">want</span> <span class="n">the</span> <span class="n">hello</span> <span class="n">component</span><span class="p">,</span> <span class="n">we</span> <span class="n">want</span> <span class="n">characters</span> <span class="mi">0</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">so</span> <span class="n">we</span> <span class="n">use</span> <span class="n">the</span> <span class="n">following</span> <span class="n">function</span>
+<span class="o">//</span> <span class="p">(</span><span class="n">note</span> <span class="n">how</span> <span class="n">we</span> <span class="n">use</span> <span class="mi">0</span> <span class="ow">and</span> <span class="mi">5</span> <span class="k">as</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">the</span> <span class="n">last</span> <span class="n">character</span> <span class="ow">is</span> <span class="n">NOT</span> <span class="n">INCLUSIVE</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"substring: hello 0, 5"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="touppercase-and-tolowercase">.toUpperCase() and .toLowerCase()</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">var</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">useful</span> <span class="n">functions</span> <span class="n">to</span> <span class="n">make</span> <span class="n">string</span> <span class="n">lowercase</span> <span class="ow">or</span> <span class="n">uppercase</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"string convert to upper case: hello toUpperCase"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">.</span><span class="n">toUpperCase</span><span class="p">())</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"string convert to lower case: hello toLowerCase"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">.</span><span class="n">toLowerCase</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h2 id="includes">.includes()</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">var</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">useful</span> <span class="n">function</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">one</span> <span class="n">string</span> <span class="ow">is</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">another</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"string includes: hello includes Rohan"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">.</span><span class="n">includes</span><span class="p">(</span><span class="s">"Rohan"</span><span class="p">))</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"string includes: hello includes Hello"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">hello</span><span class="p">.</span><span class="n">includes</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h1 id="number-datatype">number datatype</h1>
+<ul>
+  <li>we discussed that numbers store numbers</li>
+  <li>here are some useful ideas in javascript to deal with numbers</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Numbers info"</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">assign</span> <span class="n">numbers</span> <span class="n">to</span> <span class="n">varialbes</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: num1"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: num2"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num2</span><span class="p">)</span>
+
+
+<span class="o">//</span> <span class="n">simple</span> <span class="n">operations</span> <span class="k">with</span> <span class="n">numbers</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Operations"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"subtract: num1 - num2"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"add: num1 + num2"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"divide: num1 / num2"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"multiply: num1 * num2"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"remainder (modulo): num1 % num2"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span> <span class="o">%</span> <span class="n">num2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script>
+console.log("Numbers info")
+
+// assign numbers to varialbes
+console.log("variable: num1")
+var num1 = 9
+console.log(num1)
+console.log("variable: num2")
+var num2 = 6
+console.log(num2)
+
+
+// simple operations with numbers
+console.log("Operations")
+console.log("subtract: num1 - num2")
+console.log(num1 - num2)
+console.log("add: num1 + num2")
+console.log(num1 + num2)
+console.log("divide: num1 / num2")
+console.log(num1 / num2)
+console.log("multiply: num1 * num2")
+console.log(num1 * num2)
+console.log("remainder (modulo): num1 % num2")
+console.log(num1 % num2)
+
+// converting numbers to text
+console.log("number convert string: num1")
+console.log(num1.toString())
+
+// rounding a number
+console.log("round(num1 / num2)")
+console.log(Math.round(num1 / num2))
+
+// rounding a number to decimal palces
+console.log("set decimals to 2 places (num1 / num2)")
+console.log((num1 / num2).toFixed(2))
+</script>
+
+<h1 id="number-formatting">number formatting</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: num1"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"variable: num2"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num2</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">converting</span> <span class="n">numbers</span> <span class="n">to</span> <span class="n">text</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"number convert string: num1"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">num1</span><span class="p">.</span><span class="n">toString</span><span class="p">())</span>
+
+<span class="o">//</span> <span class="n">rounding</span> <span class="n">a</span> <span class="n">number</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"round(num1 / num2)"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="p">))</span>
+
+<span class="o">//</span> <span class="n">rounding</span> <span class="n">a</span> <span class="n">number</span> <span class="n">to</span> <span class="n">decimal</span> <span class="n">palces</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"set decimals to 2 places (num1 / num2)"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">((</span><span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="p">).</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h1 id="array-datatype">Array datatype</h1>
+<ul>
+  <li>an array is just a list of other datatypes</li>
+  <li>put all the items in square brackets</li>
+  <li>some useful methods below</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: assigning a list of strings"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"1st string"</span>
+<span class="n">var</span> <span class="n">arr_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">str1</span><span class="p">,</span> <span class="s">"2nd string"</span><span class="p">,</span> <span class="s">"3rd string"</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">seeing</span> <span class="n">what</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr_data</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">getting</span> <span class="n">one</span> <span class="n">thing</span> <span class="k">from</span> <span class="n">an</span> <span class="n">array</span>
+<span class="o">//</span> <span class="s">"A string"</span> <span class="s">"Other Data"</span> <span class="s">"more data"</span>
+<span class="o">//</span>    <span class="mi">0</span>           <span class="mi">1</span>            <span class="mi">2</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: referencing a cell #1"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">([</span> <span class="n">arr_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">])</span>  <span class="o">//</span> <span class="n">zero</span> <span class="n">based</span> <span class="n">counting</span><span class="p">:</span> <span class="mi">1</span> <span class="ow">is</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">cell</span>
+
+</code></pre></div></div>
+
+<script>
+console.log("Array: assigning a list of strings")
+var str1 = "1st string"
+var arr_data = [str1, "2nd string", "3rd string"]
+// seeing what is in the array
+console.log(arr_data)
+
+// getting one thing from an array
+// "A string" "Other Data" "more data"
+//    0           1            2
+console.log("Array: referencing a cell #1")
+console.log([ arr_data[1] ])  // zero based counting: 1 is 2nd cell
+
+// adding something new to the array
+console.log("Array: adding to list")
+arr_data.push("4th string")
+console.log(arr_data)
+
+// removing the first element of array
+console.log("Array: removing from front of list")
+arr_data.shift()
+console.log(arr_data)
+
+// removing the last element of array
+console.log("Array: removing from end of list")
+arr_data.pop()
+console.log(arr_data)
+</script>
+
+<h1 id="array-manipulation">array manipulation</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: assigning a list of strings"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"1st string"</span>
+<span class="n">var</span> <span class="n">arr_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">str1</span><span class="p">,</span> <span class="s">"2nd string"</span><span class="p">,</span> <span class="s">"3rd string"</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">seeing</span> <span class="n">what</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr_data</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">adding</span> <span class="n">something</span> <span class="n">new</span> <span class="n">to</span> <span class="n">the</span> <span class="n">array</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: adding to list"</span><span class="p">)</span>
+<span class="n">arr_data</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">"4th string"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr_data</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">removing</span> <span class="n">the</span> <span class="n">first</span> <span class="n">element</span> <span class="n">of</span> <span class="n">array</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: removing from front of list"</span><span class="p">)</span>
+<span class="n">arr_data</span><span class="p">.</span><span class="n">shift</span><span class="p">()</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr_data</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">removing</span> <span class="n">the</span> <span class="n">last</span> <span class="n">element</span> <span class="n">of</span> <span class="n">array</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Array: removing from end of list"</span><span class="p">)</span>
+<span class="n">arr_data</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">arr_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="object-datatype">Object datatype</h1>
+
+<ul>
+  <li>store records as key-value pairs</li>
+  <li>are defined by enclosing data in curly braces <code class="language-plaintext highlighter-rouge">{}</code></li>
+  <li>allow access and modification using dot <code class="language-plaintext highlighter-rouge">.</code> or square bracket <code class="language-plaintext highlighter-rouge">[]</code> notation</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: assigning key-value objects"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">"Safin"</span><span class="p">,</span>
+    <span class="n">age</span><span class="p">:</span> <span class="mi">13</span>
+<span class="p">};</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">following</span> <span class="ow">is</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">object</span> <span class="n">called</span> <span class="s">"obj"</span>
+<span class="o">//</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">name</span><span class="p">:</span> <span class="s">"Safin"</span><span class="p">,</span>
+<span class="o">//</span>     <span class="n">age</span><span class="p">:</span> <span class="mi">13</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">key</span> <span class="s">"name"</span> <span class="ow">is</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">string</span> <span class="n">value</span> <span class="s">"Safin"</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">key</span> <span class="s">"age"</span> <span class="ow">is</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">number</span> <span class="n">value</span> <span class="mi">13</span>
+<span class="o">//</span> <span class="n">Notice</span> <span class="n">that</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">type</span> <span class="s">"string"</span>
+
+<span class="o">//</span> <span class="k">print</span> <span class="n">obj</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">name</span><span class="p">:</span> <span class="s">'Safin'</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">13</span> <span class="p">}</span>
+<span class="o">//</span> <span class="n">Notice</span> <span class="n">that</span> <span class="n">single</span> <span class="n">quotes</span> <span class="s">' and double quotes " can be used interchangeably
+</span></code></pre></div></div>
+
+<script>
+console.log("Object: assigning key-value objects")
+var obj = {
+    name: "Safin",
+    age: 13
+};
+
+// The following is stored in the object called "obj"
+// {
+//     name: "Safin",
+//     age: 13
+// }
+//
+// The key "name" is associated with the string value "Safin"
+// The key "age" is associated with the number value 13
+// Notice that keys are of the type "string"
+
+// print obj to the console
+console.log(obj);
+// -> { name: 'Safin', age: 13 }
+// Notice that single quotes ' and double quotes " can be used interchangeably
+
+// To access certain values within an object, also known as an object's fields,
+// you can use the name of the object suffixed with a dot and the name of the field
+// or using the square bracket notation shown below
+console.log("Object: using key name to access the name value (key notation)")
+console.log(obj["name"]);
+console.log("Object: using key name to access the name value (dot notation)")
+console.log(obj.name);
+// -> Safin
+
+// Fields of an object can be manipulated similar to variables
+console.log("Object: mutating the key name from Safin to John")
+obj.name = "John"
+console.log(obj);
+console.log(obj.name);
+// -> John
+
+// A key-value pair can be added to the object
+console.log("Object: mutating the key name from Safin to John")
+obj["ghid"] = "jm1021"
+console.log(obj);
+// Observe new key
+</script>
+
+<h1 id="object-access">object access</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: assigning key-value objects"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s">"Safin"</span><span class="p">,</span>
+    <span class="n">age</span><span class="p">:</span> <span class="mi">13</span>
+<span class="p">};</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">following</span> <span class="ow">is</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">object</span> <span class="n">called</span> <span class="s">"obj"</span>
+<span class="o">//</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">name</span><span class="p">:</span> <span class="s">"Safin"</span><span class="p">,</span>
+<span class="o">//</span>     <span class="n">age</span><span class="p">:</span> <span class="mi">13</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">key</span> <span class="s">"name"</span> <span class="ow">is</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">string</span> <span class="n">value</span> <span class="s">"Safin"</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">key</span> <span class="s">"age"</span> <span class="ow">is</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">number</span> <span class="n">value</span> <span class="mi">13</span>
+<span class="o">//</span> <span class="n">Notice</span> <span class="n">that</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">type</span> <span class="s">"string"</span>
+
+<span class="o">//</span> <span class="k">print</span> <span class="n">obj</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">name</span><span class="p">:</span> <span class="s">'Safin'</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">13</span> <span class="p">}</span>
+<span class="o">//</span> <span class="n">Notice</span> <span class="n">that</span> <span class="n">single</span> <span class="n">quotes</span> <span class="s">' and double quotes " can be used interchangeably
+
+// To access certain values within an object, also known as an object'</span><span class="n">s</span> <span class="n">fields</span><span class="p">,</span>
+<span class="o">//</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">object</span> <span class="n">suffixed</span> <span class="k">with</span> <span class="n">a</span> <span class="n">dot</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">field</span>
+<span class="o">//</span> <span class="ow">or</span> <span class="n">using</span> <span class="n">the</span> <span class="n">square</span> <span class="n">bracket</span> <span class="n">notation</span> <span class="n">shown</span> <span class="n">below</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: using key name to access the name value (key notation)"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s">"name"</span><span class="p">]);</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: using key name to access the name value (dot notation)"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">-&gt;</span> <span class="n">Safin</span>
+
+<span class="o">//</span> <span class="n">Fields</span> <span class="n">of</span> <span class="n">an</span> <span class="nb">object</span> <span class="n">can</span> <span class="n">be</span> <span class="n">manipulated</span> <span class="n">similar</span> <span class="n">to</span> <span class="n">variables</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: mutating the key name from Safin to John"</span><span class="p">)</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"John"</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">-&gt;</span> <span class="n">John</span>
+
+<span class="o">//</span> <span class="n">A</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span> <span class="n">pair</span> <span class="n">can</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">object</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Object: mutating the key name from Safin to John"</span><span class="p">)</span>
+<span class="n">obj</span><span class="p">[</span><span class="s">"ghid"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"jm1021"</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Observe</span> <span class="n">new</span> <span class="n">key</span>
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+<p>Create a JavaScript snippet below with the following requirements:</p>
+<ul>
+  <li>Create an object representing yourself as a person. The object should have keys for your name, age, current classes, interests, and two more of your choosing</li>
+  <li>Your object must contain keys whose values are arrays. The arrays can be arrays of strings, numbers, or even other objects if you would like</li>
+  <li>Print the entire object with console.log after declaring it</li>
+  <li>Manipulate the arrays within the object and print the entire object with console.log as well as the specific changed key afterwards</li>
+  <li>Perform mathematical operations on fields in your object such as +, -, /, % etc. and print the results with console.log along with a message contextualizing them</li>
+  <li>Use typeof to determine the types of at least 3 fields in your object</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">javascript</span> <span class="n">code</span> <span class="n">here</span> <span class="p">(</span><span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">run</span> <span class="n">it</span> <span class="ow">and</span> <span class="n">check</span> <span class="n">your</span> <span class="n">outputs</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">console</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/student2.0/basics/datatypes" hidden></a>
+</article>

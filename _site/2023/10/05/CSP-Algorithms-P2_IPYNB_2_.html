@@ -1,0 +1,285 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 Algorithms</h1><p class="page-description">Team SRSC</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-05T00:00:00-07:00" itemprop="datePublished">
+        Oct 5, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">cayden, saathvik, sri, ryan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h1 id="algorithms">ALGORITHMS</h1>
+<h2 id="srsc">SRSC</h2>
+
+<h1 id="big-idea-a-finite-set-of-instructions-that-accomplish-a-specific-task"><mark>BIG IDEA: A FINITE SET OF INSTRUCTIONS THAT ACCOMPLISH A SPECIFIC TASK</mark></h1>
+
+<h2 id="sequencing">SEQUENCING</h2>
+
+<h3 id="-do-steps-of-code-in-the-order-specified"><mark> DO STEPS OF CODE IN THE ORDER SPECIFIED</mark></h3>
+
+<p>first step -&gt; second step -&gt; third step</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter a number: "</span><span class="p">))</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"double of "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s">" is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>Create a variable based on user input <br /></li>
+  <li>Multiply variable by two<br /></li>
+  <li>Print out both variables at the end<br /></li>
+</ol>
+
+<h2 id="selection">SELECTION</h2>
+
+<h3 id="-choose-two-or-more-outcomes-based-on-a-decision-or-condition"><mark> Choose TWO OR MORE OUTCOMES based on a DECISION or CONDITION</mark></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Even"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Odd"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>Set number to 5 <br /></li>
+  <li>If number is divisible by 2 with no remainder, print “Even” <br /></li>
+  <li>Otherwise, print “Odd” <br /></li>
+</ol>
+
+<h1 id="iteration">ITERATION</h1>
+
+<h2 id="-repeat-steps-based-on-a-decision-or-stop-when-a-condition-is-met"><mark> REPEAT STEPS BASED ON A DECISION or STOP when a condition is met</mark></h2>
+
+<p>first step -&gt; 
+second step -&gt; 
+if step 2: true -&gt; first step 
+if step 2: false -&gt; third step 
+-&gt; fourth step</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">,</span> <span class="s">"cherry"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<ol>
+  <li>Create a list called fruits <br /></li>
+  <li>For each fruit in the list, print the fruit</li>
+</ol>
+
+<h1 id="activity-1-robot-pseudocode">ACTIVITY 1: Robot Pseudocode</h1>
+
+<p><a href="https://assets.learnosity.com/organisations/537/VR165972.g03.png">Link to Robot Question 2</a></p>
+
+<p>Write the pseudocode to move the robot onto the gray square.</p>
+
+<p>Available Code: <br />
+Move forward <br />
+Turn Left <br />
+Turn Right <br /></p>
+
+<p>PseudoCode here:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Math Operations:
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Addition"</span><span class="p">)</span> <span class="c1">#addition
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 8
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Subtraction"</span><span class="p">)</span> <span class="c1">#subtraction
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 6
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Multiplication"</span><span class="p">)</span> <span class="c1">#multiplication
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 42
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Float Division"</span><span class="p">)</span> <span class="c1">#float division (float = numbers with decimal values)
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 5.0
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Integer Division (floor division)"</span><span class="p">)</span> <span class="c1">#floor division
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 5
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Modulus (remainder)"</span><span class="p">)</span> <span class="c1">#remainder
+</span><span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">%</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># 1
+</span></code></pre></div></div>
+
+<h2 id="fibonacci">Fibonacci</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1">#fibonacci sequence 
+</span>    <span class="n">fib_series</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">fib_series</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">next_number</span> <span class="o">=</span> <span class="n">fib_series</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib_series</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  
+        <span class="n">fib_series</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_number</span><span class="p">)</span>  
+
+    <span class="k">return</span> <span class="n">fib_series</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>  
+<span class="n">result</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</span>
+<span class="c1"># initial length of list is 2 
+# while length of list is less than amount of numbers we want in our final sequence
+# add the last two numbers of the list 
+# add this value to the end of the list 
+# repeat until length of list reaches n
+</span>
+</code></pre></div></div>
+
+<h2 id="mini-lesson-if-else-statements">Mini Lesson: If, Else Statements</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num</span> <span class="o">=</span><span class="mi">0</span>
+
+<span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s">" is positive."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s">" is negative."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s">" is zero."</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="mini-lesson-2-for-while-loops">Mini Lesson 2: For, While Loops</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Alice"</span><span class="p">,</span> <span class="s">"Bob"</span><span class="p">,</span> <span class="s">"Charlie"</span><span class="p">,</span> <span class="s">"David"</span><span class="p">,</span> <span class="s">"Eve"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+
+<span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+
+</code></pre></div></div>
+
+<h2 id="mini-lesson-3-defining-function">Mini Lesson 3: Defining Function</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">calculate_square</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">square</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="n">number</span>
+    <span class="k">return</span> <span class="n">square</span> <span class="c1">#ends function 
+</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculate_square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The square of 5 is </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="mini-lesson-4-input">Mini Lesson 4: Input</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variable1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"How old are you?"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"You are "</span> <span class="o">+</span> <span class="n">variable1</span> <span class="o">+</span> <span class="s">" years old"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="activity-2-calculator">ACTIVITY 2: CALCULATOR</h1>
+<ol>
+  <li>Create calculator function <br /></li>
+  <li>Allow user to Choose 2 numbers and an operator <br /></li>
+  <li>Perform specified operation based on input <br /></li>
+  <li>Return result of calculation <br /></li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">##YOUR WORK HERE 
+##Hint: Use if else statements, defining functions, input
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># String Operations and Concatenation:
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">String Concatenation"</span><span class="p">)</span> <span class="c1">#add together strings
+</span><span class="n">str1</span> <span class="o">=</span> <span class="s">"Hello"</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="s">"World"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">str1</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">str2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># "Hello World"
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">String Length"</span><span class="p">)</span> <span class="c1">#length of string
+</span><span class="n">text</span> <span class="o">=</span> <span class="s">"This is a sample text."</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>  <span class="c1"># 22
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">String Indexing and Slicing"</span><span class="p">)</span> <span class="c1">#string slicing 
+</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Python"</span>
+<span class="n">first_char</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">substring</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">first_char</span><span class="p">)</span>  <span class="c1"># 'P'
+</span><span class="k">print</span><span class="p">(</span><span class="n">substring</span><span class="p">)</span>  <span class="c1"># 'tho'
+</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">String Repetition (Repeating Strings)"</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s">"Repeat "</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">text</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># "Repeat Repeat Repeat "
+</span>
+<span class="c1"># Palindrome Check Algorithm:
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Palindrome Check Algorithm"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">text</span> <span class="o">==</span> <span class="n">text</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">## == will return boolean 
+</span>
+<span class="n">result1</span> <span class="o">=</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="s">"racecar"</span><span class="p">)</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>  <span class="c1"># True
+</span><span class="k">print</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>  <span class="c1"># False
+</span></code></pre></div></div>
+
+<h1 id="activity-3-counting-vowels">ACTIVITY 3: COUNTING VOWELS</h1>
+<ol>
+  <li>Create a function that takes a word as an input <br /></li>
+  <li>Use a for loop to iterate through each character of a word <br /></li>
+  <li>Check how many characters in a word contain vowels <br /></li>
+  <li>Return vowel number <br /></li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">##YOUR WORK HERE
+</span></code></pre></div></div>
+
+<h1 id="-homework"><mark> HOMEWORK</mark></h1>
+<h2 id="create-text-string-analyzer-">CREATE TEXT (string) ANALYZER: <br /></h2>
+<h3 id="criteria-">criteria: <br /></h3>
+<ol>
+  <li>Accepts input from user <br /></li>
+  <li>Counts total letters, numbers, spaces in a string <br /></li>
+  <li>Counts number of vowels <br /></li>
+  <li>Calculates average word length <br /></li>
+  <li>Correctly displays: total # of characters (including spaces + numbers), total vowels, average word length <br />
+    <h3 id="other-criteria-">other criteria: <br /></h3>
+  </li>
+  <li>ensure that program handles upper and lowercase spelling <br /></li>
+  <li>Test multiple inputs to ensure accuracy
+    <h3 id="criteria-for-above-90-">Criteria for above 90%: <br /></h3>
+  </li>
+  <li>Add a unique program, function, or feature not specified by criterias</li>
+</ol>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/05/CSP-Algorithms-P2_IPYNB_2_.html" hidden></a>
+</article>

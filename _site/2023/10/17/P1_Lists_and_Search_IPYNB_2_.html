@@ -1,0 +1,227 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P1 Lists and search</h1><p class="page-description">Lesson for developing algorithms in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-17T00:00:00-07:00" itemprop="datePublished">
+        Oct 17, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">David, Austin, Peyton, Aiden</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#lists--binary-search">Lists + Binary Search</a><ul><li><a href="#list-operations">List Operations</a></li><li><a href="#comparing-python-and-college-board-pseudo-code">Comparing Python and College Board Pseudo Code</a></li></ul></li><li><a href="#popcorn-hack">Popcorn Hack</a><ul><li><a href="#more-pseudo-code-and-python">More Pseudo Code and Python</a></li><li><a href="#binary-search">Binary Search</a><ul><li><a href="#big-o-notation">Big O Notation</a></li><li><a href="#homework">Homework</a></li></ul></li></ul></li></ul><h1 id="lists--binary-search">Lists + Binary Search</h1>
+
+<h2 id="list-operations">List Operations</h2>
+
+<ul>
+  <li>aList[i] - This access your list at index i. An index is a numeric value that represents the position of an element within that data structure. For example, the first element of aList is at index 1, represented by aList[1].</li>
+  <li>x &lt;- aList[i] - Assigns value of aList[i] to variable x</li>
+  <li>aList[i] &lt;- x - Assigns value of x to aList[i]</li>
+  <li>
+    <p>aList[i] &lt;- aList[j] - Assigns value of aList[j] to aList[i]</p>
+  </li>
+  <li>INSERT(aList, i , value) - aList is the list in which you want to insert the value. i is the index at which you want to insert the value. value is the value you want to insert at that index</li>
+  <li>APPEND(aList, value) - The value you put in is placed at the end of aList</li>
+  <li>REMOVE(aList, i) - aList is the list in which you want to delete the value. i is the index at which you want to delete the value.</li>
+  <li>
+    <p>LENGTH(aList) - Gives you the number of elements in aList</p>
+  </li>
+  <li>FOR EACH item IN aList {
+  blah blah blah
+} - Item is a var assigned each element of aList in order from first element to last. The code inside the for loop is run once for every assignment of item.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">1.</span> 
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">item</span> <span class="n">IN</span> <span class="n">aList</span> <span class="p">{</span>  
+    <span class="n">PRINT</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>  
+<span class="p">}</span>
+
+<span class="n">This</span> <span class="n">code</span> <span class="n">iterates</span> <span class="n">through</span> <span class="n">each</span> <span class="n">element</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">aList</span> <span class="ow">and</span> <span class="k">for</span> <span class="n">each</span> <span class="n">item</span><span class="p">,</span> <span class="n">it</span> <span class="n">prints</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">that</span> <span class="n">item</span><span class="p">.</span>
+
+
+<span class="mf">2.</span> 
+<span class="n">FOR</span> <span class="n">i</span> <span class="n">FROM</span> <span class="mi">0</span> <span class="n">TO</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">IF</span> <span class="n">aList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">42</span> <span class="n">THEN</span>
+        <span class="n">PRINT</span><span class="p">(</span><span class="s">"Found 42 at index "</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">This</span> <span class="n">code</span> <span class="n">iterates</span> <span class="n">through</span> <span class="n">each</span> <span class="n">index</span> <span class="k">from</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">aList</span><span class="p">).</span> <span class="n">For</span> <span class="n">each</span> <span class="n">index</span> <span class="n">i</span><span class="p">,</span> <span class="n">it</span> <span class="n">checks</span> <span class="k">if</span> <span class="n">the</span> <span class="n">value</span> <span class="n">at</span> <span class="n">that</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">aList</span> <span class="ow">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="mf">42.</span> 
+<span class="n">If</span> <span class="n">it</span> <span class="n">finds</span> <span class="mi">42</span> <span class="n">at</span> <span class="nb">any</span> <span class="n">index</span><span class="p">,</span> <span class="n">it</span> <span class="n">prints</span> <span class="n">a</span> <span class="n">message</span> <span class="n">indicating</span> <span class="n">that</span> <span class="n">it</span> <span class="n">found</span> <span class="mi">42</span> <span class="n">at</span> <span class="n">that</span> <span class="n">index</span><span class="p">.</span>
+</code></pre></div></div>
+
+<ol>
+  <li>What does this code output
+<br />
+<br />
+<img src="https://i.stack.imgur.com/OhUEQ.png" alt="image" />
+<br />
+<br />
+<br />
+unusual, bold, away; index = 3</li>
+</ol>
+
+<h2 id="comparing-python-and-college-board-pseudo-code">Comparing Python and College Board Pseudo Code</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Creating</span> <span class="n">a</span> <span class="n">List</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">my_list</span> <span class="err">←</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">Accessing</span> <span class="n">Elements</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">value</span> <span class="o">=</span> <span class="n">my_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">value</span> <span class="o">&lt;-</span> <span class="n">my_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">Appending</span> <span class="n">Elements</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">my_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">Append</span> <span class="n">new_value</span> <span class="n">to</span> <span class="n">my_list</span>
+
+<span class="n">Inserting</span> <span class="n">Elements</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">my_list</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">Insert</span> <span class="n">new_value</span> <span class="n">at</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">my_list</span>
+
+<span class="n">Removing</span> <span class="n">Elements</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">my_list</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">Remove</span> <span class="n">value</span> <span class="k">from</span> <span class="n">my_list</span>
+
+<span class="n">Modifying</span> <span class="n">Elements</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">my_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">my_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">new_value</span>
+
+<span class="n">Checking</span> <span class="n">Length</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">length</span> <span class="o">&lt;-</span> <span class="n">Length</span> <span class="n">of</span> <span class="n">my_list</span>
+
+<span class="n">Iterating</span> <span class="n">through</span> <span class="n">a</span> <span class="n">List</span>
+<span class="n">Python</span><span class="p">:</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span> 
+<span class="p">{</span> <span class="o">&lt;</span><span class="n">block</span> <span class="n">of</span> <span class="n">statement</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">For</span> <span class="n">each</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span> 
+<span class="p">{</span> <span class="o">&lt;</span><span class="n">block</span> <span class="n">of</span> <span class="n">statement</span><span class="o">&gt;</span> <span class="p">}</span>
+
+<span class="n">Checking</span> <span class="k">for</span> <span class="n">Existence</span>
+<span class="n">Python</span><span class="p">:</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+<span class="p">{</span> <span class="o">&lt;</span><span class="n">block</span> <span class="n">of</span> <span class="n">statement</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">If</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span> 
+<span class="p">{</span> <span class="o">&lt;</span><span class="n">block</span> <span class="n">of</span> <span class="n">statement</span><span class="o">&gt;</span> <span class="p">}</span>
+
+<span class="n">List</span> <span class="n">Slicing</span>
+<span class="n">Python</span><span class="p">:</span> <span class="n">sub_list</span> <span class="o">=</span> <span class="n">my_list</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+<span class="n">Pseudo</span> <span class="n">Code</span><span class="p">:</span> <span class="n">sub_list</span> <span class="o">&lt;-</span> <span class="n">my_list</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h1 id="popcorn-hack">Popcorn Hack</h1>
+<p>Add 5 to the list in between 4 and 6 in both python and pseudo code
+list = [1, 2, 3, 4, 6, 7]</p>
+
+<h2 id="more-pseudo-code-and-python">More Pseudo Code and Python</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Psuedocode</span> <span class="k">for</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Even</span> <span class="n">Number</span> <span class="n">List</span>
+<span class="n">Set</span> <span class="nb">sum</span> <span class="n">to</span> <span class="mi">0</span>
+<span class="n">For</span> <span class="n">each</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="n">If</span> <span class="p">(</span><span class="n">score</span> <span class="n">MOD</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">Add</span> <span class="n">score</span> <span class="n">to</span> <span class="nb">sum</span>
+<span class="n">Display</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="nb">sum</span> <span class="k">as</span> <span class="n">the</span> <span class="nb">sum</span> <span class="n">of</span> <span class="n">even</span> <span class="n">numbers</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span>
+
+<span class="n">In</span> <span class="n">Python</span><span class="p">:</span>
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">even_sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Check if the remainder when divided by 2 is 0 (even number)
+</span>        <span class="n">even_sum</span> <span class="o">+=</span> <span class="n">score</span> <span class="c1"># If previous requirement is fulfilled, add to sum
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Sum of even numbers in the list:"</span><span class="p">,</span> <span class="n">even_sum</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Minimum</span> <span class="n">Value</span> <span class="n">List</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">find_minimum_value</span><span class="p">(</span><span class="n">input_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>  
+    <span class="n">min_value</span> <span class="o">=</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="n">min_value</span> <span class="o">=</span> <span class="n">num</span>  
+    <span class="k">return</span> <span class="n">min_value</span>
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="n">find_minimum_value</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Minimum value:"</span><span class="p">,</span> <span class="n">min_value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="binary-search">Binary Search</h2>
+
+<ul>
+  <li>Binary Search is a method of searching for an element in a list. <br /></li>
+  <li>Binary Search is faster than Linear Search <br /></li>
+  <li>
+    <p>How does Binary Search work?
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20220309171621/BinarySearch.png" alt="image" /><br /></p>
+  </li>
+  <li>Worst Case Scenario: 4 Iterations <br /> <br /><br /></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">91</span><span class="p">]</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>  <span class="c1"># Element found, return its index
+</span>        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Search the right half
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># Search the left half
+</span><span class="n">target</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">position</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The element </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s"> is at index </span><span class="si">{</span><span class="n">position</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Iterations: </span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="big-o-notation">Big O Notation</h3>
+<ul>
+  <li>Big O notation is a way to measure the upper limit of a function’s runtime.</li>
+  <li>Common Big O Notations:</li>
+  <li>O(1): Constant time (Ex. searching up an element by index)</li>
+  <li>O(log n): As input size increases, time grows slowly (Binary Search!)</li>
+  <li>O(n): Linear time: As input size increases, time grows proportionally. (Linear Search)</li>
+  <li>O(2^n): Exponential time: Highly inefficient, as input size increases, time grows exponentially. (Brute force)</li>
+  <li>O(n!): Factorial time: Extremely inefficient, often used to find all possible permutations of a problem.</li>
+</ul>
+
+<h3 id="homework">Homework</h3>
+<p>1) Write an expression that uses list indexing and list procedures. Write comments on your code to show what each line is doing. 
+2) Write a python function that can determine the worst case number of iterations of a binary search for an array of length 20.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span><span class="p">)</span> <span class="n">You</span> <span class="n">have</span> <span class="n">a</span> <span class="nb">list</span> <span class="sb">`myList`</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">following</span> <span class="n">elements</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">].</span>
+
+<span class="n">FOR</span> <span class="n">i</span> <span class="n">FROM</span> <span class="mi">0</span> <span class="n">TO</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">myList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">myList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">}</span>
+
+<span class="n">What</span> <span class="n">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">final</span> <span class="n">content</span> <span class="n">of</span> <span class="sb">`myList`</span> <span class="n">after</span> <span class="n">executing</span> <span class="n">this</span> <span class="n">algorithm</span><span class="err">?</span>
+
+<span class="n">A</span><span class="p">)</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">B</span><span class="p">)</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">C</span><span class="p">)</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">D</span><span class="p">)</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/17/P1_Lists_and_Search_IPYNB_2_.html" hidden></a>
+</article>

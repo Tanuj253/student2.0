@@ -1,0 +1,231 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 Iteration</h1><p class="page-description">Team SAIGA lecture on iterations.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-12T00:00:00-07:00" itemprop="datePublished">
+        Oct 12, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ishraq, Anthony, Grayson, Aditya, Sumedha</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#flow-of-information">Flow of Information</a></li><li><a href="#control-statements">Control Statements</a><ul><li><a href="#by-sumedha-aditya-ishraq-grayson-anthony">By: (Sumedha, Aditya, Ishraq, Grayson, Anthony)</a></li></ul></li></ul></li><li><a href="#what-is-iteration">What is iteration?</a></li><li><a href="#while-loops">While loops</a></li><li><a href="#hack-1">Hack 1:</a><ul><li><a href="#write-a-code-for-printing-even-numbers-from-1-to-10-using-a-while-loop">Write a code for printing even numbers from 1 to 10 using a while loop.</a></li></ul></li></ul></li><li><a href="#transfer-functions">Transfer Functions</a></li><li><a href="#break-funtion">Break Funtion</a></li><li><a href="#continue-function">Continue Function</a></li><li><a href="#hack-2">Hack 2:</a><ul><li><a href="#write-a-code-to-list-the-numbers-from-1-to-20-while-skipping-the-multiples-of-2-using-a-while-loop">Write a code to list the numbers from 1 to 20 while skipping the multiples of 2 using a while loop.</a></li></ul></li></ul></li><li><a href="#pass-function">Pass Function</a></li><li><a href="#else-statements">Else Statements</a></li><li><a href="#for-loops">For Loops</a></li><li><a href="#looping-through-strings">Looping through Strings</a></li><li><a href="#break-function">Break Function</a></li><li><a href="#continue-function-1">Continue Function</a></li><li><a href="#range-function">Range Function</a></li><li><a href="#else-statements-1">Else Statements</a></li><li><a href="#nested-loops">Nested Loops</a></li><li><a href="#hack-3">Hack 3</a></li><li><a href="#homework">Homework</a></li><li><a href="#extra-credit">Extra Credit</a></li></ul><h2 id="flow-of-information">Flow of Information</h2>
+
+<p>The information in a code flows in a direction based on the loops and conditional statements written.</p>
+
+<h2 id="control-statements">Control Statements</h2>
+
+<p>These statements determine the order in which the code is executed. Two major ways of writing control statements are using iteration and transfer statements.</p>
+
+<h1 id="iteration">Iteration</h1>
+<h4 id="by-sumedha-aditya-ishraq-grayson-anthony">By: (Sumedha, Aditya, Ishraq, Grayson, Anthony)</h4>
+
+<h2 id="what-is-iteration">What is iteration?</h2>
+
+<p>We use iteration when we need to repeat the same code for a multiple number of times. Iteration is the looping of data in a code sequence. In Python, iteration is done using While loops and For loops.</p>
+
+<h2 id="while-loops">While loops</h2>
+
+<p>While loops are used when the looping depends on a condition. As long as the condition is true, the code will be executed. When the condition becomes false, the loop stops.</p>
+
+<p>In a while loop, we need to specify the index value (where the loop starts) and the increment value (what the loop increases by).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="hack-1">Hack 1:</h2>
+
+<h4 id="write-a-code-for-printing-even-numbers-from-1-to-10-using-a-while-loop">Write a code for printing even numbers from 1 to 10 using a while loop.</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="c1"># your code here
+</span><span class="k">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="transfer-functions">Transfer Functions</h2>
+
+<p>Statements which transfer control from one part of a program to another. Examples are: break, continue, and pass statements.</p>
+
+<h2 id="break-funtion">Break Funtion</h2>
+
+<p>To stop a code from printing after a certain value, use the break function. We use an if statement to decide where the output will stop. The break function is placed before the increment and after the if statement.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">break</span>
+  <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="continue-function">Continue Function</h2>
+
+<p>To skip an output value and continue on to the end value, use the continue function. We use an if statement to decide which value should be skipped. The continue function is placed after both the increment and the if statement.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> 
+  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">continue</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="hack-2">Hack 2:</h2>
+
+<h4 id="write-a-code-to-list-the-numbers-from-1-to-20-while-skipping-the-multiples-of-2-using-a-while-loop">Write a code to list the numbers from 1 to 20 while skipping the multiples of 2 using a while loop.</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># your code here    
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="pass-function">Pass Function</h2>
+
+<p>The pass function is like a placeholder after empty code has been written. When a pass statement is added, there will be no effect, but there will be no error message. If there is no pass statement, then an error message will appear.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]:</span>
+    <span class="k">pass</span>
+</code></pre></div></div>
+
+<h2 id="else-statements">Else Statements</h2>
+
+<p>If a condition isn’t true anymore, then we can write a code using an else statement which stops the iteration from continuing.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"i is no longer less than 5"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="for-loops">For Loops</h2>
+
+<p>For Loops are used to iterate over a group of values such as lists, strings, dictionaries, tuples, etc.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gemstones</span> <span class="o">=</span> <span class="p">[</span><span class="s">"aquamarine"</span><span class="p">,</span> <span class="s">"beryl"</span><span class="p">,</span> <span class="s">"citrine"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gemstones</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="looping-through-strings">Looping through Strings</h2>
+
+<p>We can iterate through strings by using a for loop that shows each character in the string. Example below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">"beryl"</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="break-function">Break Function</h2>
+
+<p>Using a break function, we can stop the loop from iterating when the output is a certain value. This is the same as in while loops.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gemstones</span> <span class="o">=</span> <span class="p">[</span><span class="s">"aquamarine"</span><span class="p">,</span> <span class="s">"beryl"</span><span class="p">,</span> <span class="s">"citrine"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gemstones</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s">"beryl"</span><span class="p">:</span>
+    <span class="k">break</span>
+</code></pre></div></div>
+
+<h2 id="continue-function-1">Continue Function</h2>
+
+<p>Using a continue function, we can skip an output value and continue the iteration till the end of the sequence. This is similar to while loops.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gemstones</span> <span class="o">=</span> <span class="p">[</span><span class="s">"aquamarine"</span><span class="p">,</span> <span class="s">"beryl"</span><span class="p">,</span> <span class="s">"citrine"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gemstones</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s">"beryl"</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="range-function">Range Function</h2>
+
+<p>Using a range function, we can iterate through a specific range of values. This function starts with zero and increments by 1, which it does automatically, and we specify exactly which values to iterate through.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We can define the starting value if it is other than zero by adding a second parameter.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We can also define the increment value by adding a third parameter.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="else-statements-1">Else Statements</h2>
+
+<p>We use else statements to signal when a code is done iterating through a set of values. It is used to code for a message which is printed to show when the iteration is complete.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"The code is finished!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="nested-loops">Nested Loops</h2>
+
+<p>Nested Loops are loops within loops. This is used to return an output which is a combination of the outer and inner loops.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">"X"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">"="</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="hack-3">Hack 3</h2>
+
+<p>Write a code using a for loop that outputs numbers from 1 to 100 and skips multiples of 4.</p>
+
+<p>Upper 90%: Add multiple parameters to specify your values. Use continue to skip the proper values. Double check outputs.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Your code here
+</span></code></pre></div></div>
+
+<h2 id="homework">Homework</h2>
+
+<h1 id="create-a-function-that-takes-a-list-of-numbers-and-arranges-the-in-descending-order">Create a function that takes a list of numbers and arranges the in descending order</h1>
+<p>For example this function should be able to take the list [35,4,6,90,2,55,13,8] and arrange it into [2,4,6,8,13.35,55,90]</p>
+
+<h2 id="extra-credit">Extra Credit</h2>
+<p>Make it so this function can also sort strings by their length
+For example [Car,4,11,twenty,27,trees] should sort into [Car,4,trees,twenty,11,27]</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#start here
+</span><span class="k">def</span> <span class="nf">shortestToLongestSorter</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/12/CSP-Iteration-P2_IPYNB_2_.html" hidden></a>
+</article>

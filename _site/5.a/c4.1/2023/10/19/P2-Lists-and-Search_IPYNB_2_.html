@@ -1,0 +1,262 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 List and Operations</h1><p class="page-description">College Board Unit 3.6, 3.7.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-19T00:00:00-07:00" itemprop="datePublished">
+        Oct 19, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ryan, Daniel, Saraas, William, Andrew</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/ap#5.A">5.A</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.1">C4.1</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#made-by-ryan-daniel-saaras-will-and-andrew">Made by: Ryan, Daniel, Saaras, Will, and Andrew</a><ul><li><a href="#python-lists-operations">Python lists Operations</a><ul><li><a href="#append-function">Append function</a></li></ul></li></ul></li><li><a href="#from-the-data-abstractions-unit-we-learned-about-lists-and-how-they-can-store-multiple-variables">From the Data Abstractions Unit we Learned about lists and how they can store multiple variables</a></li><li><a href="#today-were-going-to-show-you-how-to-add-items-to-lists-utilizing-the-append-option">Today we’re going to show you how to add items to lists utilizing the append option</a><ul><li><a href="#insert-function">Insert function</a><ul><li><a href="#exmaple-1">Exmaple 1</a></li></ul></li><li><a href="#your-turn">Your turn!!!!</a></li><li><a href="#remove-function">Remove function</a><ul><li><a href="#pseudocode-example">Pseudocode example</a></li></ul></li><li><a href="#lets-do-some-collegeboard-exercises">Let’s do some Collegeboard exercises</a></li><li><a href="#second-question">Second question:</a></li><li><a href="#its-binary-search-time">ITS BINARY SEARCH TIME</a></li><li><a href="#how-does-binary-search-work">HOW DOES BINARY SEARCH WORK</a></li><li><a href="#demo-being-shown-above">Demo Being shown above</a></li></ul></li></ul></li></ul><h1 id="made-by-ryan-daniel-saaras-will-and-andrew">Made by: Ryan, Daniel, Saaras, Will, and Andrew</h1>
+
+<h2 id="python-lists-operations">Python lists Operations</h2>
+
+<h3 id="append-function">Append function</h3>
+<h1 id="from-the-data-abstractions-unit-we-learned-about-lists-and-how-they-can-store-multiple-variables">From the Data Abstractions Unit we Learned about lists and how they can store multiple variables</h1>
+<h1 id="today-were-going-to-show-you-how-to-add-items-to-lists-utilizing-the-append-option">Today we’re going to show you how to add items to lists utilizing the append option</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="s">"hi"</span><span class="p">]</span>
+<span class="n">lst</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['hi', 'no']
+</code></pre></div></div>
+
+<h3 id="insert-function">Insert function</h3>
+<ul>
+  <li>The insert function allows you to append items to different lists at a specific location.</li>
+  <li>Let’s first understand how it may work through pseudocode</li>
+</ul>
+
+<h4 id="exmaple-1">Exmaple 1</h4>
+<p>INSERT alist, pos, value 
+INSERT alist, 1, “hi”</p>
+<ul>
+  <li>Here the alist represents your list you want to append an item to</li>
+  <li>The position is where on the list the item will be generated in respect to the current list</li>
+  <li>Finally, the value is the item you’re adding to your list.</li>
+  <li>So in the code provided below, in position 1 you insert the item “hi” into alist</li>
+</ul>
+
+<h3 id="your-turn">Your turn!!!!</h3>
+<ul>
+  <li>Turn this pseudocode into python</li>
+  <li>How may we want to implement this on python? Think back to the data abstraction unit.</li>
+  <li>( Hint: Think about the differences between psueodcode and python )</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ANSWER: 
+# Inserting items to a specific list, remember python is 0 based on the items!!
+</span><span class="n">lst</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">" maybe"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[' yes', ' yes', ' yes', 'hi', 'no', ' maybe', ' yes']
+</code></pre></div></div>
+
+<h3 id="remove-function">Remove function</h3>
+<ul>
+  <li>The remove functions allows you to remove specific items at a specific position on the list</li>
+</ul>
+
+<h4 id="pseudocode-example">Pseudocode example</h4>
+<ul>
+  <li>REMOVE aList, pos</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lst</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="c1">## You can also access the list by the position, this is called list indexing
+</span><span class="k">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['hi', 'no', ' maybe', ' yes']
+hi
+</code></pre></div></div>
+
+<h3 id="lets-do-some-collegeboard-exercises">Let’s do some Collegeboard exercises</h3>
+<ul>
+  <li>In the following list:
+    <ul>
+      <li>nums = [65, 89, 92, 35, 84, 78, 28, 75]</li>
+    </ul>
+  </li>
+  <li>Figure out what the minimum number in the list, WITHOUT using the other methods and premade functions.</li>
+</ul>
+
+<h3 id="second-question">Second question:</h3>
+<ul>
+  <li>Let’s say we have a list called “animals” from a survey that stores whether or not they prefer “cats” or “dogs” as strings in this list.</li>
+  <li>Transverse this list and tell me the total amount cats and dogs in the list</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">75</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"this number is the lowest number in the nums list"</span><span class="p">)</span>
+<span class="c1">## Your code here
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>35
+this number is the lowest number in the nums list
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">"cats"</span><span class="p">,</span> <span class="s">"dogs"</span><span class="p">]</span>
+
+<span class="n">animals</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">"dogs"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"only one person works at this petshop and she likes cats."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['cats']
+only one person works at this petshop and she likes cats.
+</code></pre></div></div>
+
+<h3 id="its-binary-search-time">ITS BINARY SEARCH TIME</h3>
+<ul>
+  <li>By the end of this you should be able to know what binary search is</li>
+  <li>What the time complexity of binary search is</li>
+  <li>How to derive the time complexity for binary search</li>
+</ul>
+
+<h3 id="how-does-binary-search-work">HOW DOES BINARY SEARCH WORK</h3>
+<ul>
+  <li>pay attention to the demonstration in the front</li>
+  <li>volunteers will be called up</li>
+  <li>candy if you participate</li>
+</ul>
+
+<p>Binary search is like a guessing game where you halve your options at each step. Imagine you’re finding a name in a phone book:</p>
+
+<ol>
+  <li><strong>First Step:</strong> You open the book in the middle.</li>
+  <li><strong>Second Step:</strong> Is the name before or after the middle? You eliminate half of the remaining names.</li>
+  <li><strong>Repeat:</strong> Keep dividing until you find the name or run out of names to check.</li>
+  <li><strong>MAKE SURE YOUR LIST IS SORTED</strong> Binary search will not work if the list isn’t sorted</li>
+</ol>
+
+<p>Because you’re halving the options each time, it’s super quick. If you have (n) names, it takes at most ( \log_2(n) ) steps to find a name. This efficiency, where the time it takes doesn’t increase much as the number of names in the phone book grows, is what makes binary search awesome! Binary search is also more optimal for searcihng compared to a linear search for anything that doesnt include small lists..</p>
+
+<h3 id="demo-being-shown-above">Demo Being shown above</h3>
+<p>The sorted list we have currently, has integers [1, 3, 4, 5, 13, 20], we are currently trying to find the index of the the integer 1 within the list</p>
+
+<p>How it works is we start at element 0 for our left position and element 5 for our rightwards position</p>
+
+<p>Our middle position becaomes 5 because ((5+0)//2)=3 so element 3</p>
+
+<p>Our element 3 within the list gives us the integer 5</p>
+
+<p>We then realize that oh 5 is greater then 3 so we have to move leftwards</p>
+
+<p>Then to make the algorithm more efficient we move the r backwards 1 beacuse we have already checked at this point</p>
+
+<p>So now we can reduce the list to [1, 3, 4]</p>
+
+<p>Now we can repeat the same steps as before and find the middle of this list which is 3</p>
+
+<p>We realize thats not equivalent to the integer 1, and our value is still too great</p>
+
+<p>So we move the middle leftwards 1 positioon</p>
+
+<p>AND BAM THATS HOW YOU CAN DO BINARY SEARCH</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#example of binary search in python has a time complexity of O(n)
+</span><span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">=</span> <span class="mi">0</span> <span class="c1">#our minimum element
+</span>    <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># our maximum element
+</span>    <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> 
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+
+<span class="n">sorted_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Linear Search Approach in O(n)
+</span><span class="k">def</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">sorted_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">sorted_list</span><span class="p">[</span><span class="n">o</span><span class="p">]</span><span class="o">==</span><span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+<span class="c1">#Does not have to be a sorted list for the sake of comparison I just made it sorted
+</span><span class="n">sorted_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">linear_search</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">sorted_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
+<p>Using linear search make a list with elements [“eggs”, “milk”, “butter”, “cake”]
+Then randomize an element 1-4 within that list and find the index of it via linear search</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#code here
+</span></code></pre></div></div>
+
+<p>How big O Notation works in the context works in the case of search methods.</p>
+
+<p>Lets first explain for linear search, because linear search only requires a iterative approach all we use is O(n), this is due
+to the loop infinitely going until it finds the element and then after that it doesnt do anything.</p>
+
+<p>However binary search is special in this sense because you don’t actually have to go through an entire loop how you can picture this is by imagining a list with 1000000 integer values in it and my target value is 59223, binary search makes it so that you just divide the list by 2 until you find the element. It’s a lot faster then the iterative approach, where I keep going until I get to 59223 what this does is it allows me to speed up the time and memory usage I take. because I keep dividing the list by 2 allowing for me to form a logarithm because its just repetitive multiplication of 1/2 and then that makes it so that O(log(n)) becomes the time complexity for the Binary search algorithm.</p>
+
+<p>HW TIME!!!!!!!!!!!!!!!!!!
+We want you guys to make a guessing game below, where utilizing binary search you can within a list of 100 sorted elemments find, a value that your code will randomize using random.randint(). We want you to also make it so every iteration output the number is higher up or lower until you actually get to the answer. We also want number of tries it took to guess the number. Points will be awarded for customizations and potential changes.</p>
+
+<p>Extra credit (for above 95%): Send a screenshot on me to slack showing you can do this: https://codeforces.com/contest/1201/problem/C</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Code in here
+</span></code></pre></div></div>
+
+<p>HW Part 2: This time instead of utilizing binary search to do it I want you to use linear search to get to the same value and I want you to output the number of iterations it took to get there. Aswell as a congrats message upon getting there points will be awarded upon creativity and completion.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Code in here
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/5.a/c4.1/2023/10/19/P2-Lists-and-Search_IPYNB_2_.html" hidden></a>
+</article>

@@ -1,0 +1,391 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Individual Review JM</h1><p class="page-description">Recap of key events and learnings</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-25T00:00:00-07:00" itemprop="datePublished">
+        Oct 25, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#issue-recap">Issue Recap</a></li><li><a href="#overview-of-game-control---indexhtml">Overview of game control - index.html</a><ul><li><a href="#html-elements">HTML Elements</a></li><li><a href="#javascript-module-and-imports">JavaScript Module and Imports</a></li><li><a href="#game-constants">Game Constants</a></li><li><a href="#game-assets">Game Assets</a></li><li><a href="#game-loop">Game Loop</a></li><li><a href="#event-listeners">Event Listeners</a></li></ul></li><li><a href="#game-environment---assetsjsalienworldgameenvjs">Game environment - assets/js/alienWorld/GameEnv.js</a></li><li><a href="#game-objects---assetsjsalienworldgameobjectjs">Game objects - assets/js/alienWorld/GameObject.js</a></li><li><a href="#migrating-to-oop---background">Migrating to OOP - Background</a></li></ul><h2 id="issue-recap">Issue Recap</h2>
+<p>During the project, I have tried to keep issues to track work and progress.</p>
+
+<p><a href="https://github.com/jm1021/alienWorld/issues/created_by/jm1021">Online Issues</a> and suumary below…</p>
+
+<ul>
+  <li><a href="https://github.com/jm1021/alienWorld/issues/8">Restructure of Index Files</a>.   This highlights problems addressed and before and after changes.  Additionally, a big portion of this review document discussess index.html and some of its key challenges.</li>
+  <li><a href="https://github.com/jm1021/alienWorld/issues/7">Resize Images</a>.   This is a quick discussion of how I resized my images.   They were large and it was causing characters to slow down.  After resize, things are faster and my eye can not tell the difference.</li>
+  <li><a href="https://github.com/jm1021/alienWorld/issues/6">Dynamic Screen Resizing</a>.  Tho figure out how to resize background and characters took a lot of time and a few lines of code that are show.</li>
+  <li><a href="https://github.com/jm1021/alienWorld/issues/3">ClassIO Diagram</a>.  This document has worked well to determine objects.  Though, there has been some additions as project continues.  The laregest is managing Game Objects in GameObjectArray.  This is shown in use in index.html in GameLoop and Resizing.</li>
+  <li><a href="https://github.com/jm1021/alienWorld/issues/9">Migrating to OOP</a>.  This is a sample and test of scaling index.html to only do background.  This could be a great starting point to using code from this project to migrate your own system.</li>
+</ul>
+
+<h2 id="overview-of-game-control---indexhtml">Overview of game control - index.html</h2>
+<p>Main game page (aka Game Controller).  This has been an area of learning and rework.</p>
+
+<h3 id="html-elements">HTML Elements</h3>
+<p>HTML canvas container <code class="language-plaintext highlighter-rouge">html (&lt;div id="canvasContainer"&gt;&lt;/div&gt;</code>.  This is location where canvas elements are added to the DOM (background, dog, monkey, …).</p>
+
+<p>Minima Layout. It is very important to know how a minima site works and layout files provided by a Theme.  Everyting we do in the game is considered content in the minima layout. Thus, the game is content between GitHub Pages “header” and “footer”.</p>
+<ul>
+  <li><a href="https://github.com/jekyll/minima/blob/master/README.md">Minima Readme</a></li>
+  <li><a href="https://github.com/jekyll/minima/blob/master/_layouts/base.html">Minima Layout</a></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">&lt;!-- include head.html --&gt;</span>
+
+  <span class="nt">&lt;body&gt;</span>
+
+    <span class="c">&lt;!-- include header.html --&gt;</span>
+
+    <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"page-content"</span> <span class="na">aria-label=</span><span class="s">"Content"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- content --&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+
+    <span class="c">&lt;!-- include footer.html --&gt;</span>
+
+  <span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>This project inherits style from _sass/minima directory.  Developers should start in this directory before adding CSS already defined in GitHub Pages.</p>
+
+<ul>
+  <li>custom-styles.scss is file used to customize style.  Developers start here to differentiate style.</li>
+</ul>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="s2">"minima/Nighthawkpages-dracula-highlight"</span><span class="p">;</span> 
+<span class="k">@import</span> <span class="s2">"minima/dark-mode"</span><span class="p">;</span> <span class="c1">// Dracula Highlight recommended for dark mode</span>
+</code></pre></div></div>
+
+<ul>
+  <li>dark-mode.scss is file that provides inverted background feature for anyting inside a “canvas” tag, this is intended feature to go with idea of being on an alien planet</li>
+</ul>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:root</span> <span class="p">{</span>
+    <span class="na">--default-canvas-filter</span><span class="p">:</span> <span class="nf">invert</span><span class="p">(</span><span class="m">100%</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cm">/* more code not shown */</span>
+<span class="nt">canvas</span> <span class="p">{</span>
+    <span class="nl">filter</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">default-canvas-filter</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="javascript-module-and-imports">JavaScript Module and Imports</h3>
+
+<p>In any system of size you will import code from other files.</p>
+<ul>
+  <li>Observe script tag becomes a “module” in order to support imports</li>
+  <li>The import commands reference code from files that contain the Class definitions that will be used to define “Game Objects”.</li>
+  <li>The imports are the key Classes in game that are used to create objects.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span><span class="nt">&gt;</span>
+    <span class="k">import</span> <span class="nx">GameEnv</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">/student2.0/assets/js/alienWorld/GameEnv.js</span><span class="dl">'</span><span class="p">;</span>
+    <span class="k">import</span> <span class="nx">Background</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">/student2.0/assets/js/alienWorld/Background.js</span><span class="dl">'</span><span class="p">;</span>
+    <span class="k">import</span> <span class="nx">Character</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">/student2.0/assets/js/alienWorld/Character.js</span><span class="dl">'</span><span class="p">;</span>
+    <span class="k">import</span> <span class="p">{</span> <span class="nx">initDog</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">/student2.0/assets/js/alienWorld/CharacterDog.js</span><span class="dl">'</span><span class="p">;</span>
+    <span class="k">import</span> <span class="p">{</span><span class="nx">initMonkey</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">/student2.0/assets/js/alienWorld/CharacterMonkey.js</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="c1">// more code not shown</span>
+<span class="nt">&lt;/script&gt;</span>
+
+</code></pre></div></div>
+
+<h3 id="game-constants">Game Constants</h3>
+
+<p>A game can have constants and static objects that are used to control game behavior.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Setup Globals</span>
+    <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">gameSpeed</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">gravity</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="game-assets">Game Assets</h3>
+
+<p>A game can have several assets.  In this game we are using images for backgrounds and sprite images for characters.   These are loaded into DOM prior to moving forward to game logic.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Prepare HTML with Background Canvas</span>
+<span class="kd">const</span> <span class="nx">backgroundCanvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">canvas</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">backgroundCanvas</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">background</span><span class="dl">"</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#canvasContainer</span><span class="dl">"</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">backgroundCanvas</span><span class="p">);</span>
+<span class="c1">// Background object</span>
+<span class="kd">const</span> <span class="nx">backgroundSpeedRatio</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="k">new</span> <span class="nx">Background</span><span class="p">(</span><span class="nx">backgroundCanvas</span><span class="p">,</span> <span class="nx">backgroundImg</span><span class="p">,</span> <span class="nx">backgroundSpeedRatio</span><span class="p">);</span>
+
+<span class="c1">// Prepare HTML with Platform Canvas</span>
+<span class="kd">const</span> <span class="nx">platformCanvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">canvas</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">platformCanvas</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">platform</span><span class="dl">"</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#canvasContainer</span><span class="dl">"</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">platformCanvas</span><span class="p">);</span>
+<span class="c1">// Platform object</span>
+<span class="kd">const</span> <span class="nx">platformSpeedRatio</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="nx">initPlatform</span><span class="p">(</span><span class="nx">platformCanvas</span><span class="p">,</span> <span class="nx">platformImg</span><span class="p">,</span> <span class="nx">platformSpeedRatio</span><span class="p">);</span>
+<span class="c1">//...</span>
+</code></pre></div></div>
+
+<h3 id="game-loop">Game Loop</h3>
+
+<p>This code is the heartbeat of the game.  All the Game Objects are refreshed.</p>
+<ul>
+  <li>gameLoop is a function that is activated when page loads</li>
+  <li>requestAnimationFrame recursively calls gameLoop according to refresh rate of computer screen</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Game loop</span>
+<span class="kd">function</span> <span class="nx">gameLoop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">gameObj</span> <span class="k">of</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjectArray</span><span class="p">){</span>
+        <span class="nx">gameObj</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+        <span class="nx">gameObj</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">gameLoop</span><span class="p">);</span>  <span class="c1">// cycle game, aka recursion</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="event-listeners">Event Listeners</h3>
+
+<p>The start file, in this case the index.html, often will often act on events produced by user.</p>
+
+<ul>
+  <li>Resize.  A common destop action is resize of window.   This will impact many Game Object as they are in proporition to size of window.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Window resize</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">setGameEnv</span><span class="p">();</span>  <span class="c1">// Update GameEnv dimensions</span>
+
+    <span class="c1">// Call the sizing method on all game objects</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">gameObj</span> <span class="k">of</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjectArray</span><span class="p">){</span>
+        <span class="nx">gameObj</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Toggle "canvas filter property" between alien and normal</span>
+<span class="kd">var</span> <span class="nx">isFilterEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">defaultFilter</span> <span class="o">=</span> <span class="nx">getComputedStyle</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="dl">'</span><span class="s1">--default-canvas-filter</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">toggleCanvasEffect</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">gameObj</span> <span class="k">of</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjectArray</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isFilterEnabled</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// toggle off</span>
+            <span class="nx">gameObj</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// remove filter</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// toggle on</span>
+            <span class="nx">gameObj</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="nx">defaultFilter</span><span class="p">;</span>  <span class="c1">// remove filter</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">isFilterEnabled</span> <span class="o">=</span> <span class="o">!</span><span class="nx">isFilterEnabled</span><span class="p">;</span>  <span class="c1">// switch boolean value</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="game-environment---assetsjsalienworldgameenvjs">Game environment - assets/js/alienWorld/GameEnv.js</h2>
+
+<p>A technique used in Object Oriented Programming is to handle system wide constant values in a “static” variables.  These variables are maintained in the “GameEnv” class and can be included and accessed with class name prefix.</p>
+
+<p>In code in index.html you will see reference to GameEnv.speed and calls to set GamEnv.setGameEnv.  Properties are set in this code that enable objects to reference things like Top of screen, or ratio of Object speed versus GameSpeed.</p>
+
+<p>Class definition of Global attributes</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">GameEnv</span> <span class="p">{</span>
+    <span class="c1">// Prototype static variables</span>
+    <span class="kd">static</span> <span class="nx">innerWidth</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">prevInnerWidth</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">innerHeight</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">top</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">bottom</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">prevBottom</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">gameSpeed</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">gravity</span><span class="p">;</span>
+
+    <span class="c1">// Make the constructor private to prevent instantiation</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">GameEnv is a static class and cannot be instantiated.</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+     <span class="c1">// Setter for Top position</span>
+     <span class="kd">static</span> <span class="nx">setTop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// set top of game as header height</span>
+        <span class="kd">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">header</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">header</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Setter for Bottom position</span>
+    <span class="kd">static</span> <span class="nx">setBottom</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// set bottom of game as background height</span>
+        <span class="kd">const</span> <span class="nx">background</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#background</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">background</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="nx">background</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Setter for Game Environment </span>
+    <span class="kd">static</span> <span class="nx">setGameEnv</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// store previous for ratio calculatins on resize</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">prevInnerWidth</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">prevBottom</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">bottom</span><span class="p">;</span>
+    
+        <span class="c1">// game uses available width and heith</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">innerHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">setTop</span><span class="p">();</span>
+        <span class="c1">// this.setBottom() is ignored for now as resize of background object determinse bottom</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">GameEnv</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="game-objects---assetsjsalienworldgameobjectjs">Game objects - assets/js/alienWorld/GameObject.js</h2>
+
+<p>This is a more collaboritive area.</p>
+<ul>
+  <li>I had a big focus on starting static gameObjectArray [ ] as this was critical to events and main game loop.  A</li>
+  <li>The collision code in game object and binary capture of status and relative position were key element in the code design below.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">GameEnv</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./GameEnv.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">GameObject</span> <span class="p">{</span>
+    <span class="c1">// container for all game objects in game</span>
+    <span class="kd">static</span> <span class="nx">gameObjectArray</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">image</span><span class="p">,</span> <span class="nx">speedRatio</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">frame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">image</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>  <span class="c1">// Image() width (meta data)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span> <span class="c1">// Image() height</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionWidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">aspect_ratio</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speedRatio</span> <span class="o">=</span> <span class="nx">speedRatio</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">gameSpeed</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">speedRatio</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionData</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="c1">// Add this object to the game object array so collision can be detected</span>
+        <span class="c1">// among other things</span>
+        <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjectArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> 
+    <span class="p">}</span>
+
+    <span class="c1">// X position getter and setter</span>
+    <span class="nx">getX</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">setX</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Y position getter and setter</span>
+    <span class="nx">getY</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">setY</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Default action is no action
+     * override when you extend for custom action
+    */</span>
+    <span class="nx">collisionAction</span><span class="p">(){</span>
+        <span class="c1">// no action</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Collision checks
+     * uses GameObject isCollision to detect hit
+     * calls collisionAction on hit
+    */</span>
+    <span class="nx">collisionChecks</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">gameObj</span> <span class="k">of</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjectArray</span><span class="p">){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">!=</span> <span class="nx">gameObj</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">isCollision</span><span class="p">(</span><span class="nx">gameObj</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collisionData</span><span class="p">.</span><span class="nx">hit</span><span class="p">){</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">collisionAction</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Collision detection method
+     * usage: if (player.isCollision(platform)) { // action }
+    */</span>
+    <span class="nx">isCollision</span><span class="p">(</span><span class="nx">otherGameObject</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionData</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">hit</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionWidth</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span> <span class="o">&amp;&amp;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">collisionWidth</span> <span class="o">&amp;&amp;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionHeight</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">y</span> <span class="o">&amp;&amp;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">collisionHeight</span><span class="p">),</span>
+            <span class="na">touchPoints</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">this</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">object</span><span class="p">:</span> <span class="k">this</span><span class="p">,</span>
+                    <span class="na">top</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">y</span><span class="p">),</span> 
+                    <span class="na">bottom</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">setY</span><span class="p">),</span> 
+                    <span class="na">left</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> 
+                    <span class="na">right</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span> 
+                <span class="p">},</span>
+                <span class="na">other</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">object</span><span class="p">:</span> <span class="nx">otherGameObject</span><span class="p">,</span>
+                    <span class="na">top</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">y</span><span class="p">),</span> 
+                    <span class="na">bottom</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">y</span><span class="p">),</span> 
+                    <span class="na">left</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> 
+                    <span class="na">right</span><span class="p">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">otherGameObject</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span> 
+                <span class="p">}</span>
+            <span class="p">}</span> 
+            
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">GameObject</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h2 id="migrating-to-oop---background">Migrating to OOP - Background</h2>
+
+<p>To migrate to this project it can begin by changingthe background to your preference.  This code starts in index.htmol and simply change the image in the frontmatter.</p>
+
+<p>Swap beteen alien_planet.jpg and alien_plant2.jpg</p>
+
+<ul>
+  <li>index.html simply change yml to point to your preference</li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span> <span class="s">/images/alien_planet.jpg</span>
+</code></pre></div></div>
+
+<p>Rework ADJUST in Background.js to crop out imperfections in image</p>
+
+<ul>
+  <li>assets/js/alienWorld/Background.js change adjust if you want to reduce height of image</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Update canvas size</span>
+        <span class="kd">const</span> <span class="nx">ADJUST</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">// visual layer adjust; alien_planet.jpg: 1.42, try 1 for others</span>
+        <span class="c1">// ... code not shown xxx</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+
+  </div><a class="u-url" href="/student2.0/2023/10/25/Alien_World-Tangibles_IPYNB_2_.html" hidden></a>
+</article>

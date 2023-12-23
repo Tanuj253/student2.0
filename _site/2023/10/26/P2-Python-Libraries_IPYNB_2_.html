@@ -1,0 +1,257 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 Python Libraries</h1><p class="page-description">To teach the class how to use public Python libraries around the internet</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-26T00:00:00-07:00" itemprop="datePublished">
+        Oct 26, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Dante, Jake, Jordan, Ethan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#what-is-a-library">What is a Library?</a></li><li><a href="#required-installations">Required Installations</a></li><li><a href="#images-using-requests-and-pillow-libraries">Images using requests and pillow libraries</a></li><li><a href="#hack-1">Hack 1</a></li><li><a href="#math-operations-with-python-libraries">Math Operations With Python Libraries</a></li><li><a href="#example-sine-graph">Example Sine Graph</a></li><li><a href="#hack-2">Hack 2</a></li></ul><h3 id="what-is-a-library">What is a Library?</h3>
+<p>Essentially a list of pre-written code that you can use to streamline and clean up your program.</p>
+
+<p>Libraries can help simplify complex programs</p>
+
+<p>APIS are specifications for how the procedures in a library behave, and how they can be used</p>
+
+<p>Documentations for an API/library is necessary in understanding the behaviors provided by the API/library and how to use them</p>
+
+<p>Libraries that we will go over: Requests, Pillow, Pandas, Numpy, Scikit-Learn, TensorFlow, matplotlib.</p>
+
+<h3 id="required-installations">Required Installations</h3>
+<p>Please run the following commands in your vscode terminal in order to continue the lesson</p>
+<ul>
+  <li>pip install numpy</li>
+  <li>pip install matplotlib</li>
+  <li>pip install scikit-learn</li>
+  <li>pip install pillow</li>
+  <li>pip install pandas</li>
+  <li>pip install tensorflow</li>
+  <li>pip install requests</li>
+</ul>
+
+<h3 id="images-using-requests-and-pillow-libraries">Images using requests and pillow libraries</h3>
+<p>‘Requests’ is focused on handling HTTP requests and web data while ‘Pillow’ is designed for data manipulation and analysis
+It’s common to see them used together in data-related assignments where data is fetched by HTTP requests using Requests and then processed and analyzed with Pandas.</p>
+
+<p>Here’s an example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="c1"># Step 1: Download an image using Requests
+</span><span class="n">image_url</span> <span class="o">=</span> <span class="s">"https://example.com/path/to/your/image.jpg"</span>  <span class="c1"># Replace with the actual URL of the image you want to download
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="c1"># Step 2: Process the downloaded image using Pillow
+</span>    <span class="n">image_data</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>  <span class="c1"># Create an in-memory binary stream from the response content
+</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">image_data</span><span class="p">)</span>  <span class="c1"># Open the image using Pillow
+</span>
+    <span class="c1"># Perform image processing tasks here, like resizing or applying filters
+</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">resize</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>  <span class="c1"># Resize the image and replace x,y with desired amounts
+</span>
+    <span class="c1"># Step 3: Save the processed image using Pillow
+</span>    <span class="n">img</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"processed_image.jpg"</span><span class="p">)</span>  <span class="c1"># Save the processed image to a file
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Image downloaded, processed, and saved."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Failed to download image. Status code: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>In this code, we use the Requests library to download an image from a URL and then if the download is successful the HTTP status code 200 will pop up, and from there we create an in-memory binary stream (BytesIO) from the response content. We then use the Pillow library to open the image, make any necessary changes, and save the processed image to a file.</p>
+
+<p>Here’s a step by step tutorial on how we wrote this code: 
+1)We started by importing the necessary libraries, which were Requests, Pillow, and io.</p>
+
+<p>2)Download the Image</p>
+
+<p>3)Use the Requests library to send an HTTP GET request to the URL to download the image.
+Check the response status code to make sure the download goes through(status code 200).</p>
+
+<p>4)If the download is successful, create an in-memory binary stream (BytesIO) from the response content.
+Process the Image:</p>
+
+<p>5)Utilize the Pillow library to open the image from the binary stream.
+Change photo to desired preference(ie: size)
+Save the Processed Image:</p>
+
+<p>6)Save the processed image to a file using Pillow. Choose a filename and file format for the saved image.</p>
+
+<h3 id="hack-1">Hack 1</h3>
+
+<p>Write a Python code that accomplishes the following tasks:</p>
+
+<p>Downloads an image from a specified URL using the Requests library.
+Processes the downloaded image (like resizing) using the Pillow library.
+Save the processed image to a file.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Code here
+</span></code></pre></div></div>
+
+<h3 id="math-operations-with-python-libraries">Math Operations With Python Libraries</h3>
+<p>Numpy(Numerical Python) is used for numerical and scientific computing. It provides tools for handling large sets of numbers, such as data tables and arrays. Numpy makes it easier and more efficient to do mathematical tasks.</p>
+
+<p>The Matplotlib library lets you create a visual representation of your data (graphs, charts, and etc.)</p>
+
+<h3 id="example-sine-graph">Example Sine Graph</h3>
+<p>Uses numpy and matplotlib libaries</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Generate sample data with NumPy
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+<span class="c1"># Create an array of values from 0 to 2*pi
+# 100 is included to have 100 points distributed between 0 and 2π to make graph smoother
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># Compute the sine of each value
+</span>
+<span class="c1"># Create a simple line plot using Matplotlib
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Sine Function'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>  <span class="c1"># Create the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Sine Function'</span><span class="p">)</span>  <span class="c1"># Set the title
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>  <span class="c1"># Label for the x-axis
+</span><span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'sin(x)'</span><span class="p">)</span>  <span class="c1"># Label for the y-axis
+</span><span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># Display a grid
+</span><span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1"># Show the legend
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Display the plot
+</span>
+</code></pre></div></div>
+
+<h3 id="hack-2">Hack 2</h3>
+<p>Using the data from the numpy library, create a visual graph using different matplotlib functions.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Generate data for two lines
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># Create an array of values from 0 to 10
+</span><span class="n">y1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Set of data poits
+</span>
+<span class="c1"># Create and display a plot using Matplotlib
+</span>
+<span class="c1"># your code here
+</span>
+</code></pre></div></div>
+
+<p>Tensor Flow is used in deep learning and neural networks, while scikit-learn is used for typical machine learning tasks. When used together, they can tackle machine learning projects. In the code below, Tensor Flow is used for model creation and training. Scikit-learn is used for data-processing and model evaluation.</p>
+
+<h2 id="pip-install-tensorflow-scikit-learn">Pip install tensorflow scikit-learn</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<span class="c1"># Generate synthetic data
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Feature
+</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Target variable with noise
+# Split the data into training and testing sets
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Standardize the features
+</span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Create a simple linear regression model using TensorFlow and Keras
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">layers</span><span class="p">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)),</span>
+    <span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="c1"># Compile the model
+</span><span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'mean_squared_error'</span><span class="p">)</span>
+<span class="c1"># Train the model
+</span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Make predictions on the test set
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Calculate the Mean Squared Error on the test set
+</span><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mean Squared Error: </span><span class="si">{</span><span class="n">mse</span><span class="p">:.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A decrease in loss and time metrics (ms/epoch and ms/step) shows the efficiency increases as the training epochs increases</p>
+
+<h2 id="hack">Hack</h2>
+<p>fill in the missing code to match the custom data set</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<span class="c1"># Generate a custom dataset (replace this with your data loading code)
+# Synthetic data: House prices based on number of bedrooms and square footage
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">bedrooms</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span>
+<span class="n">square_footage</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span>
+<span class="n">house_prices</span> <span class="o">=</span> <span class="mi">100000</span> <span class="o">+</span> <span class="mi">50000</span> <span class="o">*</span> <span class="n">bedrooms</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">square_footage</span> <span class="o">+</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="c1"># Combine features (bedrooms and square footage) into one array
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">bedrooms</span><span class="p">,</span> <span class="n">square_footage</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">house_prices</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Split the data into training and testing sets
+</span>
+<span class="c1"># Standardize the features
+</span>
+<span class="c1"># Create a regression model using TensorFlow and Keras
+</span>
+    <span class="c1"># Input shape adjusted to the number of features
+</span>     <span class="c1"># Output layer for regression
+</span>
+<span class="c1"># Compile the model for regression
+</span>  <span class="c1"># Using MSE as the loss function
+# Train the model
+</span>
+<span class="c1"># Make predictions on the test set
+</span>
+<span class="c1"># Calculate the Mean Squared Error on the test set
+</span>
+</code></pre></div></div>
+
+<h2 id="homework-1">HOMEWORK 1</h2>
+
+<p>Create a GPA calculator using Pandas and Matplot libraries and make:
+1) A dataframe
+2) A specified dictionary
+3) and a print function that outputs the final GPA</p>
+
+<p>Extra points can be earned with creativity.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># your code here
+</span></code></pre></div></div>
+
+<h2 id="homework-2">HOMEWORK 2</h2>
+
+<p>Import and use the “random” library to generate 50 different points from the range 0-100, then display the randomized data using a scatter plot.</p>
+
+<p>Extra points can be earned with creativity.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># your code here
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/26/P2-Python-Libraries_IPYNB_2_.html" hidden></a>
+</article>

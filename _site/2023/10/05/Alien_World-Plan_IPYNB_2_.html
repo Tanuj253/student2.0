@@ -1,0 +1,288 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Alien World Project Plan</h1><p class="page-description">The concept of making an Alien World simply was created by looking at assets that were publicly available.  The idea is to follow student provided Mario Game, but try to customize background and actions to be focused on an Alien World.  The Theme of the game is CompSci education, loops, objects, and Monkeys/Dogs as space aliens.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-05T00:00:00-07:00" itemprop="datePublished">
+        Oct 5, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#backgound">Backgound</a><ul><li><a href="#initial-concepts">Initial concepts:</a></li><li><a href="#advanced-concepts">Advanced Concepts</a></li></ul></li><li><a href="#outline-of-scenes">Outline of Scenes</a><ul><li><a href="#intro-screen">Intro Screen</a></li><li><a href="#identity">Identity</a></li><li><a href="#forcepower">Force/Power</a></li><li><a href="#game-entry">Game Entry</a></li><li><a href="#game-one-idea">Game One Idea</a></li><li><a href="#game-two-idea-thoughts-to-be-determined">Game Two Idea (Thoughts to be determined)</a></li></ul></li><li><a href="#game-three-idea--thoughts-to-be-determined">Game Three Idea  (Thoughts to be determined)</a></li><li><a href="#github-pages-project">GitHub Pages Project</a><ul><li><a href="#make-a-github-pages-repository">Make a GitHub Pages Repository</a></li></ul></li><li><a href="#anatomy-of-alien-world">Anatomy of Alien World</a><ul><li><a href="#game-code-and-oop">Game Code and OOP</a></li><li><a href="#migrating-to-oop---background">Migrating to OOP - Background</a></li></ul></li></ul><h2 id="backgound">Backgound</h2>
+<p>Over my Computer Science years I have found that it is a lot more interesting to code if you start with something fun.   Loops are kind of boring, but if you add animation, alien planet, and monkeys what is not to like.</p>
+
+<h3 id="initial-concepts">Initial concepts:</h3>
+
+<ul>
+  <li>Mr M (Product Owner, Scrum Master)
+    <ul>
+      <li>Introduce basic concepts to non coder, even younger children</li>
+      <li>Make game easy, instead of start over continue but require more events for success</li>
+      <li>Use features like collision, role play, gravity, squish to help in countdown</li>
+      <li>Try to integrate coding concepts like Object Oriented Programming,into game</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="advanced-concepts">Advanced Concepts</h3>
+
+<ul>
+  <li>
+    <p>Quinn. Ideas from CSA friend Quinn
+  In a distant galaxy, far, far away, there was a world known as “Codeonia.” In this realm, software engineers and programmers lived harmoniously, creating and coding various applications for the universe. Among the inhabitants of Codeonia was Java the Hut, a wise and experienced programmer known for his mastery of programming languages.
+  One day, a group of mischievous bugs and glitches threatened to plunge Codeonia into chaos. These digital nuisances were led by Darth Compiler, a formidable dark coder who sought to corrupt the code of the entire galaxy.</p>
+
+    <ul>
+      <li>Monkeys (Good and Bad)
+        <ul>
+          <li>C++3PO</li>
+          <li>Darth Compiler</li>
+          <li>Ewak exception handle</li>
+          <li>R2-D-Arrays</li>
+          <li>Boba Fetch API</li>
+        </ul>
+      </li>
+      <li>More worlds</li>
+      <li>Jetpack</li>
+      <li>New characters
+        <ul>
+          <li>Space Jellyfish</li>
+          <li>Robots</li>
+          <li>Aliens</li>
+        </ul>
+      </li>
+      <li>Enemies have different abilities</li>
+      <li>Go between planets for levels</li>
+      <li>Zero gravity level</li>
+      <li>Astroid level</li>
+      <li>Star power up</li>
+      <li>Black hole</li>
+    </ul>
+  </li>
+  <li>Mr Lopez
+    <ul>
+      <li>Surfaces with different properties
+        <ul>
+          <li>Bouncy</li>
+          <li>Sticky</li>
+          <li>Damaging</li>
+        </ul>
+      </li>
+      <li>Create obstacles or challenges that require players to use conditional statements (e.g., if-else) to make decisions, such as determining if a door is locked or open based on collected keys.</li>
+      <li>Use abilities by calling functions.</li>
+      <li>Different resources require different variables which we show the player.</li>
+      <li>Introduce the concept of objects and classes by having players interact with different spaceship types, each with its own properties and behaviors</li>
+    </ul>
+  </li>
+  <li>Rohan
+    <ul>
+      <li>Maybe add some competitive aspects to the game –&gt; who completed the course in fastest time</li>
+      <li>Could have Monkey vs Dog competition
+        <ul>
+          <li>Each competitor chooses one and then they can race against each other</li>
+          <li>Could also emulate the “space race” that was present during cold war</li>
+        </ul>
+      </li>
+      <li>Could use HTML canvas in order to store characters</li>
+      <li>Natural enemies such as winds, requisite power to reach space, etc. can be combined with physical enemies</li>
+      <li>Different power ups you could buy based on your completion of previous levels/things that have been collected
+        <ul>
+          <li>Would need to store these per player across sessions / levels</li>
+        </ul>
+      </li>
+      <li>Graphic for swithing between planets</li>
+      <li>End goal could be to “liberate” the universe from some big enemy</li>
+      <li>Local storage or cloud database can be used to store user data</li>
+      <li>Can have different questions you would have to answer while in a level</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="outline-of-scenes">Outline of Scenes</h2>
+
+<p>Scene Design will be an ongoing process, as we enhance game play it is expected to have new ideas.  By splitting game up into parts it provides unique development opportunities to each individual.</p>
+
+<ol>
+  <li>Game Intro (Map design of Game)</li>
+  <li>Identity and Force/Power Design</li>
+  <li>Game Play, start with different options  Dog Sprite, Monkey Sprite, Mario Sprite</li>
+  <li>Note, each level could start with Character or Background and build up as code progresses</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Game Intro   Identity       Force/Power     Journey
+|-------|    |---------|    |---------|    |----------|
+| In a  |    | Setup 1 |    | Setup 2 |    | Game Play|
+| galaxy| -&gt; |  Pick   | -&gt; |  Pick   | -&gt; | Selection| -&gt; Game Entry 
+| ....  |    |Character|    |  Power  |    | Portal   |
+|-------|    |---------|    |---------|    |----------|
+</code></pre></div></div>
+
+<h3 id="intro-screen">Intro Screen</h3>
+
+<p>Option at Intro Screen to begin game, play codeOnia intro, go to Identity, Force/Power screens.</p>
+
+<ul>
+  <li>A codeOnia Intro, long version with character introductions
+    <ul>
+      <li>Quick exit or short version</li>
+    </ul>
+  </li>
+  <li>Repeating Gif of Game Play</li>
+</ul>
+
+<h3 id="identity">Identity</h3>
+
+<p>Option at Intro Screen to establish a character Dog, Monkey (aka Sprite)</p>
+
+<ul>
+  <li>C++3PO would be guide character in scene.</li>
+  <li>This step would introduce ‘Objects’ and ‘Variables’</li>
+</ul>
+
+<h3 id="forcepower">Force/Power</h3>
+
+<p>Option at Intro Screen to add powers to character to help them win the game</p>
+
+<ul>
+  <li>R-2Darray-2 would be guide character in scene</li>
+  <li>Force/Power would introduce
+    <ul>
+      <li>enhanced Data Structure to hold powers</li>
+      <li>methods in object associated with powers</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="game-entry">Game Entry</h3>
+<p>The entry to the game would introduce ‘Conditions`</p>
+
+<ul>
+  <li>Darth-If-Vader would be nemisis or character that inflicts obstacles in game</li>
+  <li>Based off of obstacles, character, and powers game play begins</li>
+</ul>
+
+<h3 id="game-one-idea">Game One Idea</h3>
+<p>Escape the loop.</p>
+<ul>
+  <li>Use non-animated character in this game, a space monkey.</li>
+  <li>Create a looping and consistent experience in game.  Keep game timer and loop timer.</li>
+  <li>Objective of game is to reduce “code counter” or “loop” from 10 to zero
+    <ul>
+      <li>Jump on top of NPC platform characters for point reduction, refactor Goomba code for more appropriate character</li>
+      <li>Add points to loop counter for collision with NPC character</li>
+      <li>Have sticky or water hazards that delay progress, have Power/Force to free from trap</li>
+      <li>Have a condition open up when counter gets to zero, use Power/Force to travel to and go through a portal to exit game level</li>
+    </ul>
+  </li>
+  <li>Follow Mario code guildelines for …
+    <ul>
+      <li>platform</li>
+      <li>rivers or sticky traps</li>
+      <li>replace gombas with more appropriate character</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="game-two-idea-thoughts-to-be-determined">Game Two Idea (Thoughts to be determined)</h3>
+<p>Escape the nested loops.</p>
+<ul>
+  <li>Use dog as character and animation.</li>
+  <li>Start force/power features turning Dog into ball to allow horizontal collision for reward</li>
+  <li>Start using jetpack experience to interact with objects above platform for super inner loop reduction.</li>
+</ul>
+
+<h2 id="game-three-idea--thoughts-to-be-determined">Game Three Idea  (Thoughts to be determined)</h2>
+<p>Defeat code infections from Dart Compiler.  Have ways to bypass level one and level two may inserting coding.</p>
+<ul>
+  <li>Use character from selections in Identity / Force Power obtained from local storage.</li>
+  <li></li>
+</ul>
+
+<h2 id="github-pages-project">GitHub Pages Project</h2>
+<p><a href="https://github.com/jm1021/alienWorld">alienWorld repository</a></p>
+
+<h3 id="make-a-github-pages-repository">Make a GitHub Pages Repository</h3>
+<blockquote>
+  <p>Goto GitHub <a href="https://github.com/jm1021/alienWorld">alienWorld repository</a></p>
+</blockquote>
+
+<ul>
+  <li>Clone to your machine and get started with VSCode</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>vscode <span class="c"># work in vscode directory for consistency</span>
+<span class="nv">$ </span>git clone https://github.com/jm1021/alienWorld.git 
+<span class="nv">$ </span><span class="nb">cd </span>alienWorld 
+<span class="nv">$ </span>code <span class="nb">.</span> <span class="c"># open VSCode in project directory</span>
+</code></pre></div></div>
+
+<h2 id="anatomy-of-alien-world">Anatomy of Alien World</h2>
+<p>The GitHub Pages repository is for Game and History of project.</p>
+
+<ul>
+  <li>index.html is the code to start the game</li>
+  <li>assets/js/*.js are Objects of the Game</li>
+  <li>_notebooks/Plan.ipynb contains this plan
+_ _posts/* contains daily meetings, hacks, and early code examples</li>
+</ul>
+
+<h3 id="game-code-and-oop">Game Code and OOP</h3>
+<p>Most game code you find on the internet is built in a single file.  However, once you reach a certain amount of complexity this becomes difficult to manage.  Thus, this project is broken into objects.</p>
+
+<p>In the early days of this project, it was easy to see repetition in code (draw() and update()) as well as grouping of attributes and classes using “isa” and “hasa” relationships.  This picture is a talking point.  A more active verion of this picture is the “classDiagram.drawio” in this repository.</p>
+
+<p><img src="/student2.0/images/draw_io_example.png" alt="drawio classes" /></p>
+
+<h3 id="migrating-to-oop---background">Migrating to OOP - Background</h3>
+
+<p>To migrate to this project it can begin by changingthe background to your preference.  This code starts in index.htmol and simply change the image in the frontmatter.</p>
+
+<p>Swap beteen alien_planet.jpg and alien_plant2.jpg</p>
+
+<ul>
+  <li>index.html simply change yml to point to your preference</li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">image</span><span class="pi">:</span> <span class="s">/images/alien_planet.jpg</span>
+</code></pre></div></div>
+
+<p>Rework ADJUST in Background.js to crop out imperfections in image</p>
+
+<ul>
+  <li>assets/js/alienWorld/Background.js change adjust if you want to reduce height of image</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Update canvas size</span>
+        <span class="kd">const</span> <span class="nx">ADJUST</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">// visual layer adjust; alien_planet.jpg: 1.42, try 1 for others</span>
+        <span class="c1">// ... code not shown xxx</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/05/Alien_World-Plan_IPYNB_2_.html" hidden></a>
+</article>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<style>
+  body {
+    background: #292b2f;
+  }
+  
+  h2 {
+      color: #FFFFEE;
+  }
+
+  h1 {
+    color: #FFFFFF
+  }
+
+  p {
+    color: #dddddd;
+  }
+
+  li {
+    color: #dddd;
+  }
+  
+</style><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Spring Security using JWT | Student 2.0</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Spring Security using JWT" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Manage access and roles to a backend Java Spring Security Application using JSON Web Tokens." />
+<meta property="og:description" content="Manage access and roles to a backend Java Spring Security Application using JSON Web Tokens." />
+<link rel="canonical" href="http://localhost:4100/student2.0/2023/10/09/java-spring_jwt.html" />
+<meta property="og:url" content="http://localhost:4100/student2.0/2023/10/09/java-spring_jwt.html" />
+<meta property="og:site_name" content="Student 2.0" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-10-09T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Spring Security using JWT" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-10-09T00:00:00-07:00","datePublished":"2023-10-09T00:00:00-07:00","description":"Manage access and roles to a backend Java Spring Security Application using JSON Web Tokens.","headline":"Spring Security using JWT","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/student2.0/2023/10/09/java-spring_jwt.html"},"url":"http://localhost:4100/student2.0/2023/10/09/java-spring_jwt.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/student2.0/assets/css/style.css"><link rel="shortcut icon" type="image/x-icon" href="/student2.0/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body>
+
+  <div class="wrapper">
+    <header><style>
+  
+    body {
+      background: #292b2f;
+    }
+  
+    .site-header {
+      font-family: monospace;
+      font-size: 15px;
+      
+      position: absolute;
+      transition: top 0.2s ease-in-out;
+      margin-top: 25px;
+      padding-top: 10px;
+      left: -80px;
+      margin-top: 275px;
+    }
+  
+    .site-footer {
+      text-align: left;
+      left: 240px;
+    }
+  
+    .headerbutton {
+      border: 1px solid #A455FF;
+  
+      background: rgb(0, 0, 0);
+      color:black;
+      font-weight: bold;
+      width: 270px;
+  
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+  
+    .headerbutton:hover {
+      background-color: #A455FF;
+    }
+  
+    img{
+      position:relative;
+      border: 3px solid;
+      border-color: #A455FF;
+    }
+  
+    .pfp {
+      border-radius: 30%;
+      position:absolute;
+      left: -100px;
+      object-fit: cover;
+      width: 260px;
+      height: 260px;
+    }
+  
+    a {
+      color: #C8A2C8;
+    }
+    
+    h2 {
+        color: #FFFFEE;
+    }
+  
+    h1 {
+      color: #FFFFFF
+    }
+  
+    p {
+      color: #dddddd;
+  
+    }
+  
+  </style>
+    <img src="/student/images/IMG_2714.jpg" class="pfp"> 
+  
+    <header class="site-header">
+    
+      <div id="header">
+        <nav>
+          <ul>
+              <li class="fork"><a href="/student2.0/">Home</a></li>
+              <li class="fork"><a href="/student2.0/timebox">Time Box</a></li>
+              <li class="fork"><a href="/student2.0/blogs">Blogs</a></li>
+              <li class="title"><a href="https://github.com/Tanuj253/student2.0#readme" target="_blank">View on GitHub</a></li>
+        </nav>
+      </div>
+    </header></header>
+
+
+    <section>
+      <h2 id="spring-security-using-java-web-tokens-competition">Spring Security using Java Web Tokens Competition</h2>
+
+<ul>
+  <li><a href="https://www.javainuse.com/spring/boot-jwt">JWT Hello Articles</a></li>
+</ul>
+
+<h3 id="jwt-concepts-via-chatgpt-with-added-illustrations">JWT concepts via ChatGPT with added illustrations</h3>
+
+<p>JSON Web Token (JWT) is a popular way to authenticate users in a web application. It is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is digitally signed using JSON Web Signature (JWS).
+Here is an example of how you might use JWT for authentication in a JavaScript application:</p>
+
+<ol>
+  <li>The client sends a login request to the server with the user’s credentials (e.g., username and password).
+    <ul>
+      <li>Client/Origin: <a href="https://nighthawkcoders.github.io/APCSA/data/login">https://nighthawkcoders.github.io/APCSA/data/login</a></li>
+      <li>Server/Host: <a href="https://spring.nighthawkcodingsociety.com/">https://spring.nighthawkcodingsociety.com/</a></li>
+    </ul>
+  </li>
+  <li>If the credentials are valid, the server generates a JWT and sends it back to the client.  Here ae some sample credentials.
+    <ul>
+      <li>Sec-Fetch-Mode: cors</li>
+      <li>Sec-Fetch-Site: cross-site</li>
+    </ul>
+  </li>
+  <li>The client stores the JWT in a cookie. Here is cookie in Chrome Inspect properties
+    <ul>
+      <li><img src="/student2.0/images/jwt_cookie.png" alt="JWT Cookie" /></li>
+    </ul>
+  </li>
+  <li>For subsequent requests, the client sends the JWT in the Authorization header.  Here is a sample JWT.
+    <ul>
+      <li>jwt=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqbTEwMjFAZ21haWwuY29tIiwiZXhwIjoxNjc1ODA0MTg2LCJpYXQiOjE2NzU3ODYxODZ9.rHoLxTcBJOBv36gH5qNI1VhgGv2Jub1OPtpddf1-fHd84BcL5MeGxiBhi2M0MpEJcuhTjeC2TYWVaOjT7ek0tg; Path=/; Max-Age=3600; Expires=Tue, 07 Feb 2023 17:09:46 GMT; Secure; HttpOnly; SameSite=None; Secure</li>
+    </ul>
+  </li>
+  <li>The server verifies the JWT and, if it is valid, allows the request to proceed.  Here is successful response.
+    <ul>
+      <li><img src="/student2.0/images/jwt_response.png" alt="JWT Response" /></li>
+    </ul>
+  </li>
+</ol>
+
+<p>The JWT consists of three parts, separated by dots (.). The first part is the header, which specifies the algorithm used to sign the JWT (e.g., HS256). The second part is the payload, which contains the claims. The third part is the signature, which is used to verify that the sender of the JWT is who it claims to be and to ensure that the message wasn’t changed along the way.</p>
+
+<p>It is important to use HTTPS when transmitting JWTs to ensure that the JWT is not intercepted by an attacker. It is also a good idea to use short-lived JWTs (e.g., with an expiration time of one hour) and to refresh them frequently to reduce the risk of unauthorized access.</p>
+
+<h4 id="storing-jwt">Storing JWT</h4>
+
+<p>There are a few different options for storing a JWT in a JavaScript application:</p>
+
+<ol>
+  <li>Cookies: You can store the JWT in a cookie and send it back to the server with each request. This is a simple and widely-supported option, but it has some limitations. For example, you can’t access cookies from JavaScript on a different domain, and some users may have cookies disabled in their browser settings.</li>
+  <li>Local storage: You can store the JWT in the browser’s local storage (localStorage) or session storage (sessionStorage). This option allows you to access the JWT from JavaScript on the same domain, but it is vulnerable to cross-site scripting (XSS) attacks, where an attacker can inject malicious code into your application and steal the JWT from the storage.</li>
+  <li><strong><em>HttpOnly cookie</em></strong>: You can store the JWT in an HttpOnly cookie, which is a cookie that can only be accessed by the server and not by client-side JavaScript. This option provides some protection against XSS attacks, but it is still vulnerable to other types of attacks, such as cross-site request forgery (CSRF).</li>
+</ol>
+
+<p>ChatGPT says … It is generally recommended to use a combination of options to provide the best security for your application. For example, you could store the JWT in an HttpOnly cookie and also in local storage, and use JavaScript to send the JWT from local storage to the server with each request. This way, you can still access the JWT from JavaScript on the same domain, while also protecting against XSS attacks.</p>
+
+<p>However, for this implementation we have used <strong><em>#3 HttpOnly Cookie</em></strong>.</p>
+
+<h3 id="key-configuration-areas">Key Configuration Areas</h3>
+
+<h4 id="nginx-configuration-snippet-client-to-this-server">Nginx configuration snippet (Client to this Server)</h4>
+<blockquote>
+
+  <p>Nginx. Focus on add_header in preflight that allow cross domain (github.io) to access server.</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">location</span> <span class="o">/</span> <span class="o">{</span>
+        <span class="n">proxy_pass</span> <span class="nl">http:</span><span class="c1">//localhost:8085;</span>
+
+        <span class="err">#</span> <span class="nc">Preflighted</span> <span class="n">requests</span>
+        <span class="nf">if</span> <span class="o">(</span><span class="n">$request_method</span> <span class="o">=</span> <span class="no">OPTIONS</span> <span class="o">)</span> <span class="o">{</span>
+                <span class="n">add_header</span> <span class="s">"Access-Control-Allow-Credentials"</span>  <span class="s">"true"</span><span class="o">;</span>
+                <span class="n">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">"https://myserver.github.io"</span><span class="o">;</span>
+                <span class="n">add_header</span> <span class="s">"Access-Control-Allow-Methods"</span> <span class="s">"GET, POST, OPTIONS, HEAD"</span><span class="o">;</span>
+                <span class="n">add_header</span> <span class="s">"Access-Control-Allow-MaxAge"</span>  <span class="mi">600</span><span class="o">;</span>
+                <span class="n">add_header</span> <span class="s">"Access-Control-Allow-Headers"</span> <span class="s">"Content-Type, Authorization, x-csrf-token"</span><span class="o">;</span>
+                <span class="k">return</span> <span class="mi">200</span><span class="o">;</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="java-jwt--authenticate-api">Java JWT / Authenticate API</h4>
+<blockquote>
+
+  <p>Java. Focus on the response ResponseCookie to see type, path, age, and allowing for cross-origin (sameSite).</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/authenticate"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">createAuthenticationToken</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Person</span> <span class="n">authenticationRequest</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">authenticate</span><span class="o">(</span><span class="n">authenticationRequest</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="n">authenticationRequest</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+    <span class="kd">final</span> <span class="nc">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="n">personDetailsService</span>
+            <span class="o">.</span><span class="na">loadUserByUsername</span><span class="o">(</span><span class="n">authenticationRequest</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+    <span class="kd">final</span> <span class="nc">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">jwtTokenUtil</span><span class="o">.</span><span class="na">generateToken</span><span class="o">(</span><span class="n">userDetails</span><span class="o">);</span>
+    <span class="kd">final</span> <span class="nc">ResponseCookie</span> <span class="n">tokenCookie</span> <span class="o">=</span> <span class="nc">ResponseCookie</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="s">"jwt"</span><span class="o">,</span> <span class="n">token</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">httpOnly</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">secure</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">maxAge</span><span class="o">(</span><span class="mi">3600</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">sameSite</span><span class="o">(</span><span class="s">"None; Secure"</span><span class="o">)</span>
+        <span class="c1">// .domain("example.com") // Set to backend domain</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">header</span><span class="o">(</span><span class="nc">HttpHeaders</span><span class="o">.</span><span class="na">SET_COOKIE</span><span class="o">,</span> <span class="n">tokenCookie</span><span class="o">.</span><span class="na">toString</span><span class="o">()).</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="java-webmvcconfigurer-addcorsmappings">Java WebMvcConfigurer addCorsMappings</h4>
+<blockquote>
+
+  <p>Java. Focus on allowedOrigins, clients that can access this server server</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCorsMappings</span><span class="o">(</span><span class="nc">CorsRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">addMapping</span><span class="o">(</span><span class="s">"/**"</span><span class="o">).</span><span class="na">allowedOrigins</span><span class="o">(</span><span class="s">"https://myserver.github.io"</span><span class="o">,</span> <span class="s">"http://localhost:4000"</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="java-security-config">Java Security Config</h4>
+<blockquote>
+
+  <p>Java. CORS enablement and headers to allow access to API endpoints from cross origin.</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">cors</span><span class="o">().</span><span class="na">and</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">headers</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">StaticHeadersWriter</span><span class="o">(</span><span class="s">"Access-Control-Allow-Credentials"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">StaticHeadersWriter</span><span class="o">(</span><span class="s">"Access-Control-Allow-ExposedHeaders"</span><span class="o">,</span> <span class="s">"*"</span><span class="o">,</span> <span class="s">"Authorization"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">StaticHeadersWriter</span><span class="o">(</span><span class="s">"Access-Control-Allow-Headers"</span><span class="o">,</span> <span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"Authorization"</span><span class="o">,</span> <span class="s">"x-csrf-token"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">StaticHeadersWriter</span><span class="o">(</span><span class="s">"Access-Control-Allow-MaxAge"</span><span class="o">,</span> <span class="s">"600"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">StaticHeadersWriter</span><span class="o">(</span><span class="s">"Access-Control-Allow-Methods"</span><span class="o">,</span> <span class="s">"POST"</span><span class="o">,</span> <span class="s">"GET"</span><span class="o">,</span> <span class="s">"OPTIONS"</span><span class="o">,</span> <span class="s">"HEAD"</span><span class="o">))</span>
+        <span class="c1">//.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "https://nighthawkcoders.github.io", "http://localhost:4000"))</span>
+</code></pre></div></div>
+
+<h4 id="authenticate-with-jwt-in-a-javascript-application">Authenticate with JWT in a JavaScript application</h4>
+
+<blockquote>
+  <p>This example sends a POST request to the /authorize endpoint with the user’s credentials in the request body. If the login was successful, the server will return a 200 OK response with the JWT set to Application properties.</p>
+</blockquote>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// URL for deployment</span>
+<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://spring.nighthawkcodingsociety.com</span><span class="dl">"</span>
+<span class="c1">// Comment out next line for local testing</span>
+<span class="c1">// url = "http://localhost:8085"</span>
+<span class="c1">// Authenticate endpoint</span>
+<span class="kd">const</span> <span class="nx">login_url</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/authenticate</span><span class="dl">'</span><span class="p">;</span>
+
+
+<span class="kd">function</span> <span class="nx">login_user</span><span class="p">(){</span>
+    <span class="c1">// Set body to include login data</span>
+    <span class="kd">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">email</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">uid</span><span class="dl">"</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span>
+        <span class="na">password</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Set Headers to support cross origin</span>
+    <span class="kd">const</span> <span class="nx">requestOptions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">mode</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cors</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// no-cors, *cors, same-origin</span>
+        <span class="na">cache</span><span class="p">:</span> <span class="dl">'</span><span class="s1">no-cache</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// *default, no-cache, reload, force-cache, only-if-cached</span>
+        <span class="na">credentials</span><span class="p">:</span> <span class="dl">'</span><span class="s1">include</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// include, *same-origin, omit</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">content-type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Fetch JWT</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="nx">login_url</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// trap error response from Web API</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">errorMsg</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Login error: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorMsg</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// Success!!!</span>
+        <span class="c1">// Redirect to Database location</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/APCSA/data/database</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You can then use the JWT for authentication in subsequent fetch requests as the browser sends JWT in the Authorization header.   Here is an example, but there is <strong><em>Nothing Unique</em></strong> in this example.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// prepare HTML result container for new output</span>
+  <span class="kd">const</span> <span class="nx">resultContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">result</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="c1">// prepare URL</span>
+  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://spring.nighthawkcodingsociety.com/api/person/</span><span class="dl">"</span><span class="p">;</span>
+  <span class="c1">// Uncomment next line for localhost testing</span>
+  <span class="c1">// url = "http://localhost:8085/api/person/";</span>
+
+  <span class="c1">// set options for cross origin header request</span>
+  <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// *GET, POST, PUT, DELETE, etc.</span>
+    <span class="na">mode</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cors</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// no-cors, *cors, same-origin</span>
+    <span class="na">cache</span><span class="p">:</span> <span class="dl">'</span><span class="s1">default</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// *default, no-cache, reload, force-cache, only-if-cached</span>
+    <span class="na">credentials</span><span class="p">:</span> <span class="dl">'</span><span class="s1">include</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// include, *same-origin, omit</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">};</span>
+
+  <span class="c1">// fetch the API</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+    <span class="c1">// response is a RESTful "promise" on any successful fetch</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// check for response errors and display</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">errorMsg</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Database response error: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">;</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorMsg</span><span class="p">);</span>
+          <span class="kd">const</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">tr</span><span class="dl">"</span><span class="p">);</span>
+          <span class="kd">const</span> <span class="nx">td</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">td</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">errorMsg</span><span class="p">;</span>
+          <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td</span><span class="p">);</span>
+          <span class="nx">resultContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+          <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// valid response will contain json data</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">row</span> <span class="k">of</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// tr and td build out for each row</span>
+            <span class="kd">const</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">tr</span><span class="dl">"</span><span class="p">);</span>
+            <span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+            <span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+            <span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+            <span class="c1">// data is specific to the API</span>
+            <span class="nx">name</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+            <span class="nx">id</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span> 
+            <span class="nx">age</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> 
+            <span class="c1">// this build td's into tr</span>
+            <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+            <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+            <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span>
+            <span class="c1">// add HTML to container</span>
+            <span class="nx">resultContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+          <span class="p">}</span>
+      <span class="p">})</span>
+  <span class="p">})</span>
+  <span class="c1">// catch fetch errors (ie ACCESS to server blocked)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">tr</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">td</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">td</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">err</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
+    <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">td</span><span class="p">);</span>
+    <span class="nx">resultContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<blockquote>
+
+  <p>This is first time that a nighthawkcoding society apps are under JWT.  There are some best practices, but these are simply preliminary thoughts.  These can be done in your project or on mine.</p>
+</blockquote>
+
+<ul>
+  <li>GitHub Pages Application
+    <ul>
+      <li>Make a Login and SignUp option in upper left corner of page.  To handle this well it may require some them adjustment.  Login or Name should alway be displayed in upper right corner, review <a href="https://csa.nighthawkcodingsociety.com/">csa.nighthawkcodingsociety.com</a> for example.</li>
+      <li>Only block or present login/signup page when someone fails on a fetch of something that is unauthorized.</li>
+      <li>Spring Application</li>
+      <li>Add Roles to authentication</li>
+      <li>Bring JavaScript or Spring/Thymeleaf Admin operations into this page.  Some Thymeleaf exists in the project,</li>
+    </ul>
+  </li>
+  <li>Blog or Video on your successes and how you got there.</li>
+</ul>
+
+<h2 id="hack-helpers">Hack Helpers</h2>
+<blockquote>
+
+  <p>Additional user and security elements.</p>
+</blockquote>
+
+<ul>
+  <li>security/SecurityConfig.java.
+    <ul>
+      <li>This code sets up BCrypt as password encoder, this is wired into Spring Security</li>
+      <li>HTTP security is changed so that you white list things that you want secure.  It is possible to do this either way, white list authenticated <code class="language-plaintext highlighter-rouge">.antMatchers("/api/person/**").authenticated()</code> or white list permitted <code class="language-plaintext highlighter-rouge">.antMatchers("/", "/frontend/**").permitAll()</code>.  In either case, it is valuable to have a convention on naming endpoints to simplify rules.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+* To enable HTTP Security in Spring, extend the WebSecurityConfigurerAdapter. 
+*/</span>
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>  <span class="c1">// Beans to enable basic Web security</span>
+<span class="nd">@EnableGlobalMethodSecurity</span><span class="o">(</span><span class="n">prePostEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="nc">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JwtAuthenticationEntryPoint</span> <span class="n">jwtAuthenticationEntryPoint</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JwtRequestFilter</span> <span class="n">jwtRequestFilter</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PersonDetailsService</span> <span class="n">personDetailsService</span><span class="o">;</span>
+
+    <span class="nd">@Bean</span>  <span class="c1">// Sets up password encoding style</span>
+    <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BCryptPasswordEncoder</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configureGlobal</span><span class="o">(</span><span class="nc">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// configure AuthenticationManager so that it knows from where to load</span>
+        <span class="c1">// user for matching credentials</span>
+        <span class="c1">// Use BCryptPasswordEncoder</span>
+        <span class="n">auth</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">personDetailsService</span><span class="o">).</span><span class="na">passwordEncoder</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">AuthenticationManager</span> <span class="nf">authenticationManagerBean</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">authenticationManagerBean</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="o">...</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>mvc\person\PersonDetailsService.java, implements UserDetailsService from JWT.
+    <ul>
+      <li>UserDetailsService is how we train Spring Security to use Person and PersonRoles POJOs for security.</li>
+      <li>PersonDetails makes sure each save use password encoding</li>
+      <li>PersonDetails in my implementation is to build abstraction of all the Jpa complexities, allowing  API and MVC classes and methods to be simpler and reusable.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonDetailsService</span> <span class="kd">implements</span> <span class="nc">UserDetailsService</span> <span class="o">{</span>  <span class="c1">// "implements" ties ModelRepo to Spring Security</span>
+    <span class="c1">// Encapsulate many object into a single Bean (Person, Roles, and Scrum)</span>
+    <span class="nd">@Autowired</span>  <span class="c1">// Inject PersonJpaRepository</span>
+    <span class="kd">private</span> <span class="nc">PersonJpaRepository</span> <span class="n">personJpaRepository</span><span class="o">;</span>
+    <span class="nd">@Autowired</span>  <span class="c1">// Inject RoleJpaRepository</span>
+    <span class="kd">private</span> <span class="nc">PersonRoleJpaRepository</span> <span class="n">personRoleJpaRepository</span><span class="o">;</span>
+    <span class="nd">@Autowired</span>  <span class="c1">// Inject PasswordEncoder</span>
+    <span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
+
+    <span class="cm">/* UserDetailsService Overrides and maps Person &amp; Roles POJO into Spring Security */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">userdetails</span><span class="o">.</span><span class="na">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UsernameNotFoundException</span> <span class="o">{</span>
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">personJpaRepository</span><span class="o">.</span><span class="na">findByEmail</span><span class="o">(</span><span class="n">email</span><span class="o">);</span> <span class="c1">// setting variable user equal to the method finding the username in the database</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">person</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">UsernameNotFoundException</span><span class="o">(</span><span class="s">"User not found with username: "</span> <span class="o">+</span> <span class="n">email</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">Collection</span><span class="o">&lt;</span><span class="nc">SimpleGrantedAuthority</span><span class="o">&gt;</span> <span class="n">authorities</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">role</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">//loop through roles</span>
+            <span class="n">authorities</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleGrantedAuthority</span><span class="o">(</span><span class="n">role</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span> <span class="c1">//create a SimpleGrantedAuthority by passed in role, adding it all to the authorities list, list of roles gets past in for spring security</span>
+        <span class="o">});</span>
+        <span class="c1">// train spring security to User and Authorities</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">userdetails</span><span class="o">.</span><span class="na">User</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="n">person</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(),</span> <span class="n">authorities</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="c1">// ....</span>
+
+    <span class="c1">// encode password prior to sava</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">Person</span> <span class="n">person</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()));</span>
+        <span class="n">personJpaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ....</span>
+
+    <span class="c1">// custom JPA query to find anything containing term in name or email ignoring case</span>
+    <span class="kd">public</span>  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span><span class="n">listLike</span><span class="o">(</span><span class="nc">String</span> <span class="n">term</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">personJpaRepository</span><span class="o">.</span><span class="na">findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase</span><span class="o">(</span><span class="n">term</span><span class="o">,</span> <span class="n">term</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ....</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>mvc\ModelInit.java, used to initialize database for testing
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">CommandLineRunner run()</code> occurs prior to web site port being available.  Typically, there is only one Bean of type without application.properties override.  Thus, you see jokes and person in same runner.  Splitting this and having Person initialization in person package is desireable.</li>
+      <li>Class methods for Person (<code class="language-plaintext highlighter-rouge">Person.init</code>) is used to initialize object.</li>
+      <li>Each object is checked and saved using <code class="language-plaintext highlighter-rouge">personService</code> methods.</li>
+      <li>Test Notes are added to ensure functionality.  Intention is to add notes into person package.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span> <span class="c1">// Scans Application for ModelInit Bean, this detects CommandLineRunner</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModelInit</span> <span class="o">{</span>  
+    <span class="nd">@Autowired</span> <span class="nc">JokesJpaRepository</span> <span class="n">jokesRepo</span><span class="o">;</span>
+    <span class="nd">@Autowired</span> <span class="nc">NoteJpaRepository</span> <span class="n">noteRepo</span><span class="o">;</span>
+    <span class="nd">@Autowired</span> <span class="nc">PersonDetailsService</span> <span class="n">personService</span><span class="o">;</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nc">CommandLineRunner</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// The run() method will be executed after the application starts</span>
+        <span class="k">return</span> <span class="n">args</span> <span class="o">-&gt;</span> <span class="o">{</span>
+
+            <span class="c1">// Joke database is populated with starting jokes</span>
+            <span class="nc">String</span><span class="o">[]</span> <span class="n">jokesArray</span> <span class="o">=</span> <span class="nc">Jokes</span><span class="o">.</span><span class="na">init</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">joke</span> <span class="o">:</span> <span class="n">jokesArray</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;</span> <span class="n">jokeFound</span> <span class="o">=</span> <span class="n">jokesRepo</span><span class="o">.</span><span class="na">findByJokeIgnoreCase</span><span class="o">(</span><span class="n">joke</span><span class="o">);</span>  <span class="c1">// JPA lookup</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">jokeFound</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                    <span class="n">jokesRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="nc">Jokes</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">joke</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">));</span> <span class="c1">//JPA save</span>
+            <span class="o">}</span>
+
+            <span class="c1">// Person database is populated with test data</span>
+            <span class="nc">Person</span><span class="o">[]</span> <span class="n">personArray</span> <span class="o">=</span> <span class="nc">Person</span><span class="o">.</span><span class="na">init</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">personArray</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">//findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase</span>
+                <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">personFound</span> <span class="o">=</span> <span class="n">personService</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">person</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>  <span class="c1">// lookup</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">personFound</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">personService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>  <span class="c1">// save</span>
+
+                    <span class="c1">// Each "test person" starts with a "test note"</span>
+                    <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Test "</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getEmail</span><span class="o">();</span>
+                    <span class="nc">Note</span> <span class="n">n</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Note</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">person</span><span class="o">);</span>  <span class="c1">// constructor uses new person as Many-to-One association</span>
+                    <span class="n">noteRepo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>  <span class="c1">// JPA Save                  </span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">};</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+    </section>
+
+  </div>
+</body>
+
+
+</html>

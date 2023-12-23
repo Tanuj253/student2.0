@@ -1,0 +1,206 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P1 Algorithims</h1><p class="page-description">Algorithims</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-02T00:00:00-07:00" itemprop="datePublished">
+        Oct 2, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Tarun, Deva, Shuban, Hayden</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#algorithims">Algorithims</a></li><li><a href="#algorithim-basics">Algorithim Basics</a></li><li><a href="#psuedo-code">Psuedo Code</a></li><li><a href="#robot-mcqalgorithims">Robot MCQ(Algorithims)</a></li><li><a href="#string-operations">String Operations</a></li><li><a href="#palindrome">Palindrome</a></li><li><a href="#example-of-palindrome-algorithim-used">Example of Palindrome Algorithim Used:</a><ul><li><a href="#popcorn-hack-write-steps-for-an-algorithim-that-can-find-the-index-of-any-character-in-a-string">Popcorn Hack: Write steps for an algorithim that can find the index of any character in a string</a></li><li><a href="#answer">Answer</a></li></ul></li><li><a href="#fibonacci-sequence">Fibonacci Sequence</a></li><li><a href="#sorting-algorithims">Sorting Algorithims</a></li><li><a href="#homework-hack-2">Homework Hack 2</a></li></ul><h3 id="algorithims">Algorithims</h3>
+
+<p>Definition: A finite set of instructions to accomplish a task</p>
+
+<h3 id="algorithim-basics">Algorithim Basics</h3>
+
+<p>Sequence: Follows a sequence of steps</p>
+
+<p>Selection: choose different outcomes at steps based on a condition that is made</p>
+
+<p>Iteration: Repetition of code segment if condition is met</p>
+
+<p><img src="Screenshot%202023-10-04%20at%2010.48.37%20PM.png" alt="Screenshot%202023-10-04%20at%2010.48.37%20PM.png" /></p>
+
+<h3 id="psuedo-code">Psuedo Code</h3>
+<p>Definition: A planning language/text that conveys the general implementation of an algorithim to all programers</p>
+
+<p>Sample College Board Psuedo Code(Strings):</p>
+
+<p><img src="Screenshot%202023-10-04%20at%2010.49.55%20PM.png" alt="Screenshot%202023-10-04%20at%2010.49.55%20PM.png" /></p>
+
+<h3 id="robot-mcqalgorithims">Robot MCQ(Algorithims)</h3>
+
+<p><img src="Screenshot%202023-10-04%20at%2010.52.58%20PM.png" alt="Screenshot%202023-10-04%20at%2010.52.58%20PM.png" /></p>
+
+<p>Develop an general algorithm that allows the robot in EVERY box to go around the black rectangular box once, back to its original starting point.</p>
+
+<p><img src="Screenshot%202023-10-04%20at%2010.58.27%20PM.png" alt="Screenshot%202023-10-04%20at%2010.58.27%20PM.png" /></p>
+
+<p><img src="Screenshot%202023-10-04%20at%2011.01.14%20PM.png" alt="Screenshot%202023-10-04%20at%2011.01.14%20PM.png" /></p>
+
+<p><img src="thing.png" alt="thing.png" /></p>
+
+<h3 id="string-operations">String Operations</h3>
+
+<p>Length function gives the length of a string</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Python Example/Pseudo Code example: len(“codecodecode”) returns 12
+</code></pre></div></div>
+
+<p>String Concatenation is similar to adding strings together</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pseudo Code: Concat(“String1 ”,”String2”) returns “String1 String2”
+
+Python Code: “String1 “+”String2” concatenates the strings together
+</code></pre></div></div>
+
+<p>String substringing can collect a range of character from a string</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pseudo Code: substring(“MortensonBest”,1,4) returns Mort
+
+PythonCode: string=”MortensonBest”
+
+                       string[0:4] returns “Mort”
+</code></pre></div></div>
+
+<h1 id="string-algorithims">String Algorithims</h1>
+
+<h3 id="palindrome">Palindrome</h3>
+<p>Takes user input and converts to a palindrome by duplicating the string backwards.
+Users can choose to duplicate last character or not.</p>
+
+<p>Constraints: defaults to no duplication unless user types exactly “yes”</p>
+
+<p>A palindrome string or number is the same read forwards or backwards. Simple as that.</p>
+
+<p>Ex.</p>
+
+<p>“bob”</p>
+
+<p>“hannah”</p>
+
+<p>1337331</p>
+
+<p>9</p>
+
+<h3 id="example-of-palindrome-algorithim-used">Example of Palindrome Algorithim Used:</h3>
+
+<p>Takes user input and converts to a palindrome by duplicating the string backwards.
+Users can choose to duplicate last character or not.</p>
+
+<p>Constraints: defaults to no creation of palindrome unless user types exactly “yes”</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mystr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter your string: "</span><span class="p">))</span>
+<span class="n">mybool</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Would you like to make a palindrome that also duplicates the middle character?"</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">mybool</span> <span class="o">==</span> <span class="s">"yes"</span><span class="p">:</span>
+    <span class="n">secondstr</span> <span class="o">=</span> <span class="n">mystr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">secondstr</span> <span class="o">=</span> <span class="n">mystr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">secondstr</span> <span class="o">=</span> <span class="n">secondstr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">endresult</span> <span class="o">=</span> <span class="n">mystr</span><span class="o">+</span><span class="n">secondstr</span>
+<span class="k">print</span><span class="p">(</span><span class="n">endresult</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter your string: codecodecode
+Would you like to make a palindrome that also duplicates the middle character?no
+codecodecodedocedocedoc
+</code></pre></div></div>
+
+<h4 id="popcorn-hack-write-steps-for-an-algorithim-that-can-find-the-index-of-any-character-in-a-string">Popcorn Hack: Write steps for an algorithim that can find the index of any character in a string</h4>
+
+<p>Example:
+Input: “C”
+String &lt;- “ABCDEFG”</p>
+
+<p>Output: 2</p>
+
+<h4 id="answer">Answer</h4>
+<ol>
+  <li>Collect Input Character</li>
+  <li>Define the string</li>
+  <li>Loop through each character</li>
+  <li>While looping compare input character and the character in the string and if same print the index</li>
+</ol>
+
+<h2 id="homework-hack-for-string-algorithims">Homework Hack For String Algorithims</h2>
+<p>Write Python Code or Psuedo Code that is able to take a string as input and detect if its a palindrome</p>
+
+<h1 id="math-algorithims">Math Algorithims</h1>
+
+<p><img src="Screenshot%202023-10-04%20at%2011.12.24%20PM.png" alt="Screenshot%202023-10-04%20at%2011.12.24%20PM.png" /></p>
+
+<h3 id="fibonacci-sequence">Fibonacci Sequence</h3>
+
+<p><img src="Screenshot%202023-10-04%20at%2011.15.35%20PM.png" alt="Screenshot%202023-10-04%20at%2011.15.35%20PM.png" /></p>
+
+<p>Prints the first n fibonacci numbers in a list
+Constraints: n &gt; 1</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">fiblist</span> <span class="o">=</span> <span class="p">[</span><span class="n">f0</span><span class="p">,</span><span class="n">f1</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"How many items do you want in your fibonacci sequence? Enter a number 2 or greater"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">fiblist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">fiblist</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">fiblist</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span> <span class="c1"># Add the sum of the previous 2 numbers to the list
+</span><span class="k">print</span><span class="p">(</span><span class="n">fiblist</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>How many items do you want in your fibonacci sequence? Enter a number 2 or greater5
+[0, 1, 1, 2, 3]
+</code></pre></div></div>
+
+<p>Popcorn Hack: Can anybody tell how we can fix this code so it correctly makes a fibonacci sequence?</p>
+
+<p><img src="Screenshot%202023-10-05%20at%208.35.06%20AM.png" alt="Screenshot%202023-10-05%20at%208.35.06%20AM.png" /></p>
+
+<h3 id="sorting-algorithims">Sorting Algorithims</h3>
+
+<p><img src="Screenshot%202023-10-04%20at%2011.33.06%20PM.png" alt="Screenshot%202023-10-04%20at%2011.33.06%20PM.png" /></p>
+
+<p>Sorts an array of integers in increasing order. Relatively inefficient, however.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 4, 5, 6]
+</code></pre></div></div>
+
+<h2 id="selection-sort">Selection Sort</h2>
+<p><img src="Screenshot%202023-10-04%20at%2011.34.25%20PM.png" alt="Screenshot%202023-10-04%20at%2011.34.25%20PM.png" /></p>
+
+<h3 id="homework-hack-2">Homework Hack 2</h3>
+
+<p>Create a program that uses at least 1 of the algorithmic concepts covered in this notebook in a real-world application</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/02/P1-algorithms_IPYNB_2_.html" hidden></a>
+</article>

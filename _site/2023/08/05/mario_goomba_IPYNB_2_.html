@@ -1,0 +1,619 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JS Mario 5-Goomba</h1><p class="page-description">A lesson designed to help you create your own Goombas for your game</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-05T00:00:00-07:00" itemprop="datePublished">
+        Aug 5, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nicholas Ramos and Samaya Sankuratri</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><a href="/student2.0/2023/07/30/mario_overview_IPYNB_2_.html">Overview</a></td>
+        <td><a href="/student2.0/2023/08/01/mario_player_IPYNB_2_.html">Player</a></td>
+        <td><a href="/student2.0/2023/08/02/mario_platform_IPYNB_2_.html">Platform</a></td>
+        <td><a href="/student2.0/2023/08/03/mario_tube_IPYNB_2_.html">Tube</a></td>
+        <td><a href="/student2.0/2023/08/04/mario_block_IPYNB_2_.html">Block</a></td>
+        <td><a href="/student2.0/2023/08/05/mario_goomba_IPYNB_2_.html">Goomba</a></td>
+        <td><a href="/student2.0/2023/08/06/mario_background_IPYNB_2_.html">Background</a></td>
+    </tr>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+    <span class="c1">#canvas {
+</span>        <span class="n">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">border</span><span class="p">:</span> <span class="mi">1</span><span class="n">px</span> <span class="n">solid</span> <span class="n">white</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">canvas</span> <span class="nb">id</span><span class="o">=</span><span class="s">'canvas'</span><span class="o">&gt;&lt;/</span><span class="n">canvas</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="n">let</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'canvas'</span><span class="p">);</span>
+    <span class="n">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">getContext</span><span class="p">(</span><span class="s">'2d'</span><span class="p">);</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">650</span><span class="p">;</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    <span class="n">let</span> <span class="n">gravity</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Player</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">200</span>
+            <span class="p">};</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">};</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="s">'red'</span><span class="p">;</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">fillRect</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">update</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+                <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">gravity</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">class</span> <span class="nc">Platform</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">300</span>
+            <span class="p">}</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">650</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">class</span> <span class="nc">Tube</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">180</span>
+            <span class="p">}</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">120</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">class</span> <span class="nc">BlockObject</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">100</span>
+            <span class="p">};</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">158</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">79</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">CREATE</span> <span class="n">GOOMBA</span> <span class="n">CLASS</span>
+    <span class="o">//--</span>
+    <span class="k">class</span> <span class="nc">Goomba</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">245</span>
+            <span class="p">};</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">55</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">55</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">update</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">let</span> <span class="n">image</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">imageTube</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">imageBlock</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">()</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">src</span> <span class="o">=</span> <span class="s">'https://samayass.github.io/samayaCSA/images/platform.png'</span>
+    <span class="n">imageTube</span><span class="p">.</span><span class="n">src</span> <span class="o">=</span> <span class="s">'https://samayass.github.io/samayaCSA/images/tube.png'</span>
+    <span class="n">imageBlock</span><span class="p">.</span><span class="n">src</span> <span class="o">=</span> <span class="s">'https://samayass.github.io/samayaCSA/images/box.png'</span><span class="p">;</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">ADD</span> <span class="n">GOOMBA</span> <span class="n">IMAGE</span>
+    <span class="o">//--</span>
+    <span class="n">let</span> <span class="n">imageGoomba</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">()</span>
+    <span class="n">imageGoomba</span><span class="p">.</span><span class="n">src</span> <span class="o">=</span> <span class="s">'https://samayass.github.io/samayaCSA/images/goomba.png'</span><span class="p">;</span>
+    <span class="n">let</span> <span class="n">platform</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Platform</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">tube</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Tube</span><span class="p">(</span><span class="n">imageTube</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">blockObject</span> <span class="o">=</span> <span class="n">new</span> <span class="n">BlockObject</span><span class="p">(</span><span class="n">imageBlock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">goomba</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Goomba</span><span class="p">(</span><span class="n">imageGoomba</span><span class="p">)</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Player</span><span class="p">()</span>
+    <span class="n">let</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">right</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">pressed</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">},</span>
+        <span class="n">left</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">pressed</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">function</span> <span class="n">animate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">requestAnimationFrame</span><span class="p">(</span><span class="n">animate</span><span class="p">);</span>
+        <span class="n">c</span><span class="p">.</span><span class="n">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">canvas</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">canvas</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="n">platform</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+        <span class="n">player</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+        <span class="n">tube</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+        <span class="n">blockObject</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+        <span class="o">//--</span>
+        <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">UPDATE</span> <span class="n">GOOMBA</span> <span class="n">ANIMATION</span>
+        <span class="o">//--</span>
+        <span class="n">goomba</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">blockObject</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">blockObject</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">blockObject</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">blockObject</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">blockObject</span><span class="p">.</span><span class="n">width</span>
+        <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">platform</span><span class="p">.</span><span class="n">width</span>
+            <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="mf">0.1</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0001</span>
+                <span class="n">gravity</span> <span class="o">=</span> <span class="mf">0.2</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">==</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">height</span> <span class="o">||</span>
+                    <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">||</span>
+                    <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">||</span>
+                    <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">gravity</span> <span class="o">=</span> <span class="mf">1.5</span>
+                    <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span><span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">height</span>
+            <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">height</span>
+            <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">height</span>
+            <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">width</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">tube</span><span class="p">.</span><span class="n">height</span>
+            <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="o">//--</span>
+            <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">GOOMBA</span> <span class="n">COLLISION</span> <span class="n">DETECTION</span>
+            <span class="o">//--</span>
+        <span class="k">if</span><span class="p">(</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">goomba</span><span class="p">.</span><span class="n">width</span>
+        <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span>
+        <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">goomba</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">goomba</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">goomba</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">tube</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span>
+        <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">goomba</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">animate</span><span class="p">();</span>
+    <span class="n">addEventListener</span><span class="p">(</span><span class="s">'keydown'</span><span class="p">,</span> <span class="p">({</span> <span class="n">keyCode</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">switch</span> <span class="p">(</span><span class="n">keyCode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">case</span> <span class="mi">65</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'left'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">83</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'down'</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">68</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'right'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">87</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'up'</span><span class="p">);</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mi">20</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="n">addEventListener</span><span class="p">(</span><span class="s">'keyup'</span><span class="p">,</span> <span class="p">({</span> <span class="n">keyCode</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">switch</span> <span class="p">(</span><span class="n">keyCode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">case</span> <span class="mi">65</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'left'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">83</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'down'</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">68</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'right'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">87</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'up'</span><span class="p">);</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<style>
+    #canvas {
+        margin: 0;
+        border: 1px solid white;
+    }
+</style>
+
+<canvas id="canvas"></canvas>
+<script>
+    let canvas = document.getElementById('canvas');
+    let c = canvas.getContext('2d');
+    canvas.width = 650;
+    canvas.height = 400;
+    let gravity = 1.5;
+    class Player {
+        constructor() {
+            this.position = {
+                x: 100,
+                y: 200
+            };
+            this.velocity = {
+                x: 0,
+                y: 0
+            };
+            this.width = 30;
+            this.height = 30;
+        }
+        draw() {
+            c.fillStyle = 'red';
+            c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        }
+        update() {
+            this.draw();
+            this.position.y += this.velocity.y;
+            this.position.x += this.velocity.x;
+            if (this.position.y + this.height + this.velocity.y <= canvas.height)
+                this.velocity.y += gravity;
+            else
+                this.velocity.y = 0;
+        }
+    }
+    class Platform {
+        constructor(image) {
+            this.position = {
+                x: 0,
+                y: 300
+            }
+            this.image = image;
+            this.width = 650;
+            this.height = 100;
+        }
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
+    }
+    class Tube {
+        constructor(image) {
+            this.position = {
+                x: 500,
+                y: 180
+            }
+            this.image = image;
+            this.width = 100;
+            this.height = 120;
+        }
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
+    }
+    class BlockObject {
+        constructor(image) {
+            this.position = {
+                x: 200,
+                y: 100
+            };
+            this.image = image;
+            this.width = 158;
+            this.height = 79;
+        }
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y);
+        }
+    }
+    //--
+    // NEW CODE - CREATE GOOMBA CLASS
+    //--
+    class Goomba {
+        constructor(image) {
+            this.position = {
+                x: 250,
+                y: 245
+            };
+            this.image = image;
+            this.width = 55;
+            this.height = 55;
+            this.velocity = {
+                x: -2,
+                y: 0
+            }
+        }
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
+        update() {
+            this.position.x += this.velocity.x;
+            this.draw();
+        }
+    }
+    let image = new Image()
+    let imageTube = new Image()
+    let imageBlock = new Image()
+    image.src = 'https://samayass.github.io/samayaCSA/images/platform.png'
+    imageTube.src = 'https://samayass.github.io/samayaCSA/images/tube.png'
+    imageBlock.src = 'https://samayass.github.io/samayaCSA/images/box.png';
+    //--
+    // NEW CODE - ADD GOOMBA IMAGE
+    //--
+    let imageGoomba = new Image()
+    imageGoomba.src = 'https://samayass.github.io/samayaCSA/images/goomba.png';
+    let platform = new Platform(image)
+    let tube = new Tube(imageTube)
+    let blockObject = new BlockObject(imageBlock)
+    let goomba = new Goomba(imageGoomba)
+    player = new Player()
+    let keys = {
+        right: {
+            pressed: false
+        },
+        left: {
+            pressed: false
+        }
+    }
+    function animate() {
+        requestAnimationFrame(animate);
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        platform.draw();
+        player.update();
+        tube.draw();
+        blockObject.draw();
+        //--
+        // NEW CODE - UPDATE GOOMBA ANIMATION
+        //--
+        goomba.update();
+        if (
+            player.position.y + player.height <= blockObject.position.y &&
+            player.position.y + player.height + player.velocity.y >= blockObject.position.y &&
+            player.position.x + player.width >= blockObject.position.x &&
+            player.position.x <= blockObject.position.x + blockObject.width
+        )
+        {
+            player.velocity.y = 0;
+        }
+        if (keys.right.pressed && player.position.x + player.width <= canvas.width - 50) {
+            player.velocity.x = 15;
+        } else if (keys.left.pressed && player.position.x >= 50) {
+            player.velocity.x = -15;
+        } else {
+            player.velocity.x = 0;
+        }
+        if (
+                player.position.y + player.height <= platform.position.y &&
+                player.position.y + player.height + player.velocity.y >= platform.position.y &&
+                player.position.x + player.width >= platform.position.x &&
+                player.position.x <= platform.position.x + platform.width
+            )
+            {
+                player.velocity.y = 0;
+            }
+        if (
+                player.position.y + player.height <= tube.position.y &&
+                player.position.y + player.height + player.velocity.y >= tube.position.y &&
+                player.position.x + player.width >= tube.position.x &&
+                player.position.x <= tube.position.x + tube.width
+            ) {
+                player.velocity.y = 0;
+                player.position.y += 0.1
+                player.velocity.y = 0.0001
+                gravity = 0.2
+            }
+            if (player.position.y + player.height == tube.position.y + tube.height ||
+                    player.position.y + player.height <= tube.position.y ||
+                    player.position.x + player.width <= tube.position.x ||
+                    player.position.x >= tube.position.x + tube.width) {
+                        gravity = 1.5
+                    }
+        if (
+                player.position.x + player.width<= tube.position.x &&
+                player.position.x + player.width + player.velocity.x >= tube.position.x &&
+                player.position.y + player.height >= tube.position.y &&
+                player.position.y <= tube.position.y + tube.height
+            )
+            {
+                player.velocity.x = 0;
+            }
+        if (
+                player.position.x >= tube.position.x + tube.width &&
+                player.position.x + player.velocity.x <= tube.position.x + tube.width &&
+                player.position.y + player.height >= tube.position.y &&
+                player.position.y <= tube.position.y + tube.height
+            )
+            {
+                player.velocity.x = 0;
+            }
+        if (
+                player.position.x >= tube.position.x &&
+                player.position.x + player.velocity.x <= tube.position.x &&
+                player.position.y + player.height >= tube.position.y &&
+                player.position.y <= tube.position.y + tube.height
+            )
+            {
+                player.velocity.x = 0;
+            }
+        if (
+                player.position.x + player.width <= tube.position.x + tube.width &&
+                player.position.x + player.width + player.velocity.x >= tube.position.x + tube.width &&
+                player.position.y + player.height >= tube.position.y &&
+                player.position.y <= tube.position.y + tube.height
+            )
+            {
+                player.velocity.x = 0;
+            }
+            //--
+            // NEW CODE - GOOMBA COLLISION DETECTION
+            //--
+        if(
+            player.position.y + player.height <= goomba.position.y &&
+            player.position.y + player.height + player.velocity.y >= goomba.position.y &&
+            player.position.x + player.width >= goomba.position.x &&
+            player.position.x <= goomba.position.x + goomba.width
+        )
+        {
+            player.velocity.y = -20;
+        }
+        if (
+            goomba.position.x >= platform.position.x &&
+            goomba.position.x <= platform.position.x
+        )
+        {
+            goomba.velocity.x = 2;
+        }
+        if (
+            goomba.position.x + goomba.width <= tube.position.x &&
+            goomba.position.x + goomba.width + goomba.velocity.x >= tube.position.x
+        )
+        {
+            goomba.velocity.x = -2;
+        }
+    }
+    animate();
+    addEventListener('keydown', ({ keyCode }) => {
+        switch (keyCode) {
+            case 65:
+                console.log('left');
+                keys.left.pressed = true;
+                break;
+            case 83:
+                console.log('down');
+                break;
+            case 68:
+                console.log('right');
+                keys.right.pressed = true;
+                break;
+            case 87:
+                console.log('up');
+                player.velocity.y -= 20;
+                break;
+        }
+    });
+    addEventListener('keyup', ({ keyCode }) => {
+        switch (keyCode) {
+            case 65:
+                console.log('left');
+                keys.left.pressed = false;
+                break;
+            case 83:
+                console.log('down');
+                break;
+            case 68:
+                console.log('right');
+                keys.right.pressed = false;
+                break;
+            case 87:
+                console.log('up');
+                player.velocity.y = -20;
+                break;
+        }
+    })
+</script>
+
+<h2 id="specific-hacks">Specific Hacks</h2>
+<ul>
+  <li>Add more goombas</li>
+  <li>Have the player jump on the goombas to make them disappear</li>
+  <li>Have the goombas “kill” the player and restart the game</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2023/08/05/mario_goomba_IPYNB_2_.html" hidden></a>
+</article>

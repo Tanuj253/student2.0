@@ -1,0 +1,98 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Java, Security | JWT</h1><p class="page-description">Implementing JWT Tokens into spring boot project.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-11-27T00:00:00-08:00" itemprop="datePublished">
+        Nov 27, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Aidan Wu</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C7.0">C7.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#the-code">The Code</a><ul><li><a href="#simple-explanation-of-each-java-file">Simple Explanation of each java file</a></li><li><a href="#bigger-changes-differing-from-the-article">Bigger changes differing from the article</a></li></ul></li><li><a href="#testing">Testing</a><ul><li><a href="#postman-testing">Postman Testing</a></li><li><a href="#testing-the-use-of-cookies-in-chrome-console">Testing the use of cookies in Chrome console</a></li></ul></li><li><a href="#changes">Changes</a></li></ul><h2 id="the-code">The Code</h2>
+
+<ul>
+  <li><a href="https://github.com/aidanywu/spring_port/tree/master/src/main/java/com/nighthawk/spring_portfolio/mvc/jwt">JWT</a></li>
+  <li><a href="https://github.com/aidanywu/spring_port/blob/master/src/main/java/com/nighthawk/spring_portfolio/SecurityConfig.java">SecurityConfig</a></li>
+</ul>
+
+<h3 id="simple-explanation-of-each-java-file">Simple Explanation of each java file</h3>
+
+<p>A majority of the code was taken from <a href="https://www.javainuse.com/spring/boot-jwt">https://www.javainuse.com/spring/boot-jwt</a>. The new dependencies we need is in this <a href="https://github.com/nighthawkcoders/spring_portfolio/commit/a5447a6269bd2bae123c415606ac5d0f97db2d25">Commit</a>. This site provided the basic code needed to generate a jwt token and how we would configure the backend to require authorization when accessing a page. (<a href="https://github.com/nighthawkcoders/spring_portfolio/commit/6aad61a5902917e225f3b3dbaf7bd1451b986123">Commit1</a> &amp; <a href="https://github.com/nighthawkcoders/spring_portfolio/commit/08f3cc8c03b44b41ee7c79c3ce2b30ef6165386e">Commit2</a>).</p>
+
+<p>JwtTokenUtil.java, just like its name, contains utilities/functions that is needed to generate JWT tokens and get information like the email from the JWT tokens which is needed for making sure the JWT token is valid.</p>
+
+<p>JWTUserDetailsService.java implements the Spring Security UserDetailsService interface and overrides the loadUserByUsername so we can later get user details from the database using the username.</p>
+
+<p>The name JwtAuthenticationController.java on the article was changed to JwtApiController.java to fit the already existing API controllers and this creates an API endpoint of /authenticate which validates that the given email and password in the body is validate and then generates a JWT token for the credentials if it was valid.</p>
+
+<p>We did not need the JwtRequest.java because it is used to store each user as an object and that is the Person class we’ve already coded. We also do not need JwtResponse.java.</p>
+
+<p>The JwtRequestFilter.java extends the Spring Web Filter OncePerRequestFilter class and overrides the doFilterInternal function so each request sent to the server is processed through the function. The function checks if the JWT token is valid and sets the Authentication in the context to specify that the current user is authenticated.</p>
+
+<p>JwtAuthenticationEntryPoint.java implements AuthenticationEntryPoint and overrides the commence function to specify what to do when a user was not authenticated, which is to return an unauthorized error.</p>
+
+<p>WebSecurityConfig.java is our existing SecurityConfig.java. It extends WebSecurityConfigurerAdapter and overrides configure to allow /authenticate to not need the request be authenticated because /authenticate is where you generate the JWT token is get authenticated, add the jwtRequestFilter.java filter to validate the token with every request, and configure other features of web security like a stateless session. This can also be used to allow specific roles when that is configured (as seen in last year’s csa project).</p>
+
+<h3 id="bigger-changes-differing-from-the-article">Bigger changes differing from the article</h3>
+
+<p>JWTUserDetailsService.java was changed from the article because we already have a database storing users while the article hardcoded a user and password because it did not.</p>
+
+<p>In the article, it assumed that our passwords stored inside the database was already encrypted using bcrypt, therefore, we have to configure /post to encrypt the passwords when adding users (<a href="https://github.com/nighthawkcoders/spring_portfolio/commit/5a869fd7fd37883628880a55699aba8394a1cf68">Commit</a>).</p>
+
+<p>Since the article coded for /authenticate to return the JWT token inside its body, the frontend would have to take the JWT token and configure it into the browser. This would be susceptible to Cross Site Scripting Attacks. We can avoid forcing the frontend’s javascript to set the cookie by coding for /authenticate api’s response to automatically set the browser’s cookies with the JWT token using the Set-Cookie header. For this part, I followed along with <a href="https://reflectoring.io/spring-boot-cookies/">https://reflectoring.io/spring-boot-cookies/</a> and made some changes to JwtApiController.java. Now the request sent by the browser would contain the JWT token using a HttpOnly cookie, so we have to code JwtRequestFilter.java so it gets the JWT token from the request’s Cookie header instead of its Authorization header (<a href="https://github.com/nighthawkcoders/spring_portfolio/commit/fcecd4e650a894912b5abddc2005f94d46fd8f65">Commit</a>).</p>
+
+<h2 id="testing">Testing</h2>
+
+<h3 id="postman-testing">Postman Testing</h3>
+
+<p>Using the existing account’s credentials <a href="mailto:test2@gmail.com">test2@gmail.com</a> and test2 to generate JWT Token through /authenticate.
+<img src="https://user-images.githubusercontent.com/56620132/213969351-4f9bedc3-7780-4e24-b908-f63dae90e47d.png" alt="generating jwt token" /></p>
+
+<p>Trying to access /api/person/ without jwt token stored in Cookies
+<img src="https://user-images.githubusercontent.com/56620132/213969664-91397851-1484-4169-8187-e3a0ea8fda0d.png" alt="unauthorized" /></p>
+
+<p>Trying to access /api/person/ with a wrong jwt token stored in Cookies
+<img src="https://user-images.githubusercontent.com/56620132/214020929-ef141530-d238-4a0a-9b75-4908a6bb6bc8.png" alt="unauthorized" /></p>
+
+<p>Trying to access /api/person/ with a jwt token that does not have the signature
+<img src="https://user-images.githubusercontent.com/56620132/214021142-2273a23f-ae4c-493a-9d08-b39ec944890c.png" alt="unauthorized" /></p>
+
+<p>Accessing /api/person/ with generated jwt token stored in Cookies header
+<img src="https://user-images.githubusercontent.com/56620132/213969894-d5a83af9-614e-45ec-afe9-123d8d422713.png" alt="authorized" /></p>
+
+<h3 id="testing-the-use-of-cookies-in-chrome-console">Testing the use of cookies in Chrome console</h3>
+
+<p>At first, when you access <a href="http://localhost:8085/">http://localhost:8085/</a>, it will return a 401 Unauthorized error because you do not have a jwt cookie.
+<img src="https://user-images.githubusercontent.com/56620132/214109246-3fdde7e3-e602-4810-8896-cb821737a6bb.png" alt="unauthorized" />
+We can use Chrome console with fetch to model what a frontend would do, set <code class="language-plaintext highlighter-rouge">data = {email:"toby@gmail.com", password:"123Toby!"};</code> then <code class="language-plaintext highlighter-rouge">fetch("http://localhost:8085/authenticate", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});</code>:
+<img src="https://user-images.githubusercontent.com/56620132/214109082-95f1a658-e1be-4a95-8fe3-02542a8891f5.png" alt="fetch in console" />
+Notice how we have a jwt cookie now
+<img src="https://user-images.githubusercontent.com/56620132/214109567-49a77c03-d86f-4685-adaa-d0e9f6ae3a25.png" alt="jwt cookie" />
+Reload and <a href="http://localhost:8085/">http://localhost:8085/</a> should load without 401 error
+<img src="https://user-images.githubusercontent.com/56620132/214109803-70c12715-a6f5-48e5-9865-757cdb6cedaf.png" alt="authorized" /></p>
+
+<h2 id="changes">Changes</h2>
+
+<p>There have been some changes like the implementation of <code class="language-plaintext highlighter-rouge">UserDetailsService</code> and <a href="https://github.com/nighthawkcoders/spring_portfolio/issues/12">dependency upgrades</a> to the code above.</p>
+
+<p><a href="https://github.com/nighthawkcoders/spring_portfolio/issues/12">Upgrade to Spring from 2.4 to 3.1</a></p>
+
+  </div><a class="u-url" href="/student2.0/c7.0/2023/11/27/jwt-java-spring.html" hidden></a>
+</article>

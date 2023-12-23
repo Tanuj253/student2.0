@@ -1,0 +1,580 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U3|Booleans-If|Student-P3</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-10T00:00:00-07:00" itemprop="datePublished">
+        Oct 10, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ryan, Ishi, Aditya, Aidan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#lessons">Lessons</a><ul><li><a href="#31">3.1</a><ul><li><a href="#learning-objective">Learning Objective</a></li><li><a href="#comparing-numbers">Comparing Numbers</a></li></ul></li><li><a href="#32-33-and-34">3.2 3.3 and 3.4</a><ul><li><a href="#learning-objective-1">Learning Objective</a><ul><li><a href="#syntax">Syntax</a></li></ul></li><li>if-else Syntax</li><li>else-if Syntax</li></ul></li><li><a href="#35">3.5</a><ul><li><a href="#learning-objectives">Learning Objectives:</a><ul><li><a href="#nested-if-else-statements">Nested if-else statements</a></li><li><a href="#compound-boolean-expressions">Compound Boolean Expressions:</a></li><li><a href="#short-circuited-evaluation">Short-Circuited Evaluation:</a></li><li><a href="#coding-practice">Coding Practice</a></li></ul></li></ul></li><li><a href="#36">3.6</a><ul><li><a href="#learning-objective-2">Learning Objective</a><ul><li><a href="#more">More:</a></li><li><a href="#a-bit-more-complex">A bit more complex:</a></li><li><a href="#proving-the-law-using-tables">Proving the law using tables</a></li><li><a href="#de-morgans-law-practice">De Morgan’s Law Practice</a></li></ul></li></ul></li><li><a href="#37">3.7</a><ul><li><a href="#learning-objective-3">Learning Objective</a></li></ul></li></ul></li><li><a href="#hacks">Hacks</a><ul><li><a href="#coding-practice-1">Coding Practice</a></li></ul></li></ul><h1 id="lessons">Lessons</h1>
+
+<h2 id="31">3.1</h2>
+
+<h3 id="learning-objective">Learning Objective</h3>
+<ul>
+  <li>Evaluate Boolean expressions that use relational operators in program code</li>
+</ul>
+
+<p>Types of Rational Operators</p>
+<ul>
+  <li>Operators
+    <ul>
+      <li>Primitives</li>
+      <li>Equal to: ==</li>
+      <li>Not Equal to: !=</li>
+    </ul>
+  </li>
+  <li>Arithmetic
+    <ul>
+      <li>Greater than: &gt;</li>
+      <li>Less than: &gt;</li>
+      <li>Greater than or equal to: &gt;=</li>
+      <li>Less than or equal to: &lt;=</li>
+    </ul>
+  </li>
+</ul>
+
+<p>All operators give a <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">False</code> value</p>
+
+<p><mark> Operators SHOULD NOT be used on String <mark>. String comparisons should be done using .equal or .compareTo</mark></mark></p>
+
+<ul>
+  <li>This is because
+    <ul>
+      <li>In Java, strings should not be compared using the == operator because it checks for reference equality, not content equality.</li>
+      <li>When you use == with objects (including strings), it checks if the references to the objects are the same. In other words, it checks if they point to the same location in the memory.</li>
+      <li>String literals in Java are stored in a special memory area called the “String Pool”. When you create a string literal, Java checks if a string with the same content already exists in the pool. If it does, it returns a reference to that existing string; if not, it creates a new string.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="comparing-numbers">Comparing Numbers</h3>
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        select {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p>Select two numbers and check their relation:</p>
+    <label for="firstNumber">First Number: </label>
+    <select id="firstNumber">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <!-- Add more options as needed -->
+    </select>
+    <label for="relationOperator">Relation: </label>
+    <select id="relationOperator">
+        <option value="equal">=</option>
+        <option value="greaterequal">&gt;=</option>
+        <option value="lessequal">&lt;=</option>
+        <option value="greater">&gt;</option>
+        <option value="less">&lt;</option>
+    </select>
+    <label for="secondNumber">Second Number: </label>
+    <select id="secondNumber">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <!-- Add more options as needed -->
+    </select>
+    <button onclick="checkRelation()">Check</button>
+    <p id="result"></p>
+    <script>
+        function checkRelation() {
+            const firstNumber = parseInt(document.getElementById('firstNumber').value);
+            const secondNumber = parseInt(document.getElementById('secondNumber').value);
+            const relationOperator = document.getElementById('relationOperator').value;
+            let result = '';
+            switch (relationOperator) {
+                case 'equal':
+                    result = firstNumber === secondNumber ? 'The numbers are equal.' : 'The numbers are not equal.';
+                    break;
+                case 'greaterequal':
+                    result = firstNumber >= secondNumber ? 'The first number is greater than or equal to the second number.' : 'This is false.';
+                    break;
+                case 'lessequal':
+                    result = firstNumber <= secondNumber ? 'The first number is less than or equal to the second number.' : 'This is false.';
+                    break;
+                case 'greater':
+                    result = firstNumber > secondNumber ? 'The first number is greater.' : 'This is false.';
+                    break;
+                case 'less':
+                    result = firstNumber < secondNumber ? 'The second number is greater' : 'This is false.';
+                    break;
+                default:
+                    result = 'Invalid operator';
+                    break;
+            }
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(){</span>
+        <span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">Test</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>false
+</code></pre></div></div>
+
+<h2 id="32-33-and-34">3.2 3.3 and 3.4</h2>
+
+<h3 id="learning-objective-1">Learning Objective</h3>
+<ul>
+  <li>Represent branching logical processes by using conditional statements</li>
+</ul>
+
+<p>We all know how if and else statements work</p>
+
+<h4 id="syntax">Syntax</h4>
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interactive Flip Cards</title>
+<style>
+  .flip-card {
+    background-color: #f1f1f1;
+    width: 700px;
+    height: 250px;
+    perspective: 1000px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  .flip-card-front {
+    background-color: #bbb;
+    color: #000;
+    z-index: 2;
+    text-align: left; /* Align text to the left */
+    padding: 5px; /* Add some padding for better readability */
+  }
+  .flip-card-back {
+    background-color: #555;
+    color: #fff;
+    transform: rotateY(180deg);
+    text-align: left; /* Align text to the left */
+    padding: 5px; /* Add some padding for better readability */
+  }
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+</style>
+</head>
+<body>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h3>if-else Syntax</h3>
+    </div>
+    <div class="flip-card-back">
+      <pre>
+        if (condition) {
+            // Code to execute if the condition is true
+        } else {
+            // Code to execute if the condition is false
+        }
+      </pre>
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h3>else-if Syntax</h3>
+    </div>
+    <div class="flip-card-back">
+      <pre>
+        if (condition1) {
+            // Code to be executed if condition1 is true
+        } else if (condition2) {
+            // Code to be executed if condition2 is true
+        } else if (condition3) {
+            // Code to be executed if condition3 is true
+        } else {
+            // Code to be executed if none of the conditions are true
+        }
+      </pre>
+    </div>
+  </div>
+</div>
+
+</body>
+<p>&lt;/html&gt;</p>
+
+<h2 id="35">3.5</h2>
+
+<h3 id="learning-objectives">Learning Objectives:</h3>
+
+<ul>
+  <li>Understand nested if-else statements and their role in representing branching logical processes.</li>
+  <li>Evaluate compound boolean expressions using logical operators like <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> and <code class="language-plaintext highlighter-rouge">||</code>.</li>
+  <li>Introduce short-circuited evaluation in compound boolean expressions.</li>
+</ul>
+
+<h4 id="nested-if-else-statements">Nested if-else statements</h4>
+<p>Nested if-else statements allow for multiple levels of decision-making within a program.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Nested</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Both x and y are positive."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x is positive, but y is not."</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x is not positive."</span><span class="o">);</span>
+        <span class="o">}</span>
+            <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">Nested</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x is positive, but y is not.
+</code></pre></div></div>
+
+<h4 id="compound-boolean-expressions">Compound Boolean Expressions:</h4>
+
+<p>Compound boolean expressions involve using logical operators like <code class="language-plaintext highlighter-rouge">&amp;&amp; (and)</code> and <code class="language-plaintext highlighter-rouge">|| (or)</code> to combine multiple conditions.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Compound</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(){</span>
+        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">isStudent</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="o">&amp;&amp;</span> <span class="n">isStudent</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You are an adult student."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="o">||</span> <span class="n">isStudent</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You are either an adult or a student."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You are neither an adult nor a student."</span><span class="o">);</span>
+        <span class="o">}</span>
+            <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">Compound</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You are an adult student.
+</code></pre></div></div>
+
+<h4 id="short-circuited-evaluation">Short-Circuited Evaluation:</h4>
+<p>Short-circuited evaluation is an optimization technique where the second condition in a <code class="language-plaintext highlighter-rouge">compound expression is only evaluated if the first condition is true (for &amp;&amp;) or false (for ||).</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Short</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">boolean</span> <span class="n">condition1</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">condition2</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">condition1</span> <span class="o">||</span> <span class="n">condition2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"This will be printed."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Short</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This will be printed.
+</code></pre></div></div>
+
+<h4 id="coding-practice">Coding Practice</h4>
+<p>Calculate the final grade based on the following criteria:</p>
+<ul>
+  <li>If the student didn’t complete homework, the grade is automatically “F.”</li>
+  <li>If the student completed homework and the average of midterm and final exam scores is &gt;= 70, the grade is “Pass.”</li>
+  <li>Otherwise, the grade is “Fail.”</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GradeCalculator</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">" Enter your midterm score (0-100): \n"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">midtermScore</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">midtermScore</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n Enter your final exam score (0-100): \n"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">finalExamScore</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">finalExamScore</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n Did you complete the homework (yes/no): \n"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">homeworkComplete</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">homeworkComplete</span><span class="o">);</span>
+
+        <span class="c1">// write code here</span>
+        <span class="k">if</span> <span class="o">()</span> <span class="o">{</span>
+
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\n Your final grade is: "</span> <span class="o">+</span> <span class="n">grade</span><span class="o">);</span>
+
+        <span class="n">scanner</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">GradeCalculator</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="36">3.6</h2>
+
+<h3 id="learning-objective-2">Learning Objective</h3>
+<ul>
+  <li>Compare and contrast equivalent Boolean expressions</li>
+</ul>
+
+<p>De Morgan’s Law</p>
+<ul>
+  <li>Augustus De Morgan was a 19th century mathematician whose laws or rules about boolean logic allow us to simplify expressions when they are negated
+Given two Boolean variables a and b:</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">De Morgan's Law provides a set of rules for negating complex boolean expressions.</code></p>
+
+<p>Example:</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> operators:</p>
+
+<p><img src="https://github.com/Firestorm0986/frontend-proj/assets/108041389/e02209c1-c2f5-4dab-8106-6f97824d5322" alt="image" /></p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">||</code> operator:</p>
+
+<p><img src="https://github.com/Firestorm0986/frontend-proj/assets/108041389/beb4e917-03c2-4709-96f9-88981ee69812" alt="image" /></p>
+
+<h4 id="more">More:</h4>
+
+<ul>
+  <li>!(x &gt; 0) → (x &lt;= 0)</li>
+  <li>Distributing a “not” with a boolean expression “flips” the relational operator to the opposite relational operator
+    <ul>
+      <li>!(x &lt; 0) → (x &gt;= 0)</li>
+      <li>!(x &gt;= 0) → (x &lt; 0)</li>
+      <li>!(x == 0) → (x != 0)</li>
+      <li>! (x != 0) → ( x == 0)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="a-bit-more-complex">A bit more complex:</h4>
+<p><img src="https://github.com/Firestorm0986/frontend-proj/assets/108041389/1fa9c9c3-db17-443c-94cc-0be8e6e62436" alt="image" /></p>
+
+<h4 id="proving-the-law-using-tables">Proving the law using tables</h4>
+<p><img src="https://github.com/Firestorm0986/frontend-proj/assets/108041389/cd135d80-df08-442b-aa73-35e8afbef96b" alt="image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(){</span>
+        <span class="kt">boolean</span> <span class="n">x</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="c1">// Original expression</span>
+        <span class="kt">boolean</span> <span class="n">originalExp</span> <span class="o">=</span> <span class="o">!(</span><span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">);</span>
+
+        <span class="c1">// Applying De Morgan's Law</span>
+        <span class="kt">boolean</span> <span class="n">equivalentExp</span> <span class="o">=</span> <span class="o">!</span><span class="n">x</span> <span class="o">||</span> <span class="o">!</span><span class="n">y</span><span class="o">;</span>
+
+        <span class="c1">// Checking if the results are equivalent</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Are the expressions equivalent? "</span> <span class="o">+</span> <span class="o">(</span><span class="n">originalExp</span> <span class="o">==</span> <span class="n">equivalentExp</span><span class="o">));</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">Example</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Are the expressions equivalent? true
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example2</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(){</span>
+        <span class="kt">boolean</span> <span class="n">p</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">q</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="c1">// Original expression</span>
+        <span class="kt">boolean</span> <span class="n">originalExp2</span> <span class="o">=</span> <span class="o">!(</span><span class="n">p</span> <span class="o">||</span> <span class="n">q</span><span class="o">);</span>
+
+        <span class="c1">// Applying De Morgan's Law</span>
+        <span class="kt">boolean</span> <span class="n">equivalentExp2</span> <span class="o">=</span> <span class="o">!</span><span class="n">p</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">q</span><span class="o">;</span>
+
+        <span class="c1">// Checking if the results are equivalent</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Are the expressions equivalent? "</span> <span class="o">+</span> <span class="o">(</span><span class="n">originalExp2</span> <span class="o">==</span> <span class="n">equivalentExp2</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Example2</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Are the expressions equivalent? true
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example3</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(){</span>
+        <span class="kt">boolean</span> <span class="n">a</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">b</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">c</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="c1">// Original expression</span>
+        <span class="kt">boolean</span> <span class="n">originalExp3</span> <span class="o">=</span> <span class="o">!(</span><span class="n">a</span> <span class="o">&amp;&amp;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">||</span> <span class="o">!</span><span class="n">b</span><span class="o">);</span>
+
+        <span class="c1">// Applying De Morgan's Law</span>
+        <span class="kt">boolean</span> <span class="n">equivalentExp3</span> <span class="o">=</span> <span class="o">(!</span><span class="n">a</span> <span class="o">||</span> <span class="o">!</span><span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">||</span> <span class="n">b</span><span class="o">);</span>
+
+        <span class="c1">// Checking if the results are equivalent</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Are the expressions equivalent? "</span> <span class="o">+</span> <span class="o">(</span><span class="n">originalExp3</span> <span class="o">==</span> <span class="n">equivalentExp3</span><span class="o">));</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Example3</span><span class="o">.</span><span class="na">main</span><span class="o">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Are the expressions equivalent? true
+</code></pre></div></div>
+
+<h4 id="de-morgans-law-practice">De Morgan’s Law Practice</h4>
+
+<p>Negate the following expressions:</p>
+
+<p><code class="language-plaintext highlighter-rouge">1. !(A || B)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">2. !(A || B &amp;&amp; C)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">3. !(A &amp;&amp; (B || C))</code></p>
+
+<h2 id="37">3.7</h2>
+
+<h3 id="learning-objective-3">Learning Objective</h3>
+<ul>
+  <li>Compare object reference using boolean expressions in program code</li>
+</ul>
+
+<p><img src="https://github.com/Ishi-Singh/Fastpages/assets/82348259/40517c16-2f13-460c-89ea-f8f53a0a7a34" alt="image" /></p>
+
+<p>An if statement using == to compare myHouse and momsHouse will be true but false for myHouse and annasHouse because the objects are not the same even though they have same parameters. This means that == will only return true if it is the same object, not a reference or copy of that object.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">d</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true
+false
+true
+false
+</code></pre></div></div>
+
+<p><img src="https://github.com/Ishi-Singh/Fastpages/assets/82348259/998e721e-1c5e-41a7-9799-13cfdee14ee2" alt="image" /></p>
+
+<p>When you want to compare objects you can use the .equal() method, it will return true if the objects have the same attributes even if they aren’t identical.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">d</span><span class="o">));</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>true
+true
+true
+true
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+
+<ul>
+  <li>Complete popcorn hacks - 0.1 points</li>
+  <li>Coding hacks - 0.8 points
+    <ul>
+      <li>Complexity: 0.4 points</li>
+      <li>Functionality: 0.4 points</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="coding-practice-1">Coding Practice</h2>
+
+<p>Create a program that validates a user’s password based on the following criteria:</p>
+
+<ol>
+  <li>The password must be at least 8 characters long.</li>
+  <li>The password must contain at least one uppercase letter.</li>
+  <li>The password must contain at least one lowercase letter.</li>
+  <li>The password must contain at least one digit (0-9).</li>
+  <li>The password must contain at least one special character (!, @, #, $, %, ^, &amp;, *).</li>
+</ol>
+
+<p>Write a Java program that prompts the user to enter a password and then checks if it meets the above criteria. If the password meets all the criteria, print “Password is valid.” If not, print a message indicating which criteria the password fails to meet.</p>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/10/java-booleans-P3_IPYNB_2_.html" hidden></a>
+</article>

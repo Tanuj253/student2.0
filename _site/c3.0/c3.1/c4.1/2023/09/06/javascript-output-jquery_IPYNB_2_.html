@@ -1,0 +1,583 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">UX, jQuery | CRUD</h1><p class="page-description">A Tech Talk on creating CRUD operations using jQuery. Objective is to use jquery to speed up frontend development for onscreen interaction of changing and filtering of data.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-06T00:00:00-07:00" itemprop="datePublished">
+        Sep 6, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C3.0">C3.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C3.1">C3.1</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.1">C4.1</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#lessons-on-jquery">Lessons on jQuery</a><ul><li><a href="#markdown-table">Markdown Table</a></li><li><a href="#html-table">HTML Table</a></li></ul></li><li>HTML Cell Output from Jupyter</li><li><a href="#html-table-in-markdown-cell-with-javascript-jquery">HTML Table in Markdown Cell with JavaScript jquery</a></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="lessons-on-jquery">Lessons on jQuery</h2>
+<p>This blog should be expanded</p>
+<ul>
+  <li><a href="https://www.w3schools.com/jquery/default.asp">https://www.w3schools.com/jquery/default.asp</a></li>
+  <li><a href="https://colorlib.com/wp/jquery-plugins-effects/">https://colorlib.com/wp/jquery-plugins-effects/</a></li>
+</ul>
+
+<p>It is expected to teach jQuery to complement PBL projects.</p>
+
+<ul>
+  <li>Below is jQuery table.  An example could be added at the end of the example to include fetch.
+    <ul>
+      <li>FYI, jQuery is used in Student Database <a href="https://devops.nighthawkcodingsociety.com/users/">here</a></li>
+      <li>Teacher is looking for great example to use jQuery <a href="https://nighthawkcoders.github.io/teacher/devops/cloud_database">here</a>, objective would be to have CRUD operation folded in very nicely.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="markdown-table">Markdown Table</h3>
+<p>Google <a href="https://www.markdownguide.org/extended-syntax/#tables">markdown cheat sheet</a> and it lead you to an outline for how to make a table.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Color</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ford</td>
+      <td>Mustang</td>
+      <td>2022</td>
+      <td>Red</td>
+      <td>$35,000</td>
+    </tr>
+    <tr>
+      <td>Toyota</td>
+      <td>Camry</td>
+      <td>2022</td>
+      <td>Silver</td>
+      <td>$25,00</td>
+    </tr>
+    <tr>
+      <td>Tesla</td>
+      <td>Model S</td>
+      <td>2022</td>
+      <td>White</td>
+      <td>$80,000</td>
+    </tr>
+    <tr>
+      <td>Cadillac</td>
+      <td>Broughan</td>
+      <td>1969</td>
+      <td>Black</td>
+      <td>$10,000</td>
+    </tr>
+    <tr>
+      <td>Ford</td>
+      <td>F-350</td>
+      <td>1997</td>
+      <td>Green</td>
+      <td>$15,000</td>
+    </tr>
+    <tr>
+      <td>Ford</td>
+      <td>Excursion</td>
+      <td>2003</td>
+      <td>Green</td>
+      <td>$25,000</td>
+    </tr>
+    <tr>
+      <td>Ford</td>
+      <td>Ranger</td>
+      <td>2012</td>
+      <td>Red</td>
+      <td>$8,000</td>
+    </tr>
+    <tr>
+      <td>Kuboto</td>
+      <td>L3301 Tractor</td>
+      <td>2015</td>
+      <td>Orange</td>
+      <td>$12,000</td>
+    </tr>
+    <tr>
+      <td>Ford</td>
+      <td>Fusion Energi</td>
+      <td>2015</td>
+      <td>Green</td>
+      <td>$15,000</td>
+    </tr>
+    <tr>
+      <td>Acura</td>
+      <td>XL</td>
+      <td>2006</td>
+      <td>Grey</td>
+      <td>$10,000</td>
+    </tr>
+    <tr>
+      <td>Ford</td>
+      <td>F150 Lightning</td>
+      <td>2023</td>
+      <td>Grey</td>
+      <td>$70,000</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="html-table">HTML Table</h3>
+<p>Google <a href="https://www.w3schools.com/html/html_tables.asp">w3schools html table</a> and it will lead you to a tutorial on how to make tables.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">HTML</span> <span class="n">Cell</span> <span class="n">Output</span> <span class="k">from</span> <span class="n">Jupyter</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Body</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Document</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">table</span> <span class="n">class</span><span class="o">=</span><span class="s">"table"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">thead</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Make</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Model</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Year</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Color</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Price</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">thead</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">tbody</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Mustang</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Red</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">35</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Toyota</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Camry</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Silver</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Tesla</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Model</span> <span class="n">S</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">White</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">80</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Cadillac</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Broughan</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1969</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Black</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">10</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">F</span><span class="o">-</span><span class="mi">350</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1997</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Green</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">15</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Excursion</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2003</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Green</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ranger</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2012</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Red</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">8</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Kuboto</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">L3301</span> <span class="n">Tractor</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Orange</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">12</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Fusion</span> <span class="n">Energi</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Guard</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Acura</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">XL</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2006</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Grey</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">10</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">F150</span> <span class="n">Lightning</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2024</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Guard</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">70</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">tbody</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h2>HTML Cell Output from Jupyter</h2>
+
+<!-- Body contains the contents of the Document -->
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ford</td>
+                <td>Mustang</td>
+                <td>2022</td>
+                <td>Red</td>
+                <td>$35,000</td>
+            </tr>
+            <tr>
+                <td>Toyota</td>
+                <td>Camry</td>
+                <td>2022</td>
+                <td>Silver</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Tesla</td>
+                <td>Model S</td>
+                <td>2022</td>
+                <td>White</td>
+                <td>$80,000</td>
+            </tr>
+            <tr>
+                <td>Cadillac</td>
+                <td>Broughan</td>
+                <td>1969</td>
+                <td>Black</td>
+                <td>$10,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>F-350</td>
+                <td>1997</td>
+                <td>Green</td>
+                <td>$15,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Excursion</td>
+                <td>2003</td>
+                <td>Green</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Ranger</td>
+                <td>2012</td>
+                <td>Red</td>
+                <td>$8,000</td>
+            </tr>
+            <tr>
+                <td>Kuboto</td>
+                <td>L3301 Tractor</td>
+                <td>2015</td>
+                <td>Orange</td>
+                <td>$12,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Fusion Energi</td>
+                <td>2015</td>
+                <td>Guard</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Acura</td>
+                <td>XL</td>
+                <td>2006</td>
+                <td>Grey</td>
+                <td>$10,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>F150 Lightning</td>
+                <td>2024</td>
+                <td>Guard</td>
+                <td>$70,000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+<h2 id="html-table-in-markdown-cell-with-javascript-jquery">HTML Table in Markdown Cell with JavaScript jquery</h2>
+<p>JavaScript is a programming language that works with HTML data, CSS helps to style that data.  In this example, we are using JavaScript and CSS that was developed by others (3rd party).  Addithing the 3rd party code makes the table interactive.</p>
+<ul>
+  <li>Look at the href and src on lines inside of the lines in <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> tags.  This is adding code to our page from others.</li>
+  <li>Observe the <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> tags at the bottom of the page.  This is generating the interactive table, from the third party code, using the data <code class="language-plaintext highlighter-rouge">&lt;table id="demo"&gt;</code> from the <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Head</span> <span class="n">contains</span> <span class="n">information</span> <span class="n">to</span> <span class="n">Support</span> <span class="n">the</span> <span class="n">Document</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">load</span> <span class="n">jQuery</span> <span class="ow">and</span> <span class="n">DataTables</span> <span class="n">output</span> <span class="n">style</span> <span class="ow">and</span> <span class="n">scripts</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">link</span> <span class="n">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text/css"</span> <span class="n">href</span><span class="o">=</span><span class="s">"https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text/javascript"</span> <span class="n">language</span><span class="o">=</span><span class="s">"javascript"</span> <span class="n">src</span><span class="o">=</span><span class="s">"https://code.jquery.com/jquery-3.6.0.min.js"</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">var</span> <span class="n">define</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text/javascript"</span> <span class="n">language</span><span class="o">=</span><span class="s">"javascript"</span> <span class="n">src</span><span class="o">=</span><span class="s">"https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Body</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Document</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">table</span> <span class="nb">id</span><span class="o">=</span><span class="s">"xdemo"</span> <span class="n">class</span><span class="o">=</span><span class="s">"table"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">thead</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Make</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Model</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Year</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Color</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="n">Price</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">thead</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">tbody</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Mustang</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Red</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">35</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Toyota</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Camry</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Silver</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Tesla</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Model</span> <span class="n">S</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2022</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">White</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">80</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Cadillac</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Broughan</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1969</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Black</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">10</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">F</span><span class="o">-</span><span class="mi">350</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1997</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Green</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">15</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Excursion</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2003</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Green</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ranger</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2012</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Red</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">8</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Kuboto</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">L3301</span> <span class="n">Tractor</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Orange</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">12</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Fusion</span> <span class="n">Energi</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2015</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Guard</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">25</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Acura</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">XL</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2006</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Grey</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">10</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Ford</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">F150</span> <span class="n">Lightning</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">2024</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Guard</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">$</span><span class="mi">70</span><span class="p">,</span><span class="mi">000</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">tbody</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Script</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">embed</span> <span class="n">executable</span> <span class="n">code</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="err">$</span><span class="p">(</span><span class="s">"#xdemo"</span><span class="p">).</span><span class="n">DataTable</span><span class="p">();</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<!-- Head contains information to Support the Document -->
+<head>
+    <!-- load jQuery and DataTables output style and scripts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>var define = null;</script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+
+<!-- Body contains the contents of the Document -->
+<body>
+    <table id="xdemo" class="table">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ford</td>
+                <td>Mustang</td>
+                <td>2022</td>
+                <td>Red</td>
+                <td>$35,000</td>
+            </tr>
+            <tr>
+                <td>Toyota</td>
+                <td>Camry</td>
+                <td>2022</td>
+                <td>Silver</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Tesla</td>
+                <td>Model S</td>
+                <td>2022</td>
+                <td>White</td>
+                <td>$80,000</td>
+            </tr>
+            <tr>
+                <td>Cadillac</td>
+                <td>Broughan</td>
+                <td>1969</td>
+                <td>Black</td>
+                <td>$10,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>F-350</td>
+                <td>1997</td>
+                <td>Green</td>
+                <td>$15,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Excursion</td>
+                <td>2003</td>
+                <td>Green</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Ranger</td>
+                <td>2012</td>
+                <td>Red</td>
+                <td>$8,000</td>
+            </tr>
+            <tr>
+                <td>Kuboto</td>
+                <td>L3301 Tractor</td>
+                <td>2015</td>
+                <td>Orange</td>
+                <td>$12,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>Fusion Energi</td>
+                <td>2015</td>
+                <td>Guard</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Acura</td>
+                <td>XL</td>
+                <td>2006</td>
+                <td>Grey</td>
+                <td>$10,000</td>
+            </tr>
+            <tr>
+                <td>Ford</td>
+                <td>F150 Lightning</td>
+                <td>2024</td>
+                <td>Guard</td>
+                <td>$70,000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+<!-- Script is used to embed executable code -->
+<script>
+    $("#xdemo").DataTable();
+</script>
+
+<h2 id="hacks">Hacks</h2>
+<p>This lesson teaches you about tables.  In this hack, it is important that you analze the difference in the styles of output shown.</p>
+<ul>
+  <li>Make your own tables, with data according to your interests.</li>
+  <li>Describe a benefit of a markdown table.</li>
+  <li>Try to Style the HTML table using w3schools.</li>
+  <li>Describe the difference between HTML and JavaScript.</li>
+  <li>Describe a benefit of a table that uses JavaScript.</li>
+</ul>
+
+
+  </div><a class="u-url" href="/student2.0/c3.0/c3.1/c4.1/2023/09/06/javascript-output-jquery_IPYNB_2_.html" hidden></a>
+</article>

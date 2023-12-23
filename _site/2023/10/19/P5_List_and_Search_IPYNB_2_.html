@@ -1,0 +1,362 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Lists and search</h1><p class="page-description">Lesson for developing algorithms in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-19T00:00:00-07:00" itemprop="datePublished">
+        Oct 19, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Brandon, Ninaad, Aaron, Eshaan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#lists">LISTS:</a></li></ul><h2 id="lists">LISTS:</h2>
+
+<p>A Python list is an ordered and changeable collection of data objects. Unlike an array, which can contain objects of a single type, a list can contain a mixture of objects.
+They start from 0. (The 1st element would actually be the 0th element)</p>
+
+<p><strong>List Functions</strong></p>
+
+<p><strong>Creating a list:</strong></p>
+
+<p>In order to create a list named “aList”, type aList = [].
+This creates an empty list.
+A list with elements would look like this aList = [element1,element2,element3]</p>
+
+<p><strong>Append:</strong></p>
+
+<p>In Python, the append() method is used to add an element to the end of a list.
+The element in the parenthesis is what is added to the list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># College Board Pseudo Code
+</span><span class="n">aList</span> <span class="err">←</span> <span class="p">[]</span>
+
+<span class="n">USER_INPUT</span> <span class="err">←</span> <span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+
+<span class="n">REPEAT</span> <span class="n">UNTIL</span> <span class="n">USER_INPUT</span> <span class="err">←</span> <span class="n">q</span><span class="p">{</span>
+    <span class="n">APPEND</span> <span class="p">(</span><span class="n">aList</span><span class="p">,</span> <span class="n">USER_INPUT</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">DISPLAY</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aList</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user_input</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'q'</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+    <span class="n">aList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Things You Want:"</span><span class="p">,</span> <span class="n">aList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Things You Want: ['1', 'item', '2']
+</code></pre></div></div>
+
+<p><strong>Accessing an element:</strong></p>
+
+<p>In order to access a specific element from a list, you would put the element in []. For example, If I had to access the third element in the list aList, I would say “aList[2]”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># College Board Pseudo Code
+</span><span class="n">aList</span> <span class="err">←</span> <span class="p">[]</span>
+
+<span class="n">USER_INPUT</span> <span class="err">←</span> <span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+
+<span class="n">REPEAT</span> <span class="n">UNTIL</span> <span class="n">USER_INPUT</span> <span class="err">←</span> <span class="n">q</span><span class="p">{</span>
+    <span class="n">APPEND</span> <span class="p">(</span><span class="n">aList</span><span class="p">,</span> <span class="n">USER_INPUT</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">DISPLAY</span><span class="p">(</span><span class="n">aList</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aList</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user_input</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'q'</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+    <span class="n">aList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"The Second thing on your list is"</span><span class="p">,</span> <span class="n">aList</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The Second thing on your list is 3
+['2', '3', '6', 'hunt']
+</code></pre></div></div>
+
+<p><strong>Deleting an element:</strong></p>
+
+<p>In order to delete an element, choose the element the same way you would access it but put “del” before it. For example, If I had to delete the third element in a list called aList, I would say “del aList[2]”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># College Board Pseudo Code
+</span><span class="n">aList</span> <span class="err">←</span> <span class="p">[]</span>
+
+<span class="n">USER_INPUT</span> <span class="err">←</span> <span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+
+<span class="n">REPEAT</span> <span class="n">UNTIL</span> <span class="n">USER_INPUT</span> <span class="err">←</span> <span class="n">q</span><span class="p">{</span>
+    <span class="n">APPEND</span> <span class="p">(</span><span class="n">aList</span><span class="p">,</span> <span class="n">USER_INPUT</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">REMOVE</span> <span class="p">(</span><span class="n">aList</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">DISPLAY</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aList</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter an item you want (or 'q' to quit): "</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">user_input</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">'q'</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+    <span class="n">aList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"This is your list: "</span><span class="p">,</span> <span class="n">aList</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">aList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"This is your new list: "</span><span class="p">,</span> <span class="n">aList</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is your list:  ['5', '4', '4']
+This is your new list:  ['5', '4']
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-1">Popcorn Hack #1</h1>
+
+<p>Create a list (with user input) using objects with different types. Remove the first element from the list and print the list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code goes here:
+</span>
+
+</code></pre></div></div>
+
+<p><strong>Assigning a value:</strong></p>
+
+<p>To assign the values a list named bList to aList of one list to another you simply have to do aList = bList.</p>
+
+<p><strong>Length of a list:</strong></p>
+
+<p>To get the length of a list named aList, you just need to do len(aList). This gives you the number of elements in a list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Yeezys"</span><span class="p">,</span><span class="s">"Yeezys"</span><span class="p">]</span>
+<span class="n">bList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"No Yeezys"</span><span class="p">]</span>
+
+<span class="n">bList</span> <span class="o">=</span> <span class="n">aList</span>
+<span class="n">list_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bList</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Things I want:"</span><span class="p">,</span> <span class="n">bList</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"How many yeezys:"</span><span class="p">,</span><span class="n">list_length</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Things I want: ['Yeezys', 'Yeezys']
+How many yeezys: 2
+</code></pre></div></div>
+
+<p>For each item in a list:</p>
+
+<p>If you want to do something to each item in a list, you will need to use this. an example of it is shown below.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Original List:"</span><span class="p">,</span> <span class="n">my_list</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">)):</span>
+    <span class="n">my_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Modified List:"</span><span class="p">,</span> <span class="n">my_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Length of the list:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Original List: [1, 2, 3, 4, 5]
+Modified List: [2, 3, 4, 5, 6]
+Length of the list: 5
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-2">Popcorn Hack #2</h1>
+
+<p>Create a new list that modifies the original list by multiplying each element by 2 and prints the length of the list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Original List:"</span><span class="p">,</span> <span class="n">my_list</span><span class="p">)</span>
+
+<span class="c1"># Code goes here:
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Original List: [1, 2, 3, 4, 5]
+</code></pre></div></div>
+
+<h1 id="search">Search:</h1>
+
+<p>A search algorithm is an algorithm that retrieves information stored in a data structure or calculated in the search space of a problem domain, with either discrete or continuous values.</p>
+
+<p><strong>Linear Search</strong></p>
+
+<p>The most basic way of searching in which each element is searched in the order it appears in the list. The list doesn’t need to be organized.</p>
+
+<p>For the code given below, the algorithm compares each value to the previous value, and if the value is smaller than the previous value, that value becomes the new min. The algorithm continues until it reaches the end of the list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span><span class="p">[]</span> <span class="err">←</span> <span class="p">[</span><span class="mi">86</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">84</span><span class="p">]</span>
+
+<span class="nb">min</span> <span class="err">←</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">score</span> <span class="n">IN</span> <span class="n">nums</span><span class="p">[]</span> <span class="n">DO</span>
+    <span class="n">IF</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="nb">min</span> <span class="n">THEN</span>
+        <span class="nb">min</span> <span class="err">←</span> <span class="n">score</span>
+    <span class="n">END</span> <span class="n">IF</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+<span class="n">OUTPUT</span> <span class="s">"The minimum value in the list is:"</span><span class="p">,</span> <span class="nb">min</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">86</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">84</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+<span class="nb">min</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">score</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">):</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">score</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"The minimum value in the list is:"</span><span class="p">,</span> <span class="nb">min</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[86, 75, 98, 100, 71, 65, 84]
+The minimum value in the list is: 65
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-3">Popcorn Hack #3</h1>
+
+<p>Create a linear search algorithm that determines the maximum value in a list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">86</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">84</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+<span class="c1"># Code goes here:
+</span></code></pre></div></div>
+
+<p><strong>Binary Search</strong></p>
+
+<p>A binary search, also known as half-interval search, logarithmic search, or binary chop is a search algorithm that finds the position of a target value within a sorted array.</p>
+
+<p>How does Binary Search work:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - Binary search works on sorted arrays. 
+
+ - Binary search begins by comparing an element in the middle of the array with the target value. 
+
+ - If the target value matches the element:
+
+     - Its position in the array is returned and exit the program.
+
+ - If the target value is less than the element:
+
+     - The search continues in the lower half of the array. Go to Step-2
+
+ - If the target value is greater than the element, the search continues in the upper half of the 
+ array. Go to Step-2
+ 
+ - Go back to Step-2
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Returns index of x in arr if present, else -1
+</span><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+ 
+    <span class="c1"># Check base case
+</span>    <span class="k">if</span> <span class="n">high</span> <span class="o">&gt;=</span> <span class="n">low</span><span class="p">:</span>
+ 
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+ 
+        <span class="c1"># If element is present at the middle itself
+</span>        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+ 
+        <span class="c1"># If element is smaller than mid, then it can only
+</span>        <span class="c1"># be present in left subarray
+</span>        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+ 
+        <span class="c1"># Else the element can only be present in right subarray
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+ 
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Element is not present in the array
+</span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+ 
+<span class="c1"># Test array
+</span><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span> <span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+ 
+<span class="c1"># Function call
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+ 
+<span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"The Element is in index"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Element is not present in array"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The Element is in index 3
+</code></pre></div></div>
+
+<p>#</p>
+
+<h1 id="big-o-notation">Big O Notation</h1>
+
+<p>Usually used to denote how much run time an algorithm takes or how much memory is used by an algorithm.</p>
+
+<p>In our case we are using it to show how many tries it will take for a search algorithm to find something.</p>
+
+<p>Linear Search vs Binary Search big O notation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - Linear search complexity is denoted by O(n) as every element in the array is compared only once. 
+
+     - In linear search, best-case complexity is O(1) where the element is found at the first index. 
+
+     - Worst-case complexity is O(n) where the element is found at the last index or the element is not present in the array.
+
+ - Binary search, best-case complexity is O(1) where the element is found at the middle index. The worst-case complexity is O(log base 2 n).
+</code></pre></div></div>
+
+<h1 id="homework-hack">Homework Hack</h1>
+
+<p>Create a binary search algorithm that sorts for the value 25.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">91</span><span class="p">]</span>
+
+<span class="c1"># Code goes here: 
+</span></code></pre></div></div>
+
+<style> 
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+h1{ text-align: center; font-size: 50px; color: #0352fc; font-family: 'Roboto', serif;}
+h2{ text-align: left; font-size: 18px; color: #0352fc;}
+body{ text-align: left; font-size: 15px; font-family: 'Roboto', serif; background: black; }
+</style>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/19/P5_List_and_Search_IPYNB_2_.html" hidden></a>
+</article>

@@ -1,0 +1,246 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U1 Grade Calculator (Teacher)</h1><p class="page-description">An introduction to primitive types using input, output, and a grading calculator example.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-16T00:00:00-07:00" itemprop="datePublished">
+        Oct 16, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h3 id="overview">Overview</h3>
+<p>College Board Unit 1 has a focus on primitive types of int, double, and boolean.  In Unit 1, String is mentioned, but it is NOT a primitive type.  A String is essentially a sequence of characters and is called a reference data type, where each character is represented by the primitive <code class="language-plaintext highlighter-rouge">char</code> data type.</p>
+
+<p>This mini-lab covers a comprehensive overview of Java primitive types, input/output, and the use of wrapper classes and reference data types. The examples and explanations provided will greatly assist students in understanding these concepts and applying them in their own code.</p>
+
+<p>The mini-lab “Hacks” covers the essential aspects of primitive types in a concise manner. It provides students with opportunities for hands-on practice and encourages them to think creatively with the suggested activities.</p>
+
+<h3 id="data-types">Data Types</h3>
+<p>Unit 1 focuses on primitive data types.  Now is a good time to compare primitives with other Java data types.  Review and compare data types with a focus on those prefixed with an asterisk, as they are required knowledge by College Board and will be on the AP Exam.</p>
+
+<p><a href="https://www.geeksforgeeks.org/data-types-in-java/">Primitive Data Types</a>: These are the basic data types in Java, representing fundamental values.</p>
+<ul>
+  <li>*boolean: Represents true or false values.</li>
+  <li>byte: Represents a signed 8-bit integer value.</li>
+  <li>short: Represents a signed 16-bit integer value.</li>
+  <li>*int: Represents a signed 32-bit integer value.</li>
+  <li>long: Represents a signed 64-bit integer value.</li>
+  <li>float: Represents a single-precision 32-bit floating-point value.</li>
+  <li>*double: Represents a double-precision 64-bit floating-point value.</li>
+  <li>char: Represents a single Unicode character.</li>
+</ul>
+
+<p>Reference Data Types: These are more complex data types that can hold a collection of values or represent custom-defined entities.</p>
+<ul>
+  <li>*<a href="https://www.geeksforgeeks.org/strings-in-java/">String</a>: Represents a sequence of characters.</li>
+  <li>*<a href="https://www.geeksforgeeks.org/arrays-in-java/">Arrays</a>: Represents a collection of elements of the same data type.</li>
+  <li>*<a href="https://www.geeksforgeeks.org/classes-objects-java/">Classes</a>: In Java, classes can be used to define custom data structures and entities that may contain primitives, strings, enums, wrapper classes, or arrays. Programmers define their own reference data types to create abstract data types or data structures. A Users class or a Graph class for Graph Theory are custome data types.</li>
+  <li>*<a href="https://www.geeksforgeeks.org/collections-in-java-2/#">Collection Framework</a>: Java provides built-in classes like ArrayList, Queue, Stack, and HashMap as part of the Collections framework. A collection is an object that can hold references to other objects.  The Generic type declaration (ie &lt;Integer&gt;) allows the prorgrammer to provide the type of Object that a collection will contain,</li>
+</ul>
+
+<p>Hybrid Data Types</p>
+<ul>
+  <li>*<a href="https://www.youtube.com/watch?v=kog78g2fvqU">Wrapper Classes</a>: Represents primitive data types as oan bjects (e.g., Boolean, Integer, Double). They are classes but still behave like behavior of primitive types with regards to pass-by-value . Therefore, they are not considered true reference data types.</li>
+  <li><a href="https://www.geeksforgeeks.org/enum-in-java/#">Enums</a>: Enums: Represents a fixed set of constants that are immutable. Enums are useful for representing a predefined set of values (ie <code class="language-plaintext highlighter-rouge">public enum Suit {SPADES, CLUBS, HEARTS, DIAMONDS};</code>).</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DefinePrimitives</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">anInt</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+      <span class="kt">double</span> <span class="n">aDouble</span> <span class="o">=</span> <span class="mf">89.9</span><span class="o">;</span>
+      <span class="kt">boolean</span> <span class="n">aBoolean</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+      <span class="c1">// not primitives but essential</span>
+      <span class="nc">String</span> <span class="n">aString</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">;</span>   <span class="c1">// wrapper class shortcut assignment</span>
+      <span class="nc">String</span> <span class="n">aStringFormal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Greetings, World!"</span><span class="o">);</span>
+  
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"anInt: "</span> <span class="o">+</span> <span class="n">anInt</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aDouble: "</span> <span class="o">+</span> <span class="n">aDouble</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aBoolean: "</span> <span class="o">+</span> <span class="n">aBoolean</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aString: "</span> <span class="o">+</span> <span class="n">aString</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"aStringFormal: "</span> <span class="o">+</span> <span class="n">aStringFormal</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="nc">DefinePrimitives</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="input-primitive-data">Input Primitive data</h3>
+<p>Input is a key concept to all programming.  The assignments in previous example are “static” or “hard coded”.  The examples when you use input are supplied by the user.</p>
+
+<p>Scanner is the java utility class for console input.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// import the Scanner class from the java.util package.</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="c1">// class must alway have 1st letter as uppercase, CamelCase is Java Class convention</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ScanPrimitives</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>    
+        <span class="nc">Scanner</span> <span class="n">input</span><span class="o">;</span>
+
+        <span class="c1">// primitive int</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter an integer: "</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">sampleInputInt</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sampleInputInt</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// if not an integer</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not an integer (form like 159), "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// primitive double</span>
+        <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter a double: "</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">double</span> <span class="n">sampleInputDouble</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sampleInputDouble</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// if not a number</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not an double (form like 9.99), "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// primitive boolean</span>
+        <span class="n">input</span> <span class="o">=</span>  <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter a boolean: "</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">boolean</span> <span class="n">sampleInputBoolean</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sampleInputBoolean</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// if not true or false</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not an boolean (true or false), "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// wrapper class String</span>
+        <span class="n">input</span> <span class="o">=</span>  <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter a String: "</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">sampleInputString</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sampleInputString</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// this may never happen</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not an String, "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">ScanPrimitives</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="output-primitive-data">Output Primitive Data</h3>
+<p>The second key to to all programming is Output.  All programming has means to format and combine data.  In these examples you see descriptions of the mathematical operation combine with the result of the operation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PrimitiveDivision</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">7</span><span class="o">,</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Integer Division"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\tint output with concatenation: "</span> <span class="o">+</span> <span class="n">i1</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">i1</span><span class="o">/</span><span class="n">i2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"\tint output with format: %d/%d = %d"</span><span class="o">,</span><span class="n">i1</span><span class="o">,</span> <span class="n">i2</span><span class="o">,</span> <span class="n">i1</span><span class="o">/</span><span class="n">i2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"\tint output with printf: %d/%d = %d\n"</span><span class="o">,</span><span class="n">i1</span><span class="o">,</span> <span class="n">i2</span><span class="o">,</span> <span class="n">i1</span><span class="o">/</span><span class="n">i2</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">d1</span> <span class="o">=</span> <span class="mi">7</span><span class="o">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Double Division"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\tdouble output with concatenation: "</span> <span class="o">+</span> <span class="n">d1</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">d2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">d1</span><span class="o">/</span><span class="n">d2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"\tdouble output with format: %.2f/%.2f = %.2f"</span><span class="o">,</span><span class="n">d1</span><span class="o">,</span> <span class="n">d2</span><span class="o">,</span> <span class="n">d1</span><span class="o">/</span><span class="n">d2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"\tdouble output with printf: %.2f/%.2f = %.2f\n"</span><span class="o">,</span><span class="n">d1</span><span class="o">,</span> <span class="n">d2</span><span class="o">,</span> <span class="n">d1</span><span class="o">/</span><span class="n">d2</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Casting and Remainders"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"\tint cast to double on division: %d/%d = %.2f\n"</span><span class="o">,</span><span class="n">i1</span><span class="o">,</span> <span class="n">i2</span><span class="o">,</span> <span class="n">i1</span><span class="o">/(</span><span class="kt">double</span><span class="o">)</span><span class="n">i2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\tint using modulo for remainder: "</span> <span class="o">+</span> <span class="n">i1</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">i1</span><span class="o">/</span><span class="n">i2</span> <span class="o">+</span> <span class="s">" remainder "</span> <span class="o">+</span> <span class="n">i1</span><span class="o">%</span><span class="n">i2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">PrimitiveDivision</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="grade-calculator-putting-input-and-output-together">Grade Calculator, putting Input and Output together</h3>
+<p>Primitive types rarely stand alone.  This lab uses the primitive type double, but it also introduces the wrapper class Double.  Also included is one of the most common Data Structures in Java, the ArrayList.  These items are put together to create a grade calculator.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GradeCalculator</span> <span class="o">{</span>
+    <span class="c1">// introduction to Double wrapper class (object)</span>
+    <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">grades</span><span class="o">;</span>   <span class="c1">// similar to Python list</span>
+
+    <span class="c1">// constructor, initializes ArrayList and call enterGrades method</span>
+    <span class="kd">public</span> <span class="nf">GradeCalculator</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">grades</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">enterGrades</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// double requires test for zero versus threshold, DO NOT compare to Zero</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isZero</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">){</span>
+        <span class="kt">double</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">threshold</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="c1">// enterGrades input method using scanner</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">enterGrades</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">input</span><span class="o">;</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter a double, 0 to exit: "</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="kt">double</span> <span class="n">sampleInputDouble</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sampleInputDouble</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">isZero</span><span class="o">(</span><span class="n">sampleInputDouble</span><span class="o">))</span> <span class="k">break</span><span class="o">;</span>       <span class="c1">// exit loop on isZero</span>
+                <span class="k">else</span> <span class="k">this</span><span class="o">.</span><span class="na">grades</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">sampleInputDouble</span><span class="o">);</span>    <span class="c1">// adding to object, ArrayList grades</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// if not a number</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not an double (form like 9.99), "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">input</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// average calculation </span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">average</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>   <span class="c1">// running total</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">double</span> <span class="n">num</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">grades</span><span class="o">)</span> <span class="o">{</span>    <span class="c1">// enhanced for loop</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span><span class="o">;</span>   <span class="c1">// shortcut add and assign operator</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">total</span> <span class="o">/</span> <span class="k">this</span><span class="o">.</span><span class="na">grades</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>  <span class="c1">// double math, ArrayList grades object maintains its size</span>
+    <span class="o">}</span>
+
+    <span class="c1">// static main method, used as driver and tester</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">GradeCalculator</span> <span class="n">grades</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GradeCalculator</span><span class="o">();</span> <span class="c1">// calls constructor, creates object, which calls enterGrades</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Average: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">grades</span><span class="o">.</span><span class="na">average</span><span class="o">()));</span>  <span class="c1">// format used to standardize to two decimal points</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// IJava activation</span>
+<span class="nc">GradeCalculator</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<p>Build your own Jupyter Notebook meeting these College Board and CTE competencies</p>
+<ul>
+  <li>Use Scanner example above to give a warning message and continue with input until correct data type is provided.  Kind of like a test with hints.</li>
+  <li>Define in a Class the following data types
+    <ul>
+      <li>Demonstrate use of Primitives: int, double, boolean</li>
+      <li>Demonstrate use of Reference data type: String</li>
+    </ul>
+  </li>
+  <li>Describe in comments how each data type choice is appropriate to the application</li>
+  <li>Use Jupyter cell to perform an arithmetic expressions that uses casting, add comments that show how it produces desired result (ie <code class="language-plaintext highlighter-rouge">double convertedValue = (double) intValue;</code>).  Learn more by watching this <a href="https://apclassroom.collegeboard.org/8/home?apd=ovg96bpudo&amp;unit=1">College Board video</a></li>
+  <li>Perform compound assignment operator (ie <code class="language-plaintext highlighter-rouge">intValue += 5;</code>), add comments to describe the result of operation.</li>
+</ul>
+
+<p>Expectations</p>
+<ol>
+  <li>Multiple inputs and outputs are required.</li>
+  <li>Jupyter NoteBook when committed to GitHub Pages must display Outputs</li>
+  <li>Building something that helps you study for another class or solve a problem of intest. Here are some ideas: MPG, GPA, Celsius to Fahrenheit, Primes in range of numbers, Points per Game</li>
+</ol>
+
+
+  </div><a class="u-url" href="/student2.0/2023/10/16/java-u1-primitives_IPYNB_2_.html" hidden></a>
+</article>

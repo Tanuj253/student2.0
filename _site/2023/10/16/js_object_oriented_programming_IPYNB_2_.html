@@ -1,0 +1,251 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Javascript Object Oriented Programming</h1><p class="page-description">Tech talk going over object oriented progamming in javascript</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-16T00:00:00-07:00" itemprop="datePublished">
+        Oct 16, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h1 id="javascript-class">Javascript class</h1>
+<ul>
+  <li>A class can be thought of as anything that you would consider an object in real life
+    <ul>
+      <li>Computer</li>
+      <li>Cat</li>
+      <li>Person</li>
+    </ul>
+  </li>
+  <li>Just like any of those objects a class will have attributes and actions that it can perform</li>
+  <li>This can be thought of as a “Has-a” relationship
+    <ul>
+      <li>Cat
+        <ul>
+          <li>Has a Tail</li>
+          <li>Has fur</li>
+          <li>Has the ability to make a sound</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="purpose-of-object-oriented-programming">Purpose of object oriented programming</h1>
+<ul>
+  <li>Classes are the building blocks of object oriented programming</li>
+  <li>Classes can be used to help organize your code
+    <ul>
+      <li>Instead of looking through a 1000 line file of code to figure out what needs to be changed to make your dog walk to the left rather than to the right, you can just look in your 50 line class for dog and know exactly what needs to be changed</li>
+    </ul>
+  </li>
+  <li>Having organization in your code will make it so anyone can easily start working on your project with you</li>
+  <li>Classes make it so you can reuse your code
+    <ul>
+      <li>Instead of coding 20 cats from scracth to add to your cat daycare app you can define a cat class and make 20 cat instances quickly</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="making-a-class">Making a class</h1>
+<ul>
+  <li>A class in javascript is composed of three parts
+    <ul>
+      <li>A Constructor (constructor)
+        <ul>
+          <li>Defines what will be passed to this class and what this class will contain when it has been created</li>
+        </ul>
+      </li>
+      <li>Attributes (this.*)
+        <ul>
+          <li>Variables associated with the class that may be used inside or outside of the class</li>
+        </ul>
+      </li>
+      <li>Functions (see makeSound() below)
+        <ul>
+          <li>Functions that can be called from inside or outside the class to make the object do something</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Below is an example of the cat class from earlier</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="k">class</span> <span class="nc">Cat</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">furColor</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">,</span> <span class="n">sound</span><span class="p">){</span>
+        <span class="o">//</span> <span class="s">'this'</span> <span class="n">here</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">say</span> <span class="n">that</span> <span class="n">this</span> <span class="n">attribute</span> <span class="n">belongs</span> <span class="n">to</span> <span class="n">this</span> <span class="k">class</span>
+        <span class="nc">this</span><span class="p">.</span><span class="n">furColor</span> <span class="o">=</span> <span class="n">furColor</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">breed</span> <span class="o">=</span> <span class="n">breed</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">sound</span> <span class="o">=</span> <span class="n">sound</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">makeSound</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">sound</span><span class="p">);</span>
+        <span class="o">//</span> <span class="n">Additional</span> <span class="n">code</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sound</span> <span class="n">goes</span> <span class="n">here</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">we</span> <span class="n">will</span> <span class="k">pass</span> <span class="n">into</span> <span class="n">our</span> <span class="n">cat</span> <span class="k">class</span>
+<span class="nc">var</span> <span class="n">furColor</span> <span class="o">=</span> <span class="s">"Black"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">weight</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">breed</span> <span class="o">=</span> <span class="s">"Bombay"</span>
+<span class="n">var</span> <span class="n">sound</span> <span class="o">=</span> <span class="s">"meow"</span>
+
+<span class="o">//</span> <span class="n">to</span> <span class="n">make</span> <span class="n">a</span> <span class="n">new</span> <span class="n">cat</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">call</span> <span class="n">new</span> <span class="ow">and</span> <span class="k">pass</span> 
+<span class="o">//</span> <span class="nb">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">that</span> <span class="n">the</span> <span class="n">cat</span> <span class="n">constructor</span> <span class="ow">is</span> <span class="n">expecting</span>
+<span class="n">var</span> <span class="n">cat</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Cat</span><span class="p">(</span><span class="n">furColor</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">,</span> <span class="n">sound</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">call</span> <span class="n">a</span> <span class="k">class</span> <span class="nc">function</span>
+<span class="n">cat</span><span class="p">.</span><span class="n">makeSound</span><span class="p">();</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="o">//</span> <span class="n">Make</span> <span class="n">a</span> <span class="n">small</span> <span class="k">class</span> <span class="nc">that</span> <span class="n">could</span> <span class="n">relate</span> <span class="n">to</span> <span class="n">your</span> <span class="n">passion</span> <span class="n">project</span> <span class="n">here</span>
+</code></pre></div></div>
+
+<h1 id="extending-a-class">Extending a class</h1>
+<ul>
+  <li>Classes can extend other classes to generalize a group of similar classes
+    <ul>
+      <li>A laptop class and desktop class might extend a computer class</li>
+    </ul>
+  </li>
+  <li>These type of classes are known as parent and child classes or can be thought of as having an “is-a” relationship
+    <ul>
+      <li>A laptop is a computer</li>
+      <li>The computer is the parent class and the laptop is the child class</li>
+    </ul>
+  </li>
+  <li>Variables and functions defined in the parent class can be called with the child class</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="k">class</span> <span class="nc">Pet</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">){</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">breed</span> <span class="o">=</span> <span class="n">breed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">print</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> 
+                    <span class="n">this</span><span class="p">.</span><span class="n">weight</span><span class="p">,</span> 
+                    <span class="n">this</span><span class="p">.</span><span class="n">breed</span><span class="p">,</span> 
+                    <span class="n">this</span><span class="p">.</span><span class="n">getSound</span><span class="p">());</span>
+    <span class="p">}</span>
+    
+    <span class="n">getSound</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"none"</span><span class="p">;</span>
+        <span class="o">//</span> <span class="n">Additional</span> <span class="n">code</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sound</span> <span class="n">goes</span> <span class="n">here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">extends</span> <span class="n">keyword</span> <span class="n">to</span> <span class="n">say</span> <span class="n">what</span> <span class="n">the</span> <span class="n">parent</span> <span class="k">class</span> <span class="nc">of</span> <span class="n">this</span> <span class="k">class</span> <span class="nc">is</span>
+<span class="k">class</span> <span class="nc">Cat</span> <span class="n">extends</span> <span class="n">Pet</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">,</span> <span class="n">sound</span><span class="p">){</span>
+        <span class="o">//</span> <span class="n">use</span> <span class="nb">super</span> <span class="n">to</span> <span class="n">call</span> <span class="n">the</span> <span class="n">parent</span> <span class="n">constructor</span> <span class="n">here</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">);</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">sound</span> <span class="o">=</span> <span class="n">sound</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">getSound</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">this</span><span class="p">.</span><span class="n">sound</span><span class="p">;</span>
+        <span class="o">//</span> <span class="n">Additional</span> <span class="n">code</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sound</span> <span class="n">goes</span> <span class="n">here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Dog</span> <span class="n">extends</span> <span class="n">Pet</span><span class="p">{</span>
+    <span class="n">constructor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">,</span> <span class="n">sound</span><span class="p">){</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">breed</span><span class="p">);</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">sound</span> <span class="o">=</span> <span class="n">sound</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">getSound</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">this</span><span class="p">.</span><span class="n">sound</span><span class="p">;</span>
+        <span class="o">//</span> <span class="n">Additional</span> <span class="n">code</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sound</span> <span class="n">goes</span> <span class="n">here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">we</span> <span class="n">will</span> <span class="k">pass</span> <span class="n">into</span> <span class="n">our</span> <span class="n">pet</span> <span class="k">class</span>
+<span class="nc">var</span> <span class="n">fishName</span> <span class="o">=</span> <span class="s">"Goldy"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">fishWeight</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">fishBreed</span> <span class="o">=</span> <span class="s">"Gold Fish"</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">construct</span> <span class="n">fish</span>
+<span class="n">var</span> <span class="n">fish</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Pet</span><span class="p">(</span><span class="n">fishName</span><span class="p">,</span> <span class="n">fishWeight</span><span class="p">,</span> <span class="n">fishBreed</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">we</span> <span class="n">will</span> <span class="k">pass</span> <span class="n">into</span> <span class="n">our</span> <span class="n">cat</span> <span class="k">class</span>
+<span class="nc">var</span> <span class="n">catName</span> <span class="o">=</span> <span class="s">"Ziggy"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">catWeight</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">catBreed</span> <span class="o">=</span> <span class="s">"Bombay"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">catSound</span> <span class="o">=</span> <span class="s">"Meow"</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">construct</span> <span class="n">cat</span>
+<span class="n">var</span> <span class="n">cat</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Cat</span><span class="p">(</span><span class="n">catName</span><span class="p">,</span> <span class="n">catWeight</span><span class="p">,</span> <span class="n">catBreed</span><span class="p">,</span> <span class="n">catSound</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">the</span> <span class="n">variables</span> <span class="n">we</span> <span class="n">will</span> <span class="k">pass</span> <span class="n">into</span> <span class="n">our</span> <span class="n">dog</span> <span class="k">class</span>
+<span class="nc">var</span> <span class="n">dogName</span> <span class="o">=</span> <span class="s">"Fido"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">dogWeight</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">dogBreed</span> <span class="o">=</span> <span class="s">"Mutt"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">dogSound</span> <span class="o">=</span> <span class="s">"Bark"</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">construct</span> <span class="n">dog</span>
+<span class="n">var</span> <span class="n">dog</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Dog</span><span class="p">(</span><span class="n">dogName</span><span class="p">,</span> <span class="n">dogWeight</span><span class="p">,</span> <span class="n">dogBreed</span><span class="p">,</span> <span class="n">dogSound</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="n">fish</span><span class="p">,</span> <span class="n">cat</span><span class="p">,</span> <span class="n">dog</span><span class="p">];</span> <span class="o">//</span> <span class="n">Use</span> <span class="n">an</span> <span class="n">array</span> <span class="n">to</span> <span class="n">store</span> <span class="n">the</span> <span class="n">animals</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">animal</span> <span class="n">of</span> <span class="n">animals</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">animal</span><span class="p">.</span><span class="k">print</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="o">//</span> <span class="n">Make</span> <span class="n">a</span> <span class="n">parent</span> <span class="k">class</span> <span class="nc">and</span> <span class="n">a</span> <span class="n">child</span> <span class="k">class</span> <span class="nc">related</span> <span class="n">to</span> <span class="n">your</span> <span class="n">passion</span> <span class="n">project</span>
+</code></pre></div></div>
+
+<h1 id="drawio">Draw.io</h1>
+<ul>
+  <li>Draw.io is a tool that you can use right in vscode as an extension</li>
+  <li>This tool can help you visualize the classes you have in your program and how they relate to eachother</li>
+</ul>
+
+<p><br />
+<img src="/student2.0/images/draw_io_example.png" alt="Draw_io_example" /></p>
+
+<p><img src="draw_io_example.png" alt="draw_io_example.png" /></p>
+
+<ul>
+  <li>In this project we added multiple classes</li>
+  <li>This draw io board shows that a parent class can also extend a class
+    <ul>
+      <li>Game object is the parent of Character which is the parent of Dog and Monkey</li>
+      <li>You can go as many levels as you need to with this</li>
+    </ul>
+  </li>
+  <li>You can add all of the attributes and functions associated with each class as well making it much easier to see the structure of the program at a glance</li>
+</ul>
+
+<h1 id="hacks">Hacks</h1>
+<ul>
+  <li>Take some of the separated features of your passion project that you have and make classes out of them</li>
+  <li>See if any of the features have a structure that would benifit from making a parent class and child classes</li>
+  <li>Make a Draw.io diagram of the program</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2023/10/16/js_object_oriented_programming_IPYNB_2_.html" hidden></a>
+</article>

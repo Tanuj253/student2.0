@@ -1,0 +1,301 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">OOP, CSSE mini project</h1><p class="page-description">Convert Mario to Object Oriented Programming (OOP)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-11-13T00:00:00-08:00" itemprop="datePublished">
+        Nov 13, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><a href="/student2.0/2023/07/30/mario_overview_IPYNB_2_.html">Overview</a></td>
+        <td><a href="/student2.0/2023/08/01/mario_player_IPYNB_2_.html">Player</a></td>
+        <td><a href="/student2.0/2023/08/02/mario_platform_IPYNB_2_.html">Platform</a></td>
+        <td><a href="/student2.0/2023/08/06/mario_background_IPYNB_2_.html">Background</a></td>
+        <td><a href="/student2.0/2023/08/03/mario_tube_IPYNB_2_.html">Tube</a></td>
+        <td><a href="/student2.0/2023/08/04/mario_block_IPYNB_2_.html">Block</a></td>
+        <td><a href="/student2.0/2023/08/05/mario_goomba_IPYNB_2_.html">Goomba</a></td>
+    </tr>
+</table>
+
+<h2 id="oop-conversion-outline">OOP Conversion Outline</h2>
+
+<p>Teams will be a maximum size of 3 people.  The objective of this project is to covert functionalities of “Imperative Style” Mario Game to “Object Oriented Programming” paradigm.  Expectation is we will work on this, have tech talks, and complete activy in week 15.</p>
+
+<p>The OOP hierarchy show below is designed to promote reusability, encapsulation, and a clear separation of entities.</p>
+
+<ul>
+  <li>GameEnv manages the overall game state</li>
+  <li>GameObject provides a common base for various game entities</li>
+  <li>GameLevel holds level-specific assets and elements</li>
+  <li>GameStateManager handles the transition between different game states.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GameEnv
+│
+├── GameObject
+│   ├── Player
+│   └── Platform
+│   └── ...
+│
+├── GameLevel
+│   ├── platforms: Array
+│   └── enemies: Array
+│
+└── GameStateManager
+</code></pre></div></div>
+
+<h3 id="game-environment">Game Environment</h3>
+
+<p>GameEnv is the overarching environment class that holds the game state, objects, and the current game level.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">GameEnv</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">gameObjects</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">static</span> <span class="nx">height</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="nx">currentLevel</span><span class="p">;</span>
+
+    <span class="c1">// sets up initial environment settings, like width and heigh</span>
+    <span class="kd">static</span> <span class="nx">initialize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+        <span class="c1">// Additional initialization logic</span>
+    <span class="p">}</span>
+
+    <span class="c1">// initializes the game by creating the first level and loading its elements</span>
+    <span class="kd">static</span> <span class="nx">startGame</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Initialize or load the first level</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">currentLevel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GameLevel</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">currentLevel</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span> <span class="c1">// or generate</span>
+        <span class="c1">// Additional game start logic</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nx">update</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Update game state, including all game objects</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">gameObject</span> <span class="k">of</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">gameObject</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+            <span class="nx">gameObject</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="gameobject">GameObject</h3>
+
+<p>GameObject is the base class for all objects in the game. It contains common attributes and methods.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Common attributes, methods, prototype methods for all objects in the Game.</span>
+<span class="kd">class</span> <span class="nx">GameObject</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">image</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">frame</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">frame</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">aspect_ratio</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speedRatio</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">speedRatio</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">gameSpeed</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">speedRatio</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionWidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">collisionData</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">destroy</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Remove the canvas from the DOM</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">);</span>
+            <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">update</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">size</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">isCollision</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">collisionAction</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">handleCollision</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isCollision</span><span class="p">(</span><span class="nx">object</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">collisionAction</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="player">Player</h3>
+
+<p>Player is a class specific to the player character, extending GameObject and adding properties like speed, jump height, etc.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a class specifically for the player character, extending the GameObject class.</span>
+<span class="kd">class</span> <span class="nx">Player</span> <span class="kd">extends</span> <span class="nx">GameObject</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">speed</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">jumpHeight</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">jumpHeight</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">health</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">health</span><span class="p">;</span>
+
+        <span class="c1">// Set up event listeners for user input</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">keydown</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleKeyDown</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">keyup</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleKeyUp</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nx">handleKeyDown</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Handle key down events (e.g., move left or right, jump)</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="dl">'</span><span class="s1">ArrowLeft</span><span class="dl">'</span><span class="p">:</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">moveLeft</span><span class="p">();</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="dl">'</span><span class="s1">ArrowRight</span><span class="dl">'</span><span class="p">:</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">moveRight</span><span class="p">();</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="dl">'</span><span class="s1">Space</span><span class="dl">'</span><span class="p">:</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">jump</span><span class="p">();</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// Handle other keys as needed</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">handleKeyUp</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Handle key up events (e.g., stop moving)</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="dl">'</span><span class="s1">ArrowLeft</span><span class="dl">'</span><span class="p">:</span>
+            <span class="k">case</span> <span class="dl">'</span><span class="s1">ArrowRight</span><span class="dl">'</span><span class="p">:</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">stopMoving</span><span class="p">();</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// Handle other keys as needed</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">moveLeft</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Implement left movement logic */</span> <span class="p">}</span>
+    <span class="nx">moveRight</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Implement right movement logic */</span> <span class="p">}</span>
+    <span class="nx">stopMoving</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Implement stop movement logic */</span> <span class="p">}</span>
+    <span class="nx">jump</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Implement jump logic */</span> <span class="p">}</span>
+    <span class="nx">attack</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Implement attack logic */</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="platform">Platform</h3>
+
+<p>Platform is a class for platforms that the player can stand on, extending GameObject.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a class for platforms that the player can stand on.</span>
+<span class="kd">class</span> <span class="nx">Platform</span> <span class="kd">extends</span> <span class="nx">GameObject</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+    <span class="p">}</span>
+    <span class="c1">// Additional platform-specific methods or properties</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="game-level">Game Level</h3>
+
+<p>GameLevel stores the assets and attributes specific to a particular level. It has properties like platforms and enemies.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Store the assets and attributes of the Game at the specific GameLevel.</span>
+<span class="kd">class</span> <span class="nx">GameLevel</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">platforms</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Array of platforms in the level</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">enemies</span> <span class="o">=</span> <span class="p">[];</span>   <span class="c1">// Array of enemies in the level</span>
+        <span class="c1">// Additional level-specific properties</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Load level data</span>
+    <span class="nx">load</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Load level data */</span> <span class="p">}</span>
+
+    <span class="c1">// Generate level elements</span>
+    <span class="nx">generate</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Generate level elements */</span> <span class="p">}</span>
+    <span class="c1">// Additional level-specific methods</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="game-state-management">Game State Management</h3>
+
+<p>GameStateManager is responsible for managing different game states and handling transitions between them.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Implement a system to manage different game states (e.g., menu, playing, game over).</span>
+<span class="kd">class</span> <span class="nx">GameStateManager</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">currentState</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">menu</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// Initial state</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Change level and handle transitions</span>
+    <span class="nx">changeLevel</span><span class="p">(</span><span class="nx">newLevel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Logic for transitioning between states</span>
+        <span class="k">await</span> <span class="nx">GameInitializer</span><span class="p">.</span><span class="nx">transitionToLevel</span><span class="p">(</span><span class="nx">newLevel</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="game-initializer">Game Initializer</h3>
+
+<p>Assist with setup and teardown between levels</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Assist with setup and teardown between levels</span>
+<span class="kd">const</span> <span class="nx">GameInitializer</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// ... (other init methods)</span>
+
+    <span class="k">async</span> <span class="nx">transitionToLevel</span><span class="p">(</span><span class="nx">newLevel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Destroy existing game objects</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">destroyGameObjects</span><span class="p">();</span>
+
+        <span class="c1">// Load images for the new level</span>
+        <span class="kd">const</span> <span class="nx">levelImages</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">loadLevelImages</span><span class="p">(</span><span class="nx">newLevel</span><span class="p">);</span>
+
+        <span class="c1">// Initialize the new level with loaded images</span>
+        <span class="kd">const</span> <span class="nx">level</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">initLevel</span><span class="p">(</span><span class="nx">newLevel</span><span class="p">,</span> <span class="nx">levelImages</span><span class="p">);</span>
+        <span class="nx">GameEnv</span><span class="p">.</span><span class="nx">currentLevel</span> <span class="o">=</span> <span class="nx">level</span><span class="p">;</span>
+
+        <span class="c1">// Create new game objects for the new level</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">createGameObjectsForLevel</span><span class="p">(</span><span class="nx">level</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Destroy all existing game objects</span>
+    <span class="nx">destroyGameObjects</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">gameObject</span> <span class="k">of</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">gameObject</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Load images specific to the given level</span>
+    <span class="k">async</span> <span class="nx">loadLevelImages</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">levelImagePromises</span> <span class="o">=</span> <span class="nx">level</span><span class="p">.</span><span class="nx">imageFiles</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">file</span> <span class="o">=&gt;</span> <span class="nx">loadImage</span><span class="p">(</span><span class="nx">file</span><span class="p">));</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">levelImagePromises</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Initialize the level with loaded images</span>
+    <span class="nx">initLevel</span><span class="p">(</span><span class="nx">level</span><span class="p">,</span> <span class="nx">levelImages</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">initializedLevel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GameLevel</span><span class="p">();</span>
+
+        <span class="c1">// Initialize and add platforms to the level</span>
+        <span class="c1">// (similar to what you did in initLevel previously)</span>
+        <span class="c1">// ...</span>
+
+        <span class="k">return</span> <span class="nx">initializedLevel</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Create game objects for the given level</span>
+    <span class="nx">createGameObjectsForLevel</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Create game objects based on the level's configuration</span>
+        <span class="c1">// (similar to what you did in initLevel previously)</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/student2.0/2023/11/13/CSSE-tri2-oop.html" hidden></a>
+</article>

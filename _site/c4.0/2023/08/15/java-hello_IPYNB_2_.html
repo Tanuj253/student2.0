@@ -1,0 +1,172 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Java Hello</h1><p class="page-description">A progressive journey through Java basics starting with the classic "Hello, World!" example.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-15T00:00:00-07:00" itemprop="datePublished">
+        Aug 15, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.0">C4.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h2 id="hello-world">Hello, World!</h2>
+<p>This article shows the basic language structures and constructs of Java (aka anatomy).  In async order, it is critical to understand these examples and learn vocab for OOP and Creating Objects:</p>
+<ul>
+  <li><a href="https://youtu.be/Wok4Xw_5cyY">Object Oriented Programming</a></li>
+  <li><a href="https://youtu.be/C5Ks_u87Ltg">Creating Objects</a></li>
+  <li><a href="https://youtu.be/CPE_lYGCw3A">Calling Methods</a></li>
+</ul>
+
+<h3 id="static-example">Static example</h3>
+<p>The class HelloStatic contains the classic “Hello, World!” message that is often used as an introduction to a programming language.  The “public static void main(String[] args)”, or main method, is the default runtime method in Java and has a very specific and ordered definition (signature).</p>
+
+<p>The key terms in HelloStatic introduction:</p>
+<ul>
+  <li>“class” is a blueprint for code, it is the code definition and must be called to run</li>
+  <li>“method” or “static method” in this case, is the code to be run/executed, similar to a procedure</li>
+  <li>“method definition” or “signature” are the keywords “public static void” in front of the name “main” and the parameters “String[] args” after the name.</li>
+  <li>“method call” is the means in which we run the defined code</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define Static Method within a Class</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloStatic</span> <span class="o">{</span>
+    <span class="c1">// Java standard runtime entry point</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>    
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// A method call allows us to execute code that is wrapped in Class</span>
+<span class="nc">HelloStatic</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>   <span class="c1">// Class prefix allows reference of Static Method</span>
+</code></pre></div></div>
+
+<h3 id="dynamic-example">Dynamic Example</h3>
+<p>This example starts to use Java in its natural manner, using an object within the main method. This example is a very basic illustration of Object Oriente Programming (OOP). The main method is now used as a driver/tester, by making an instance of the class.  Thus, it creates an Object using the HelloObject() constructor.  Also, this Class contains a getter method called getHello() which returns the value with the “String hello”.</p>
+
+<p>The key terms in HelloStatic introduction:</p>
+<ul>
+  <li>“Object Oriented Programming” focuses software design around data, or objects.</li>
+  <li>“object” contains both methods and data</li>
+  <li>“instance of a class” is the process of making an object, unique or instances of variables are created within the object</li>
+  <li>“constructor” special method in class, code that is used to initialize the data within the object</li>
+  <li>“getter” is a method that is used to extract or reference data from within the object.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define Class with Constructor returning Object</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloObject</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">hello</span><span class="o">;</span>   <span class="c1">// instance attribute or variable</span>
+    <span class="kd">public</span> <span class="nf">HelloObject</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// constructor</span>
+        <span class="n">hello</span> <span class="o">=</span> <span class="s">"Hello, World!"</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getHello</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// getter, returns value from inside the object</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">hello</span><span class="o">;</span>  <span class="c1">// return String from object</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>    
+        <span class="nc">HelloObject</span> <span class="n">ho</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HelloObject</span><span class="o">();</span> <span class="c1">// Instance of Class (ho) is an Object via "new HelloObject()"</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ho</span><span class="o">.</span><span class="na">getHello</span><span class="o">());</span> <span class="c1">// Object allows reference to public methods and data</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// IJava activation</span>
+<span class="nc">HelloObject</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="dynamic-example-with-two-constructors">Dynamic Example with two constructors</h3>
+<p>This last example adds to the basics of the Java anatomy.  The Class now contains two constructors and a setter to go with the getter.  Also, observe the driver/tester now contains two objects that are initialized differently, 0 and 1 argument constructor.  Look at the usage of the “this” prefix.  The “this” keyword helps in clarification between instance and local variable.</p>
+
+<p>The key terms in HelloDynamic introduction:</p>
+<ul>
+  <li>“0 argument constructor” constructor method with no parameter ()</li>
+  <li>“1 argument constructor” construct method with a parameter (String hello)</li>
+  <li>“this keyword” allows you to clear reference something that is part of the object, data or method</li>
+  <li>“local variable” is a variable that is passed to the method in this example, see the 1 argument constructor as it has a local variable “String hello”</li>
+  <li>“dynamic” versus “static” is something that has option to change, static never changes.  A class (blueprint) and objects (instance of blueprint) are generally intended to be dynamic.  Constructors and Setters are used to dynamically change the content of an object.</li>
+  <li>“Java OOP, Java Classes/Objects, Java Class Attributes, Java Class Methods, Java Constructors” are explained if more complete detail in W3 Schools: https://www.w3schools.com/java/java_oop.asp</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="c1">// Define Class</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloDynamic</span> <span class="o">{</span> <span class="c1">// name the first letter of class as capitalized, note camel case</span>
+    <span class="c1">// instance variable have access modifier (private is most common), data type, and name</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">hello</span><span class="o">;</span>
+    <span class="c1">// constructor signature 1, public and zero arguments, constructors do not have return type</span>
+    <span class="kd">public</span> <span class="nf">HelloDynamic</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// 0 argument constructor</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">setHello</span><span class="o">(</span><span class="s">"Hello, World!"</span><span class="o">);</span>  <span class="c1">// using setter with static string</span>
+    <span class="o">}</span>
+    <span class="c1">// constructor signature, public and one argument</span>
+    <span class="kd">public</span> <span class="nf">HelloDynamic</span><span class="o">(</span><span class="nc">String</span> <span class="n">hello</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 1 argument constructor</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">setHello</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>   <span class="c1">// using setter with local variable passed into constructor</span>
+    <span class="o">}</span>
+    <span class="c1">// setter/mutator, setter have void return type and a parameter</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHello</span><span class="o">(</span><span class="nc">String</span> <span class="n">hello</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// setter</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">hello</span> <span class="o">=</span> <span class="n">hello</span><span class="o">;</span>     <span class="c1">// instance variable on the left, local variable on the right</span>
+    <span class="o">}</span>
+    <span class="c1">// getter/accessor, getter used to return private instance variable (encapsulated), return type is String</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getHello</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// getter</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">hello</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// public static void main(String[] args) is signature for main/drivers/tester method</span>
+    <span class="c1">// a driver/tester method is singular or called a class method, it is never part of an object</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="nc">HelloDynamic</span> <span class="n">hd1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HelloDynamic</span><span class="o">();</span> <span class="c1">// no argument constructor</span>
+        <span class="nc">HelloDynamic</span> <span class="n">hd2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HelloDynamic</span><span class="o">(</span><span class="s">"Hello, Nighthawk Coding Society!"</span><span class="o">);</span> <span class="c1">// one argument constructor</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hd1</span><span class="o">.</span><span class="na">getHello</span><span class="o">());</span> <span class="c1">// accessing getter</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hd2</span><span class="o">.</span><span class="na">getHello</span><span class="o">());</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// IJava activation</span>
+<span class="nc">HelloDynamic</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<p>Build your own Jupyter Notebook meeting these College Board and CTE competencies.  It is critical to understand Static versus Instance Now, this is College Board requirement!!!</p>
+<ul>
+  <li>Explain <a href="https://runestone.academy/ns/books/published/csawesome/Unit5-Writing-Classes/topic-5-1-parts-of-class.html">Anatomy of a Class</a> in comments of program (Diagram key parts of the class).</li>
+  <li>Comment in code where there is a definition of a Class and an instance of a Class (ie object)</li>
+  <li>Comment in code where there are constructors and highlight the signature difference in the signature</li>
+  <li>Call an object method with parameter (ie setters).</li>
+</ul>
+
+<p>Additional requirements (Pick something)</p>
+<ol>
+  <li>
+    <p>Go through code progression of understanding Class usage and generating an Instance of a Class (Object).</p>
+
+    <p>a. Build a purposeful dynamic Class, using an Object, generate multiple instances: 
+     - Person: Name and Age
+     - Dessert: Type and Cost
+     - Location: City, State, Zip</p>
+
+    <p>b. Create a static void main tester method to generate objects of the class.</p>
+
+    <p>c. In tester method, show how setters/mutators can be used to make the data in the Object dynamically change</p>
+  </li>
+  <li>
+    <p>Go through progression of understanding a Static Class.  Build a purposeful static Class, no Objects.</p>
+
+    <ul>
+      <li>
+        <p>Calculate common operations on a Date field, age since date, older of two dates, number of seconds since date</p>
+      </li>
+      <li>
+        <p>Calculate stats functions on an array of values: mean, median, mode.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+  </div><a class="u-url" href="/student2.0/c4.0/2023/08/15/java-hello_IPYNB_2_.html" hidden></a>
+</article>

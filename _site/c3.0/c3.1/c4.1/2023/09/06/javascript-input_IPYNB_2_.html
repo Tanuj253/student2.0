@@ -1,0 +1,305 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JS Input</h1><p class="page-description">A Tech Talk on user inputs using Javascript. The grade calculator takes multiple values and does a calculation on them. User input can be useful for other projects, such as being used as a query.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-06T00:00:00-07:00" itemprop="datePublished">
+        Sep 6, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C3.0">C3.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C3.1">C3.1</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.1">C4.1</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#html">HTML</a><ul><li><a href="#resources-html">Resources HTML</a></li></ul></li><li><a href="#javascript-newinputline">JavaScript newInputLine</a><ul><li><a href="#resources-createelement">Resources createElement</a></li></ul></li><li><a href="#javascript-calculator">JavaScript calculator</a><ul><li><a href="#resources-getelements">Resources getElements</a></li></ul></li><li><a href="#html-magic-runs-calculator">HTML Magic runs Calculator</a></li><li><a href="#hacks">Hacks</a></li><li>Grade Calculator<ul><li>Input scores, press tab to add each new number.</li></ul></li></ul><h2 id="html">HTML</h2>
+<blockquote>
+  <p>Identify the HTML for a grade calculator;  it enables input and totals.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://www.w3schools.com/tags/tag_div.asp">DIV element</a> defines a division or a section in an HTML document. Used to divide headings, totals, and input in this example.</li>
+  <li><a href="https://www.w3schools.com/tags/tag_span.asp">SPAN element</a> defines a inline container within text. Used to capture different totals in this example.</li>
+  <li><a href="https://www.w3schools.com/tags/tag_input.asp">INPUT tag</a> specifies an input field where the user can enter data. Used to capture series of numbers in this example.</li>
+  <li><a href="https://www.w3schools.com/html/html_id.asp">ID attributes</a> are used by CSS for style and JavaScript for reference.  Used to update totals in this example.</li>
+</ul>
+
+<h3 id="resources-html">Resources HTML</h3>
+<ul>
+  <li><a href="https://www.w3schools.com/html/">HTML Tutorial</a></li>
+  <li><a href="https://www.washington.edu/accesscomputing/webd2/student/unit3/module5/lesson1.html">learn about id</a></li>
+</ul>
+
+<h2 id="javascript-newinputline">JavaScript newInputLine</h2>
+<blockquote>
+  <p>Identify the function that generates a new input line after each score is entered.</p>
+</blockquote>
+
+<h3 id="resources-createelement">Resources createElement</h3>
+<ul>
+  <li><a href="https://www.w3schools.com/jsref/met_document_createelement.asp">Create Element</a></li>
+  <li><a href="https://www.w3schools.com/jsref/met_element_setattribute.asp">Set Attribute</a></li>
+</ul>
+
+<h2 id="javascript-calculator">JavaScript calculator</h2>
+<blockquote>
+  <p>Indentify the code below calculates the the total, count, and average of the user inputs.</p>
+</blockquote>
+
+<h3 id="resources-getelements">Resources getElements</h3>
+<ul>
+  <li><a href="https://www.w3schools.com/jsref/met_document_getelementbyid.asp">Get Elements by ID</a></li>
+  <li><a href="https://www.w3schools.com/jsref/met_doc_getelementsbyname.asp">Get Elements by Name</a></li>
+</ul>
+
+<h2 id="html-magic-runs-calculator">HTML Magic runs Calculator</h2>
+<blockquote>
+  <p>The code below runs in VSCode and on Jupyter Notebook.</p>
+  <ul>
+    <li><a href="https://www.w3schools.com/tags/tag_script.asp">SCRIPT tag</a> is used to embed JavaScript inside of HTML</li>
+  </ul>
+</blockquote>
+
+<h2 id="hacks">Hacks</h2>
+<p>Here are some ideas to alter this calculator.</p>
+<ul>
+  <li>Input two scores: 1.8 out of 2</li>
+  <li>Add title: Tool Check 1.8 out of 2</li>
+  <li>Format with colors or put into a table</li>
+  <li>Advanced, save in localstorage and repaint on load</li>
+</ul>
+
+<p>Sample Table</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Assignment</th>
+      <th>Score</th>
+      <th>Maximum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tool Check</td>
+      <td>1.8</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <td>Lab Notebook Check</td>
+      <td>1.7</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <td>Pair Showcase</td>
+      <td>4.7</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here are some ideas to alter former calculator <a href="https://nighthawkcoders.github.io/teacher/techtalk/home_style">runtime</a>, <a href="https://raw.githubusercontent.com/nighthawkcoders/teacher/main/_posts/2023-08-23-javascript-calculator.md">source</a>.</p>
+<ul>
+  <li>Right justify result</li>
+  <li>Test conditions on small, big, and decimal numbers, report on findings. Fix issues.</li>
+  <li>Add the common math operation that is missing from calculator (/)</li>
+  <li>Advanced, implement a 1 number operation (ie SQRT)</li>
+</ul>
+
+<!-- Heading -->
+<h2>Grade Calculator</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Help</span> <span class="n">Message</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Input</span> <span class="n">scores</span><span class="p">,</span> <span class="n">press</span> <span class="n">tab</span> <span class="n">to</span> <span class="n">add</span> <span class="n">each</span> <span class="n">new</span> <span class="n">number</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Totals</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="n">Total</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"total"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+    <span class="n">Count</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"count"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+    <span class="n">Average</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="nb">id</span><span class="o">=</span><span class="s">"average"</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">Rows</span> <span class="n">added</span> <span class="n">using</span> <span class="n">scores</span> <span class="n">ID</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"scores"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">generated</span> <span class="n">inputs</span> <span class="o">--&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">Executes</span> <span class="n">on</span> <span class="nb">input</span> <span class="n">event</span> <span class="ow">and</span> <span class="n">calculates</span> <span class="n">totals</span>
+<span class="n">function</span> <span class="n">calculator</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">key</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">key</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">the</span> <span class="n">pressed</span> <span class="n">key</span> <span class="ow">is</span> <span class="n">the</span> <span class="s">"Tab"</span> <span class="n">key</span> <span class="p">(</span><span class="n">key</span> <span class="n">code</span> <span class="mi">9</span><span class="p">)</span> <span class="ow">or</span> <span class="s">"Enter"</span> <span class="n">key</span> <span class="p">(</span><span class="n">key</span> <span class="n">code</span> <span class="mi">13</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">===</span> <span class="s">"Tab"</span> <span class="o">||</span> <span class="n">key</span> <span class="o">===</span> <span class="s">"Enter"</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="n">event</span><span class="p">.</span><span class="n">preventDefault</span><span class="p">();</span> <span class="o">//</span> <span class="n">Prevent</span> <span class="n">default</span> <span class="n">behavior</span> <span class="p">(</span><span class="n">tabbing</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">element</span><span class="p">)</span>
+   
+        <span class="n">var</span> <span class="n">array</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByName</span><span class="p">(</span><span class="s">'score'</span><span class="p">);</span> <span class="o">//</span> <span class="n">setup</span> <span class="n">array</span> <span class="n">of</span> <span class="n">scores</span>
+        <span class="n">var</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span> <span class="n">running</span> <span class="n">total</span>
+        <span class="n">var</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span> <span class="n">count</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">elements</span> <span class="k">with</span> <span class="n">valid</span> <span class="n">values</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="o">//</span> <span class="n">iterate</span> <span class="n">through</span> <span class="n">array</span>
+            <span class="n">var</span> <span class="n">value</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">value</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">parseFloat</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">var</span> <span class="n">parsedValue</span> <span class="o">=</span> <span class="n">parseFloat</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="n">parsedValue</span><span class="p">;</span>  <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">running</span> <span class="n">total</span>
+                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span> <span class="n">update</span> <span class="n">totals</span>
+        <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'total'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">total</span><span class="p">.</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="o">//</span> <span class="n">show</span> <span class="n">two</span> <span class="n">decimals</span>
+        <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'count'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'average'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="p">(</span><span class="n">total</span> <span class="o">/</span> <span class="n">count</span><span class="p">).</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'average'</span><span class="p">).</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s">"0.0"</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="o">//</span> <span class="n">adds</span> <span class="n">newInputLine</span><span class="p">,</span> <span class="n">only</span> <span class="k">if</span> <span class="nb">all</span> <span class="n">array</span> <span class="n">values</span> <span class="n">satisfy</span> <span class="n">parseFloat</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">===</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementsByName</span><span class="p">(</span><span class="s">'score'</span><span class="p">).</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">newInputLine</span><span class="p">(</span><span class="n">count</span><span class="p">);</span> <span class="o">//</span> <span class="n">make</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">line</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Creates</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">box</span>
+<span class="n">function</span> <span class="n">newInputLine</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">label</span> <span class="k">for</span> <span class="n">each</span> <span class="n">score</span> <span class="n">element</span>
+    <span class="n">var</span> <span class="n">title</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">'label'</span><span class="p">);</span>
+    <span class="n">title</span><span class="p">.</span><span class="n">htmlFor</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+    <span class="n">title</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="s">". "</span><span class="p">;</span>    
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">title</span><span class="p">);</span> <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Setup</span> <span class="n">score</span> <span class="n">element</span> <span class="ow">and</span> <span class="n">attributes</span>
+    <span class="n">var</span> <span class="n">score</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"input"</span><span class="p">);</span> <span class="o">//</span> <span class="nb">input</span> <span class="n">element</span>
+    <span class="n">score</span><span class="p">.</span><span class="nb">id</span> <span class="o">=</span>  <span class="n">index</span><span class="p">;</span>  <span class="o">//</span> <span class="nb">id</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">element</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">onkeydown</span> <span class="o">=</span> <span class="n">calculator</span> <span class="o">//</span> <span class="n">Each</span> <span class="n">key</span> <span class="n">triggers</span> <span class="n">event</span> <span class="p">(</span><span class="n">using</span> <span class="n">function</span> <span class="k">as</span> <span class="n">a</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">score</span><span class="p">.</span><span class="nb">type</span> <span class="o">=</span> <span class="s">"number"</span><span class="p">;</span> <span class="o">//</span> <span class="n">Use</span> <span class="n">text</span> <span class="nb">type</span> <span class="n">to</span> <span class="n">allow</span> <span class="n">typing</span> <span class="n">multiple</span> <span class="n">characters</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"score"</span><span class="p">;</span>  <span class="o">//</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">group</span> <span class="nb">all</span> <span class="s">"score"</span> <span class="n">elements</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">textAlign</span> <span class="o">=</span> <span class="s">"right"</span><span class="p">;</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="s">"5em"</span><span class="p">;</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">score</span><span class="p">);</span>  <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="ow">and</span> <span class="n">add</span> <span class="n">blank</span> <span class="n">line</span> <span class="n">after</span> <span class="nb">input</span> <span class="n">box</span>
+    <span class="n">var</span> <span class="n">br</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"br"</span><span class="p">);</span>  <span class="o">//</span> <span class="n">line</span> <span class="k">break</span> <span class="n">element</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"scores"</span><span class="p">).</span><span class="n">appendChild</span><span class="p">(</span><span class="n">br</span><span class="p">);</span> <span class="o">//</span> <span class="n">add</span> <span class="n">to</span> <span class="n">HTML</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">focus</span> <span class="n">on</span> <span class="n">the</span> <span class="n">new</span> <span class="nb">input</span> <span class="n">line</span>
+    <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="n">index</span><span class="p">).</span><span class="n">focus</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Creates</span> <span class="mi">1</span><span class="n">st</span> <span class="nb">input</span> <span class="n">box</span> <span class="n">on</span> <span class="n">Window</span> <span class="n">load</span>
+<span class="n">newInputLine</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h3>Input scores, press tab to add each new number.</h3>
+<!-- Totals -->
+<ul>
+<li>
+    Total : <span id="total">0.0</span>
+    Count : <span id="count">0.0</span>
+    Average : <span id="average">0.0</span>
+</li>
+</ul>
+<!-- Rows -->
+<div id="scores">
+    <!-- javascript generated inputs -->
+</div>
+
+<script>
+// Handles event and calculates totals
+function calculator(event) {
+    var key = event.key;
+    // Check if the pressed key is the "Tab" key (key code 9) or "Enter" key (key code 13)
+    if (key === "Tab" || key === "Enter") { 
+        event.preventDefault(); // Prevent default behavior (tabbing to the next element)
+
+        var array = document.getElementsByName('score'); // setup array of scores
+        var total = 0;  // running total
+        var count = 0;  // count of input elements with valid values
+
+        for (var i = 0; i < array.length; i++) {  // iterate through array
+            var value = array[i].value;
+            if (parseFloat(value)) {
+                var parsedValue = parseFloat(value);
+                total += parsedValue;  // add to running total
+                count++;
+            }
+        }
+
+        // update totals
+        document.getElementById('total').innerHTML = total.toFixed(2); // show two decimals
+        document.getElementById('count').innerHTML = count;
+
+        if (count > 0) {
+            document.getElementById('average').innerHTML = (total / count).toFixed(2);
+        } else {
+            document.getElementById('average').innerHTML = "0.0";
+        }
+
+        // adds newInputLine, only if all array values satisfy parseFloat 
+        if (count === document.getElementsByName('score').length) {
+            newInputLine(count); // make a new input line
+        }
+    }
+}
+
+// Creates a new input box
+function newInputLine(index) {
+
+    // Add a label for each score element
+    var title = document.createElement('label');
+    title.htmlFor = index;
+    title.innerHTML = index + ". ";    
+    document.getElementById("scores").appendChild(title); // add to HTML
+
+    // Setup score element and attributes
+    var score = document.createElement("input"); // input element
+    score.id =  index;  // id of input element
+    score.onkeydown = calculator // Each key triggers event (using function as a value)
+    score.type = "number"; // Use text type to allow typing multiple characters
+    score.name = "score";  // name is used to group "score" elements
+    score.style.textAlign = "right";
+    score.style.width = "5em";
+    document.getElementById("scores").appendChild(score);  // add to HTML
+
+    // Create and add blank line after input box
+    var br = document.createElement("br");  // line break element
+    document.getElementById("scores").appendChild(br); // add to HTML
+
+    // Set focus on the new input line
+    document.getElementById(index).focus();
+}
+
+// Creates 1st input box on Window load
+newInputLine(0);
+
+</script>
+
+
+  </div><a class="u-url" href="/student2.0/c3.0/c3.1/c4.1/2023/09/06/javascript-input_IPYNB_2_.html" hidden></a>
+</article>

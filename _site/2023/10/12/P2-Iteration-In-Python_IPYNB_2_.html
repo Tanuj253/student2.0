@@ -1,0 +1,439 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Iteration</h1><p class="page-description">Lesson for iteration in Python, using College Board lessons 3.7 & 3.8.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-12T00:00:00-07:00" itemprop="datePublished">
+        Oct 12, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Advik, Srijan, Akhil, Aashray</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#introduction">Introduction</a><ul><li><a href="#for-loops">For Loops</a></li><li><a href="#while-loops">While Loops</a></li><li><a href="#looping-with-lists-and-dictionaries">Looping with Lists and Dictionaries</a></li></ul></li><li><a href="#popcorn-hack-1">Popcorn Hack 1</a><ul><li><a href="#looping-with-index-variable">Looping with Index Variable</a></li><li><a href="#nested-if-statements">Nested If Statements</a></li></ul></li><li><a href="#popcorn-hack-2">Popcorn Hack 2</a><ul><li><a href="#tryexcept">Try/Except</a></li></ul></li><li><a href="#popcorn-hack-3">Popcorn Hack 3</a><ul><li><a href="#continue-and-break">Continue and Break</a></li></ul></li><li><a href="#nested-for-loops">Nested For Loops</a></li><li><a href="#optional-popcorn-hack-4">(OPTIONAL) Popcorn Hack 4</a><ul><li><a href="#iteration-via-recursion">Iteration via Recursion</a></li></ul></li><li><a href="#homework">Homework</a></li></ul><h1 id="introduction">Introduction</h1>
+<p>In this lesson, we will explore the various ways to create loops in Python. Loops are essential for repetitive tasks and are a fundamental concept in programming. We will cover different types of loops, advanced loop techniques, and how to work with lists and dictionaries using loops.</p>
+
+<h2 id="for-loops">For Loops</h2>
+<ul>
+  <li>Used to iterate over a sequence (such as a list, tuple, string, or range)</li>
+  <li>Executes a block of code for each item in the sequence</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Iterating Over a List of Fruits
+</span>
+<span class="n">fruits</span> <span class="err">←</span> <span class="p">[</span><span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">,</span> <span class="s">"cherry"</span><span class="p">]</span>
+
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">fruit</span> <span class="n">IN</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="n">DISPLAY</span> <span class="n">fruit</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 1: Simple for loop
+</span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">,</span> <span class="s">"cherry"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apple
+banana
+cherry
+</code></pre></div></div>
+
+<h2 id="while-loops">While Loops</h2>
+<ul>
+  <li>Used to execute a block of code as long as a condition is true</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Using a While Loop to Count and Display Numbers
+</span>
+
+<span class="n">i</span> <span class="err">←</span> <span class="mi">1</span>
+
+
+<span class="n">WHILE</span> <span class="n">i</span> <span class="err">≤</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="n">DISPLAY</span> <span class="n">i</span>
+    <span class="n">i</span> <span class="err">←</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">END</span> <span class="n">WHILE</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 2: Simple while loop
+</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+3
+4
+5
+</code></pre></div></div>
+
+<h2 id="looping-with-lists-and-dictionaries">Looping with Lists and Dictionaries</h2>
+<ul>
+  <li>Used to iterate through the elements of lists and dictionaries</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Loop Through a List
+</span>
+<span class="n">numbers</span> <span class="err">←</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">num</span> <span class="n">IN</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">DISPLAY</span> <span class="n">num</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+<span class="c1"># APCSP Pseudo-Code: Loop Through a Dictionary
+</span><span class="n">person</span> <span class="err">←</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"aashray"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">}</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="n">IN</span> <span class="n">person</span><span class="p">:</span>
+    <span class="n">DISPLAY</span> <span class="n">key</span><span class="p">,</span> <span class="s">":"</span><span class="p">,</span> <span class="n">value</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 3: Loop through a list
+</span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># Example 4: Loop through a dictionary
+</span><span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"aashray"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Diego"</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">person</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s">":"</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+3
+4
+name : aashray
+age : 15
+city : San Diego
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-1">Popcorn Hack 1</h1>
+
+<ul>
+  <li>
+    <p>Use a loop to get X amount of inputs. Then use a loop to find the type of each value.</p>
+  </li>
+  <li>
+    <p>Extra Challenge: If an input is a number, make the corresponding value in the dictionary a number.</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<h2 id="looping-with-index-variable">Looping with Index Variable</h2>
+<p>You can use the <code class="language-plaintext highlighter-rouge">range</code> function to create a loop with an index variable.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Loop Through a List Using Index
+</span>
+<span class="n">lst</span> <span class="err">←</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">FOR</span> <span class="n">i</span> <span class="n">IN</span> <span class="n">RANGE</span><span class="p">(</span><span class="n">LENGTH</span><span class="p">(</span><span class="n">lst</span><span class="p">)):</span>
+    <span class="n">DISPLAY</span> <span class="s">"Index: "</span> <span class="o">+</span> <span class="n">STRING</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">DISPLAY</span> <span class="s">"Element: "</span> <span class="o">+</span> <span class="n">STRING</span><span class="p">(</span><span class="n">GET_ELEMENT</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="n">END</span> <span class="n">FOR</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 5: Loop with an index variable
+</span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)):</span> <span class="c1"># Loop for the number of elements in the list
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Index: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="c1"># Print the index
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Element: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="c1"># Print the element
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index: 0
+Element: 4
+Index: 1
+Element: 6
+Index: 2
+Element: 7
+Index: 3
+Element: 2
+</code></pre></div></div>
+
+<h2 id="nested-if-statements">Nested If Statements</h2>
+<p>You can nest conditional statements inside a <code class="language-plaintext highlighter-rouge">for</code> loop to execute different code based on conditions.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: For Loop with Nested If Statements
+</span>
+<span class="n">numbers</span> <span class="err">←</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">num</span> <span class="n">IN</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">IF</span> <span class="n">num</span> <span class="n">MOD</span> <span class="mi">2</span> <span class="n">EQUALS</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="n">num</span><span class="p">,</span> <span class="s">"is even"</span>
+    <span class="n">ELSE</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="n">num</span><span class="p">,</span> <span class="s">"is odd"</span>
+    <span class="n">END</span> <span class="n">IF</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 6: For loop with nested if statements
+</span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s">"is even"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="s">"is odd"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 is odd
+2 is even
+3 is odd
+4 is even
+5 is odd
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-2">Popcorn Hack 2</h1>
+
+<ul>
+  <li>
+    <p>Use the input() function to append a range of integers from a list</p>
+  </li>
+  <li>
+    <p>Use a nested if statement to only print numbers in the list that are evenly divisble by 3</p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#Code goes here
+</span></code></pre></div></div>
+
+<h2 id="tryexcept">Try/Except</h2>
+<ul>
+  <li>
+    <p>Using a <code class="language-plaintext highlighter-rouge">try</code> and <code class="language-plaintext highlighter-rouge">except</code> block inside a loop can handle errors gracefully.</p>
+  </li>
+  <li>
+    <p>Very useful for production code, even in frontend webapps</p>
+    <ul>
+      <li>Ex: Giving an error page instead of dumping critical information on the webpage</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Handling Errors in a For Loop
+</span>
+<span class="n">numbers</span> <span class="err">←</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"five"</span><span class="p">]</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">item</span> <span class="n">IN</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">TRY</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">item</span>
+    <span class="n">CATCH</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="s">"Division by zero"</span>
+    <span class="n">CATCH</span> <span class="nb">TypeError</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="s">"Type error"</span>
+    <span class="n">END</span> <span class="n">TRY</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"five"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span> <span class="c1">#Type of error: Dividing by Zero
+</span>        <span class="k">print</span><span class="p">(</span><span class="s">"Division by zero"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">TypeError</span><span class="p">:</span> <span class="c1">#Type of error: Dividing by something that isn't a number
+</span>        <span class="k">print</span><span class="p">(</span><span class="s">"Type error"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10.0
+5.0
+Type error
+2.5
+Division by zero
+Type error
+</code></pre></div></div>
+
+<h1 id="popcorn-hack-3">Popcorn Hack 3</h1>
+<ul>
+  <li>Create a for loop that uses a try and except statement for an AttributeError</li>
+  <li>Use integers and a list to create scenarios where the loop will either print something expected or print an error message</li>
+  <li><em>CHALLENGE:</em> Try using the <code class="language-plaintext highlighter-rouge">math</code> module for this error</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Code goes here
+</span></code></pre></div></div>
+
+<h2 id="continue-and-break">Continue and Break</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Continue</code> statement skips the current iteration</li>
+  <li><code class="language-plaintext highlighter-rouge">Break</code> statement exits the loop prematurely</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: For Loop with Continue and Break
+</span>
+<span class="n">numbers</span> <span class="err">←</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">num</span> <span class="n">IN</span> <span class="n">numbers</span><span class="p">:</span>
+ 
+    <span class="n">IF</span> <span class="n">num</span> <span class="n">EQUALS</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">CONTINUE</span>
+    <span class="n">IF</span> <span class="n">num</span> <span class="n">EQUALS</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">BREAK</span> 
+    <span class="n">DISPLAY</span> <span class="n">num</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 8: For loop with continue and break
+</span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">continue</span>  <span class="c1"># Skip the number 3
+</span>    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>  <span class="c1"># Exit the loop when 5 is encountered
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+2
+4
+</code></pre></div></div>
+
+<h1 id="nested-for-loops">Nested For Loops</h1>
+<ul>
+  <li>You can also put for loops within for loops</li>
+  <li>Allows for looping an exponential amount of times</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Nested Loops for Group Names
+</span>
+<span class="n">groups</span> <span class="err">←</span> <span class="p">[[</span><span class="s">"advik"</span><span class="p">,</span> <span class="s">"aashray"</span><span class="p">],</span> <span class="p">[</span><span class="s">"akhil"</span><span class="p">,</span> <span class="s">"srijan"</span><span class="p">]]</span>
+
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">pair</span> <span class="n">IN</span> <span class="n">groups</span><span class="p">:</span>
+    <span class="n">FOR</span> <span class="n">EACH</span> <span class="n">person</span> <span class="n">IN</span> <span class="n">pair</span><span class="p">:</span>
+        <span class="n">DISPLAY</span> <span class="n">person</span> <span class="o">+</span> <span class="s">" is cool"</span>
+    <span class="n">END</span> <span class="n">FOR</span>
+    <span class="n">DISPLAY</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">" and "</span> <span class="o">+</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">" love to code code code"</span>
+<span class="n">END</span> <span class="n">FOR</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">groups</span> <span class="o">=</span> <span class="p">[[</span><span class="s">'advik'</span><span class="p">,</span> <span class="s">'aashray'</span><span class="p">],</span> <span class="p">[</span><span class="s">'akhil'</span><span class="p">,</span> <span class="s">'srijan'</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">pair</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">person</span> <span class="o">+</span> <span class="s">' is cool'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">' and '</span> <span class="o">+</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">' love to code code code'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>advik is cool
+aashray is cool
+advik and aashray love to code code code
+akhil is cool
+srijan is cool
+akhil and srijan love to code code code
+</code></pre></div></div>
+
+<h1 id="optional-popcorn-hack-4">(OPTIONAL) Popcorn Hack 4</h1>
+<ul>
+  <li>Create a nested for loop that iterates over a dictionary that has:
+    <ul>
+      <li>A name for each key</li>
+      <li>A list for each value containing stuff like age, grade, etc.</li>
+    </ul>
+  </li>
+  <li>Break/continue if certain conditions are met</li>
+  <li>Have fun! If you want to, relate it to a theme!</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">people</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Code here
+</span></code></pre></div></div>
+
+<h2 id="iteration-via-recursion">Iteration via Recursion</h2>
+<ul>
+  <li>A technique where a function calls itself</li>
+  <li>Can be used to recreate loops until a certain condition is met</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># APCSP Pseudo-Code: Recursion for Factorial Calculation
+</span>
+<span class="n">FUNCTION</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">IF</span> <span class="n">n</span> <span class="n">EQUALS</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">RETURN</span> <span class="mi">1</span>
+    <span class="n">ELSE</span> <span class="n">IF</span> <span class="n">n</span> <span class="n">LESS</span> <span class="n">THAN</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">RETURN</span> <span class="s">"undefined"</span>
+    <span class="n">ELSE</span> <span class="n">IF</span> <span class="n">TYPEOF</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">EQUALS</span> <span class="s">"float"</span><span class="p">:</span>
+        <span class="n">RETURN</span> <span class="s">"not solvable without gamma function"</span>
+    <span class="n">ELSE</span><span class="p">:</span>
+        <span class="n">RETURN</span> <span class="n">n</span> <span class="n">TIMES</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">END</span> <span class="n">IF</span>
+<span class="n">END</span> <span class="n">FUNCTION</span>
+
+<span class="n">result</span> <span class="err">←</span> <span class="n">CALL</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">DISPLAY</span> <span class="s">"Factorial of 5 is"</span><span class="p">,</span> <span class="n">result</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example 9: Recursion for factorial calculation
+</span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#Conditions to stop the recursion
+</span>        <span class="k">return</span> <span class="mi">1</span> <span class="c1"># 0! is 1
+</span>    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">"undefined"</span> <span class="c1"># Undefined for negative numbers 
+</span>    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"not solvable without gamma function"</span> <span class="c1"># Only accept integers
+</span>    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#Function calling itself
+</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Factorial of 5 is"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Factorial of 5 is 120
+</code></pre></div></div>
+
+<h1 id="homework">Homework</h1>
+
+<ul>
+  <li>Add student names w/ grades to a dictionary until the user doesn’t want more students
+    <ul>
+      <li>Prompt for user input for all of these</li>
+    </ul>
+  </li>
+  <li>Use a nested if/else statement in a for loop
+    <ul>
+      <li>Get the highest score in the dictionary</li>
+      <li>Add all students who passed into a new list (add student names, not their scores)</li>
+    </ul>
+  </li>
+  <li>Bonus: Use a try/except for any scores that aren’t integers</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#Code goes here
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/12/P2-Iteration-In-Python_IPYNB_2_.html" hidden></a>
+</article>

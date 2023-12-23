@@ -1,0 +1,124 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Build a Student Page</h1><p class="page-description">JavaScript, HTML, CSS and Markdown are coding languages used by bloggers when developing in the GitHub Pages system. By using these languages, student developers can add functionality to their GitHub pages site.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-17T00:00:00-07:00" itemprop="datePublished">
+        Aug 17, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C4.3">C4.3</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C5.0">C5.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#html-fragments-and-markdown">HTML Fragments and Markdown</a><ul><li><a href="#review-these-fragments">Review these Fragments</a><ul><li><a href="#github-pages-indexmd">GitHub Pages index.md</a></li><li><a href="#images">Images</a></li><li><a href="#links">Links</a></li></ul></li><li><a href="#web-page-layout">Web Page Layout</a></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="html-fragments-and-markdown">HTML Fragments and Markdown</h2>
+<p><mark>Building an entire frontend web application requires HTML, CSS, and JavaScript</mark>. HTML is responsible for the content, CSS adds styling to the web page, and JavaScript adds functionality and interactivity.  <mark>Markdown is a short hand way of writing HTML</mark>, the GitHub pages system transforms Mardown to HTML.</p>
+
+<p>In GitHub Pages, Jekyll serves as the build framework. It takes our choice of theme specified in the <code class="language-plaintext highlighter-rouge">_config.yml</code> file, along with our Markdown, HTML, and notebook files, to construct a complete static website. A significant portion of the frontend design work has already been done for users through the selection and use of a theme; this greatly reduces the need to code in CSS.</p>
+
+<p>Jekyll converts Markdown (.md) files into HTML. Behind the scenes of GitHub Pages, Jekyll and Liquid programming language build and programmatically construct each Markdown file into a specific web page. Markdown provides a straightforward way to start with GitHub Pages development. <mark>In a Markdown file, you can exclusively use Markdown syntax or incorporate HTML, CSS, and JavaScript</mark> based on your expertise and experience.</p>
+
+<h3 id="review-these-fragments">Review these Fragments</h3>
+<blockquote>
+  <p>The remainder of this document will describe and show code fragments to get the student developer ready for coding and commiting changes to GitHub.</p>
+  <h4 id="github-pages-indexmd">GitHub Pages index.md</h4>
+  <p>In GitHub Pages you can define code in Markdown. The <mark>index.md uses markdown</mark> to define a page about CompSci courses at Del Norte High School.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Markdown fragment. The markdown fragment is written by the developer and is an example of how to start a home page using Markdown.</p>
+
+    <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ## Build your Home Page here 
+  # Investing in your Technical Future
+<span class="gt">  &gt; Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills. All Del Norte CompSci classes are designed to provide a real-world development experience. Class time includes tech talks (lectures), peer collaboration, communication with teachers, critical thinking while coding, and creativity in projects. Grading is focused on time invested, participation with peers, and engagement in learning.</span>
+<span class="p">  -</span> Introduction to concepts and requirements by the teacher
+<span class="p">  -</span> Project-based learning with teacher support
+<span class="p">  -</span> Peer communication and collaboration
+<span class="p">  -</span> Coding, developer operations, and critical thinking
+<span class="p">  -</span> Creativity, research, and utilizing ChatGPT
+<span class="p">  -</span> Class work with approximately 2-3 hours of homework per week
+
+  !<span class="p">[</span><span class="nv">csse</span><span class="p">](</span><span class="sx">/student2.0/images/ccr.png</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>HTML conversion.  The HTML <mark>conversion of the Markdown fragment produced by GitHub Pages using Jekyll</mark>. This is programmatically converted from Markdown to HTML.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"language-markdown highlighter-rouge"</span><span class="nt">&gt;&lt;div</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span>  
+  ## Build your Home Page here 
+  # Investing in your Technical Future
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"gt"</span><span class="nt">&gt;</span>  <span class="ni">&amp;gt;</span> Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills. All Del Norte CompSci classes are designed to provide a real-world development experience. Class time includes tech talks (lectures), peer collaboration, communication with teachers, critical thinking while coding, and creativity in projects. Grading is focused on time invested, participation with peers, and engagement in learning.<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Introduction to concepts and requirements by the teacher
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Project-based learning with teacher support
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Peer communication and collaboration
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Coding, developer operations, and critical thinking
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Creativity, research, and utilizing ChatGPT
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>  -<span class="nt">&lt;/span&gt;</span> Class work with approximately 2-3 hours of homework per week
+
+  !<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>[<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"nv"</span><span class="nt">&gt;</span>csse<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>](<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"sx"</span><span class="nt">&gt;</span>/teacher/images/ccr.png<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">"p"</span><span class="nt">&gt;</span>)<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</span>    
+  <span class="nt">&lt;/div&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="images">Images</h4>
+<p>In GitHub Pages, you can <mark>insert images</mark> in HTML or Markdown.  The Teacher finds &lt;img&gt; easier to work with for embedding links when trying to control size.  This example shows Markdown syntax for embedding images, but students can also use HTML syntax with the <img /> tag.</p>
+<ul>
+  <li>See index.md for ![]() syntax for images, or reference <a href="https://www.markdownguide.org/basic-syntax/#images-1">Markdown images</a></li>
+  <li>Or use “img” tage referencing <a href="https://www.w3schools.com/html/html_images.asp">HTML images</a></li>
+</ul>
+
+<h4 id="links">Links</h4>
+<p>HTML contains an <code class="language-plaintext highlighter-rouge">&lt;href&gt;</code> tag to <mark>create links</mark>. Students can use either HTML or Markdown syntax for links.</p>
+<ul>
+  <li>Look up <a href="https://www.w3schools.com/html/html_links.asp">HTML links</a> &lt;href&gt; or <a href="https://www.markdownguide.org/basic-syntax/#links">Markdown links</a> []() syntax.  These should become easy and familiar.</li>
+</ul>
+
+<h3 id="web-page-layout">Web Page Layout</h3>
+<p>A complete HTML Web Application is typically made off of a Layout and a series of Fragments (sometimes called templates).</p>
+<ul>
+  <li>The design of GitHub pages allows us to <mark>change themes</mark> with the _config.yml file key/value, change the value to a <a href="https://pages.github.com/themes/">supported theme</a>.  Here is a portion of the _config.yml, the <code class="language-plaintext highlighter-rouge">#</code> is a comment symbol.  Add a comment to midnight line, uncomment dinky line to try a new theme. Repeate process until you find something you like.</li>
+</ul>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># theme requirements</span>
+<span class="na">remote_theme</span><span class="pi">:</span> <span class="s">pages-themes/midnight@v0.2.0</span>
+<span class="c1"># remote_theme: pages-themes/dinky@v0.2.0</span>
+<span class="c1"># remote_theme: pages-themes/minimal@v0.2.0</span>
+<span class="c1"># remote_theme: pages-themes/hacker@v0.2.0</span>
+<span class="c1"># remote_theme: pages-themes/cayman@v0.2.0</span>
+<span class="c1"># remote_theme: pages-themes/time-machine@v0.2.0</span>
+<span class="na">plugins</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">jekyll-remote-theme</span>
+</code></pre></div></div>
+<ul>
+  <li>Extensive customization of CSS may require advanced knowledge and can be time-consuming for beginners. I have observed many Students spending  to much of their time writing custom CSS.  It is better, for now, to <mark>learn to extend or change a GitHub theme</mark> and work with fragments of Markdown or HTML.</li>
+</ul>
+
+<h2 id="hacks">Hacks</h2>
+<p>At the end of this week you should select your theme and start customizing your page.</p>
+<ul>
+  <li>Students should select a theme from the available options in the _config.yml file and start customizing their page accordingly.</li>
+  <li>Try to alter index.md with images and links according to some of your personal interests.  For instance, make an outline of your classes, school activities, and homework requirements.  Add your freeform picture.</li>
+  <li>Google <code class="language-plaintext highlighter-rouge">Markdown Cheatsheet</code> or <code class="language-plaintext highlighter-rouge">W3Schools HTML Tutorial</code> for guideance.  Try to do something on your index.md not discussed in this blog.</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/c4.3/c5.0/2023/08/17/markdown-html_fragments.html" hidden></a>
+</article>

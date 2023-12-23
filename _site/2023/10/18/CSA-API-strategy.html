@@ -1,0 +1,228 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">API, Data Strategies</h1><p class="page-description">Resource guide to using and making APIs.  This includes AWS, Postman, 3rd Party APIs, and Code expertise.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-18T00:00:00-07:00" itemprop="datePublished">
+        Oct 18, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#api-data-resources">API, Data Resources</a><ul><li><a href="#variation-off-of-jokes">Variation off of Jokes</a></li><li><a href="#alternative-to-jokes">Alternative to Jokes</a></li><li><a href="#backend-api-debugging-and-postman">Backend API Debugging and Postman</a><ul><li><a href="#run-web-application-locally">Run Web Application Locally</a></li><li><a href="#run-observations-and-actions">Run Observations and actions</a></li></ul></li><li><a href="#review-apijokepy">Review api/joke.py</a></li><li><a href="#debug-apijokepy-with-browswer">Debug api/joke.py with Browswer</a><ul><li><a href="#debug-observations-and-actions">Debug Observations and actions</a></li></ul></li><li><a href="#debug-apijokepy-with-postman">Debug api/joke.py with Postman</a><ul><li><a href="#postman-observation-and-actions">Postman Observation and actions</a></li></ul></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="api-data-resources">API, Data Resources</h2>
+
+<p>Applications, Web Applications are nothing without data.  API’s are the most common source on the internet for obtaining data.</p>
+
+<h3 id="variation-off-of-jokes">Variation off of Jokes</h3>
+
+<p>Student teams have opportunity for 90% if they do a variation of Jokes.  However, this is considered about 10 hours of work for both frontend and backend development.   So, there would need to be a couple of variation to meet team goals for 4 people.</p>
+
+<ul>
+  <li><a href="hhttps://nighthawkcoders.github.io/APCSA/data/jokes">Frontend Fetch of Jokes</a>.  In this code example you will learn many of the key Frontend requirements in displaying the Jokes API.  This meets 1/2 the requirements for an API.
+    <ul>
+      <li>JavaScript Fetch and Display
+        <ul>
+          <li>Use JavaScript “fetch” get, put, update operation with Python APIs</li>
+          <li>Use JavaScript to trap errors through invalid response</li>
+          <li>Use JavaScript to displays data by updating DOM</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/techtalk/webapi">Javascript Web API for Jokes</a>.  Review this code that describes how to make Model and Interface endpoints.
+    <ul>
+      <li>Java Endpoints and CRUD
+        <ul>
+          <li>Each public API endpoint requires definition on backend</li>
+          <li>Build Spring CRUD operations to support endpoints</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.nighthawk.spring_portfolio.mvc.jokes</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="nd">@RestController</span> <span class="c1">// annotation to simplify the creation of RESTful web services</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/jokes"</span><span class="o">)</span>  <span class="c1">// all requests in file begin with this URI</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JokesApiController</span> <span class="o">{</span>
+
+    <span class="c1">// Autowired enables Control to connect URI request and POJO Object to easily for Database CRUD operations</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JokesJpaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="cm">/* GET List of Jokes
+     * @GetMapping annotation is used for mapping HTTP GET requests onto specific handler methods.
+     */</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;&gt;</span> <span class="nf">getJokes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ResponseEntity returns List of Jokes provide by JPA findAll()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">(),</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/* Update Like
+     * @PutMapping annotation is used for mapping HTTP PUT requests onto specific handler methods.
+     * @PathVariable annotation extracts the templated part {id}, from the URI
+     */</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/like/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;</span> <span class="nf">setLike</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="cm">/* 
+        * Optional (below) is a container object which helps determine if a result is present. 
+        * If a value is present, isPresent() will return true
+        * get() will return the value.
+        */</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;</span> <span class="n">optional</span> <span class="o">=</span> <span class="n">repository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">optional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>  <span class="c1">// Good ID</span>
+            <span class="nc">Jokes</span> <span class="n">joke</span> <span class="o">=</span> <span class="n">optional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>  <span class="c1">// value from findByID</span>
+            <span class="n">joke</span><span class="o">.</span><span class="na">setHaha</span><span class="o">(</span><span class="n">joke</span><span class="o">.</span><span class="na">getHaha</span><span class="o">()+</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// increment value</span>
+            <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">joke</span><span class="o">);</span>  <span class="c1">// save entity</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">joke</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>  <span class="c1">// OK HTTP response: status code, headers, and body</span>
+        <span class="o">}</span>
+        <span class="c1">// Bad ID</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">);</span>  <span class="c1">// Failed HTTP response: status code, headers, and body</span>
+    <span class="o">}</span>
+
+    <span class="cm">/* Update Jeer
+     */</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/jeer/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;</span> <span class="nf">setJeer</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Jokes</span><span class="o">&gt;</span> <span class="n">optional</span> <span class="o">=</span> <span class="n">repository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">optional</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>  <span class="c1">// Good ID</span>
+            <span class="nc">Jokes</span> <span class="n">joke</span> <span class="o">=</span> <span class="n">optional</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+            <span class="n">joke</span><span class="o">.</span><span class="na">setBoohoo</span><span class="o">(</span><span class="n">joke</span><span class="o">.</span><span class="na">getBoohoo</span><span class="o">()+</span><span class="mi">1</span><span class="o">);</span>
+            <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">joke</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">joke</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="c1">// Bad ID</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="alternative-to-jokes">Alternative to Jokes</h3>
+
+<ul>
+  <li><a href="https://nighthawkcoders.github.io/APCSA/techtalk/rapidapi">Python 3rd Party API</a>.  It can be beneficial to access APIs in the backend versus the frontend.  Plus, this multi step process will meet Frontend to Backend API requirements.
+    <ul>
+      <li>ChatGPT APIs keys are required to be hidden on server.</li>
+      <li>Rate limits can be controlled on backend.  Always ensuring result.</li>
+      <li>Python Endpoints and CRUD</li>
+      <li>JavaScript Fetch and Display</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="backend-api-debugging-and-postman">Backend API Debugging and Postman</h3>
+
+<p>Pictures need to be rewworked for Java</p>
+
+<h4 id="run-web-application-locally">Run Web Application Locally</h4>
+
+<p><img src="/student2.0/images/jokes/run.png" alt="joke run" /></p>
+
+<h4 id="run-observations-and-actions">Run Observations and actions</h4>
+
+<p>This start the application use Python with Debugging on.  The objective is to load Web Server.  Look at Terminal for outputs.</p>
+
+<h3 id="review-apijokepy">Review api/joke.py</h3>
+
+<p>Now is a good time to look at code around this code.</p>
+
+<ul>
+  <li>Definition of joke_api with browser prefix /api/jokes.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">joke_api</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s">'joke_api'</span><span class="p">,</span> <span class="n">__name__</span><span class="p">,</span>
+                   <span class="n">url_prefix</span><span class="o">=</span><span class="s">'/api/jokes'</span><span class="p">)</span>
+
+<span class="c1"># API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
+</span><span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">joke_api</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>_Read resource is defined using “get” method</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">_Read</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">getJokes</span><span class="p">())</span>
+</code></pre></div></div>
+
+<ul>
+  <li>api /api/jokes/</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">_Read</span><span class="p">,</span> <span class="s">'/'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="debug-apijokepy-with-browswer">Debug api/joke.py with Browswer</h3>
+
+<p>Learn to setup break point and usage of play controls(continue, step over, step into, step out)</p>
+
+<p><img src="/student2.0/images/jokes/debug.png" alt="joke debug" /></p>
+
+<ul>
+  <li>Setup breakpoint in Code</li>
+  <li>Call endpoint from Browser</li>
+  <li>Observe code stopping and play controls</li>
+</ul>
+
+<h4 id="debug-observations-and-actions">Debug Observations and actions</h4>
+
+<ul>
+  <li>Open Locals self observe endpoint and method</li>
+  <li>Step into code observe that step takes you to jokes.py</li>
+  <li>Open Globals jokes_data</li>
+  <li>Hover over jokes_data in code</li>
+  <li>Press continue play control and observe data in browser</li>
+</ul>
+
+<h3 id="debug-apijokepy-with-postman">Debug api/joke.py with Postman</h3>
+
+<p>Similar debugging goals as previous, but now we can perform put method as well as get methond.</p>
+
+<h4 id="postman-observation-and-actions">Postman Observation and actions</h4>
+
+<ul>
+  <li><a href="https://www.postman.com/downloads/">Download Postman</a> for free</li>
+  <li>Build Collections
+    <ul>
+      <li>Get APIs</li>
+      <li>Put APIs</li>
+    </ul>
+  </li>
+  <li>Test Collections</li>
+  <li>Set Breakpoints in Code and Observe</li>
+</ul>
+
+<p><img src="/student2.0/images/jokes/postman.png" alt="joke run" /></p>
+
+<h2 id="hacks">Hacks</h2>
+
+<ul>
+  <li>Build Collection of API tests in Postman on localhost.</li>
+  <li>Try APIs off of a deployed server: <a href="https://flask.nighthawkcodingsociety.com/api/jokes">https://flask.nighthawkcodingsociety.com/api/jokes</a></li>
+  <li>Extra.  Write code for _Create method for Jokes, hint use Body to pass data versus command line</li>
+  <li>Extra.  Write your own frontend code to read your own Jokes API.   Here is example.
+    <ul>
+      <li><a href="https://nighthawkcoders.github.io/APCSP/data/jokes">Sample github.io Frontend Runtime</a> - <a href="https://raw.githubusercontent.com/nighthawkcoders/APCSP/master/_posts/2022-07-10-PBL-jokes.md">Sample github.io Raw Code</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2023/10/18/CSA-API-strategy.html" hidden></a>
+</article>

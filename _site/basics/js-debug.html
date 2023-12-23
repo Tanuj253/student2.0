@@ -1,0 +1,196 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">1.4 Correcting errors</h1><p class="page-description">Practice with identifying and correcting code blocks</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-28T00:00:00-07:00" itemprop="datePublished">
+        Aug 28, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Safin Singh and Rohan Juneja</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/basics/home">Home</a></td>
+        <td><a href="/student2.0/basics/html">HTML</a></td>
+        <td><a href="/student2.0/basics/datatypes">Data Types</a></td>
+        <td><a href="/student2.0/basics/dom">DOM</a></td>
+        <td><a href="/student2.0/basics/javascript">JavaScript</a></td>
+        <td><a href="/student2.0/basics/js-debug">JS Debugging</a></td>
+    </tr>
+</table>
+
+<p><a href="https://apclassroom.collegeboard.org/103/home?unit=1">College Board Big Idea 1</a></p>
+
+<h2 id="identifying-and-correcting-errors-unit-14">Identifying and Correcting Errors (Unit 1.4)</h2>
+
+<blockquote>
+  <p>Become familiar with types of errors and strategies for fixing them</p>
+</blockquote>
+
+<ul>
+  <li>Review CollegeBoard videos and take notes on blog</li>
+  <li>Complete assigned MCQ questions if applicable</li>
+</ul>
+
+<h1 id="code-segments">Code Segments</h1>
+
+<p>Practice fixing the following code segments!</p>
+
+<h2 id="segment-1-alphabet-list">Segment 1: Alphabet List</h2>
+
+<p>Intended behavior: create a list of characters from the string contained in the variable <code class="language-plaintext highlighter-rouge">alphabet</code></p>
+
+<h3 id="code">Code:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="n">var</span> <span class="n">alphabet</span> <span class="o">=</span> <span class="s">"abcdefghijklmnopqrstuvwxyz"</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">alphabetList</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">alphabetList</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">alphabetList</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="what-i-changed">What I Changed</h3>
+
+<p>I changed…</p>
+
+<h2 id="segment-2-numbered-alphabet">Segment 2: Numbered Alphabet</h2>
+
+<p>Intended behavior: print the number of a given alphabet letter within the alphabet. For example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"_" is letter number _ in the alphabet
+</code></pre></div></div>
+
+<p>Where the underscores (_) are replaced with the letter and the position of that letter within the alphabet (e.g. a=1, b=2, etc.)</p>
+
+<h3 id="code-1">Code:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="o">//</span> <span class="n">Copy</span> <span class="n">your</span> <span class="n">previous</span> <span class="n">code</span> <span class="n">to</span> <span class="n">built</span> <span class="n">alphabetList</span> <span class="n">here</span>
+
+<span class="n">let</span> <span class="n">letterNumber</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">alphabetList</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">===</span> <span class="n">letterNumber</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">letterNumber</span> <span class="o">+</span> <span class="s">" is letter number 1 in the alphabet"</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Should</span> <span class="n">output</span><span class="p">:</span>
+<span class="o">//</span> <span class="s">"e"</span> <span class="ow">is</span> <span class="n">letter</span> <span class="n">number</span> <span class="mi">5</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">alphabet</span>
+</code></pre></div></div>
+
+<h3 id="what-i-changed-1">What I Changed</h3>
+
+<p>I changed…</p>
+
+<h2 id="segment-3-odd-numbers">Segment 3: Odd Numbers</h2>
+
+<p>Intended behavior: print a list of all the odd numbers below 10</p>
+
+<h3 id="code-2">Code:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="n">let</span> <span class="n">evens</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">evens</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">evens</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="what-i-changed-2">What I Changed</h3>
+
+<p>I changed…</p>
+
+<h1 id="below-not-edited">BELOW NOT EDITED</h1>
+
+<p>The intended outcome is printing a number between 1 and 100 once, if it is a multiple of 2 or 5</p>
+<ul>
+  <li>What values are outputted incorrectly. Why?</li>
+  <li>Make changes to get the intended outcome.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="n">var</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">var</span> <span class="n">newNumbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="n">of</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">newNumbers</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">newNumbers</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">newNumbers</span><span class="p">)</span> 
+
+
+</code></pre></div></div>
+
+<h1 id="challenge">Challenge</h1>
+
+<p>This code segment is at a very early stage of implementation.</p>
+<ul>
+  <li>What are some ways to (user) error proof this code?</li>
+  <li>The code should be able to calculate the cost of the meal of the user</li>
+</ul>
+
+<p>Hint:</p>
+<ul>
+  <li>write a “single” test describing an expectation of the program of the program</li>
+  <li>test - input burger, expect output of burger price</li>
+  <li>run the test, which should fail because the program lacks that feature</li>
+  <li>write “just enough” code, the simplest possible, to make the test pass</li>
+</ul>
+
+<p>Then repeat this process until you get program working like you want it to work.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+
+<span class="n">var</span> <span class="n">menu</span> <span class="o">=</span>  <span class="p">{</span><span class="s">"burger"</span><span class="p">:</span> <span class="mf">3.99</span><span class="p">,</span>
+         <span class="s">"fries"</span><span class="p">:</span> <span class="mf">1.99</span><span class="p">,</span>
+         <span class="s">"drink"</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">}</span>
+<span class="n">var</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="o">//</span><span class="n">shows</span> <span class="n">the</span> <span class="n">user</span> <span class="n">the</span> <span class="n">menu</span> <span class="ow">and</span> <span class="n">prompts</span> <span class="n">them</span> <span class="n">to</span> <span class="n">select</span> <span class="n">an</span> <span class="n">item</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Menu"</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">menu</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">item</span> <span class="o">+</span> <span class="s">"  $"</span> <span class="o">+</span> <span class="n">menu</span><span class="p">[</span><span class="n">item</span><span class="p">].</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">//</span><span class="n">why</span> <span class="ow">is</span> <span class="n">toFixed</span> <span class="n">used</span><span class="err">?</span>
+<span class="p">}</span>
+<span class="o">//</span><span class="n">ideally</span> <span class="n">the</span> <span class="n">code</span> <span class="n">should</span> <span class="n">support</span> <span class="n">mutliple</span> <span class="n">items</span>
+<span class="n">var</span> <span class="n">item</span> <span class="o">=</span> <span class="s">"burger"</span>
+
+<span class="o">//</span><span class="n">code</span> <span class="n">should</span> <span class="n">add</span> <span class="n">the</span> <span class="n">price</span> <span class="n">of</span> <span class="n">the</span> <span class="n">menu</span> <span class="n">items</span> <span class="n">selected</span> <span class="n">by</span> <span class="n">the</span> <span class="n">user</span> 
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<ul>
+  <li>Fix the errors in the first three segments in this notebook and say what you changed in the code cell under “What I Changed” (Challenge is optional)</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/basics/js-debug" hidden></a>
+</article>

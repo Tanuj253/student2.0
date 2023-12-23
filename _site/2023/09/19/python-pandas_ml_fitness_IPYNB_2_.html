@@ -1,0 +1,383 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">ML and Fitness</h1><p class="page-description">Machine Learning and Fitness Data, using a linear regression model.  The purpose of this model is to maximize calories burn.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-19T00:00:00-07:00" itemprop="datePublished">
+        Sep 19, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Tanisha Patil</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      16 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h2 id="overview">Overview</h2>
+<p>Machine learning is a powerful and expanding field within artifical intelligence. It has found applications throughout a variety of industries. At its core, <mark>machine learning is driven by algorithms and models that enable computers to learn and make predictions based on already available (test) data.</mark> Machine learning is utilized in today’s world to predict disease outcomes, analyze medical images, detect fraud, predict market trends, and much more. Its ability to extract insights from complex datasets to make data driven decisions enhances efficiency, unlocks otherwise hidden patterns, and make predictions that have been impossible in the past…</p>
+
+<h3 id="the-machine-learning-process">The Machine Learning Process</h3>
+
+<p><img src="https://github.com/nighthawkcoders/teacher/assets/111611921/b95651cf-21e1-4328-8269-5b768b459ed9" alt="image" /></p>
+
+<h2 id="data-sample">Data Sample</h2>
+<p>Below is fitbit data detailing 20 workouts, their duration, my heartbeat, workout type, and the resulting calories I burnt. As an athlete I want to maximize the amount of calories I burn, so I can optimize my workouts. However, due to the various factors involved in burning calories, the best way to achieve my goal is a machine learning model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Duration</span> <span class="p">(</span><span class="n">minutes</span><span class="p">)</span> <span class="o">|</span> <span class="n">Heart</span> <span class="n">Rate</span> <span class="p">(</span><span class="n">bpm</span><span class="p">)</span> <span class="o">|</span> <span class="n">Intensity</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Calories</span> <span class="n">Burned</span>
+<span class="o">------------------------------------------------------------------------</span>
+<span class="mi">30</span>                <span class="o">|</span> <span class="mi">120</span>              <span class="o">|</span> <span class="mi">3</span>               <span class="o">|</span> <span class="mi">200</span>
+<span class="mi">45</span>                <span class="o">|</span> <span class="mi">140</span>              <span class="o">|</span> <span class="mi">6</span>               <span class="o">|</span> <span class="mi">300</span>
+<span class="mi">60</span>                <span class="o">|</span> <span class="mi">160</span>              <span class="o">|</span> <span class="mi">9</span>               <span class="o">|</span> <span class="mi">400</span>
+<span class="mi">20</span>                <span class="o">|</span> <span class="mi">110</span>              <span class="o">|</span> <span class="mi">2</span>               <span class="o">|</span> <span class="mi">150</span>
+<span class="mi">35</span>                <span class="o">|</span> <span class="mi">130</span>              <span class="o">|</span> <span class="mi">5</span>               <span class="o">|</span> <span class="mi">250</span>
+<span class="mi">50</span>                <span class="o">|</span> <span class="mi">150</span>              <span class="o">|</span> <span class="mi">8</span>               <span class="o">|</span> <span class="mi">350</span>
+<span class="mi">25</span>                <span class="o">|</span> <span class="mi">125</span>              <span class="o">|</span> <span class="mi">4</span>               <span class="o">|</span> <span class="mi">180</span>
+<span class="mi">40</span>                <span class="o">|</span> <span class="mi">145</span>              <span class="o">|</span> <span class="mi">7</span>               <span class="o">|</span> <span class="mi">280</span>
+<span class="mi">55</span>                <span class="o">|</span> <span class="mi">165</span>              <span class="o">|</span> <span class="mi">10</span>              <span class="o">|</span> <span class="mi">410</span>
+<span class="mi">30</span>                <span class="o">|</span> <span class="mi">120</span>              <span class="o">|</span> <span class="mi">3</span>               <span class="o">|</span> <span class="mi">210</span>
+<span class="mi">45</span>                <span class="o">|</span> <span class="mi">140</span>              <span class="o">|</span> <span class="mi">6</span>               <span class="o">|</span> <span class="mi">320</span>
+<span class="mi">60</span>                <span class="o">|</span> <span class="mi">160</span>              <span class="o">|</span> <span class="mi">9</span>               <span class="o">|</span> <span class="mi">390</span>
+<span class="mi">20</span>                <span class="o">|</span> <span class="mi">110</span>              <span class="o">|</span> <span class="mi">2</span>               <span class="o">|</span> <span class="mi">160</span>
+<span class="mi">35</span>                <span class="o">|</span> <span class="mi">130</span>              <span class="o">|</span> <span class="mi">5</span>               <span class="o">|</span> <span class="mi">240</span>
+<span class="mi">50</span>                <span class="o">|</span> <span class="mi">150</span>              <span class="o">|</span> <span class="mi">8</span>               <span class="o">|</span> <span class="mi">360</span>
+<span class="mi">25</span>                <span class="o">|</span> <span class="mi">125</span>              <span class="o">|</span> <span class="mi">4</span>               <span class="o">|</span> <span class="mi">170</span>
+<span class="mi">40</span>                <span class="o">|</span> <span class="mi">145</span>              <span class="o">|</span> <span class="mi">7</span>               <span class="o">|</span> <span class="mi">270</span>
+<span class="mi">55</span>                <span class="o">|</span> <span class="mi">165</span>              <span class="o">|</span> <span class="mi">10</span>              <span class="o">|</span> <span class="mi">400</span>
+<span class="mi">30</span>                <span class="o">|</span> <span class="mi">120</span>              <span class="o">|</span> <span class="mi">3</span>               <span class="o">|</span> <span class="mi">220</span>
+<span class="mi">45</span>                <span class="o">|</span> <span class="mi">140</span>              <span class="o">|</span> <span class="mi">6</span>               <span class="o">|</span> <span class="mi">310</span>
+</code></pre></div></div>
+
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+<p>Given the fitness dataset, we first establish the following variables: 
+Dependent Variable:</p>
+<ul>
+  <li>Calories Burned</li>
+</ul>
+
+<p>Independent Variables:</p>
+<ul>
+  <li>Duration : length of the workout in minutes</li>
+  <li>Heart Rate : average rate of heart beat in beats per minute during the workout</li>
+  <li>Intensity level : Workout intensity level from a scale of 1 (sitting) to 10 (sprinting)
+    <blockquote>
+      <p>These independent variables were chosen for this model because they are believed to be the most relevant factors affecting calories burned.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>The dependent variable, Calories Burned, is the target variable the model will aim to predict. It represents the amount of calories burned during a specific fitness activity. The Independent variables will be the inputs used to predict the dependent variable using a linear regression model. The linear regression model will analyze the relationship between the independent and dependent variables in order to create accurate predictions. This can be done easily using the scikit-learn library in Python. See installation instructions <a href="https://scikit-learn.org/stable/install.html">here</a>. You will also need pandas.</p>
+
+<h3 id="variable-relationship-visualization">Variable Relationship Visualization</h3>
+<p>These visualizations are meant to show the relationship between the independent variables and dependent variable (target calories burnt)</p>
+
+<blockquote>
+  <p>pip install matplotlib</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Load the fitness dataset into a pandas DataFrame
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'Duration'</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s">'Heart Rate'</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">],</span>
+    <span class="s">'Intensity Level'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s">'Calories Burned'</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1">#Duration vs. Calories Burned
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'Duration'</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">'Data'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Duration (minutes)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Duration vs. Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#Heart Rate vs. Calories Burned
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'Heart Rate'</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">'Data'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Heart Rate (bpm)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Heart Rate vs. Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Intensity Level vs. Calories Burned
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'Intensity Level'</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">'Data'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Intensity Level'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Intensity Level vs. Calories Burned'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="output_6_0.png" alt="png" /></p>
+
+<p><img src="output_6_1.png" alt="png" /></p>
+
+<p><img src="output_6_2.png" alt="png" /></p>
+
+<h3 id="splitting-the-data">Splitting the Data</h3>
+<p>This dataset includes 15 rows of TRAIN fitbit data and 5 rows of TEST data, with various combinations of duration, heart rate, workout type, and the corresponding calories burned. The trained machine learning model will make predictions on new, unseen instances and compare them with the actual calories burned values.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Load the fitness dataset into a pandas DataFrame
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'Duration'</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s">'Heart Rate'</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">],</span>
+    <span class="s">'Intensity Level'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s">'Calories Burned'</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Split the dataset
+</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Print training data
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Training Data:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+
+<span class="c1"># Print test data
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Test Data:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Training Data:
+    Duration  Heart Rate  Intensity Level  Calories Burned
+5         50         150                8              350
+11        60         160                9              390
+3         20         110                2              150
+18        30         120                3              220
+16        40         145                7              270
+13        35         130                5              240
+2         60         160                9              400
+9         30         120                3              210
+19        45         140                6              310
+4         35         130                5              250
+12        20         110                2              160
+7         40         145                7              280
+10        45         140                6              320
+14        50         150                8              360
+6         25         125                4              180
+
+Test Data:
+    Duration  Heart Rate  Intensity Level  Calories Burned
+0         30         120                3              200
+17        55         165               10              400
+15        25         125                4              170
+1         45         140                6              300
+8         55         165               10              410
+</code></pre></div></div>
+
+<h2 id="model-training-and-evaluation">Model Training and Evaluation</h2>
+
+<p>In this code, we start by loading the fitness dataset into a pandas DataFrame. Then, we split the dataset into training and test data using train_test_split (just as before). We assign the independent variables (Duration, Heart Rate, Intensity Level) and the dependent variable (Calories Burned) to separate variables for both the training and test data.</p>
+
+<p>Next, we create a linear regression model using LinearRegression(). We fit the model to the training data by calling fit and passing in the training features and target variables (X_train and y_train).</p>
+
+<p>After fitting the model, we use it to make predictions on the test data by calling predict and passing in the test features (X_test). The predicted values are stored in y_pred. This way we can test the accuracy of the model with real data.</p>
+
+<p>Finally, we calculate the mean squared error (MSE) between the actual target values (y_test) and the predicted values (y_pred) using the mean_squared_error function from scikit-learn. The MSE provides a measure of the average squared difference between the predicted and actual values. It is a measure of how well the model performs on the test data, where lower value indicates a better performance. We print the calculated MSE to evaluate the performance of the model.</p>
+
+<p>In summary, this code demonstrates the process of splitting the dataset into training and test data, creating a linear regression model, fitting it, and then calculating the margin of error in testing.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># Load the fitness dataset into a pandas DataFrame
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'Duration'</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s">'Heart Rate'</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">],</span>
+    <span class="s">'Intensity Level'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s">'Calories Burned'</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Split the dataset into training and test data
+</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Separate the features (X) and the target variable (y) for training and test data
+</span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[[</span><span class="s">'Duration'</span><span class="p">,</span> <span class="s">'Heart Rate'</span><span class="p">,</span> <span class="s">'Intensity Level'</span><span class="p">]]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[[</span><span class="s">'Duration'</span><span class="p">,</span> <span class="s">'Heart Rate'</span><span class="p">,</span> <span class="s">'Intensity Level'</span><span class="p">]]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">]</span>
+
+<span class="c1"># Create a linear regression model
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Fit the model to the training data
+</span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions on the test data
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Calculate the mean squared error
+</span><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Mean Squared Error:"</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean Squared Error: 569.4444444444464
+</code></pre></div></div>
+
+<h2 id="model-testing-and-interpretation">Model Testing and Interpretation</h2>
+
+<p>The mean squared error represents the inaccuracy of the model. A mean squared error of 569.444 indicates that the model is quite inaccurate. In general this can be fixed through a few ways:</p>
+<ol>
+  <li>Feature Engineering: Exploring other relevant factors to the variable “calories burned”. This may be even categorical like activity type. This would require changing your original dataset.</li>
+  <li>Data Cleaning: Reviewing the database for missing data, outliers, or inconsistent data.This would also require changing your original dataset.</li>
+  <li>Feature Scaling: Normalize the data so they are on a similar numerical scale. For example, calories burned is on a quite larger scale than intensity level. (up to 410 for calories versus up to 10 for intensity)</li>
+</ol>
+
+<p><strong>4. Regularization: IMPORTANT CONCEPT</strong> ~ This is a method to prevent overfitting, which is essentially when the model “memorizes” data rather than associating. Think of it like this.. Say you are trying to study for a math test. You could go about it two ways: The first option is that you memorize all of the answers on your homework to a T. The other option is to take time to understand the concept so you are prepared for whatever may come your way on the test. Which would you choose? You probably said it is a better idea to choose the second option. If you chose the first option and saw something unfamiliar on the test, you would have no idea how to answer it! In this way, overfitting data is similar to option 1 (memorization). You do not want your model to be over-trained, or overfitted because it must be able to respond to a variety of data rather than just ‘memorize’ the test data.</p>
+
+<p><strong>Changes Made</strong>:</p>
+
+<p>Polynomial Features:</p>
+<ul>
+  <li>Polynomial features are created using ‘PolynomialFeatures’ from scikit-learn.</li>
+  <li>The degree determines the maximum power to which each independent can be raised to. The degree=2, is an arbritary number. It depends on many factors like the complexity of the model, etc. but for simplcity it is customary to start at around 1-2 and then incrementally increase the degree, and reevaluate the models performance at each step.</li>
+  <li>By introducing polynomial features, the model can model non-linear relationships between the independent variables and the target variable. This flexibility allows the model to fit more complex patterns in the data and reduce the MSE.</li>
+  <li>Also this may indirectly affect the feature scaling, but it is not the primary purpose</li>
+</ul>
+
+<p>Ridge Regression:</p>
+<ul>
+  <li>Ridge regression is utilized using ‘Ridge’ from scikit-learn. It is a <strong>regularization</strong> technique. Essentially, every variable is given a ‘weight’ in how much it contributes to the end prediction. For example, the intensity level may have a higher weight, or impact on the calorie loss compared to duration of the workout. Ridge regression basically encourages the model to have smaller weights for each feature so the model doesn’t overfit or memorize as explained earlier. This controls the model’s complexity and again avoids overfitting.</li>
+  <li>By adding a small positive alpha (alpha=0.1 in this case), the model’s coefficients, or weights are penalized. This regularization helps reduce the impact of irrelevant features and prevents overfitting.</li>
+</ul>
+
+<p>Pipeline:</p>
+<ul>
+  <li>A pipeline is constructed using make_pipeline from scikit-learn. In simple terms: It combines multiple preprocessing  steps into a single one</li>
+  <li>Using a pipeline allows for a more streamlined and concise implementation. It ensures that the transformations(mentioned above) are applied consistently to both the training and test data.</li>
+  <li>This is not an actual modification to the data/methods used</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># Load the fitness dataset into a pandas DataFrame
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s">'Duration'</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+    <span class="s">'Heart Rate'</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">140</span><span class="p">],</span>
+    <span class="s">'Intensity Level'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s">'Calories Burned'</span><span class="p">:</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">410</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Split the dataset into training and test data
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s">'Duration'</span><span class="p">,</span> <span class="s">'Heart Rate'</span><span class="p">,</span> <span class="s">'Intensity Level'</span><span class="p">]],</span> <span class="n">data</span><span class="p">[</span><span class="s">'Calories Burned'</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Create a pipeline with polynomial features and Ridge regression
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span> 
+
+<span class="c1"># Fit the model to the training data
+</span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions on the test data
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Calculate the mean squared error
+</span><span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Mean Squared Error:"</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean Squared Error: 108.33239800289937
+</code></pre></div></div>
+
+<p>As you can see, the MSE (the inaccuracy) decreased significantly after the last change. I suggest you</p>
+
+<h2 id="interactive-model-testing">Interactive Model Testing</h2>
+<p>The code below will run in terminal. It is an interactive model, where the user can enter their workout duration, heart rate, intensity level. They will recieve a prediction or estimate created by the linear regression model on number of calories burned. The user can input the actual number of calories burned to recieve an accuracy.</p>
+
+<p>Test Data:</p>
+<ul>
+  <li>Duration (minutes): 30</li>
+  <li>Heart Rate (bpm) : 140</li>
+  <li>Intensity Level: 6</li>
+  <li>Actual Calories Loss: 140</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="k">def</span> <span class="nf">calculate_estimate</span><span class="p">():</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter Duration (minutes): "</span><span class="p">))</span>
+    <span class="n">heart_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter Heart Rate (bpm): "</span><span class="p">))</span>
+    <span class="n">intensity_level</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter Intensity Level: "</span><span class="p">))</span>
+
+    <span class="c1"># Make a prediction using the user input
+</span>    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">([[</span><span class="n">duration</span><span class="p">,</span> <span class="n">heart_rate</span><span class="p">,</span> <span class="n">intensity_level</span><span class="p">]])</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"Duration:"</span><span class="p">,</span><span class="n">duration</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Heart Rate:"</span><span class="p">,</span><span class="n">heart_rate</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Intensity Level:"</span><span class="p">,</span><span class="n">intensity_level</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Calorie Loss Estimate:"</span><span class="p">,</span> <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">actual_calories_burned</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter Actual Calories Burned: "</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Actual Calories Loss:"</span><span class="p">,</span> <span class="n">actual_calories_burned</span><span class="p">)</span>
+    <span class="n">percent_accuracy</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">actual_calories_burned</span><span class="p">)</span> <span class="o">/</span> <span class="n">actual_calories_burned</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Percent Accuracy: {:.2f}%"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">percent_accuracy</span><span class="p">))</span>
+
+<span class="c1"># Prompt user for input and calculate estimate
+</span><span class="n">calculate_estimate</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/tanisha1234/anaconda3/lib/python3.9/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+
+
+Duration: 20.0
+Heart Rate: 140.0
+Intensity Level: 6.0
+Calorie Loss Estimate: 156.1542610571737
+Actual Calories Loss: 140.0
+Percent Accuracy: 88.46%
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<ol>
+  <li>Build a proper web frontend for this (or your own) regression model. (Machine learning can be a complicated concept…How can you make a simple UI to present the model to the user in an efficient way?)</li>
+  <li>Use real test cases on this model (Collect data from a real group of people - a sports team for example- and see if the calorie loss prediction is actually accurate. If the model is innacurate, what are some ways we discussed in the lesson to reduce innacuracy? Try implementing those ways!)</li>
+  <li>Add more components/independen variables to compliment the model. (How can you incorporate something like categorical- non numerical- data for example? What would this entail? Will adding more numerical categories increase the models accuracy.. or just overcomplicate it? Test these things on your own!)</li>
+  <li>For the math inclined people - try explaining the Math used in the sklearn learning models. Mathematically describe how these predefined methods (such as model.fit) really work.</li>
+  <li>Try a new machine learning model (decision tree regression, random forest)</li>
+  <li>Try to find the most important feature (independent variable) to determining calorie loss. (Try comparing coefficients, etc - this may require some more research)</li>
+</ol>
+
+<h2 id="conclusion-and-further-exploration">Conclusion and Further Exploration</h2>
+<p>This lesson introduced the concept of using machine learning, specifically linear regression, to estimate calorie loss during fitness activities. This lesson explored how independent variables such as duration, heart rate, and intensity level can be used to predict the dependent variable, calories burned even when the model is non-linear.</p>
+
+<p><em>Further Exploration:</em>
+Here are some videos to watch to learn more about this topic. Researching on your own is HIGHLY encouraged!</p>
+<ul>
+  <li>A very simple explanation of what multivariable regression is (includes a graphical and mathematical perspective which may appeal to some students) : https://www.youtube.com/watch?v=SZ–3sUoNmY</li>
+  <li>Walkthrough of using sklearn in python for multivariable regression: https://www.youtube.com/watch?v=KYNuzfn5Fx0</li>
+  <li>Explains underfitting, overfitting perfectly and gives suggestions! : https://www.youtube.com/watch?v=o3DztvnfAJg</li>
+</ul>
+
+<p>To further your understanding of machine learning and regression models, here are some suggestions:</p>
+
+<ul>
+  <li>
+    <p>Try Different Models: Experiment with other regression models such as decision trees, random forests,K nearest neighboors, and compare their performance to the linear regression model. Analyze the strengths and weaknesses of different models for this specific calorie loss estimation task. Different models are beneficial for their own reasons, it is important to learn how to weigh their pros and cons.</p>
+  </li>
+  <li>
+    <p>Data Collection and Preprocessing: Collect a different dataset related to fitness activities (or a topic of your choice) and create your own model using linear regression. Research in incorporating catogorical elements such as “activity type” rather than just numerical ones - this would be an interesting take.</p>
+  </li>
+  <li>
+    <p>Evaluation Metrics: Explore alternative evaluation metrics beyond mean squared error (MSE) for regression models. Consider metrics like mean absolute error (MAE) or R-squared to gain further insights into model performance.</p>
+  </li>
+</ul>
+
+<p>Machine learning is vast, keep yourself updated! Continuously exploring and experimenting with different techniques, datasets, and evaluation metrics will deepen your proficiency in applying machine learning algorithms for various real-world scenarios.</p>
+
+  </div><a class="u-url" href="/student2.0/2023/09/19/python-pandas_ml_fitness_IPYNB_2_.html" hidden></a>
+</article>

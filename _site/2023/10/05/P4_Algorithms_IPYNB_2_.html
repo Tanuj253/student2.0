@@ -1,0 +1,354 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P4 Algorithms</h1><p class="page-description">Lesson for algorithms in Python</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-05T00:00:00-07:00" itemprop="datePublished">
+        Oct 5, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Tucker, William, Tajrian, Eashaan</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#algorithms---33--34">Algorithms - 3.3 &amp; 3.4</a><ul><li><a href="#overview-what-is-an-algorithm">Overview: what is an ALGORITHM?</a><ul><li><a href="#pseudo-code-vs-a-python-algorithm">Pseudo Code vs. a Python Algorithm</a></li></ul></li><li><a href="#33---mathematical-expressionsoperations-in-algorithms">3.3 - Mathematical Expressions/Operations in Algorithms</a></li><li><a href="#popcorn-hack-1">Popcorn Hack #1</a><ul><li><a href="#fibonacci-and-factorial">Fibonacci and Factorial</a></li></ul></li><li><a href="#popcorn-hack-2">Popcorn Hack #2</a></li><li><a href="#34---strings">3.4 - Strings</a><ul><li><a href="#palindromes">Palindromes</a></li></ul></li><li><a href="#popcorn-hack-3">Popcorn Hack #3</a></li></ul></li><li><a href="#homework-hacks">Homework Hacks</a><ul><li><a href="#hack-1">Hack #1</a></li><li><a href="#hack-2">Hack #2</a></li></ul></li></ul></li></ul><h1 id="algorithms---33--34">Algorithms - 3.3 &amp; 3.4</h1>
+
+<h2 id="overview-what-is-an-algorithm">Overview: what is an ALGORITHM?</h2>
+
+<ul>
+  <li>
+    <p><strong>Sequencing</strong> - <strong>Selection</strong> - <strong>Iteration</strong></p>
+  </li>
+  <li>Algorithms are step-by-step procedures or sets of rules used to solve problems or perform tasks
+    <ul>
+      <li>Also known as sequencing
+        <ul>
+          <li>Step 1, Step 2, Step 3…(in order)</li>
+          <li>Ex: putting on clothes one at a time in the morning, washing dishes, etc.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Selection
+    <ul>
+      <li>Decision to make based on a given circumstance
+        <ul>
+          <li>Ex: is it raining? If so, bring an umbrella outside</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Iteration
+    <ul>
+      <li>Also referred to as repetition</li>
+      <li>After performing steps of a procedure/problem, iteration means checking to see if a task is completed
+        <ul>
+          <li>Refers back accordingly</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Algorithms can be represented using flowcharts, Pseudo Code, or programming languages</li>
+  <li>Conditional statements
+    <ul>
+      <li>Conditional statements (if-else statements) allow a program to make decisions based on certain conditions</li>
+      <li>Enable different code branches to be executed depending on whether a condition is true or false</li>
+    </ul>
+  </li>
+  <li>Loops
+    <ul>
+      <li>Loops (for loops, while loops) enable repetitive execution of code</li>
+      <li>They are used when a set of instructions needs to be repeated multiple times.</li>
+    </ul>
+  </li>
+  <li>Strings
+    <ul>
+      <li>A string is a data type used to represent text or sequences of characters</li>
+      <li>Strings are commonly used in programming for tasks like input/output and text processing</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pseudo-code-vs-a-python-algorithm">Pseudo Code vs. a Python Algorithm</h3>
+<p>Pseudo Code is essentially describing/writing code in a more “human-written” format rather than formally/actually “coded” format.</p>
+
+<p>Below, see examples highlighting the key difference(s) between a coded (Python) algorithm against a College Board Pseudo Code example.</p>
+
+<p><img src="College_Board_Algorithms_Diagram.png" alt="College_Board_Algorithms_Diagram.png" /></p>
+
+<p><strong>College Board Pseudo Code example</strong></p>
+
+<p>Below is an algorithm to find the largest number in a list of positive numbers.</p>
+<ol>
+  <li>Set largest number to 0</li>
+  <li>Get next number in the list</li>
+  <li>If number is larger than largestNumber then set largestNumber to number</li>
+  <li>If there are more numbers in list, go back to step 2</li>
+  <li>Display largest number</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">largestNumber</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">numberList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numberList</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="n">largestNumber</span><span class="p">:</span>
+        <span class="n">largestNumber</span> <span class="o">=</span> <span class="n">number</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Largest number:"</span><span class="p">,</span> <span class="n">largestNumber</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Largest number: 12
+</code></pre></div></div>
+
+<h2 id="33---mathematical-expressionsoperations-in-algorithms">3.3 - Mathematical Expressions/Operations in Algorithms</h2>
+
+<p>Mathematics in algorithms may involve many of the basic actions we all know to be part of the Order of Operations. This includes basic addition (a + b), subtraction (a - b), multiplication (a * b), and division (a / b).</p>
+
+<p>However, there is also a likely unfamiliar action named Modulus (in Python: a % b).</p>
+
+<p>MOD: (a / b -&gt; whatever remains).</p>
+
+<p>NOTE: in PEMDAS, MOD is held at the same level as multiplication and divison.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># arithmetic operations
+# (a + b)
+</span><span class="n">num1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">print</span><span class="p">(</span><span class="n">num2</span> <span class="o">+</span> <span class="n">num1</span><span class="p">)</span>
+
+<span class="c1"># (a - b)
+</span><span class="n">num1</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="k">print</span><span class="p">(</span><span class="n">num2</span> <span class="o">-</span> <span class="n">num1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11
+6
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># order of operations example below with grades
+# remember PEMDAS
+</span><span class="n">num1</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">num3</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">num3</span> <span class="o">+</span> <span class="mi">9</span>
+<span class="k">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>51.0
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-1">Popcorn Hack #1</h2>
+<p>Create YOUR OWN order of operations problem like the one above using any values and operations in any order (ex: addition, multiplication, MOD).</p>
+
+<p>Hint: remember to define your values, as seen above.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># use this code cell to make your own calculation!
+</span>
+</code></pre></div></div>
+
+<h3 id="fibonacci-and-factorial">Fibonacci and Factorial</h3>
+
+<p>What is a sequence of <strong>FIBONACCI?</strong></p>
+
+<p>A Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones. It commonly starts with 0 and 1, and the sequence continues infinitely. The first few numbers in the Fibonacci sequence can be seen below.</p>
+
+<p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34,…</p>
+
+<p>Fibonacci function example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fib_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">fib_sequence</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">next_number</span> <span class="o">=</span> <span class="n">fib_sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib_sequence</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">fib_sequence</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fib_sequence</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code></pre></div></div>
+
+<p>What is <strong>FACTORIAL?</strong></p>
+
+<p>In mathematics, the factorial of a non-negative integer, denoted by the symbol “!”, is the product of all positive integers from 1 to that integer. The notation is typically a number with “!” after (ex: n!)</p>
+
+<p>Example of factorial: 5! = 5 x 4 x 3 x 2 x 1 = 120</p>
+
+<p>Factorial function example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s">! = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5! = 120
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-2">Popcorn Hack #2</h2>
+<p>Complete the following tasks.
+Fill in the blank numbers in the segment of a Fibonacci sequence below:</p>
+
+<p>[3, 5, 8, 13, ?, 34, 55, 89, ?]</p>
+
+<p>Write the answer to the following factorials:</p>
+
+<ul>
+  <li>4! =</li>
+  <li>6! =
+    <h2 id="34---strings">3.4 - Strings</h2>
+  </li>
+</ul>
+
+<p>What is a string?</p>
+
+<ul>
+  <li>Strings are ordered sequences of characters
+    <ul>
+      <li>Ex: characters can be numbers, letters, special characters like underscores, or even spaces</li>
+    </ul>
+  </li>
+  <li>Substring: a substring can be described as part of an already existing string</li>
+  <li>String concatenation: joins two or more strings end-to-end to make a new string</li>
+  <li>Note that each programmming language has its own procedures, methods, or functions for strings
+    <ul>
+      <li>We will be covering Python</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Let’s look at some of the string examples below.</p>
+
+<p>Below is “len(str)”. This command counts the number of characters in a word (str) and returns that number. For example, for the word “happy” (“len(‘happy’)”), the value returned would be 5.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># len example:
+</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">"Hello, World!"</span>
+<span class="n">stringLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The string length is </span><span class="si">{</span><span class="n">stringLength</span><span class="si">}</span><span class="s"> characters."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The string length is {stringLength} characters.
+</code></pre></div></div>
+
+<p>Below is “concat(str1, str2)”. This returns a single string consisting of “str1” immediately followed by the characters of the second string (“str2”). For example, “concat(‘AP’, ‘class’)” would return “APclass”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># concat example:
+</span>
+<span class="n">string1</span> <span class="o">=</span> <span class="s">"Hel"</span>
+<span class="n">string2</span> <span class="o">=</span> <span class="s">"lo!"</span>
+
+<span class="c1"># concatenation seen right below
+</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">string1</span> <span class="o">+</span> <span class="n">string2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello!
+</code></pre></div></div>
+
+<p>Below is a substring “substring(str1, start, length)”. This returns a substring of consecutive characters from “str1”, starting with the character at position “start” and containing “length” characters. For example, “substring(‘APCSPrinciples’, 3, 6)” would return “CSPrin”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># substring example:
+</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s">"Hello, World!"</span>
+<span class="n">substring</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">substring</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>llo, Wor
+</code></pre></div></div>
+
+<h3 id="palindromes">Palindromes</h3>
+
+<p>The most commonly known definition of a palindrome is represented as being a word or phrase that is spelt the same both forward and backward.</p>
+
+<p>For example, the word “racecar” is a palindrome, because the word is the same whether you read it from left to right or vice versa.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># palindrome example
+</span>
+<span class="k">def</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">lower</span><span class="p">().</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">"!"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">==</span> <span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">word</span> <span class="o">=</span> <span class="s">"racecar"</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="s">'is'</span> <span class="k">if</span> <span class="n">is_palindrome</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">else</span> <span class="s">'is not'</span><span class="si">}</span><span class="s"> a palindrome."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>racecar is a palindrome.
+</code></pre></div></div>
+
+<h2 id="popcorn-hack-3">Popcorn Hack #3</h2>
+<p>Decide if the following code cell is a “len(str)”, a concatenation, or a substring.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># len, concat, or substring?
+</span>
+<span class="n">thing1</span> <span class="o">=</span> <span class="s">"Del "</span>
+<span class="n">thing2</span> <span class="o">=</span> <span class="s">"Norte"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">thing1</span> <span class="o">+</span> <span class="n">thing2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># type your answer HERE: -&gt;
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Del Norte
+</code></pre></div></div>
+
+<h1 id="homework-hacks">Homework Hacks</h1>
+
+<h3 id="hack-1">Hack #1</h3>
+<ol>
+  <li>
+    <p>Concatenate your first and last name and print it (full name).</p>
+  </li>
+  <li>
+    <p>Select/write a random sentence of your choice (be creative; it can be whatever you want it to be) and calculate the number of characters in it and display that as the result.</p>
+  </li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># put your work for Hack #1 in here below:
+</span>
+</code></pre></div></div>
+
+<h3 id="hack-2">Hack #2</h3>
+<p>Similarly to the first Popcorn Hack, create your own order of operations problem (PEMDAS) in a code cell, but this time using modulus/MOD (a % b).</p>
+
+<p><strong>Try to make your answer not have a decimal in it.</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># put your work for Hack #2 in here below:
+</span>
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/05/P4_Algorithms_IPYNB_2_.html" hidden></a>
+</article>

@@ -1,0 +1,390 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P5 Developing Algorithms</h1><p class="page-description">College Board Big Idea 3, Idea 9, Developing Algorithms</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-09-30T00:00:00-07:00" itemprop="datePublished">
+        Sep 30, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Imaad, Anika, Tanay, Ananya</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#popcorn-hack-1">Popcorn Hack #1</a></li><li><a href="#conditional">Conditional:</a></li><li><a href="#boolean">Boolean</a></li><li><a href="#answer">Answer</a></li><li><a href="#popcorn-hack-2">Popcorn Hack #2</a></li><li><a href="#optional-popcorn-hack">Optional Popcorn Hack</a></li><li><a href="#popcorn-hack-3">Popcorn hack #3</a><ul><li><a href="#course">Course:</a></li><li><a href="#given-algorithm">Given Algorithm</a></li><li><a href="#put-your-answer-to-the-question-why-does-the-given-algorithm-not-work-here">Put your answer to the question “Why does the given algorithm not work?” here:</a></li></ul></li></ul><p>Lets start off with the basics. 
+What is an algorithm?</p>
+
+<ul>
+  <li>An algorithm is a procedure or formula used for solving a problem. It has a sequence of events, inputs, and outputs.</li>
+</ul>
+
+<p>What are algorithms used for?</p>
+
+<ul>
+  <li>Algorithms are used in many different aspect of life. For example a form of routine is an algorithm as it is a series of specified events.</li>
+</ul>
+
+<p>Why are algorithms important?</p>
+
+<ul>
+  <li>It solves a problem in a way that it can be applied to any similar problem. It allows the computer to solve the problem on its own w/o any form of human interference.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Psuedo Code 1
+</span><span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"What is the temperature outside in F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">&lt;-</span> <span class="n">INPUT</span><span class="p">()</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DISPLAY</span><span class="p">(</span><span class="s">"its too hot outide"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">ELSE</span> 
+<span class="p">{</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">){</span>
+        <span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"sure I will play outside"</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">ELSE</span> 
+    <span class="p">{</span>
+        <span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"its too cold outside"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Psuedo Code 2
+</span><span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"What is the temperature outside in F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">&lt;-</span> <span class="n">INPUT</span><span class="p">()</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DISPLAY</span><span class="p">(</span><span class="s">"its too hot outide"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"sure I will play outside"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"its too cold outside"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>What is the difference between the two pieces of code in the cell above?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code 1
+</span><span class="k">print</span><span class="p">(</span><span class="s">"What is the temperature outside in F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">"its too hot outide"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>  
+    <span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"sure I will play outside"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="k">print</span><span class="p">(</span><span class="s">"its too cold outside"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code 2
+</span><span class="k">print</span><span class="p">(</span><span class="s">"What is the temperature outside in F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">"its too hot outide"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"sure I will play outside"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"its too cold outside"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What is the temperature outside in F?
+its too hot outide
+sure I will play outside
+</code></pre></div></div>
+
+<p>What happens if we plug 56 for the temp? What happens if we plug 95 in?</p>
+
+<p>If we plug 56 in, then it will display the text “its too cold outside.” It first checks the first input, if temp is greater than or equal to 90. Which it isn’t so it moves on to the next if. If temp is greater than or equal to 65, which it isn’t so it checks the last if/else statement and displays the text its too cold outside.</p>
+
+<p>If we plug 95 in we get two different results. Code one displays “its too hot outide” but code two displays “its too hot outide” and “sure I will play outside.” Why is this?</p>
+
+<h3 id="popcorn-hack-1">Popcorn Hack #1</h3>
+<p>Adjust Pseudo Code #2 so that it has the same output as Code #1 for all inputs.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Insert your code here: 
+</span>
+</code></pre></div></div>
+
+<h1 id="conditionals-vs-booleans">Conditionals vs Booleans</h1>
+
+<p>Quick reminder:</p>
+<ul>
+  <li>Conditionals: checks if a condition is true or false using statements like if, elif, and else if.</li>
+  <li>Booleans: Data type that conditionals use, only two: true and false</li>
+</ul>
+
+<p>We have given an algorithm that uses conditionals and two boolean statements that should have the same output as the conditional. Which boolean statement works and which one doesn’t?</p>
+
+<h3 id="conditional">Conditional:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Psuedo Code
+</span><span class="n">IF</span> <span class="p">(</span><span class="n">isHoliday</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">driveWork</span><span class="o">&lt;-</span> <span class="bp">False</span>
+<span class="p">}</span>
+<span class="n">ELSE</span>
+<span class="p">{</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">iswWeekday</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">driveWork</span> <span class="o">&lt;</span><span class="n">_</span> <span class="bp">True</span>
+    <span class="p">}</span>
+    <span class="n">ELSE</span>
+    <span class="p">{</span>
+        <span class="n">driveWork</span> <span class="o">&lt;-</span> <span class="bp">False</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="boolean">Boolean</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Option 1: 
+</span><span class="n">driveWork</span> <span class="o">&lt;-</span> <span class="p">(</span> <span class="p">(</span><span class="n">isHoliday</span><span class="p">)</span> <span class="n">AND</span> <span class="p">(</span><span class="n">isWeekday</span><span class="p">))</span>
+
+<span class="c1"># Option 2: 
+</span><span class="n">driveWork</span> <span class="o">&lt;-</span> <span class="p">(</span> <span class="p">(</span><span class="n">NOT</span> <span class="p">(</span><span class="n">isHoliday</span><span class="p">))</span> <span class="n">AND</span> <span class="p">(</span><span class="n">isWeekday</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="answer">Answer</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://i.ibb.co/hCtMMRH/Screenshot-2023-10-15-at-6-21-20-PM.png" width="600px" height="auto" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Option 2 is the correct answer</p>
+
+<h3 id="popcorn-hack-2">Popcorn Hack #2</h3>
+<p>Using the commands listed below, move the robot (gray triangle) through the white squares to the gray square wihtout touching the black squares in the least amount of lines as possible.</p>
+
+<p>Commands allowed: 
+MOVE_FORWARD()</p>
+<ul>
+  <li>moves the robot one sqaure in the direction it is facing 
+ROTATE_LEFT()</li>
+  <li>rotates the robot 90 degrees counterclockwise relative to itself 
+ROTATE_RIGHT()</li>
+  <li>rotates the robot 90 degrees clockwise relative to itself 
+CAN_MOVE()</li>
+  <li>checks if the robot can move forward in true or false (true: it can move forward. false: it can’t move forward)</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://i.ibb.co/3TzmV2b/Screen-Shot-2023-10-16-at-7-45-01-PM.png" width="600px" height="auto" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Insert your code here: 
+</span>
+</code></pre></div></div>
+
+<h3 id="optional-popcorn-hack">Optional Popcorn Hack</h3>
+<p>Change your code to an algorithm that works for any given course.</p>
+
+<p>Hint: use if, elif, else, and CAN_MOVE()</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Insert your code here: 
+</span>
+</code></pre></div></div>
+
+<h1 id="combining-selection-andor-iteration">Combining Selection and/or Iteration</h1>
+
+<p>Create an algorithm that uses selection and/or iteration to determine the cost of one item. 
+THe display at the stores says the follorwing:</p>
+<ul>
+  <li>Green tagged items: 25% off</li>
+  <li>Red tagged items: 60% off</li>
+  <li>Tax on all items is 10%</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Psuedo Code
+</span><span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"What is the cost of the item?"</span><span class="p">)</span>
+<span class="n">cost</span> <span class="o">&lt;-</span> <span class="n">INPUT</span><span class="p">()</span>
+<span class="n">DIPLAY</span> <span class="p">(</span><span class="s">"Is the tag green or red (type "</span><span class="bp">True</span><span class="s">" if it is green, type "</span><span class="bp">False</span><span class="s">" for red)"</span><span class="p">)</span>
+<span class="n">tag</span> <span class="o">&lt;-</span> <span class="n">BOOL</span><span class="p">(</span><span class="n">INPUT</span><span class="p">())</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">tag</span> <span class="o">==</span> <span class="bp">True</span><span class="p">)</span> <span class="c1"># Check if it is green tag (refer to lines above)
+</span><span class="p">{</span>
+    <span class="n">cost</span> <span class="o">&lt;-</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">cost</span>
+<span class="p">}</span>
+<span class="n">IF</span> <span class="p">(</span><span class="n">tag</span> <span class="o">==</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># Check if it is green tag (refer to lines above)
+</span><span class="p">{</span>
+    <span class="n">cost</span> <span class="o">&lt;-</span> <span class="mf">0.40</span> <span class="o">*</span> <span class="n">cost</span>
+<span class="p">}</span>
+<span class="n">cost</span> <span class="o">&lt;-</span> <span class="mf">1.10</span> <span class="o">*</span> <span class="n">cost</span> 
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"What is the cost of the item?"</span><span class="p">)</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Is the tag green or red (type "</span><span class="bp">True</span><span class="s">" if it is green, type "</span><span class="bp">False</span><span class="s">" for red)"</span><span class="p">)</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span> <span class="c1"># Check if it is green tag (refer to lines above)
+</span>    <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">cost</span>
+<span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span> <span class="c1"># Check if it is green tag (refer to lines above)
+</span>    <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.40</span> <span class="o">*</span> <span class="n">cost</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="mf">1.10</span> <span class="o">*</span> <span class="n">cost</span> <span class="c1"># accounting for tax
+</span></code></pre></div></div>
+
+<h1 id="famous-collatz-conjecture">Famous Collatz Conjecture</h1>
+
+<ol>
+  <li>Start with any positive integer</li>
+  <li>IF that number is even, divide by 2</li>
+  <li>If that number is odd, multiply by 3 and add 1</li>
+  <li>Repeat steps 2 and 3 until you reach the number 1</li>
+</ol>
+
+<p>6 -&gt; 3 -&gt; 10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1</p>
+
+<p>Collatz proposed that this sequence of numbers would always terminate at 1. The problem of whether this is true or not for all positive integers is still unsolved today.</p>
+
+<p>Lets create an algorithm that will start with any positive integer “n” and display the full sequence of numbers that result from this conjecture.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Psuedo Code 
+</span><span class="n">DISPLAY</span> <span class="p">(</span><span class="s">"choose a value for n"</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">&lt;-</span> <span class="n">INPUT</span><span class="p">()</span> 
+<span class="n">DISPLAY</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">REPEAT</span> <span class="n">UNTIL</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">n</span> <span class="n">MOD</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>
+    <span class="p">}</span>
+    <span class="n">ELSE</span> 
+    <span class="p">{</span>
+        <span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="n">DISPLAY</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Code 
+</span><span class="k">print</span><span class="p">(</span><span class="s">"choose a value for n"</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>choose a value for n
+6
+3.0
+10.0
+5.0
+16.0
+8.0
+4.0
+2.0
+1.0
+</code></pre></div></div>
+
+<h3 id="popcorn-hack-3">Popcorn hack #3</h3>
+
+<p>We are given an algorhtim (below) for a robot to move from the current square to the grey square, completing the course (below). However it doesn’t work. Why does the given algorithm not work?</p>
+
+<p>Using the commands listed below, fix the algorithm</p>
+
+<p>Commands allowed: 
+MOVE_FORWARD()</p>
+<ul>
+  <li>moves the robot one sqaure in the direction it is facing 
+ROTATE_LEFT()</li>
+  <li>rotates the robot 90 degrees counterclockwise relative to itself 
+ROTATE_RIGHT()</li>
+  <li>rotates the robot 90 degrees clockwise relative to itself 
+CAN_MOVE()</li>
+  <li>checks if the robot can move forward in true or false (true: it can move forward. false: it can’t move forward)</li>
+</ul>
+
+<h4 id="course">Course:</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://i.ibb.co/cgz67XJ/Screen-Shot-2023-10-16-at-8-05-24-PM.png" width="600px" height="auto" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="given-algorithm">Given Algorithm</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">REPEAT</span> <span class="n">UNTIL</span> <span class="p">(</span><span class="n">goalReached</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">IF</span> <span class="p">(</span><span class="n">CAN_MOVE</span><span class="p">(</span><span class="n">FORWARD</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">MOVE_FORWARD</span>
+    <span class="p">}</span>
+    <span class="n">ELSE</span>
+    <span class="p">{</span>
+        <span class="n">IF</span> <span class="n">CAN_MOVE</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ROTATE_RIGHT</span>
+            <span class="n">MOVE_FORWARD</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="put-your-answer-to-the-question-why-does-the-given-algorithm-not-work-here">Put your answer to the question “Why does the given algorithm not work?” here:</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Insert your updated algorithm here: 
+</span>
+</code></pre></div></div>
+
+<h1 id="homework">Homework</h1>
+
+<ul>
+  <li>
+    <p>Create an algorithm that uses selection and/or iteration that will represent one player’s turn in a game.</p>
+  </li>
+  <li>
+    <p>During a turn, each player gets 4 attempts/chances to get the greates number possible.</p>
+  </li>
+  <li>
+    <p>During each attempt the player will use a random number generator to select a random number 1-10.</p>
+  </li>
+  <li>
+    <p>After the player has had 4 chances, their score is the greatest number they receieved from the random number generator, and their turn is over.</p>
+  </li>
+</ul>
+
+<p>Use the following flowchart to assist you:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://i.ibb.co/ZBFgwn2/Screen-Shot-2023-10-15-at-7-40-22-PM.png" width="600px" height="auto" /></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/09/30/P5_developingAlgorithms_IPYNB_2_.html" hidden></a>
+</article>

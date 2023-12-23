@@ -1,0 +1,584 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JS Data Abstraction</h1><p class="page-description">lesson on JS Data Abstraction</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-04T00:00:00-07:00" itemprop="datePublished">
+        Oct 4, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Christina, Shubhay, Arushi, Harkirat, Aashray</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      15 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#variables">Variables</a><ul><li><a href="#variable-naming">Variable Naming</a><ul><li><a href="#snakecase">SnakeCase</a></li><li><a href="#pascalcase">PascalCase</a></li><li><a href="#camelcase">CamelCase</a></li></ul></li><li><a href="#variable-types">Variable Types</a><ul><li><a href="#integers">Integers</a></li><li><a href="#strings">Strings</a></li><li><a href="#boolean">Boolean</a></li><li><a href="#float">Float</a></li><li><a href="#arrays">Arrays</a></li><li><a href="#objects-in-javascript">Objects in javascript</a></li></ul></li><li><a href="#choosing-the-right-data-type-in-python">Choosing the Right Data Type in Python</a><ul><li><a href="#integers-int">Integers (<code class="language-plaintext highlighter-rouge">int</code>)</a></li><li><a href="#floating-point-numbers-float">Floating-Point Numbers (<code class="language-plaintext highlighter-rouge">float</code>)</a></li><li><a href="#strings-str">Strings (<code class="language-plaintext highlighter-rouge">str</code>)</a></li><li><a href="#lists-list">Lists (<code class="language-plaintext highlighter-rouge">list</code>)</a></li><li><a href="#tuples-tuple">Tuples (<code class="language-plaintext highlighter-rouge">tuple</code>)</a></li><li><a href="#dictionaries-dict">Dictionaries (<code class="language-plaintext highlighter-rouge">dict</code>)</a></li><li><a href="#sets-set">Sets (<code class="language-plaintext highlighter-rouge">set</code>)</a></li><li><a href="#booleans-bool">Booleans (<code class="language-plaintext highlighter-rouge">bool</code>)</a></li><li><a href="#none-nonetype">None (<code class="language-plaintext highlighter-rouge">NoneType</code>)</a></li></ul></li><li><a href="#represent-a-list-or-string-using-a-variable">Represent a list or string using a variable.</a><ul><li><a href="#develop-data-abstraction-using-lists-to-store-multiple-elements">Develop data abstraction using lists to store multiple elements.</a></li><li><a href="#how-does-data-abstraction-manage-complexity-in-program-code">How does data abstraction manage complexity in program code?</a></li></ul></li><li><a href="#json-implementation">JSON implementation</a><ul><li><a href="#converting-from-python-to-json">Converting from PYTHON TO JSON</a></li><li><a href="#formatting">Formatting</a></li><li><a href="#converting-from-python-to-json-1">Converting from PYTHON TO JSON</a></li><li><a href="#challenge-problem">Challenge Problem</a></li></ul></li></ul></li></ul><h1 id="variables">Variables</h1>
+
+<p>A Variable is defined as an abstraction inside of a program that can hold a value.</p>
+
+<p>Variables can be named from letters like X, Y, Z to phrases like APIKEY.  The point of these names is to store some sort of Data to a resuable value.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Gerald</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">fav_food</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Cookies</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr style="solid" />
+
+<h2 id="variable-naming">Variable Naming</h2>
+
+<p>This brings us to the topic of naming Variables. The names of variables are really important when working in groups. For example when one of your teammates review your code they use the names of your variables to quickly understand your code. In the code above you can understand that the variable fav_food represents a favorite food</p>
+
+<p>There are 3 Important Coding Practices to follow when it comes to naming variables</p>
+
+<h3 id="snakecase">SnakeCase</h3>
+
+<p>SnakeCase is where you replace spaces in variable names with a underscore</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">variable_one</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Aashray</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+<p>Here’s an example of a SnakeCase variable that uses a _ as a space.</p>
+
+<p>Now try making your own SnakeCase variable and set the variable equal to a integer.</p>
+
+<h3 id="pascalcase">PascalCase</h3>
+
+<p>PascalCase is where you capitialize every word in your variable, but keep it all as one singluar phrase with no spaces</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">VariableOne</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Chrissie</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Here you can clearly see that the vairable has two diffrent words, and we didn’t need to use a space to seperate it.</p>
+
+<p>Try making your own PascalCase variable</p>
+
+<h3 id="camelcase">CamelCase</h3>
+
+<p>CamelCase is where you captalize the second word in the variable</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">variableOne</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Arushi</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Here the One is captalized to indicate a second word in the variable without using a space.</p>
+
+<p>Try making your own CamelCase</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Attempt to add an integer and a string
+</span><span class="n">myInteger</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">myString</span> <span class="o">=</span> <span class="s">"Hello"</span>
+
+<span class="c1"># Try to add them together
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">myInteger</span> <span class="o">+</span> <span class="n">myString</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+/Users/shubhay/vscode/student/_notebooks/2023-10-03-Data_AbstractionLEsson.ipynb Cell 8 line 6
+      &lt;a href='vscode-notebook-cell:/Users/shubhay/vscode/student/_notebooks/2023-10-03-Data_AbstractionLEsson.ipynb#X12sZmlsZQ%3D%3D?line=2'&gt;3&lt;/a&gt; my_string = "Hello"
+      &lt;a href='vscode-notebook-cell:/Users/shubhay/vscode/student/_notebooks/2023-10-03-Data_AbstractionLEsson.ipynb#X12sZmlsZQ%3D%3D?line=4'&gt;5&lt;/a&gt; # Try to add them together
+----&gt; &lt;a href='vscode-notebook-cell:/Users/shubhay/vscode/student/_notebooks/2023-10-03-Data_AbstractionLEsson.ipynb#X12sZmlsZQ%3D%3D?line=5'&gt;6&lt;/a&gt; result = my_integer + my_string
+
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre></div></div>
+
+<hr style="solid" />
+
+<h2 id="variable-types">Variable Types</h2>
+
+<p>Earlier we explained how to assign variables and properly name them. However in the code above even though I followed all these steps and properly named them I ran into a error.
+This is because the types of data, string and int cannot be added. But what are integers and strings?</p>
+
+<p>In python there are multiple types of data that a variable can be, for now lets look at the most commonly use ones.</p>
+
+<h3 id="integers">Integers</h3>
+
+<p>Integers are a numerical value going from 1,2,3,4 or -1,2,-3 etc. These are numbers with no decimals and are ussualy called ints</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In this case we call int x to be 3. Normally you don’t need to say the data type before the variable in python, however in other languages like JS or C++ you would need to.</p>
+
+<h3 id="strings">Strings</h3>
+
+<p>Strings are a chain of text, numbers or charcters that are all inside of “ “</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">Cookies</span> <span class="o">=</span> <span class="dl">"</span><span class="s2"> My Fav cookies are Choclate Chip </span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Here we set a string cookie to be representing the statement that “ My Fav Cookies are Choclate Chip”  The “ “ marks are what determine it is a string in most coding languages.</p>
+
+<h3 id="boolean">Boolean</h3>
+
+<p>Booleans are True or False, and they are used for condtional statements</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">ChrissieGetsSleep</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">ChrissieGetsSleep</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
+        <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here we have a if statement that checks if the boolean variable is currently true and if its true it won’t do anything, but if its false it will return 0.</p>
+
+<h3 id="float">Float</h3>
+
+<p>Floats are a integers that can have decimal values</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mf">3.1415</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In this case we call int x to be 3.1415, and this is a float because of its decimal points.</p>
+
+<h3 id="arrays">Arrays</h3>
+
+<p>Arrays are ordered collections of items in javascript. They can contain a mix of different data types, including integers, floats, strings, and more.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">my_array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_array</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="objects-in-javascript">Objects in javascript</h3>
+
+<p>Objects are versatile data structures in javascript that store key-value pairs. Each value in an object is associated with a unique key, which allows for efficient lookups and retrieval of values.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">my_obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">age</span><span class="dl">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Wonderland</span><span class="dl">"</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">my_obj</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Concatation of variables
+</span>
+<span class="n">int1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">int2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Concatation between two non strings in a print statement will EVALUATE them."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Notice how they get ADDED together."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">int1</span> <span class="o">+</span> <span class="n">int2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Concatation between two  strings in a print statement will CONNECT them."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Notice how they get CONNECTED together."</span><span class="p">)</span>
+<span class="n">string1</span> <span class="o">=</span> <span class="s">"1"</span>
+<span class="n">string2</span> <span class="o">=</span> <span class="s">"2"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">string1</span> <span class="o">+</span> <span class="n">string2</span><span class="p">)</span> <span class="c1"># notice how this CONNECTS the variables
+</span>
+<span class="c1"># Print statements like these can be used to EVALUATE variables (here we add them)
+# To connect them together ("1" + "2" = "12"), use strings
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Concatation between two non strings in a print statement will EVALUATE them.
+Notice how they get ADDED together.
+3
+
+Concatation between two  strings in a print statement will CONNECT them.
+Notice how they get CONNECTED together.
+12
+</code></pre></div></div>
+
+<hr style="solid" />
+
+<h2 id="choosing-the-right-data-type-in-python">Choosing the Right Data Type in Python</h2>
+
+<p>In Python, choosing the appropriate data type for your variables is essential to ensure efficient and correct program execution. Here’s when to use some common data types:</p>
+
+<h3 id="integers-int">Integers (<code class="language-plaintext highlighter-rouge">int</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use integers when you need to represent whole numbers without fractional parts. Integers are suitable for counting, indexing, and performing integer arithmetic.</li>
+</ul>
+
+<h3 id="floating-point-numbers-float">Floating-Point Numbers (<code class="language-plaintext highlighter-rouge">float</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use floating-point numbers when you need to represent real numbers with decimal points. They are suitable for calculations that involve fractions or decimal values.</li>
+</ul>
+
+<h3 id="strings-str">Strings (<code class="language-plaintext highlighter-rouge">str</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use strings when you need to work with text data, such as names, sentences, or any sequence of characters. Strings are versatile and can store both plain text and formatted text.</li>
+</ul>
+
+<h3 id="lists-list">Lists (<code class="language-plaintext highlighter-rouge">list</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use lists when you need an ordered collection of items that can be modified. Lists are ideal for storing multiple values of the same or different data types.</li>
+</ul>
+
+<h3 id="tuples-tuple">Tuples (<code class="language-plaintext highlighter-rouge">tuple</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use tuples when you need an ordered collection of items that should remain immutable (unchangeable). Tuples are useful for representing fixed sequences of data.</li>
+</ul>
+
+<h3 id="dictionaries-dict">Dictionaries (<code class="language-plaintext highlighter-rouge">dict</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use dictionaries when you need to store key-value pairs, where each key maps to a specific value. Dictionaries are efficient for looking up values based on keys.</li>
+</ul>
+
+<h3 id="sets-set">Sets (<code class="language-plaintext highlighter-rouge">set</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use sets when you need an unordered collection of unique elements. Sets are useful for tasks like removing duplicates from a list or performing set operations.</li>
+</ul>
+
+<h3 id="booleans-bool">Booleans (<code class="language-plaintext highlighter-rouge">bool</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use booleans to represent binary values, such as <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code>. They are essential for making decisions and controlling the flow of your program using conditional statements.</li>
+</ul>
+
+<h3 id="none-nonetype">None (<code class="language-plaintext highlighter-rouge">NoneType</code>)</h3>
+
+<ul>
+  <li><strong>Use Cases</strong>: Use <code class="language-plaintext highlighter-rouge">None</code> when you want to represent the absence of a value or indicate that a variable has no assigned value. It’s often used as a placeholder or default initial value.</li>
+</ul>
+
+<p>Choosing the right data type helps make your code more readable, efficient, and easier to maintain. Understanding the characteristics and limitations of each data type is essential for effective Python programming.</p>
+
+<hr style="solid" />
+
+<h2 id="represent-a-list-or-string-using-a-variable">Represent a list or string using a variable.</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We are going to cover representing lists or strings with a variable. 
+# A list is an ordered sequence of elements. An element is an individual value in a list that is assigned a unique index.
+</span>
+<span class="c1"># For example, if I have a grocery list with milk, eggs, and cookies, each item is an element. 
+</span><span class="n">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"milk"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"cookies"</span><span class="p">]</span> 
+<span class="c1">#               one ^  two ^    three ^
+</span>
+<span class="c1"># The index is a method for referencing the elements in the list. For example, if I reference item 1, it will be milk.
+</span>
+<span class="c1"># IMPORTANT: most if not all programming languages index at 0. This means that the 0th element would be milk and the 1st element is eggs. 
+# For the AP Exam, indexing will be at 1.
+</span>
+
+<span class="c1"># Next is a string which is an ordered sequence of characters. 
+# This may contain letters, numbers, and special characters. Examples include:
+</span><span class="n">string</span> <span class="o">=</span> <span class="s">"Perry"</span>
+<span class="n">string2</span> <span class="o">=</span> <span class="s">"12"</span>
+<span class="n">string3</span> <span class="o">=</span> <span class="s">"!@#"</span>
+<span class="n">stringn4</span> <span class="o">=</span> <span class="s">"Perry12!@#"</span>
+</code></pre></div></div>
+
+<h3 id="develop-data-abstraction-using-lists-to-store-multiple-elements">Develop data abstraction using lists to store multiple elements.</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Data abstraction allows for the reduction of a particular body of data to a simplified representation of the whole. 
+# For example, saying that I have a “grocery list” is a lot easier than saying “I have a list with milk, eggs, and cookies.” 
+</span><span class="n">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"milk"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"cookies"</span><span class="p">]</span> 
+<span class="c1"># bundle ^
+</span>
+<span class="c1"># In this example, we bundle this data into one term and simplify it. 
+# In programming, you can bundle variables together by type and you can name your bundle (name your list). 
+# With a list, you don’t need to know how many variables will be needed or how the elements will be stored together. 
+# The exam reference sheet will provide notation for lists.
+</span></code></pre></div></div>
+
+<h3 id="how-does-data-abstraction-manage-complexity-in-program-code">How does data abstraction manage complexity in program code?</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Data abstraction can manage complexity in programs by bundling data together. 
+# This can result in a program that is easier to develop and maintain. 
+# It also allows multiple related items to be treated as a single value. 
+</span>
+<span class="c1"># You also need less variables since one variable holds all the other ones and it allows you to easily modify these variables.
+</span><span class="n">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"milk"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"cookies"</span><span class="p">]</span> <span class="c1"># nice and short
+</span>
+<span class="c1"># long and bad
+</span><span class="n">item1</span> <span class="o">=</span> <span class="s">"milk"</span>
+<span class="n">item2</span> <span class="o">=</span> <span class="s">"eggs"</span>
+<span class="n">item3</span> <span class="o">=</span> <span class="s">"cookies"</span>
+
+<span class="c1"># modify variables:
+</span><span class="n">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"milk"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"cookies"</span><span class="p">]</span> <span class="c1"># nice and short
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Initial List"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">groceryList</span><span class="p">)</span>
+
+<span class="c1"># replace the index 1 with chocolate
+</span><span class="n">groceryList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">"chocolate"</span> <span class="c1"># notice how index 1 is the 2nd element (AP exam index at 1)
+</span>
+<span class="c1"># add a new element
+</span><span class="n">groceryList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"flour"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Print List with Flour addeded"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">groceryList</span><span class="p">)</span>
+
+
+<span class="c1"># remove element
+</span><span class="n">groceryList</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">"milk"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Print List with Milk removed"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">groceryList</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Initial List
+['milk', 'eggs', 'cookies']
+Print List with Flour addeded
+['milk', 'chocolate', 'cookies', 'flour']
+Print List with Milk removed
+['chocolate', 'cookies', 'flour']
+</code></pre></div></div>
+
+<hr style="solid" />
+
+<h2 id="json-implementation">JSON implementation</h2>
+
+<p>JSON stands for JavaScript Object Notation. It is a lightweight format for storing and transporting data. It has several uses. For example, if someone is managing an inventory of cars, they can use JSON to import data and export it.</p>
+
+<p>JSON is used when data is sent from a web server to a webpage.</p>
+
+<p>So the car person can use JSON to display their current inventory of cars to sell on their webpage.</p>
+
+<h3 id="converting-from-python-to-json">Converting from PYTHON TO JSON</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span> <span class="c1"># you will need to import this library
+</span>
+<span class="c1"># python dictionary
+</span><span class="n">x</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+  <span class="s">"age"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="s">"city"</span><span class="p">:</span> <span class="s">"New York"</span>
+<span class="p">}</span>
+
+<span class="c1"># convert into JSON
+# we first CALL the library and use the dumps() function
+# to call the library and use dumps(), we do json.dumps()
+</span>
+<span class="c1"># note: do you know of function machines in math? where you put in the variable, it does some operations, and outputs it?
+#       a code function is the same! it takes some data, does some code on it, and outputs it!
+</span>
+
+<span class="c1"># essentially, we say "Hey! JSON library! I would like to use your dumps() function!"
+# and then we give the function what we want to dump: "Here is the thing I want to dump into JSON!"
+# then the library says back "Here you go! Here's your JSON! I stored it in the y variable!"
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+
+
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># the result is a JSON string
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"name": "John", "age": 30, "city": "New York"}
+</code></pre></div></div>
+
+<h3 id="formatting">Formatting</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># the result above isn't easy to read. let's fix that by formatting!
+</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+  <span class="s">"age"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="s">"city"</span><span class="p">:</span> <span class="s">"New York"</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Indent"</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># we call the function but say "Please indent it for me!"
+</span><span class="k">print</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span> <span class="c1"># the "\n" is a newline seperator and adds a space between each print statement
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Indent + seperator"</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s">"."</span><span class="p">,</span> <span class="s">" = "</span><span class="p">))</span> <span class="c1"># we change the seperator
+</span><span class="k">print</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Indent + seperator + sorted"</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s">"."</span><span class="p">,</span> <span class="s">" = "</span><span class="p">),</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># now we are sorting them
+</span><span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Indent
+{
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+Indent + seperator
+{
+    "name" = "John".
+    "age" = 30.
+    "city" = "New York"
+}
+
+Indent + seperator + sorted
+{
+    "age" = 30.
+    "city" = "New York".
+    "name" = "John"
+}
+</code></pre></div></div>
+
+<h3 id="converting-from-python-to-json-1">Converting from PYTHON TO JSON</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">x</span> <span class="o">=</span>  <span class="s">'{ "name":"John", "age":30, "city":"New York"}'</span> <span class="c1"># some JSON
+</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># parse with loads() function
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="s">"age"</span><span class="p">])</span> <span class="c1"># the result is a Python dictionary
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>30
+</code></pre></div></div>
+
+<h3 id="challenge-problem">Challenge Problem</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="s">"butter"</span><span class="p">,</span> <span class="s">"white sugar"</span><span class="p">,</span> <span class="s">"light brown sugar"</span><span class="p">,</span> <span class="s">"vanilla extract"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"flour"</span><span class="p">,</span> <span class="s">"chocolate chips"</span><span class="p">,</span> <span class="s">"baking soda"</span><span class="p">,</span> <span class="s">"salt"</span><span class="p">,</span> <span class="s">"baking powder"</span><span class="p">]</span>
+<span class="c1"># Print this list
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Ingredients:"</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+
+<span class="c1"># Create a list called bowl
+# Your list must include:
+# "flour"
+# "baking soda"
+# "salt"
+# "baking powder"
+# When creating this list, make sure to remove these items from the "ingredients" list!
+# Print your list
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span><span class="n">bowl</span> <span class="o">=</span> <span class="p">[</span><span class="s">"flour"</span><span class="p">,</span> <span class="s">"baking soda"</span><span class="p">,</span> <span class="s">"salt"</span><span class="p">,</span> <span class="s">"baking powder"</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Bowl:"</span><span class="p">,</span> <span class="n">bowl</span><span class="p">)</span>
+<span class="c1"># list comprehension
+</span><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="n">ingredient</span> <span class="k">for</span> <span class="n">ingredient</span> <span class="ow">in</span> <span class="n">ingredients</span> <span class="k">if</span> <span class="n">ingredient</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bowl</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Ingredients:"</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+
+<span class="c1"># Create a list called cream
+# Include:
+# "butter"
+# "white sugar"
+# "light brown sugar"
+# "vanilla extract"
+# "eggs"
+# When creating this list, make sure to remove these items from the "ingredients" list!
+# Print your list
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span><span class="n">cream</span> <span class="o">=</span> <span class="p">[</span><span class="s">"butter"</span><span class="p">,</span> <span class="s">"white sugar"</span><span class="p">,</span> <span class="s">"light brown sugar"</span><span class="p">,</span> <span class="s">"vanilla extract"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Cream:"</span><span class="p">,</span> <span class="n">cream</span><span class="p">)</span>
+<span class="c1"># for loop
+</span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cream</span><span class="p">:</span>
+    <span class="n">ingredients</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Ingredients:"</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+
+<span class="c1"># Create a list called "dough"
+# Combine the bowl list and cream list together
+# Print your list
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span><span class="n">dough</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bowl</span><span class="p">:</span>
+    <span class="n">dough</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cream</span><span class="p">:</span>
+    <span class="n">dough</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Dough:"</span><span class="p">,</span> <span class="n">dough</span><span class="p">)</span>
+
+<span class="c1"># short way
+</span><span class="n">dough2</span> <span class="o">=</span> <span class="n">bowl</span> <span class="o">+</span> <span class="n">cream</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Dowgh2"</span><span class="p">,</span> <span class="n">dough2</span><span class="p">)</span>
+
+<span class="c1"># Append chocolate chips to the dough list and remove it from the ingredients list
+# Print the list
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span><span class="n">dough</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ingredients</span><span class="p">.</span><span class="n">pop</span><span class="p">()]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Complete Dough:"</span><span class="p">,</span> <span class="n">dough</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Empty Ingredients:"</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+
+<span class="c1"># Create a string that says "Now roll the dough into balls and place them on cookie sheets!"
+# Print it
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span>
+<span class="c1"># Create an int called temperature and set it to 375
+# Print "Place in a &lt;&lt;your integer goes here&gt;&gt; F oven for 8-10 minutes and remove just before they start to turn brown."
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span>
+<span class="c1"># Create an int called "cool down" using pascal case and set it to 2
+# Print "Let them sit on the baking pan for &lt;&lt;your integer goes here&gt;&gt; minutes before removing to cooling rack."
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span>
+<span class="c1"># Create 5 string (use whatever casing you feel)
+# First string should be "Enjoy"
+# Second string should be "your"
+# Third string should be "CHOCOLATE"
+# Fourth string should be "CHIP"
+# Fifth string should be "COOKIES!!!"
+# Using ONE print statement, print ALL of these variables (with a space between each)
+</span>
+<span class="c1"># &lt;&lt; CODE &gt;&gt;
+</span>
+<span class="c1"># JSON CHALLENGE
+# can your do the whole project by using a JSON list?
+# can you convert it to a python dictionary and do all these steps?
+</span>
+<span class="c1"># Yes this is a real cookie recipe. You can find it below if you wanna make them! :)
+# https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ingredients: ['butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs', 'flour', 'chocolate chips', 'baking soda', 'salt', 'baking powder']
+Ingredients: ['butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs', 'chocolate chips']
+Cream: ['butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs']
+Ingredients: ['chocolate chips']
+Dough: ['flour', 'baking soda', 'salt', 'baking powder', 'butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs']
+Dowgh2 ['flour', 'baking soda', 'salt', 'baking powder', 'butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs']
+Complete Dough: ['flour', 'baking soda', 'salt', 'baking powder', 'butter', 'white sugar', 'light brown sugar', 'vanilla extract', 'eggs', 'chocolate chips']
+Empty Ingredients: []
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="s">"butter"</span><span class="p">,</span> <span class="s">"white sugar"</span><span class="p">,</span> <span class="s">"light brown sugar"</span><span class="p">,</span> <span class="s">"vanilla extract"</span><span class="p">,</span> <span class="s">"eggs"</span><span class="p">,</span> <span class="s">"flour"</span><span class="p">,</span> <span class="s">"chocolate chips"</span><span class="p">,</span> <span class="s">"baking soda"</span><span class="p">,</span> <span class="s">"salt"</span><span class="p">,</span> <span class="s">"baking powder"</span><span class="p">]</span>
+<span class="n">bowl</span> <span class="o">=</span> <span class="p">[</span><span class="s">"flour"</span><span class="p">,</span> <span class="s">"baking soda"</span><span class="p">,</span> <span class="s">"salt"</span><span class="p">,</span> <span class="s">"baking powder"</span><span class="p">]</span>
+
+<span class="n">ingredients</span> <span class="o">-=</span> <span class="n">bowl</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">ingredients</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+/Users/johnmortensen/vscode/teacher/_notebooks/2023-10-04-CSP-Data_Abstraction_P2.ipynb Cell 22 line 4
+      &lt;a href='vscode-notebook-cell:/Users/johnmortensen/vscode/teacher/_notebooks/2023-10-04-CSP-Data_Abstraction_P2.ipynb#X30sZmlsZQ%3D%3D?line=0'&gt;1&lt;/a&gt; ingredients = ["butter", "white sugar", "light brown sugar", "vanilla extract", "eggs", "flour", "chocolate chips", "baking soda", "salt", "baking powder"]
+      &lt;a href='vscode-notebook-cell:/Users/johnmortensen/vscode/teacher/_notebooks/2023-10-04-CSP-Data_Abstraction_P2.ipynb#X30sZmlsZQ%3D%3D?line=1'&gt;2&lt;/a&gt; bowl = ["flour", "baking soda", "salt", "baking powder"]
+----&gt; &lt;a href='vscode-notebook-cell:/Users/johnmortensen/vscode/teacher/_notebooks/2023-10-04-CSP-Data_Abstraction_P2.ipynb#X30sZmlsZQ%3D%3D?line=3'&gt;4&lt;/a&gt; ingredients -= bowl
+      &lt;a href='vscode-notebook-cell:/Users/johnmortensen/vscode/teacher/_notebooks/2023-10-04-CSP-Data_Abstraction_P2.ipynb#X30sZmlsZQ%3D%3D?line=5'&gt;6&lt;/a&gt; print(ingredients)
+
+
+TypeError: unsupported operand type(s) for -=: 'list' and 'list'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/04/JS_Data_Abstraction_IPYNB_2_.html" hidden></a>
+</article>

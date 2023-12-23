@@ -1,0 +1,102 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Flask/Python Web Application</h1><p class="page-description">Setting up a Flask/Python project.  Flask is a Web Application framework written in Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-21T00:00:00-07:00" itemprop="datePublished">
+        Aug 21, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C1.4">C1.4</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#flaskpython-web-application">Flask/Python Web Application</a><ul><li><a href="#setup-flaskpython-project">Setup Flask/Python Project</a></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="flaskpython-web-application">Flask/Python Web Application</h2>
+<blockquote>
+  <p>Next up is making a Web Application from a completely customizable framework and language.  This project will focus on building a standalone Web Application.  The intentions are to use this framework for Group work and backend work.  At the conclusion of this article this project will only be run locally.  Ultimately, this project will be hosted on AWS.</p>
+  <ul>
+    <li>Flask is the Web Application Framework.</li>
+    <li>Python will be the Backend Development languages.</li>
+    <li>Jinja2 is the Web Template language, that work well with Flask and Python.</li>
+    <li>HTML, CSS, JavaScript will support frontend work built into the Flask project.</li>
+    <li>The external Fastpages/Github Pages project will use the Flask/Python project for backend services, like persistent data or databases (ie SQL).</li>
+  </ul>
+</blockquote>
+
+<h3 id="setup-flaskpython-project">Setup Flask/Python Project</h3>
+<blockquote>
+  <p>Start Flask/Python GitHub repo from a Template.  Setup VSCode project to run python.  Make a change and push to GitHub.</p>
+  <ul>
+    <li>Generate your own copy of repository using the Template: <a href="https://github.com/nighthawkcoders/flask_portfolio">https://github.com/nighthawkcoders/flask_portfolio</a></li>
+    <li>“Copy” https address of newly Generated repository, use screen that looks like this:
+<img src="https://nighthawkcoders.github.io/APCSP/images/clone_http_address.png" alt="" /></li>
+    <li>Open terminal and goto your vscode directory: <code class="language-plaintext highlighter-rouge">cd ~/vscode</code></li>
+    <li>Clone new GitHub project by run <code class="language-plaintext highlighter-rouge">git clone &lt;paste/replace with https address&gt;</code></li>
+    <li>Run VSCode project <code class="language-plaintext highlighter-rouge">code &lt;replace with name of project&gt;</code></li>
+    <li>In VSCode type Shift-Command-P or Shift-Control-P to select your Python Interpreter
+<img src="https://nighthawkcoders.github.io/APCSP/images/python_interpreter.png" alt="" /></li>
+    <li>Select Python that is in Conda environment
+<img src="https://nighthawkcoders.github.io/APCSP/images/python_conda.png" alt="" /></li>
+    <li>In VSCode terminal install project dependencies: <code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></li>
+    <li>Select main.py from VSCode navigator and press ▶️ in upper right corner. An alternate method is type <code class="language-plaintext highlighter-rouge">python3 main.py</code> in terminal.  Observe terminal output, this sample illustrates a good outcome.
+<img src="https://nighthawkcoders.github.io/APCSP/images/python_terminal_output.png" alt="" /></li>
+    <li>In terminal output you can shift-click on http://127.0.0.1:5000/, or goto Browser and type: <code class="language-plaintext highlighter-rouge">127.0.0.1:5000</code></li>
+    <li>Navigate the site, look for things to change.</li>
+  </ul>
+</blockquote>
+
+<p>With all of this in place, we can spin up the development container inside VS Code. Then, from the VS Code terminal in our Docker container environment, we can run docker-compose up in the root of our project. This will start up our individual service containers on the host machine. But, thanks to the shared network and volumes, we can continue to edit code in our development container and see the changes immediately show up on our services!</p>
+
+<p>It’s also possible to use the Docker CLI to shut down or restart services as needed in development. You can even open another VS Code window and use the Remote-Containers extension to connect to one of the running service containers to directly inspect logs, edit code within that constrained environment, etc. This is a generic setup that can work for any project. Onboarding new developers requires just installing VS Code and Docker and then cloning the repository and opening it in a container. The initial setup is a lot of work, but I think this is the cleanest development experience you can get with Docker right now.</p>
+
+<h2 id="hacks">Hacks</h2>
+<blockquote>
+  <p>Try a little bit of customization and make sure you are able to run, edit, and push.  Most changes should update while server is running</p>
+</blockquote>
+
+<ul>
+  <li>Conclude setup activity by pushing a minor change to Stub.html.  This will verify GitHub support with VSCode.
+    <ul>
+      <li>Click for <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_git-support">VSCode guide for version control</a></li>
+      <li>Stub.html lines of code to for simple change</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"px-5 py-5 mx-auto"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"text-primary"</span><span class="nt">&gt;&lt;strong&gt;</span>Stubby Body<span class="nt">&lt;/strong&gt;&lt;/h1&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-secondary"</span><span class="nt">&gt;</span>Put your name here<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Group/Collaboration activity. Share a GitHub project.</p>
+  <ul>
+    <li>Make a team project, make each person as a Collaborator through GitHub settings.</li>
+    <li>Each member take the HTML file under the Project menu and customize it to point to individuals material (aka Fastpages).</li>
+    <li>GitHub gotcha when Collaborating on a Repo.  Remember to Pull before you Push/Sync.  The repository will be updating while your copy is isolated.  Pull or Rebase gets you back on track with the shared branch of code.</li>
+  </ul>
+</blockquote>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/c1.4/2023/08/21/python_flask.html" hidden></a>
+</article>

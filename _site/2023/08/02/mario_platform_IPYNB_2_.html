@@ -1,0 +1,370 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JS Mario 2-Platform</h1><p class="page-description">A lesson designed to help you create your own platform for your game</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-02T00:00:00-07:00" itemprop="datePublished">
+        Aug 2, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nicholas Ramos and Samaya Sankuratri</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><a href="/student2.0/2023/07/30/mario_overview_IPYNB_2_.html">Overview</a></td>
+        <td><a href="/student2.0/2023/08/01/mario_player_IPYNB_2_.html">Player</a></td>
+        <td><a href="/student2.0/2023/08/02/mario_platform_IPYNB_2_.html">Platform</a></td>
+        <td><a href="/student2.0/2023/08/03/mario_tube_IPYNB_2_.html">Tube</a></td>
+        <td><a href="/student2.0/2023/08/04/mario_block_IPYNB_2_.html">Block</a></td>
+        <td><a href="/student2.0/2023/08/05/mario_goomba_IPYNB_2_.html">Goomba</a></td>
+        <td><a href="/student2.0/2023/08/06/mario_background_IPYNB_2_.html">Background</a></td>
+    </tr>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+    <span class="c1">#canvas {
+</span>        <span class="n">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">border</span><span class="p">:</span> <span class="mi">1</span><span class="n">px</span> <span class="n">solid</span> <span class="n">white</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">canvas</span> <span class="nb">id</span><span class="o">=</span><span class="s">"canvas"</span><span class="o">&gt;&lt;/</span><span class="n">canvas</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">empty</span> <span class="n">canvas</span>
+    <span class="n">let</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">'canvas'</span><span class="p">);</span>
+    <span class="n">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">getContext</span><span class="p">(</span><span class="s">'2d'</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">canvas</span> <span class="n">dimensions</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">650</span><span class="p">;</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Define</span> <span class="n">gravity</span> <span class="n">value</span>
+    <span class="n">let</span> <span class="n">gravity</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Define</span> <span class="n">the</span> <span class="n">Player</span> <span class="k">class</span>
+    <span class="nc">class</span> <span class="n">Player</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">Initial</span> <span class="n">position</span> <span class="ow">and</span> <span class="n">velocity</span> <span class="n">of</span> <span class="n">the</span> <span class="n">player</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">200</span>
+            <span class="p">};</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">};</span>
+            <span class="o">//</span> <span class="n">Dimensions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">player</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">//</span> <span class="n">Method</span> <span class="n">to</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">player</span> <span class="n">on</span> <span class="n">the</span> <span class="n">canvas</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="s">'red'</span><span class="p">;</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">fillRect</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="o">//</span> <span class="n">Method</span> <span class="n">to</span> <span class="n">update</span> <span class="n">the</span> <span class="n">players</span> <span class="n">position</span> <span class="ow">and</span> <span class="n">velocity</span>
+        <span class="n">update</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+            <span class="o">//</span> <span class="n">Apply</span> <span class="n">gravity</span> <span class="k">if</span> <span class="n">player</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">at</span> <span class="n">the</span> <span class="n">bottom</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+                <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">gravity</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">this</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">PLATFORM</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">Define</span> <span class="n">the</span> <span class="n">Platform</span> <span class="k">class</span>
+    <span class="nc">class</span> <span class="n">Platform</span> <span class="p">{</span>
+        <span class="n">constructor</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">Initial</span> <span class="n">position</span> <span class="n">of</span> <span class="n">the</span> <span class="n">platform</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">:</span> <span class="mi">300</span>
+            <span class="p">}</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">650</span><span class="p">;</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">//</span> <span class="n">Method</span> <span class="n">to</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">platform</span> <span class="n">on</span> <span class="n">the</span> <span class="n">canvas</span>
+        <span class="n">draw</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">c</span><span class="p">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">CREATE</span> <span class="n">PLATFORM</span> <span class="n">OBJECT</span> <span class="n">WITH</span> <span class="n">IMAGE</span>
+    <span class="o">//--</span>
+    <span class="o">//</span> <span class="n">Load</span> <span class="n">platform</span> <span class="n">image</span>
+    <span class="n">let</span> <span class="n">image</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">();</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">src</span> <span class="o">=</span> <span class="s">'https://samayass.github.io/samayaCSA/images/platform.png'</span>
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">platform</span> <span class="nb">object</span>
+    <span class="n">let</span> <span class="n">platform</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Platform</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">player</span> <span class="nb">object</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Player</span><span class="p">();</span>
+    <span class="o">//</span> <span class="n">Define</span> <span class="n">keyboard</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">their</span> <span class="n">states</span>
+    <span class="n">let</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">right</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">pressed</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">},</span>
+        <span class="n">left</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">pressed</span><span class="p">:</span> <span class="n">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="o">//</span> <span class="n">Animation</span> <span class="n">function</span> <span class="n">to</span> <span class="n">continuously</span> <span class="n">update</span> <span class="ow">and</span> <span class="n">render</span> <span class="n">the</span> <span class="n">canvas</span>
+    <span class="n">function</span> <span class="n">animate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">requestAnimationFrame</span><span class="p">(</span><span class="n">animate</span><span class="p">);</span>
+        <span class="n">c</span><span class="p">.</span><span class="n">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">canvas</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">canvas</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+        <span class="o">//--</span>
+        <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span> <span class="o">-</span> <span class="n">DRAW</span> <span class="n">PLATFORM</span>
+        <span class="o">//--</span>
+        <span class="n">platform</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+        <span class="n">player</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+        <span class="o">//</span> <span class="n">Control</span> <span class="n">players</span> <span class="n">horizontal</span> <span class="n">movement</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="n">canvas</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">&amp;&amp;</span> <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">//--</span>
+        <span class="o">//</span> <span class="n">NEW</span> <span class="n">CODE</span>  <span class="o">-</span> <span class="n">PLATFORM</span> <span class="n">COLLISIONS</span>
+        <span class="o">//--</span>
+        <span class="o">//</span> <span class="n">Check</span> <span class="k">for</span> <span class="n">collision</span> <span class="n">between</span> <span class="n">player</span> <span class="ow">and</span> <span class="n">platform</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">&lt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">player</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&amp;&amp;</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">platform</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">platform</span><span class="p">.</span><span class="n">width</span>
+        <span class="p">)</span> <span class="p">{</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="o">//</span> <span class="n">Start</span> <span class="n">the</span> <span class="n">animation</span> <span class="n">loop</span>
+    <span class="n">animate</span><span class="p">();</span>
+    <span class="o">//</span> <span class="n">Event</span> <span class="n">listener</span> <span class="k">for</span> <span class="n">keydown</span> <span class="n">events</span>
+    <span class="n">addEventListener</span><span class="p">(</span><span class="s">'keydown'</span><span class="p">,</span> <span class="p">({</span> <span class="n">keyCode</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">switch</span> <span class="p">(</span><span class="n">keyCode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">case</span> <span class="mi">65</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'left'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">83</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'down'</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">68</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'right'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">87</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'up'</span><span class="p">);</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">-=</span> <span class="mi">20</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="o">//</span> <span class="n">Event</span> <span class="n">listener</span> <span class="k">for</span> <span class="n">keyup</span> <span class="n">events</span>
+    <span class="n">addEventListener</span><span class="p">(</span><span class="s">'keyup'</span><span class="p">,</span> <span class="p">({</span> <span class="n">keyCode</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">switch</span> <span class="p">(</span><span class="n">keyCode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">case</span> <span class="mi">65</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'left'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">83</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'down'</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">68</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'right'</span><span class="p">);</span>
+                <span class="n">keys</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">case</span> <span class="mi">87</span><span class="p">:</span>
+                <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'up'</span><span class="p">);</span>
+                <span class="n">player</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<style>
+    #canvas {
+        margin: 0;
+        border: 1px solid white;
+    }
+</style>
+
+<canvas id="canvas"></canvas>
+<script>
+    // Create empty canvas
+    let canvas = document.getElementById('canvas');
+    let c = canvas.getContext('2d');
+    // Set the canvas dimensions
+    canvas.width = 650;
+    canvas.height = 400;
+    // Define gravity value
+    let gravity = 1.5;
+    // Define the Player class
+    class Player {
+        constructor() {
+            // Initial position and velocity of the player
+            this.position = {
+                x: 100,
+                y: 200
+            };
+            this.velocity = {
+                x: 0,
+                y: 0
+            };
+            // Dimensions of the player
+            this.width = 30;
+            this.height = 30;
+        }
+        // Method to draw the player on the canvas
+        draw() {
+            c.fillStyle = 'red';
+            c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        }
+        // Method to update the players position and velocity
+        update() {
+            this.draw();
+            this.position.y += this.velocity.y;
+            this.position.x += this.velocity.x;
+            // Apply gravity if player is not at the bottom
+            if (this.position.y + this.height + this.velocity.y <= canvas.height)
+                this.velocity.y += gravity;
+            else
+                this.velocity.y = 0;
+        }
+    }
+    //--
+    // NEW CODE - PLATFORM
+    //--
+    // Define the Platform class
+    class Platform {
+        constructor(image) {
+            // Initial position of the platform
+            this.position = {
+                x: 0,
+                y: 300
+            }
+            this.image = image;
+            this.width = 650;
+            this.height = 100;
+        }
+        // Method to draw the platform on the canvas
+        draw() {
+            c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        }
+    }
+    //--
+    // NEW CODE - CREATE PLATFORM OBJECT WITH IMAGE
+    //--
+    // Load platform image
+    let image = new Image();
+    image.src = 'https://samayass.github.io/samayaCSA/images/platform.png'
+    // Create a platform object
+    let platform = new Platform(image);
+    // Create a player object
+    player = new Player();
+    // Define keyboard keys and their states
+    let keys = {
+        right: {
+            pressed: false
+        },
+        left: {
+            pressed: false
+        }
+    }
+    // Animation function to continuously update and render the canvas
+    function animate() {
+        requestAnimationFrame(animate);
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        //--
+        // NEW CODE - DRAW PLATFORM
+        //--
+        platform.draw();
+        player.update();
+        // Control players horizontal movement
+        if (keys.right.pressed && player.position.x + player.width <= canvas.width - 50) {
+            player.velocity.x = 15;
+        } else if (keys.left.pressed && player.position.x >= 50) {
+            player.velocity.x = -15;
+        } else {
+            player.velocity.x = 0;
+        }
+        //--
+        // NEW CODE  - PLATFORM COLLISIONS
+        //--
+        // Check for collision between player and platform
+        if (
+            player.position.y + player.height <= platform.position.y &&
+            player.position.y + player.height + player.velocity.y >= platform.position.y &&
+            player.position.x + player.width >= platform.position.x &&
+            player.position.x <= platform.position.x + platform.width
+        ) {
+            player.velocity.y = 0;
+        }
+    }
+    // Start the animation loop
+    animate();
+    // Event listener for keydown events
+    addEventListener('keydown', ({ keyCode }) => {
+        switch (keyCode) {
+            case 65:
+                console.log('left');
+                keys.left.pressed = true;
+                break;
+            case 83:
+                console.log('down');
+                break;
+            case 68:
+                console.log('right');
+                keys.right.pressed = true;
+                break;
+            case 87:
+                console.log('up');
+                player.velocity.y -= 20;
+                break;
+        }
+    });
+    // Event listener for keyup events
+    addEventListener('keyup', ({ keyCode }) => {
+        switch (keyCode) {
+            case 65:
+                console.log('left');
+                keys.left.pressed = false;
+                break;
+            case 83:
+                console.log('down');
+                break;
+            case 68:
+                console.log('right');
+                keys.right.pressed = false;
+                break;
+            case 87:
+                console.log('up');
+                player.velocity.y = -20;
+                break;
+        }
+    })
+</script>
+
+<h2 id="specific-hack">Specific Hack</h2>
+<ul>
+  <li>Add creative “death pits” (gap between platforms) that restart game if fallen through</li>
+</ul>
+
+<h2 id="open-ended-hack">Open Ended Hack</h2>
+<ul>
+  <li>Experiment with different terrains (ice could cause sliding)</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2023/08/02/mario_platform_IPYNB_2_.html" hidden></a>
+</article>

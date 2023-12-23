@@ -1,0 +1,311 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Using Javascript with HTML DOM</h1><p class="page-description">A Tech Talk on how javascript can interact with HTML DOM</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-30T00:00:00-07:00" itemprop="datePublished">
+        Aug 30, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Rohan Juneja</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/basics/home">Home</a></td>
+        <td><a href="/student2.0/basics/html">HTML</a></td>
+        <td><a href="/student2.0/basics/datatypes">Data Types</a></td>
+        <td><a href="/student2.0/basics/dom">DOM</a></td>
+        <td><a href="/student2.0/basics/javascript">JavaScript</a></td>
+        <td><a href="/student2.0/basics/js-debug">JS Debugging</a></td>
+    </tr>
+</table>
+
+<h1 id="following-along">Following along</h1>
+<p>Remember to “git pull” on teacher repository to update to lates.</p>
+<ul>
+  <li>Run this notebook in VSCode</li>
+  <li>Activate Help-Toogel Developer Tools to add console outputs to runtime experience</li>
+</ul>
+
+<h1 id="referencing-html-elements-using-javascript">Referencing HTML elements using javascript</h1>
+<ul>
+  <li>To get an HTML element, use <code class="language-plaintext highlighter-rouge">document.getElementById("idTag")</code></li>
+  <li>You will use the ID that you set in your HTML</li>
+  <li>if you <code class="language-plaintext highlighter-rouge">console.log</code> the resulting variable you will get some information about the element</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">within</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"domTitleID"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goes</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">var</span> <span class="n">titleElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"domTitleID"</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">outputs</span> <span class="n">h1</span> <span class="n">tag</span> <span class="o">--&gt;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #1, show element in DOM"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">titleElement</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="getting-the-data-within-the-html-element">Getting the data within the HTML element</h1>
+<ul>
+  <li>The variable titleElement stores the “object”</li>
+  <li>Basically think of this as the group of data enclosed in HTML tag</li>
+  <li>To access a certain type of data from an “object” we use “.” notation
+    <ul>
+      <li>.innerHTML gets data within center of tag</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">within</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"domTitleIDget"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goes</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">var</span> <span class="n">titleElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"domTitleIDget"</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">outputs</span> <span class="n">h1</span> <span class="n">innerHTML</span> <span class="k">from</span> <span class="n">h1</span> <span class="n">tag</span> <span class="o">--&gt;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #2, show innerHTML"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">titleElement</span><span class="p">.</span><span class="n">innerHTML</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="setting-the-data-within-the-html-element">Setting the data within the HTML Element</h1>
+<ul>
+  <li>The innerHTML data in this “object” can be set like a variable
+    <ul>
+      <li>Change the value of the innerHTML using the “=” (assignment) operator</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"domTitleIDset"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goes</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">var</span> <span class="n">titleElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"domTitleIDset"</span><span class="p">)</span>
+<span class="n">titleElement</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s">"Set and Update My Title"</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">outputs</span> <span class="n">h1</span> <span class="n">innerHTML</span> <span class="n">after</span> <span class="n">h1</span> <span class="n">tag</span> <span class="n">has</span> <span class="n">been</span> <span class="n">updated</span> <span class="o">--&gt;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #3, update innerHTML"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">titleElement</span><span class="p">.</span><span class="n">innerHTML</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="creating-elements">Creating elements</h1>
+<ul>
+  <li>Create a new element with the document.createElement function -&gt; takes in the type of element</li>
+  <li>Set properties in the element just like the “h1” example</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"divContainerID"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"h1ElementID"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goes</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+   <span class="o">//</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">element</span>
+   <span class="n">var</span> <span class="n">pElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"p"</span><span class="p">)</span>
+   <span class="n">pElement</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s">"Starting a paragraph of text."</span>
+   
+   <span class="o">//</span> <span class="n">outputs</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">after</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+   <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #4, create a p tag within JS"</span><span class="p">)</span>
+   <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">pElement</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="issue-how-to-create-element-that-appears-in-html">Issue! How to Create element that appears in HTML?</h1>
+<ul>
+  <li>Here is a visualization of what is happening =&gt; the “p” is not placed inside the HRML page!
+<img src="/student2.0/images/dom-visual-1.png" alt="visual on p tag floating" /></li>
+</ul>
+
+<h1 id="solution">Solution</h1>
+<ul>
+  <li>Correct by placeing the element somewhere in the page</li>
+  <li>For example, we could add the element within the div
+    <ul>
+      <li>For this, use the appendChild function on the div object (the parameter would be the p element we created)</li>
+      <li>Remember, use the getELementById to get the object for something in the html (the div!)</li>
+    </ul>
+  </li>
+  <li>Updated Diagram
+<img src="/student2.0/images/dom-visual-2.png" alt="visual on p tag in div" /></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"divContainerIDset"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"h1ElementIDset"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goes</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+   <span class="o">//</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">element</span>
+   <span class="n">var</span> <span class="n">pElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"p"</span><span class="p">)</span>
+   <span class="n">pElement</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="s">"Starting a paragraph of text."</span>
+   
+   <span class="o">//</span> <span class="n">outputs</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">after</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+   <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #5, add p tag to HTML"</span><span class="p">)</span>
+   <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">pElement</span><span class="p">)</span>
+   
+   <span class="o">//</span> <span class="n">place</span> <span class="n">the</span> <span class="n">p</span> <span class="n">element</span> <span class="n">inside</span> <span class="n">the</span> <span class="n">HTML</span> <span class="n">page</span>
+   <span class="n">var</span> <span class="n">div</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"divContainerIDset"</span><span class="p">)</span>
+   <span class="n">div</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">pElement</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="functions-in-javascript-using-with-dom">Functions in JavaScript, using with DOM</h1>
+<ul>
+  <li>Functions allow you to “do something”
+    <ul>
+      <li>ex. “eat food” in a Snake Game</li>
+    </ul>
+  </li>
+  <li>Functions were used in previous examples
+    <ul>
+      <li>console.log = “print something”</li>
+      <li>document.getElementById = “find an element with id”</li>
+    </ul>
+  </li>
+  <li>Functions take in parameters, what to do (inside the parenthesis)
+    <ul>
+      <li>the parameter tells console.log what to print</li>
+      <li>the parameter in document.getElementById tells the id of the element</li>
+    </ul>
+  </li>
+  <li>Functions can be used with DOM as well, thes will be shown below</li>
+</ul>
+
+<h1 id="creeating-functions">Creeating functions</h1>
+<ul>
+  <li>document functions functions were used to create a lot of functionality, but how can a developer create their own?</li>
+  <li>function are useful to avoid writing the same code over and over again</li>
+  <li>function can contain parameters for input (they effectively become variables)</li>
+  <li>function can contain a return, the are the “output” of the function</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">element</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"divContainerIDfunction"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"h1ElementIDfunction"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">javascript</span> <span class="n">goew</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">//</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="o">=&gt;</span> <span class="n">takes</span> <span class="n">parameter</span> <span class="n">text</span><span class="p">,</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">new</span> <span class="n">p</span> <span class="n">tab</span>
+    <span class="n">function</span> <span class="n">createPTag</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">element</span>
+        <span class="n">var</span> <span class="n">pElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"p"</span><span class="p">)</span>
+
+        <span class="o">//</span> <span class="n">using</span> <span class="n">the</span> <span class="n">parameter</span> <span class="n">like</span> <span class="n">a</span> <span class="n">variable</span>
+        <span class="n">pElement</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">text</span>
+        
+        <span class="o">//</span> <span class="n">outputs</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">after</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #6, add p tag using a function"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">pElement</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pElement</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">using</span> <span class="n">a</span> <span class="n">function</span> <span class="n">to</span> <span class="n">create</span> <span class="n">p</span> <span class="n">tag</span>
+    <span class="n">var</span> <span class="n">pTag</span> <span class="o">=</span> <span class="n">createPTag</span><span class="p">(</span><span class="s">"Starting a paragraph with cooler text than before."</span><span class="p">)</span>
+
+    <span class="o">//</span> <span class="n">place</span> <span class="n">the</span> <span class="n">p</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">webpage</span>
+    <span class="n">var</span> <span class="n">div</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"divContainerIDfunction"</span><span class="p">)</span>
+    <span class="n">div</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">pTag</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="onclick-event">OnClick Event</h1>
+<ul>
+  <li>Run a function when an event occurs
+    <ul>
+      <li>In this case, the p tag is created when the button is clicked</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">must</span> <span class="n">be</span> <span class="n">specified</span> <span class="n">on</span> <span class="n">the</span> <span class="n">elements</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">button</span> <span class="nb">id</span><span class="o">=</span><span class="s">"buttonID"</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">here</span><span class="err">!</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s">"divContainerIDbutton"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">"h1ElementIDbutton"</span><span class="o">&gt;</span><span class="n">My</span> <span class="n">Title</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">our</span> <span class="n">javascript</span> <span class="n">goe</span> <span class="n">here</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="o">//</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="o">=&gt;</span> <span class="n">takes</span> <span class="n">parameter</span> <span class="n">text</span><span class="p">,</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">new</span> <span class="n">p</span> <span class="n">tab</span>
+    <span class="n">function</span> <span class="n">createPTag</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">element</span>
+        <span class="n">var</span> <span class="n">pElement</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s">"p"</span><span class="p">)</span>
+
+        <span class="o">//</span> <span class="n">using</span> <span class="n">the</span> <span class="n">parameter</span> <span class="n">like</span> <span class="n">a</span> <span class="n">variable</span>
+        <span class="n">pElement</span><span class="p">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">text</span>
+        
+        <span class="o">//</span> <span class="n">outputs</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">after</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #7.1, add p tag using a function"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">pElement</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pElement</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">create</span> <span class="n">a</span> <span class="n">function</span> <span class="n">that</span> <span class="n">sets</span> <span class="n">specific</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">to</span> <span class="n">div</span>
+    <span class="n">function</span> <span class="n">addPTagOnButton</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">using</span> <span class="n">our</span> <span class="n">new</span> <span class="n">function</span>
+        <span class="n">var</span> <span class="n">pTag</span> <span class="o">=</span> <span class="n">createPTag</span><span class="p">(</span><span class="s">"Starting a paragraph with text created on button press."</span><span class="p">)</span>
+
+        <span class="o">//</span> <span class="n">place</span> <span class="n">the</span> <span class="n">p</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">webpage</span>
+        <span class="n">var</span> <span class="n">div</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"divContainerIDbutton"</span><span class="p">)</span>
+
+        <span class="o">//</span> <span class="n">add</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">to</span> <span class="n">the</span> <span class="n">div</span>
+        <span class="n">div</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">pTag</span><span class="p">)</span>
+        
+        <span class="o">//</span> <span class="n">outputs</span> <span class="n">p</span> <span class="n">tag</span> <span class="n">after</span> <span class="n">it</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Example #7.2, update container adding a 'p' tag"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">div</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">add</span> <span class="n">the</span> <span class="n">P</span> <span class="n">tag</span> <span class="n">when</span> <span class="n">our</span> <span class="n">button</span> <span class="ow">is</span> <span class="n">clicked</span>
+    <span class="n">var</span> <span class="n">myButton</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">"buttonID"</span><span class="p">)</span>
+    <span class="n">myButton</span><span class="p">.</span><span class="n">onclick</span> <span class="o">=</span> <span class="n">addPTagOnButton</span>
+    
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+<ul>
+  <li>Copy your HTML code from the HTML hacks. Write a Javascript snippet to switch the links of the two a tags when a button is pressed. Once they are switched, change the inner HTML of the top p tag to the word “switched!”</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">html</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span> <span class="p">(</span><span class="n">make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">run</span><span class="p">)</span> <span class="o">--&gt;</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+  <span class="o">//</span> <span class="n">your</span> <span class="n">javascript</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<!-- html code goes here (make sure to run) -->
+
+<script>
+  // your javascript code goes here
+</script>
+
+
+  </div><a class="u-url" href="/student2.0/basics/dom" hidden></a>
+</article>

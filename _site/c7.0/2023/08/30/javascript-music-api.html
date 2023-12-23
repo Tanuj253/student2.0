@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<style>
+  body {
+    background: #292b2f;
+  }
+  
+  h2 {
+      color: #FFFFEE;
+  }
+
+  h1 {
+    color: #FFFFFF
+  }
+
+  p {
+    color: #dddddd;
+  }
+
+  li {
+    color: #dddd;
+  }
+  
+</style><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>JS Itunes API | Student 2.0</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="JS Itunes API" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="API’s are a primary source for obtaining data from the internet. There is imformation in API’s for almost any interest." />
+<meta property="og:description" content="API’s are a primary source for obtaining data from the internet. There is imformation in API’s for almost any interest." />
+<link rel="canonical" href="http://localhost:4100/student2.0/c7.0/2023/08/30/javascript-music-api.html" />
+<meta property="og:url" content="http://localhost:4100/student2.0/c7.0/2023/08/30/javascript-music-api.html" />
+<meta property="og:site_name" content="Student 2.0" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-30T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="JS Itunes API" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-30T00:00:00-07:00","datePublished":"2023-08-30T00:00:00-07:00","description":"API’s are a primary source for obtaining data from the internet. There is imformation in API’s for almost any interest.","headline":"JS Itunes API","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/student2.0/c7.0/2023/08/30/javascript-music-api.html"},"url":"http://localhost:4100/student2.0/c7.0/2023/08/30/javascript-music-api.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/student2.0/assets/css/style.css"><link rel="shortcut icon" type="image/x-icon" href="/student2.0/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body>
+
+  <div class="wrapper">
+    <header><style>
+  
+    body {
+      background: #292b2f;
+    }
+  
+    .site-header {
+      font-family: monospace;
+      font-size: 15px;
+      
+      position: absolute;
+      transition: top 0.2s ease-in-out;
+      margin-top: 25px;
+      padding-top: 10px;
+      left: -80px;
+      margin-top: 275px;
+    }
+  
+    .site-footer {
+      text-align: left;
+      left: 240px;
+    }
+  
+    .headerbutton {
+      border: 1px solid #A455FF;
+  
+      background: rgb(0, 0, 0);
+      color:black;
+      font-weight: bold;
+      width: 270px;
+  
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+  
+    .headerbutton:hover {
+      background-color: #A455FF;
+    }
+  
+    img{
+      position:relative;
+      border: 3px solid;
+      border-color: #A455FF;
+    }
+  
+    .pfp {
+      border-radius: 30%;
+      position:absolute;
+      left: -100px;
+      object-fit: cover;
+      width: 260px;
+      height: 260px;
+    }
+  
+    a {
+      color: #C8A2C8;
+    }
+    
+    h2 {
+        color: #FFFFEE;
+    }
+  
+    h1 {
+      color: #FFFFFF
+    }
+  
+    p {
+      color: #dddddd;
+  
+    }
+  
+  </style>
+    <img src="/student/images/IMG_2714.jpg" class="pfp"> 
+  
+    <header class="site-header">
+    
+      <div id="header">
+        <nav>
+          <ul>
+              <li class="fork"><a href="/student2.0/">Home</a></li>
+              <li class="fork"><a href="/student2.0/timebox">Time Box</a></li>
+              <li class="fork"><a href="/student2.0/blogs">Blogs</a></li>
+              <li class="title"><a href="https://github.com/Tanuj253/student2.0#readme" target="_blank">View on GitHub</a></li>
+        </nav>
+      </div>
+    </header></header>
+
+
+    <section>
+      <table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/navigation/csse">CSSE</a></td>
+        <td><a href="/student2.0/navigation/csp">CSP</a></td>
+        <td><a href="/student2.0/navigation/csa">CSA</a></td>
+        <td><a href="/student2.0/navigation/game">Game</a></td>
+    </tr>
+</table>
+
+<!-- Input box and button for filter -->
+<div>
+  <input type="text" id="filterInput" placeholder="Enter iTunes filter" />
+  <button onclick="fetchData()">Search</button>
+</div>
+
+<!-- HTML table fragment for page -->
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Track</th>
+      <th>Images</th>
+      <th>Preview</th>
+    </tr>
+  </thead>
+  <tbody id="result">
+    <!-- generated rows -->
+  </tbody>
+</table>
+
+<!-- Script is laid out in a sequence (no function) and will execute when the page is loaded -->
+<script>
+  // prepare HTML result container for new output
+  const resultContainer = document.getElementById("result");
+
+  // function to fetch data based on user input
+  function fetchData() {
+    // clear previous results
+    resultContainer.innerHTML = "";
+
+    // get user input
+    const filterInput = document.getElementById("filterInput");
+    const filter = filterInput.value;
+
+    // prepare fetch options
+    const url = "https://itunes.apple.com/search?term=" + encodeURIComponent(filter);
+    const headers = {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'default',
+      credentials: 'omit',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    // fetch the API
+    fetch(url, headers)
+      .then(response => {
+        // check for response errors
+        if (response.status !== 200) {
+          const errorMsg = 'Database response error: ' + response.status;
+          console.log(errorMsg);
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.innerHTML = errorMsg;
+          tr.appendChild(td);
+          resultContainer.appendChild(tr);
+          return;
+        }
+        // valid response will have JSON data
+        response.json().then(data => {
+          console.log(data);
+
+          // Music data
+        for (const row of data.results) {
+            console.log(row);
+
+            // tr for each row
+            const tr = document.createElement("tr");
+            // td for each column
+            const artist = document.createElement("td");
+            const track = document.createElement("td");
+            const image = document.createElement("td");
+            const preview = document.createElement("td");
+
+            // data is specific to the API
+            artist.innerHTML = row.artistName;
+            track.innerHTML = row.trackName; 
+            // create preview image
+            const img = document.createElement("img");
+            img.src = row.artworkUrl100;
+            image.appendChild(img);
+            // create preview player
+            const audio = document.createElement("audio");
+            audio.controls = true;
+            const source = document.createElement("source");
+            source.src = row.previewUrl;
+            source.type = "audio/mp4";
+            audio.appendChild(source);
+            preview.appendChild(audio);
+
+            // this builds td's into tr
+            tr.appendChild(artist);
+            tr.appendChild(track);
+            tr.appendChild(image);
+            tr.appendChild(preview);
+
+            // add HTML to container
+            resultContainer.appendChild(tr);
+          }
+        })
+      })
+      .catch(err => {
+        console.error(err);
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerHTML = err;
+        tr.appendChild(td);
+        resultContainer.appendChild(tr);
+      });
+  }
+</script>
+
+<h2 id="hacks">Hacks</h2>
+
+<p>The endpoint itunes.apple.com allows requests and they provide responses with their data.   Our formatting of the response provides the Input and Output interaction with the itunes data.</p>
+
+<p>We do not create or manage their data.  The itunes system has  backend processes that create and store data.</p>
+
+<p>In this type of Website relationship we itunes could provide.</p>
+
+<ul>
+  <li>A better starting screen.  Providing sample sample queries on screen.</li>
+  <li>Provide local storage to show recent or liked queries by the user.</li>
+  <li>Have interaction between this API and other functions on our site.  For instance, we could allow music selection to dictate background music while playing a game.</li>
+</ul>
+
+<p>But, we would need backend help from itunes to..</p>
+
+<ul>
+  <li>Show most popular queries.</li>
+  <li>Show songs by genre.</li>
+  <li>Show songs by era.</li>
+</ul>
+
+    </section>
+
+  </div>
+</body>
+
+
+</html>

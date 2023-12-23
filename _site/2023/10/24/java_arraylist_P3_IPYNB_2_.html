@@ -1,0 +1,928 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U7 | ArrayLists | Student P3</h1><p class="page-description">Lesson on the College Board Unit 6 Arrays. This is the teacher notebook.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-24T00:00:00-07:00" itemprop="datePublished">
+        Oct 24, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Paaras, Yuri, Shreyas, Tanay</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      20 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#unit-7-arraylist">Unit 7: ArrayList</a></li><li><a href="#71-arraylist-intro">7.1: ArrayList Intro</a><ul><li><a href="#quick-lil-popcorn-hack">Quick lil popcorn hack</a></li></ul></li></ul></li></ul></li><li><a href="#72-arraylist-methods">7.2: ArrayList Methods</a><ul><li><a href="#learning-objectives">Learning Objectives</a></li><li><a href="#essential-knowledge">Essential Knowledge</a></li><li><a href="#size-of-the-arraylist">Size of the <code class="language-plaintext highlighter-rouge">ArrayList</code></a></li><li><a href="#adding-items-to-an-arraylist">Adding Items to an <code class="language-plaintext highlighter-rouge">ArrayList</code></a></li><li><a href="#lets-look-at-an-example">Let’s Look at an Example</a></li><li><a href="#deleting-items-from-an-arraylist">Deleting Items from an <code class="language-plaintext highlighter-rouge">ArrayList</code></a></li><li><a href="#updating-items-in-an-arraylist">Updating Items in an <code class="language-plaintext highlighter-rouge">ArrayList</code></a></li><li><a href="#accessing-items-in-an-arraylist">Accessing Items in an <code class="language-plaintext highlighter-rouge">ArrayList</code></a></li><li><a href="#passing-an-arraylist-as-a-method-parameter">Passing an <code class="language-plaintext highlighter-rouge">ArrayList</code> as a Method Parameter</a></li><li><a href="#returning-an-arraylist-from-a-method">Returning an <code class="language-plaintext highlighter-rouge">ArrayList</code> from a Method</a></li><li><a href="#hacks">Hacks</a></li><li><a href="#hack-helper">Hack Helper</a></li></ul></li></ul></li><li><a href="#73-traversing-arraylists">7.3: Traversing Arraylists</a><ul><li><a href="#learning-objectives-1">Learning Objectives:</a></li><li><a href="#essential-knowledge-1">Essential Knowledge:</a><ul><li><a href="#breakdown">Breakdown:</a></li><li><a href="#loop-conditions">Loop Conditions:</a></li><li><a href="#practice">Practice:</a></li><li><a href="#using-enhanced-for-loop-with-traversing">Using Enhanced For-Loop With Traversing:</a></li><li><a href="#common-mistakes">Common mistakes:</a></li></ul></li></ul></li><li><a href="#hacks-1">Hacks:</a></li></ul></li><li><a href="#74-developing-algorithms-using-arraylists">7.4: Developing Algorithms Using ArrayLists</a><ul><li><a href="#learning-objectives-2">Learning Objectives</a></li><li><a href="#essential-knowledge-2">Essential Knowledge</a></li></ul></li><li><a href="#popcorn-hacks">Popcorn Hacks:</a><ul><li><a href="#lets-look-at-an-example-example-1">Let’s Look at an Example (Example 1)</a></li><li><a href="#lets-look-at-an-example-example-2">Let’s Look at an Example (Example 2)</a></li><li><a href="#hacks-2">Hacks</a></li><li><a href="#hack-helper-1">Hack Helper</a></li></ul></li></ul></li><li><a href="#75-searching">7.5 Searching</a><ul><li><a href="#learning-objectives-3">Learning Objectives</a></li><li><a href="#essential-knowledge-3">Essential Knowledge:</a></li><li><a href="#search-process">Search Process</a></li><li><a href="#searching-linear-structures">Searching Linear Structures</a><ul><li><a href="#finding-information-with-a-computer-is-something-we-need-to-know-how-to-do-linear-search-algorithms-are-best-used-when-we-do-not-have-any-idea-about-the-order-of-the-data-and-so-we-need-to-look-at-each-element-to-determine-if-what-we-are-looking-for-is-in-fact-inside-the-array-or-arraylist">Finding information with a computer is something we need to know how to do. Linear search algorithms are BEST used when we do not have any idea about the order of the data and so we need to look at each element to determine if what we are looking for is in fact inside the array or <code class="language-plaintext highlighter-rouge">ArrayList</code>.</a></li><li><a href="#when-searching-we-do-need-to-remember-that-different-data-types-require-comparisons">When searching, we do need to remember that different data types require comparisons!</a></li></ul></li></ul></li><li><a href="#searching-an-arraylist-of-double">Searching an <code class="language-plaintext highlighter-rouge">ArrayList</code> of Double</a><ul><li><a href="#explanation">Explanation</a></li></ul></li><li><a href="#searching-an-arraylist-of-book-for-a-string">Searching an <code class="language-plaintext highlighter-rouge">ArrayList</code> of book for a <code class="language-plaintext highlighter-rouge">String</code></a><ul><li><a href="#explanation-1">Explanation</a></li></ul></li><li><a href="#questions">Questions</a><ul><li><a href="#should-we-use--when-looking-for-an-object">Should we use == when looking for an Object?</a></li><li><a href="#why-did-we-subtract-the-double-values">Why did we subtract the double values?</a></li></ul></li></ul></li><li><a href="#why-does-order-sometimes-matter">Why does order sometimes matter?</a><ul><li><a href="#when-searching-for-a-value-to-remove-from-a-list-if-we-search-forward-we-have-to-make-sure-to-adjust-the-loop-control-variable-or-we-might-skip-what-we-are-looking-for-when-removing">When searching for a value to remove from a list, if we search forward we have to make sure to adjust the loop control variable, or we might skip what we are looking for when removing!</a></li></ul></li></ul></li></ul></li><li><a href="#76-sorting">7.6 Sorting</a><ul><li><a href="#learning-objectives-4">Learning Objectives</a></li><li><a href="#essential-knowledge-4">Essential Knowledge:</a></li></ul></li><li><a href="#selection-sort">Selection Sort</a></li><li><a href="#insertion-sort-algorithm">Insertion Sort Algorithm</a></li></ul></li><li><a href="#77-ethical-issues-around-data-collection">7.7: Ethical Issues around Data Collection</a><ul><li><a href="#learning-objectives-5">Learning Objectives:</a></li><li><a href="#essential-knowledge-5">Essential Knowledge:</a><ul><li><a href="#privacy-protection">Privacy Protection:</a></li></ul></li></ul></li><li><a href="#hacks-3">Hacks:</a></li></ul></li><li><a href="#grading">Grading:</a></li></ul><h1 id="unit-7-arraylist">Unit 7: ArrayList</h1>
+<blockquote>
+  <p>Mastering the concept of Java’s ArrayList. AP Exam weighting: 2.5-7.5%.</p>
+</blockquote>
+
+<h1 id="71-arraylist-intro">7.1: ArrayList Intro</h1>
+
+<ul>
+  <li>ArrayLists are dynamic, meaning their size can grow or shrink as needed, but arrays are static in size</li>
+  <li>Instead of creating a new array of a different size and copying the data from the initial array to the new one, we can use ArrayLists</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Arrays</th>
+      <th>ArrayLists</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fixed Length</td>
+      <td>Resizable Length</td>
+    </tr>
+    <tr>
+      <td>Fundamental Java feature</td>
+      <td>Part of a framework</td>
+    </tr>
+    <tr>
+      <td>An object with no methods</td>
+      <td>Class with many methods</td>
+    </tr>
+    <tr>
+      <td>Not as flexible</td>
+      <td>Designed to be very flexible</td>
+    </tr>
+    <tr>
+      <td>Can store primitive data</td>
+      <td>Not designed to store primitives</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Slightly slower than arrays</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Need an import statement</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to use the ArrayList class, the ArrayList class needs to be imported from the java util package. This can be done by writing import java.util.ArrayList at the top of the class file.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>  <span class="c1">// Import the ArrayList class</span>
+
+<span class="c1">// Declare and initialize an ArrayList of integers</span>
+<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbersList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>ArrayList objects are created in the same fashion as other object classes. The primary difference with ArrayLists is that the element type of the ArrayList must be specified using angled bracket &lt;&gt;. In this example, E represents the data type that will be used in the ArrayList. This can be replaced by an object data type:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;();</span>
+</code></pre></div></div>
+
+<p>We can actually declare ArrayLists without specifying the type that will be included in the ArrayList, but specifying the data type is smarter because it allows the compiler to find errors before run time, so its more efficient and easy to spot errors.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h4 id="quick-lil-popcorn-hack">Quick lil popcorn hack</h4>
+
+<p>Create 2 ArrayLists, 1 called <code class="language-plaintext highlighter-rouge">studentName</code> and 1 called <code class="language-plaintext highlighter-rouge">studentAge</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//Initialize your ArrayLists</span>
+        
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="72-arraylist-methods">7.2: ArrayList Methods</h1>
+
+<h3 id="learning-objectives">Learning Objectives</h3>
+
+<p>Students will be able to represent collections of related object reference data using <code class="language-plaintext highlighter-rouge">ArrayList</code> objects.</p>
+
+<h3 id="essential-knowledge">Essential Knowledge</h3>
+
+<ul>
+  <li>
+    <p>Iteration statements provide a means to access all the elements stored within an <code class="language-plaintext highlighter-rouge">ArrayList</code>. This process is referred to as “traversing the <code class="language-plaintext highlighter-rouge">ArrayList</code>.”</p>
+  </li>
+  <li>
+    <p>The following <code class="language-plaintext highlighter-rouge">ArrayList</code> methods, including what they do and when they are used, are part of the Java Quick Reference:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">int size()</code> - Returns the count of elements within the list.</li>
+      <li><code class="language-plaintext highlighter-rouge">boolean add(E obj)</code> - Appends the object <code class="language-plaintext highlighter-rouge">obj</code> to the end of the list and returns <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">void add(int index, E obj)</code> - Inserts <code class="language-plaintext highlighter-rouge">obj</code> at the specified <code class="language-plaintext highlighter-rouge">index</code>, shifting elements at and above that position to the right (incrementing their indices by 1) and increasing the list’s size by 1.</li>
+      <li><code class="language-plaintext highlighter-rouge">E get(int index)</code> - Retrieves the element at the given <code class="language-plaintext highlighter-rouge">index</code> in the list.</li>
+      <li><code class="language-plaintext highlighter-rouge">E set(int index, E obj)</code> - Replaces the element at the specified <code class="language-plaintext highlighter-rouge">index</code> with <code class="language-plaintext highlighter-rouge">obj</code> and returns the previous element at that index.</li>
+      <li><code class="language-plaintext highlighter-rouge">E remove(int index)</code> - Deletes the element at the specified <code class="language-plaintext highlighter-rouge">index</code>, shifting all subsequent elements one index to the left, reducing the list’s size by one, and returning the removed element.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Java allows the generic <code class="language-plaintext highlighter-rouge">ArrayList&lt;E&gt;</code>, where the generic type <code class="language-plaintext highlighter-rouge">E</code> specifies the type of element.</p>
+  </li>
+  <li>
+    <p>When <code class="language-plaintext highlighter-rouge">ArrayList&lt;E&gt;</code> is specified, the types of the reference parameters and return type when using the methods are type <code class="language-plaintext highlighter-rouge">E</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ArrayList&lt;E&gt;</code> is preferred over <code class="language-plaintext highlighter-rouge">ArrayList</code> because it allows the compiler to find errors that would otherwise be found at runtime.</p>
+  </li>
+</ul>
+
+<h3 id="size-of-the-arraylist">Size of the <code class="language-plaintext highlighter-rouge">ArrayList</code></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int size();</code> : Returns the number of elements in the list.</li>
+</ul>
+
+<p>Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a1</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+</code></pre></div></div>
+
+<h3 id="adding-items-to-an-arraylist">Adding Items to an <code class="language-plaintext highlighter-rouge">ArrayList</code></h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">boolean add(E obj);</code> : Appends <code class="language-plaintext highlighter-rouge">obj</code> to the end of the list and returns true.</li>
+  <li><code class="language-plaintext highlighter-rouge">void add(int index, E obj)</code> : Inserts <code class="language-plaintext highlighter-rouge">obj</code> at position <code class="language-plaintext highlighter-rouge">index</code>, as long as <code class="language-plaintext highlighter-rouge">index</code> is within the list’s length. It moves each element in the list 1 index higher and adds 1 to the list’s size.</li>
+</ul>
+
+<p>Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">a2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">a2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>
+<span class="n">a2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span>
+<span class="n">a2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">3.0</span><span class="o">);</span>
+<span class="n">a2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mf">4.0</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1.0, 4.0, 2.0, 3.0]
+</code></pre></div></div>
+
+<h3 id="lets-look-at-an-example">Let’s Look at an Example</h3>
+
+<p>Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"HeLLO"</span><span class="o">);</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Hola"</span><span class="o">);</span>
+
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">26.2</span><span class="o">);</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">));</span>
+<span class="n">h</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Now, consider this code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"HeLLO"</span><span class="o">);</span>
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Hola"</span><span class="o">);</span>
+
+<span class="n">g</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">));</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">g</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Hello, Hola, Hello, HeLLO, Hello, Hello]
+</code></pre></div></div>
+
+<p><strong>Question:</strong> Why does this code work?</p>
+
+<h3 id="deleting-items-from-an-arraylist">Deleting Items from an <code class="language-plaintext highlighter-rouge">ArrayList</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">E remove(int index)</code> : Removes the element at position <code class="language-plaintext highlighter-rouge">index</code>, and moves the elements at position <code class="language-plaintext highlighter-rouge">index + 1</code> and higher to the left. It also subtracts one from the list’s size. The return value is the element formerly at position <code class="language-plaintext highlighter-rouge">index</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// If you are confused of what list g is, look back at the previous code.</span>
+<span class="n">g</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">former</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">former</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello
+</code></pre></div></div>
+
+<h3 id="updating-items-in-an-arraylist">Updating Items in an <code class="language-plaintext highlighter-rouge">ArrayList</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">E set(int index, E obj)</code> : Replaces the element at position <code class="language-plaintext highlighter-rouge">index</code> with <code class="language-plaintext highlighter-rouge">obj</code> and returns the element formerly at position <code class="language-plaintext highlighter-rouge">index</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">helloFormer</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Bonjour"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">helloFormer</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">g</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello
+[Hola, Bonjour, Hello, Hello]
+</code></pre></div></div>
+
+<h3 id="accessing-items-in-an-arraylist">Accessing Items in an <code class="language-plaintext highlighter-rouge">ArrayList</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">E get(int index)</code> Returns the element at position <code class="language-plaintext highlighter-rouge">index</code> in the list.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">hello</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hello</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">g</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello
+[Hola, Bonjour, Hello, Hello]
+</code></pre></div></div>
+
+<h3 id="passing-an-arraylist-as-a-method-parameter">Passing an <code class="language-plaintext highlighter-rouge">ArrayList</code> as a Method Parameter</h3>
+
+<p>The only time that it is wise to use <code class="language-plaintext highlighter-rouge">ArrayList</code> instead of <code class="language-plaintext highlighter-rouge">ArrayList&lt;E&gt;</code> is when it is as a function parameter and it is only using <code class="language-plaintext highlighter-rouge">ArrayList&lt;&gt;.get(E)</code> or <code class="language-plaintext highlighter-rouge">ArrayList&lt;&gt;.size()</code>. Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">accessOnly</span><span class="o">(</span><span class="nc">ArrayList</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span> <span class="c1">// Change the index to the one you want to access</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Array is empty"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="n">accessOnly</span><span class="o">(</span><span class="n">myList</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array is empty
+</code></pre></div></div>
+
+<h3 id="returning-an-arraylist-from-a-method">Returning an <code class="language-plaintext highlighter-rouge">ArrayList</code> from a Method</h3>
+
+<p>In order for you to return an <code class="language-plaintext highlighter-rouge">ArrayList</code>, the data type must be specified, and the return type must be the same as the return value. Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">returnTheSame</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;();</span> <span class="c1">// Initialize the ArrayList</span>
+    <span class="n">arr</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">returnTheSame</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Hello]
+</code></pre></div></div>
+
+<h3 id="hacks">Hacks</h3>
+
+<ul>
+  <li>
+    <p>The learning objective is that “Students will be able to represent collections of related object reference data using <code class="language-plaintext highlighter-rouge">ArrayList</code> objects.” What does this mean to you?</p>
+  </li>
+  <li>
+    <p>Answer the following questions:</p>
+
+    <ul>
+      <li>Look back at <em>Size of the <code class="language-plaintext highlighter-rouge">ArrayList</code></em>. What does the code output and why?</li>
+      <li>Look back at <em>Adding items to an <code class="language-plaintext highlighter-rouge">ArrayList</code></em>. What does the code output and why? What type of function is <code class="language-plaintext highlighter-rouge">void</code>, and what will be the return value?</li>
+      <li>Look back at Example 1. What two lines did we remove? Why?</li>
+      <li>If an <code class="language-plaintext highlighter-rouge">ArrayList</code> is being used as a parameter, what are the only two methods I can use from it? What would happen if I tried to use any other methods?</li>
+    </ul>
+  </li>
+  <li>
+    <p>Using the Hack Helper, write code that will:</p>
+
+    <ul>
+      <li>Add 2 items to the list.</li>
+      <li>Remove an item from the list anywhere of the user’s choice.</li>
+      <li>Replace am item anywhere in the list of the user’s choice.</li>
+      <li>Get the first and last element of the list, no matter the length.</li>
+      <li>Return the items added, removed, replaced, and the list’s size, in one string.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="hack-helper">Hack Helper</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListMethodsExample</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">manipulateList</span><span class="o">(</span><span class="cm">/* You can put parameters here if you want to... */</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Your code here</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">ArrayListMethodsExample</span> <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListMethodsExample</span><span class="o">();</span>
+        
+        <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="na">manipulateList</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="73-traversing-arraylists">7.3: Traversing Arraylists</h1>
+
+<h3 id="learning-objectives-1">Learning Objectives:</h3>
+<ul>
+  <li>
+    <p>With an Arraylist you can traverse objects using a for or while loop.</p>
+  </li>
+  <li>
+    <p>Traversing objects is similar to iterating through objects.</p>
+  </li>
+</ul>
+
+<h3 id="essential-knowledge-1">Essential Knowledge:</h3>
+<ul>
+  <li>
+    <p>Iteration statements can be used to accsess all the elements in an Arraylist. This is called traversing the Arraylist.</p>
+  </li>
+  <li>
+    <p>Deleting elements during a traversal of an Arraylist requires special techniques to avoid skiping elements. This is called traversing the Arraylist.</p>
+  </li>
+  <li>
+    <p>The indicies of an Arraylist start at 0; If you try to use any value lower than 0, you will get an <em>ArrayIndexOutOfBoundsException</em> error</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">roster</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"World"</span><span class="o">);</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Java"</span><span class="o">);</span>
+        
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">roster</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">element</span> <span class="o">=</span> <span class="n">roster</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">element</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">element</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+</code></pre></div></div>
+
+<h4 id="breakdown">Breakdown:</h4>
+<ul>
+  <li>
+    <p>We are first declaring a new arraylist and adding a few elements.</p>
+  </li>
+  <li>
+    <p>Next, we set the “sum” variable as 0.</p>
+  </li>
+  <li>
+    <p>We set a for loop to traverse through the arraylist, iterating through all the indices in the arraylist and adding up the lengths of all the values.</p>
+  </li>
+  <li>
+    <p>Lastly, we print it out.</p>
+  </li>
+</ul>
+
+<h4 id="loop-conditions">Loop Conditions:</h4>
+
+<ul>
+  <li>There are a few diffrent loop conditions you can use to traverse an Arraylist:</li>
+</ul>
+
+<blockquote>
+  <p>First, there are three major parts of a for loop:
+Initialisation, in which you declare the index, can be modified to change where you want to traverse from.</p>
+</blockquote>
+
+<blockquote>
+  <p>Boolean condition, in which you declare the stop condition, can be modified in order to change the index you want to stop traversing in.</p>
+</blockquote>
+
+<blockquote>
+  <p>Update, in which you declare how many indexes to go through, can be modified to skip certain indicies and traverse in a certain direction.</p>
+</blockquote>
+
+<h4 id="practice">Practice:</h4>
+<p>Suppose we have an arraylist named grades, and we want to remove the entries that are lower than 70.
+replace the question marks with code to solve the problem:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">grades</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">grades</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">68.9</span><span class="o">);</span>
+        <span class="n">grades</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">71</span><span class="o">);</span>
+        <span class="n">grades</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">grades</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">80</span><span class="o">);</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;???;</span> <span class="n">i</span><span class="o">???){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">grades</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)&lt;</span><span class="mi">70</span><span class="o">){</span>
+                <span class="o">???</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">grades</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="using-enhanced-for-loop-with-traversing">Using Enhanced For-Loop With Traversing:</h4>
+
+<ul>
+  <li>
+    <p>Using Enhanced for loop is easier to read and write and is also more concise and avoids errors.</p>
+  </li>
+  <li>
+    <p>Indexes are not explicitly used and copies of the current element are made at each iteration.</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">roster</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"World"</span><span class="o">);</span>
+        <span class="n">roster</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Java"</span><span class="o">);</span>
+
+        <span class="c1">// Using an enhanced for loop to iterate through the ArrayList</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">element</span> <span class="o">:</span> <span class="n">roster</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">element</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="common-mistakes">Common mistakes:</h4>
+<ul>
+  <li>
+    <p>Using the Wrong Data Type: Ensure that you declare your ArrayList with the correct data type. Using the wrong data type can lead to type mismatches and errors.</p>
+  </li>
+  <li>
+    <p>Incorrect Indexing: Be cautious when using a standard for loop. Off-by-one errors or accessing elements that don’t exist can lead to runtime exceptions.</p>
+  </li>
+  <li>
+    <p>Modifying the List During Iteration: Modifying an ArrayList (adding or removing elements) while iterating over it can lead to a ConcurrentModificationException. To avoid this, use an Iterator or create a copy of the list if modifications are needed.</p>
+  </li>
+  <li>
+    <p>Not Checking for Null Elements: When using enhanced for loops or iterators, check for null elements if there’s a possibility that your list contains them to avoid NullPointerExceptions.</p>
+  </li>
+  <li>
+    <p>Inefficient Searching: If you need to find a specific element, avoid using a linear search within a loop. Use appropriate methods like contains() or indexOf() to find elements efficiently.</p>
+  </li>
+</ul>
+
+<h2 id="hacks-1">Hacks:</h2>
+<ul>
+  <li>Create a scenario which requires the use of arraylist traversal and create code to solve it.</li>
+  <li>Extra points to creative scenarios</li>
+  <li>90% credit to any working code and scenario</li>
+  <li>80% credit to incomplete code if you provide explanation of it</li>
+  <li>-10% deduction for late submition</li>
+</ul>
+
+<h1 id="74-developing-algorithms-using-arraylists">7.4: Developing Algorithms Using ArrayLists</h1>
+
+<h3 id="learning-objectives-2">Learning Objectives</h3>
+
+<p>In the context of <code class="language-plaintext highlighter-rouge">ArrayList</code> objects, this module aims to teach the following skills:</p>
+
+<p>a. Iterating through <code class="language-plaintext highlighter-rouge">ArrayLists</code> using <code class="language-plaintext highlighter-rouge">for</code> or <code class="language-plaintext highlighter-rouge">while</code> loops.</p>
+
+<p>b. Iterating through <code class="language-plaintext highlighter-rouge">ArrayLists</code> using enhanced <code class="language-plaintext highlighter-rouge">for</code> loops.</p>
+
+<p>In the realm of algorithms, within the context of specific requirements that demand the utilization of <code class="language-plaintext highlighter-rouge">ArrayList</code> traversals, students will be able to:</p>
+
+<ul>
+  <li>Recognize established algorithms.</li>
+  <li>Customize existing algorithms.</li>
+  <li>Create new algorithms.</li>
+</ul>
+
+<h3 id="essential-knowledge-2">Essential Knowledge</h3>
+
+<ul>
+  <li>
+    <p>Iteration statements provide a means to access all the elements stored within an <code class="language-plaintext highlighter-rouge">ArrayList</code>. This process is referred to as “traversing the <code class="language-plaintext highlighter-rouge">ArrayList</code>.”</p>
+  </li>
+  <li>
+    <p>The following methods related to <code class="language-plaintext highlighter-rouge">ArrayLists</code>, their functions, and appropriate use are covered in the Java Quick Reference:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">int size()</code> - Returns the count of elements within the list.</li>
+      <li><code class="language-plaintext highlighter-rouge">boolean add(E obj)</code> - Appends the object <code class="language-plaintext highlighter-rouge">obj</code> to the end of the list and returns <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">void add(int index, E obj)</code> - Inserts <code class="language-plaintext highlighter-rouge">obj</code> at the specified <code class="language-plaintext highlighter-rouge">index</code>, shifting elements at and above that position to the right (incrementing their indices by 1) and increasing the list’s size by 1.</li>
+      <li><code class="language-plaintext highlighter-rouge">E get(int index)</code> - Retrieves the element at the given <code class="language-plaintext highlighter-rouge">index</code> in the list.</li>
+      <li><code class="language-plaintext highlighter-rouge">E set(int index, E obj)</code> - Replaces the element at the specified <code class="language-plaintext highlighter-rouge">index</code> with <code class="language-plaintext highlighter-rouge">obj</code> and returns the previous element at that index.</li>
+      <li><code class="language-plaintext highlighter-rouge">E remove(int index)</code> - Deletes the element at the specified <code class="language-plaintext highlighter-rouge">index</code>, shifting all subsequent elements one index to the left, reducing the list’s size by one, and returning the removed element.</li>
+    </ul>
+  </li>
+  <li>
+    <p>There exist established algorithms for <code class="language-plaintext highlighter-rouge">ArrayLists</code> that make use of traversals to:</p>
+
+    <ul>
+      <li>Insert elements.</li>
+      <li>Remove elements.</li>
+      <li>Apply the same algorithms commonly used with 1D arrays.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="popcorn-hacks">Popcorn Hacks:</h2>
+
+<p>Before you uncomment the code and run it, guess what the code will do based on what you’ve learned.</p>
+
+<h3 id="lets-look-at-an-example-example-1">Let’s Look at an Example (Example 1)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListExample</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="nf">findMax</span><span class="o">(</span><span class="kt">double</span><span class="o">[]</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// double max = values[0];</span>
+    
+        <span class="c1">//for (int index = 1; index &lt; values.length; index++) {</span>
+        <span class="c1">//    if (values[index] &gt; max) {</span>
+        <span class="c1">//        max = values[index];</span>
+        <span class="c1">//    }</span>
+        <span class="c1">//}</span>
+    
+        <span class="c1">// return max;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">nums</span> <span class="o">=</span> <span class="o">{</span><span class="mf">1.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">,</span> <span class="mf">69.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">4.0</span><span class="o">,</span> <span class="mf">6.0</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">,</span> <span class="mf">5.0</span><span class="o">,</span> <span class="mf">10.0</span><span class="o">};</span>
+        <span class="nc">ArrayListExample</span> <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListExample</span><span class="o">();</span>
+        <span class="kt">double</span> <span class="n">max</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="na">findMax</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maximum value: "</span> <span class="o">+</span> <span class="n">max</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayListExample</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Take a closer look at the <code class="language-plaintext highlighter-rouge">findMax()</code> method. It takes in a list of doubles as parameters. It will then use a <code class="language-plaintext highlighter-rouge">for</code> loop to find the maximum value in the list. Now, using what we know, can we replace the list of doubles with an ArrayList of Doubles? We sure can! Take a look at how we can use ArrayList to do just that:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListExample</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="nf">findMax</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// double max = values.get(0);</span>
+    
+        <span class="c1">//for (int index = 1; index &lt; values.size(); index++) {</span>
+        <span class="c1">//    if (values.get(index) &gt; max) {</span>
+        <span class="c1">//        max = values.get(index);</span>
+        <span class="c1">//    }</span>
+        <span class="c1">//}</span>
+    
+        <span class="c1">//return max;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">3.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">69.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">4.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">6.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">5.0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mf">10.0</span><span class="o">);</span>
+        
+        <span class="nc">ArrayListExample</span> <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListExample</span><span class="o">();</span>
+        <span class="kt">double</span> <span class="n">max</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="na">findMax</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maximum value: "</span> <span class="o">+</span> <span class="n">max</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayListExample</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="lets-look-at-an-example-example-2">Let’s Look at an Example (Example 2)</h3>
+
+<p>Take a look at this code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListExample</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">findMin</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//int min = Integer.MAX_VALUE;</span>
+        <span class="c1">//for (int currentValue : values) {</span>
+        <span class="c1">//    if (currentValue &lt; min) {</span>
+        <span class="c1">//        min = currentValue;</span>
+        <span class="c1">//    }</span>
+        <span class="c1">//}</span>
+        <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span> <span class="o">=</span> <span class="o">{</span><span class="mi">420</span><span class="o">,</span> <span class="mi">703</span><span class="o">,</span> <span class="mi">2034</span><span class="o">,</span> <span class="mi">582</span><span class="o">,</span> <span class="mi">1047</span><span class="o">,</span> <span class="mi">4545</span><span class="o">};</span>
+        <span class="nc">ArrayListExample</span> <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListExample</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="na">findMin</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Minimum value: "</span> <span class="o">+</span> <span class="n">min</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayListExample</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Now, can we use ArrayLists to make this code better? We sure can! Take a look at the new and improved code that uses ArrayLists:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListExample</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">findMin</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//int min = Integer.MAX_VALUE;</span>
+        <span class="c1">//for (int currentValue : values) {</span>
+        <span class="c1">//    if (currentValue &lt; min) {</span>
+        <span class="c1">//        min = currentValue;</span>
+        <span class="c1">//    }</span>
+        <span class="c1">//}</span>
+        <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">420</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">703</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2034</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">582</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1047</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">4545</span><span class="o">);</span>
+        <span class="nc">ArrayListExample</span> <span class="n">example</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListExample</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="na">findMin</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Minimum value: "</span> <span class="o">+</span> <span class="n">min</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayListExample</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="hacks-2">Hacks</h3>
+
+<ul>
+  <li>Answer the questions:
+    <ul>
+      <li>Look back at the examples. What’s similar? What’s different?</li>
+      <li>Why do we use <code class="language-plaintext highlighter-rouge">ArrayList</code>? Why not just regular lists?</li>
+    </ul>
+  </li>
+  <li>Demonstrate at least two <code class="language-plaintext highlighter-rouge">ArrayList</code> methods that aren’t <code class="language-plaintext highlighter-rouge">ArrayList&lt;&gt;.size()</code> and <code class="language-plaintext highlighter-rouge">ArrayList&lt;&gt;.get()</code>.</li>
+  <li>Write the method <code class="language-plaintext highlighter-rouge">findSum()</code> using the Hack Helper and incorporating <code class="language-plaintext highlighter-rouge">ArrayList</code>.</li>
+</ul>
+
+<h3 id="hack-helper-1">Hack Helper</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayListHacks</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">findSum</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Your code here</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="n">nums</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+
+        <span class="nc">ArrayListHacks</span> <span class="n">hacks</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayListHacks</span><span class="o">();</span>
+        <span class="n">hacks</span><span class="o">.</span><span class="na">findSum</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ArrayListHacks</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h1 id="75-searching">7.5 Searching</h1>
+
+<h3 id="learning-objectives-3">Learning Objectives</h3>
+<ul>
+  <li>Apply sequential/linear search algorithms to search for specific information in array or <code class="language-plaintext highlighter-rouge">arraylist</code> objects</li>
+</ul>
+
+<h3 id="essential-knowledge-3">Essential Knowledge:</h3>
+<ul>
+  <li>Sequential/linear search alogorithms check each element in order untill the desired value is found or all elementsin the array or <code class="language-plaintext highlighter-rouge">arraylist</code> have been checked</li>
+</ul>
+
+<h3 id="search-process">Search Process</h3>
+<ul>
+  <li>
+    <p>Linear searching fits a standard for loop perfectly! We need to specify each element, one at a time, and do not need to track the index after execution</p>
+  </li>
+  <li>
+    <p>Inside the for loop, we retrieve the value from the structure at the specified index and compare it to the searched value</p>
+  </li>
+  <li>
+    <p>If it matches we return the index, otherwise we keep looking!</p>
+  </li>
+</ul>
+
+<h3 id="searching-linear-structures">Searching Linear Structures</h3>
+
+<h4 id="finding-information-with-a-computer-is-something-we-need-to-know-how-to-do-linear-search-algorithms-are-best-used-when-we-do-not-have-any-idea-about-the-order-of-the-data-and-so-we-need-to-look-at-each-element-to-determine-if-what-we-are-looking-for-is-in-fact-inside-the-array-or-arraylist">Finding information with a computer is something we need to know how to do. Linear search algorithms are BEST used when we do not have any idea about the order of the data and so we need to look at each element to determine if what we are looking for is in fact inside the array or <code class="language-plaintext highlighter-rouge">ArrayList</code>.</h4>
+
+<h4 id="when-searching-we-do-need-to-remember-that-different-data-types-require-comparisons">When searching, we do need to remember that different data types require comparisons!</h4>
+<ul>
+  <li>When looking at <code class="language-plaintext highlighter-rouge">int</code> values, the == operator is the tool to use!</li>
+  <li>When searching for a <code class="language-plaintext highlighter-rouge">double</code> value, we need to make sure the value is close enough by doing some math!</li>
+  <li><code class="language-plaintext highlighter-rouge">Object</code> instances should always use the <code class="language-plaintext highlighter-rouge">.equals(otheThing)</code> method to check for a match!</li>
+</ul>
+
+<h2 id="searching-an-arraylist-of-double">Searching an <code class="language-plaintext highlighter-rouge">ArrayList</code> of Double</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">where</span><span class="o">(</span><span class="kt">double</span> <span class="n">magicNumber</span><span class="o">,</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">realNumbers</span><span class="o">,</span> <span class="kt">double</span> <span class="n">delta</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">realNumbers</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">index</span><span class="o">++)</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">magicNumber</span> <span class="o">-</span> <span class="n">realNumbers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">index</span><span class="o">))</span> <span class="o">&lt;</span> <span class="n">delta</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="k">return</span> <span class="n">index</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="explanation">Explanation</h3>
+<blockquote>
+  <p>The where function searches through a list of numbers to find and return the position of the first number that is very close to a specific target number, known as magicNumber. If no number in the list is close enough to the target number, the function returns -1, indicating that no match was found.</p>
+</blockquote>
+
+<h2 id="searching-an-arraylist-of-book-for-a-string">Searching an <code class="language-plaintext highlighter-rouge">ArrayList</code> of book for a <code class="language-plaintext highlighter-rouge">String</code></h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">findTheWord</span><span class="o">(</span><span class="nc">String</span> <span class="n">searchedPhrase</span><span class="o">,</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Book</span><span class="o">&gt;</span> <span class="n">myBooks</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">myBooks</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">index</span><span class="o">++)</span>
+    <span class="o">{</span>
+        <span class="nc">Book</span> <span class="n">currentBook</span> <span class="o">=</span> <span class="n">myBooks</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">currentPhrase</span> <span class="o">=</span> <span class="n">currentBook</span><span class="o">.</span><span class="na">getDescription</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">currentPhrase</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">searchedPhrase</span><span class="o">))</span>
+        <span class="o">{</span>
+            <span class="k">return</span> <span class="n">index</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="explanation-1">Explanation</h3>
+<blockquote>
+  <p>This little code snippet is like a treasure hunt through a collection of books; it’s on a mission to find the one book whose description matches exactly with a special phrase you’re looking for. If it finds the perfect match, it’ll excitedly tell you where it is in the collection, but if not, it’ll sadly let you know with a -1 that the search was a bust.</p>
+</blockquote>
+
+<h2 id="questions">Questions</h2>
+
+<h4 id="should-we-use--when-looking-for-an-object">Should we use == when looking for an Object?</h4>
+<blockquote>
+  <p>No, that only will return true if the variable and the element stored at that index point to the same memory, are aliases of each other</p>
+</blockquote>
+
+<h4 id="why-did-we-subtract-the-double-values">Why did we subtract the double values?</h4>
+<blockquote>
+  <p>To make sure that the lack of preciosin that is inherit in the data type is handled within our code</p>
+</blockquote>
+
+<h2 id="why-does-order-sometimes-matter">Why does order sometimes matter?</h2>
+
+<h4 id="when-searching-for-a-value-to-remove-from-a-list-if-we-search-forward-we-have-to-make-sure-to-adjust-the-loop-control-variable-or-we-might-skip-what-we-are-looking-for-when-removing">When searching for a value to remove from a list, if we search forward we have to make sure to adjust the loop control variable, or we might skip what we are looking for when removing!</h4>
+
+<h1 id="76-sorting">7.6 Sorting</h1>
+
+<h3 id="learning-objectives-4">Learning Objectives</h3>
+<ul>
+  <li>Apply selection sort and insertion sort algorithms to sort the elements of array or <code class="language-plaintext highlighter-rouge">ArrayList</code> objects.</li>
+</ul>
+
+<h3 id="essential-knowledge-4">Essential Knowledge:</h3>
+<ul>
+  <li>Selection sort and insertion sort are iterative sorting algorithms that can be used to sort elements in an array or <code class="language-plaintext highlighter-rouge">ArrayList</code>.</li>
+</ul>
+
+<h2 id="selection-sort">Selection Sort</h2>
+<blockquote>
+  <p>This is one of the easiest sorts to demonstrate. The selection sort identifies either the maximum or minimum of the compared values and iterates over the structure checking if the item stored at the index matches that condition, if so, it will swap the value stored at that index and continue. This implementation uses a helper method to perform the swap operation since variables can hold only one value at a time!</p>
+</blockquote>
+
+<p>Example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// with normal arrays</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">outerLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">outerLoop</span> <span class="o">&lt;</span> <span class="n">myDucks</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">outerLoop</span> <span class="o">++)</span>
+<span class="o">{</span>
+    <span class="kt">int</span> <span class="n">minIndex</span> <span class="o">=</span> <span class="n">outerLoop</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">inner</span> <span class="o">=</span> <span class="n">outerLoop</span> <span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">inner</span> <span class="o">&lt;</span> <span class="n">myDucks</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">inner</span><span class="o">++)</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">myDucks</span><span class="o">[</span><span class="n">inner</span><span class="o">].</span><span class="na">compareT</span><span class="o">(</span><span class="n">myDucks</span><span class="o">[</span><span class="n">minIndex</span><span class="o">])</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">minIndex</span> <span class="o">=</span> <span class="n">inner</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">minIndex</span> <span class="o">!=</span> <span class="n">outerLoop</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">swapItems</span><span class="o">(</span><span class="n">minIndex</span><span class="o">,</span> <span class="n">outerloop</span><span class="o">,</span> <span class="n">myDucks</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// with array lists</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">outerLoop</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">outerLoop</span> <span class="o">&lt;</span> <span class="n">myDucks</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">outerLoop</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">minIndex</span> <span class="o">=</span> <span class="n">outerLoop</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">inner</span> <span class="o">=</span> <span class="n">outerLoop</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">inner</span> <span class="o">&lt;</span> <span class="n">myDucks</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">inner</span><span class="o">++)</span> 
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">myDucks</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">inner</span><span class="o">).</span><span class="na">compareT</span><span class="o">(</span><span class="n">myDucks</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">minIndex</span><span class="o">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> 
+        <span class="o">{</span>
+            <span class="n">minIndex</span> <span class="o">=</span> <span class="n">inner</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">minIndex</span> <span class="o">!=</span> <span class="n">outerLoop</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">swapItems</span><span class="o">(</span><span class="n">minIndex</span><span class="o">,</span> <span class="n">outerLoop</span><span class="o">,</span> <span class="n">myDucks</span><span class="o">);</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="cm">/*
+This code performs a selection sort on the myDucks ArrayList, ordering its elements based on the compareT method. 
+During each iteration of the outer loop, it finds the index of the minimum element in the unsorted portion of the list and swaps it with the first element of the unsorted portion.
+ */</span> 
+</code></pre></div></div>
+
+<h2 id="insertion-sort-algorithm">Insertion Sort Algorithm</h2>
+<blockquote>
+  <p>The insertion sort is characterized by building a sorted structure as it proceeds. It inserts each value it finds at the appropriate location in the data structure. This is often accomplished by using a while loop as the inner loop.</p>
+</blockquote>
+
+<p>Example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">outer</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">outer</span> <span class="o">&lt;</span> <span class="n">randomList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">outer</span><span class="o">++)</span>
+<span class="o">{</span>
+    <span class="nc">DebugDuck</span> <span class="n">tested</span> <span class="o">=</span> <span class="n">randomList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">outer</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">inner</span> <span class="o">=</span> <span class="n">outer</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span> <span class="n">innter</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">tested</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">randomList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">inner</span><span class="o">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">ramdomList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">inner</span> <span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">randomList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">inner</span><span class="o">));</span>
+        <span class="n">inner</span><span class="o">--;</span>
+    <span class="o">}</span>
+    <span class="n">randomList</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">inner</span> <span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">tested</span><span class="o">)</span>
+<span class="o">}</span>
+<span class="c1">// This code arranges a list of DebugDuck objects in order using the insertion sort method, </span>
+<span class="c1">// by moving through the list and putting each item in its proper place one by one.</span>
+</code></pre></div></div>
+
+<h1 id="77-ethical-issues-around-data-collection">7.7: Ethical Issues around Data Collection</h1>
+
+<h3 id="learning-objectives-5">Learning Objectives:</h3>
+<ul>
+  <li>Explaining the risks of privacy from collecting and storing personal data on computer systems.</li>
+</ul>
+
+<h3 id="essential-knowledge-5">Essential Knowledge:</h3>
+<ul>
+  <li>When using the computer, personal privacy is at risk. Programmers should attempt to safeguard personal privacy.</li>
+</ul>
+
+<h4 id="privacy-protection">Privacy Protection:</h4>
+<ul>
+  <li>A simple way to protect privacy is to delete personal user info after done using it.</li>
+  <li>Another way is to minimize the amount of data used by the program in order to protect privacy.</li>
+  <li>Anonymizing personal data via the object method <em>hashCode()</em> is another way.</li>
+</ul>
+
+<h2 id="hacks-3">Hacks:</h2>
+<ul>
+  <li>Think of other ways to safeguard user privacy (any other method not listed is fine)</li>
+  <li>Extra points to creative solutions</li>
+  <li>90% credit to any solution</li>
+  <li>80% credit to incomplete solution (how did you do that?)</li>
+  <li>-10% deduction for late submition</li>
+</ul>
+
+<h1 id="grading">Grading:</h1>
+
+<ul>
+  <li>7.2 Hacks (0.19)</li>
+  <li>7.3 Hacks (0.19)</li>
+  <li>7.4 Hacks (0.19)</li>
+  <li>7.7 Hacks (0.19)</li>
+  <li>Popcorn Hacks (0.19)</li>
+  <li>Anything else creative or above-and-beyond showing your understanding of ArrayLists (0.05)</li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/24/java_arraylist_P3_IPYNB_2_.html" hidden></a>
+</article>

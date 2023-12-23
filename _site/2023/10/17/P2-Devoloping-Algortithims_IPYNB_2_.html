@@ -1,0 +1,345 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 Developing Algorithms</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-17T00:00:00-07:00" itemprop="datePublished">
+        Oct 17, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sai, Tim, Aditya, Aditya, Tanav</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#what-are-algorithims">What are Algorithims?</a><ul><li><a href="#didnt-get-it">Didn’t get it?</a></li><li><a href="#purpose-of-data-collection">Purpose of Data Collection</a></li><li><a href="#techniques">Techniques</a></li><li><a href="#bias-and-error">Bias and Error</a></li><li><a href="#privacy-and-ethics">Privacy and Ethics</a></li></ul></li></ul><h2 id="what-are-algorithims">What are Algorithims?</h2>
+
+<p>Whats the difference between these two math problems:</p>
+
+<p>(3+1)3 + 89 + 4(2+8)</p>
+
+<p>3(1+3) + 8(1+4) + 89</p>
+
+<p>Nothing! They are just two different ways of doing them!</p>
+
+<p>Whats the difference between these two math problems:</p>
+
+<p>3((9-6)+7) + 7 - (9+8)</p>
+
+<p>3(9-(6+7)) + 7 - 9 + 8</p>
+
+<p>A lot! This changes the output by quite a bit!</p>
+
+<p>Here are examples of this basic concept in terms of programming:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"What is the temperature outside °F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">85</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"It is too hot outside!"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Sure, I will play outside!"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"It is too cold outside!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"What is the temperature outside °F?"</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">==</span> <span class="mi">85</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"It is too hot outside!"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">==</span> <span class="mi">65</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Sure, I will play outside!"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"It is too cold outside!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="didnt-get-it">Didn’t get it?</h3>
+<p>Hint:</p>
+<ul>
+  <li>What if I input 60 degrees °F?</li>
+  <li>What if I input 90 degrees °F?</li>
+</ul>
+
+<p>Hack #1: What is the difference between these two pieces of code? (in terms of their output)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_numbers</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">print_numbers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>So when developing algorithms, different pieces of code could do the same thing, and two similar pieces of code could do very different things.</p>
+
+<h1 id="data-collections">Data Collections</h1>
+
+<h3 id="purpose-of-data-collection">Purpose of Data Collection</h3>
+<p>To gather accurate and relevant information for specific purposes, such as solving problems, making informed decisions, or predicting future trends.</p>
+
+<h3 id="techniques">Techniques</h3>
+<p>Surveys and Questionnaires: Structured methods for gathering data from a large number of respondents. They can be administered in-person, online, or through other mediums.</p>
+
+<p>Observations: Watching and recording actions or behaviors in a systematic manner.</p>
+
+<p>Experiments: Conducting controlled tests or trials to determine cause and effect relationships.</p>
+
+<p>Simulations: Using models to imitate real-world situations.</p>
+
+<p>Interviews: One-on-one or group discussions to gain in-depth insights.</p>
+
+<p>Sensors and Automated Collection: Using electronic devices to automatically collect data, like temperature sensors or traffic cameras.</p>
+
+<p>Sampling: Instead of studying an entire population, a subset (or sample) can be studied to make inferences about the entire group.</p>
+
+<p>Techniques include random sampling, stratified sampling, and convenience sampling.</p>
+
+<h3 id="bias-and-error">Bias and Error</h3>
+<p>Data collection methods can introduce bias or error. It’s crucial to be aware of potential sources of bias, like leading questions in surveys or non-random sampling methods.</p>
+
+<h3 id="privacy-and-ethics">Privacy and Ethics</h3>
+<p>Always consider the ethical implications of data collection. Obtain consent when necessary, anonymize data to protect individuals’ privacy, and be transparent about how data will be used.</p>
+
+<p>Hack #2:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_max</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="n">max_value</span><span class="p">:</span>
+            <span class="n">max_value</span> <span class="o">=</span> <span class="n">number</span>
+    <span class="k">return</span> <span class="n">max_value</span>
+<span class="c1">#List of numbers
+</span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+
+<span class="n">max_value</span> <span class="o">=</span> <span class="n">find_max</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>List of numbers
+numbers = [23, 45, 67, 89, 12, 34, 56, 78]</p>
+
+<p>TODO: Modify the given algorithm to find the minimum value in the list of numbers.
+Hint: You only need to change two lines of code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span></code></pre></div></div>
+
+<p>Solution:</p>
+
+<p>Modified Algorithm to find the minimum value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_min</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">min_value</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="n">min_value</span> <span class="o">=</span> <span class="n">number</span>
+    <span class="k">return</span> <span class="n">min_value</span>
+
+<span class="c1">#alling the function
+</span><span class="n">min_value</span> <span class="o">=</span> <span class="n">find_min</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">min_value</span><span class="p">)</span>  <span class="c1"># Output: 12 
+</span></code></pre></div></div>
+
+<h1 id="creatingmodifying-algorithms">Creating/Modifying Algorithms</h1>
+
+<p>Important steps for creating an algorithm:</p>
+<ul>
+  <li>Define functions</li>
+  <li>Initialize ways to store data (array, lists, dictionaries, etc…)</li>
+  <li>Depending on the context, use iteration to specify conditions for variable</li>
+  <li>Output generated values from the algorithm</li>
+</ul>
+
+<p>Helpful tips for modifying algorithms:</p>
+<ul>
+  <li>Understand the algorithm so you’re able to easily apply changes to it.</li>
+  <li>Break the program down into chunks.</li>
+  <li>Focus on each small part of the algorithm to get it to work.</li>
+  <li>Make sure to test individual components, and then the whole code together (This makes identifying errors, and correcting mistakes easier).</li>
+</ul>
+
+<p>Example (The sum of all even numbers between 1 and a given positive integer):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum_of_evens</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="c1">#Note the 2 and the very end initializes a step size of 2 for the function
+</span>        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter a positive integer: "</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sum_of_evens</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The sum of even numbers from 1 to </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s"> is </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Hack #3:</p>
+
+<p>TODO: Adapt the above algorithm to output for the sum of odd numbers between 1 and a given integer.</p>
+
+<p>Try to come up with a unique algorithm (way) to achieve the above task.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span></code></pre></div></div>
+
+<p>Solution:</p>
+
+<p>Think about how you would define an odd number, and output the sum of each element.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sum_of_odd_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Check if the number is odd
+</span>            <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+
+    <span class="k">return</span> <span class="n">total</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter a value for n: "</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sum_of_odd_numbers</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"The sum of odd numbers from 1 to </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s"> is: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="random-number-generation">Random Number Generation</h1>
+
+<p>RANDOM (a, b) generates a number from a to b inclusive.
+Each result from the randomization is equally likely to occur.
+Using random number generation in a program means each execution may produce a different result.
+We can use the results from randomization to program simulations.</p>
+
+<p>What are the possibities for Answ3?
+Answ1 (0,2) #This means Answ1 can be anywhere from 0 to 2
+Answ2 (1,5) #This means Answ1 can be anywhere from 1 to 5
+Answ3 = Answ1 + Answ2</p>
+
+<p>﻿The lowest number answ1 will generate is 0 and the lowest number answ2 will generate is 1.
+Therefore, the lowest number answ3 could be is 1.
+The highest number answ1 will generate is 2 and the highest number answ2 will generate is 5.
+Therefore, the highest number answ3 could be is 7.</p>
+
+<p>Generating Random Values:</p>
+<ul>
+  <li>In AP CSP, students learn to generate random values using certain code constructs, like the random module in Python which allows for random integer generation between specified values using random.randint(a, b)​1​. This random number generation introduces an element of unpredictability, vital for many programming applications.
+Application in Simulations:</li>
+  <li>Random values are crucial in simulations, mimicking real-world unpredictability. They help in creating diverse scenarios in simulations like weather patterns or game dynamics, thus providing a more realistic or varied simulation experience.
+Evaluating Code Segments:</li>
+  <li>Utilizing random values can aid in evaluating code segments by testing how code reacts to varied input, which is particularly useful in identifying potential bugs or inefficiencies.</li>
+</ul>
+
+<p>If you roll a die 3 times, and take the sum of all your rolls, what is the highest possible amount and the lowest possible amount you can get?</p>
+
+<p>Roll 1 (1,6)
+Roll 2 (1,6)
+Roll 3 (1,6)</p>
+
+<p>Lowest: 3
+Most: 18</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">generate_random</span><span class="p">():</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Random value between 1 and 100: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+    <span class="n">dice_roll</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Dice Roll: </span><span class="si">{</span><span class="n">dice_roll</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="c1"># Call the function
+</span><span class="n">generate_random</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Hack #4</p>
+
+<p>Lets continue the fun…
+Make an algorithm that assigns 5 days with a random temperatures between 60-90 degrees Fahrenheit!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span><span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">days</span><span class="o">=</span><span class="p">[</span><span class="s">"M"</span><span class="p">,</span><span class="s">"T"</span><span class="p">,</span><span class="s">"W"</span><span class="p">,</span><span class="s">"T"</span><span class="p">,</span><span class="s">"F"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">days</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">temp</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Solution:</p>
+
+<p>How can you iterate between a range of 5 days, along with generate a random temperature between 60-90?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">simulate_weather</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Day </span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s">: Temperature: </span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s">°F'</span><span class="p">)</span>
+
+<span class="c1"># Call the function
+</span><span class="n">simulate_weather</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="homework">Homework:</h1>
+
+<ol>
+  <li>Create a program that follows the Collatz Conjecture.</li>
+</ol>
+
+<p>If a number is even, divide by 2.</p>
+
+<p>If a number is odd, multiply by 3 and add 1.</p>
+
+<p>If implemented correctly this algorithm will eventually go to 1. Try defining the initial number with any number beside 1 to see an interesting ouput. Output the result as a list. You may set a starting value for the list, so that the program can generate the list of numbers created when following the process.</p>
+
+<p>Ideas for above 90%:
+Try implementing user input into this program. Ask the user to enter a number they would like to start with.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span></code></pre></div></div>
+
+<ol>
+  <li>Create an algorithm that generates terms to the Fibonacci Sequence which outputs a specific number of terms defined in your code. The sequence starts off like 1, 1, 2, 3, 5, … each following term being the sum of the previous two.</li>
+</ol>
+
+<p>Ideas for above 90%:</p>
+
+<ul>
+  <li>Add user input</li>
+  <li>Display error message when an invalid input is specified</li>
+  <li>Find a way for the program to only specify a specific term in the sequence</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span></code></pre></div></div>
+
+<ol>
+  <li>Make a statistics calculator that calculates the mean, median, and mode of a specific series. Do this using iteration and without the use of imported modules (like the statistics one) that allows you to call pre defined functions like mean, median, and mode. Each of these calculations follows an algorithm.</li>
+</ol>
+
+<p>Ideas for above 90%:</p>
+
+<ul>
+  <li>Randomly generate a list of numbers (you can define it as a list of 5) to apply the calculator to.</li>
+  <li>If you can, generate a random number of elements in the data set as well (keep it between 5-10 elements).</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Place your code here...
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/17/P2-Devoloping-Algortithims_IPYNB_2_.html" hidden></a>
+</article>

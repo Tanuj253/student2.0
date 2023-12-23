@@ -1,0 +1,398 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Basics of Javascript</h1><p class="page-description">A Tech Talk on how to use javascript</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-29T00:00:00-07:00" itemprop="datePublished">
+        Aug 29, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Rohan Juneja</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/basics/home">Home</a></td>
+        <td><a href="/student2.0/basics/html">HTML</a></td>
+        <td><a href="/student2.0/basics/datatypes">Data Types</a></td>
+        <td><a href="/student2.0/basics/dom">DOM</a></td>
+        <td><a href="/student2.0/basics/javascript">JavaScript</a></td>
+        <td><a href="/student2.0/basics/js-debug">JS Debugging</a></td>
+    </tr>
+</table>
+
+<h1 id="how-to-use-javascript-in-any-of-your-pages">How to use javascript in any of your pages</h1>
+<ul>
+  <li>Simply add a <code class="language-plaintext highlighter-rouge">&lt;script&gt;&lt;/script&gt;</code> in your markdown or jupyter cells</li>
+  <li>(Note: the %%html magic command allows us to add HTML and JavaScript into a jupyter notebook, the outputted “site” will be shown below the code)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Page</span> <span class="n">Heading</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Paragraph</span> <span class="n">description</span> <span class="n">of</span> <span class="n">page</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Output to console, showing that JavaScript code is running"</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<h3>Page Heading</h3>
+<p>Paragraph description of page</p>
+<script>
+    console.log("Output to console, showing that JavaScript code is running")
+</script>
+
+<h1 id="writing-text-to-consolelog">Writing text to console.log</h1>
+<ul>
+  <li>The text written with <code class="language-plaintext highlighter-rouge">console.log</code> appears in the Console</li>
+  <li><code class="language-plaintext highlighter-rouge">console.log</code> allows you to write text – but you don’t see any text in above example until you view Console.</li>
+  <li>Activate Console window
+    <ul>
+      <li>VSCode Help-Toggle Developer Tools allows you to see console.log output</li>
+      <li>Chrome and other browsers require right click -&gt; inspect also allows access to console.log output
+        <ul>
+          <li>Safari users will need to enable developer settings before inspecting an element. To do this go to Safari settings -&gt; advanced and check the box next to “Show develop menu in menu bar”</li>
+        </ul>
+      </li>
+      <li>By default you usually need to click Console next to Elements, to see console.log output</li>
+      <li>Also, you may want to press clear console (cirlcl with slash) to clean up screen before analysis.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="try-code-with-console">Try code with Console</h2>
+<ul>
+  <li>Developers typically keep console open</li>
+  <li>In console window, you can run javascript code from prompt</li>
+</ul>
+
+<h1 id="storing-data">Storing data</h1>
+<ul>
+  <li>One of the most important things in programming is learning how data is stored, this is often called Data Abstraction (the ability to represent data in a programming language).</li>
+</ul>
+
+<h2 id="types-of-data">Types of data</h2>
+<ul>
+  <li>Javascript has a few basic types of data, which align with what the types of data you might know yourself</li>
+  <li>In javascript, these types are formalized as:
+    <ul>
+      <li>text = “string”, number = “number”, true/false = “boolean”</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="name-the-data">Name the Data</h2>
+<ul>
+  <li>When you think of data, it has a name and a value.</li>
+  <li>Using the “var” JavaScript syntax you create a <code class="language-plaintext highlighter-rouge">variable</code> with a name and a value.</li>
+  <li>In javascript this can represented with the following: <code class="language-plaintext highlighter-rouge">var someName = value;</code>
+    <ul>
+      <li>The name cannot have spaces</li>
+      <li>Text values must be wrapped in single or double quotes to identify it as text (see exmaples below)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="accessing-data">Accessing data</h2>
+<ul>
+  <li>To access data (the value of a variable), simply just use the name of the variable</li>
+  <li>For example, we can use the values from previously in a <code class="language-plaintext highlighter-rouge">console.log</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">create</span> <span class="n">variables</span>
+<span class="n">var</span> <span class="n">firstName</span> <span class="o">=</span> <span class="s">"Rohan"</span>
+<span class="n">var</span> <span class="n">lastName</span> <span class="o">=</span> <span class="s">'Juneja'</span>
+<span class="n">var</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">isSchoolDay</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span> 
+
+<span class="o">//</span> <span class="n">inspect</span> <span class="n">values</span> <span class="ow">and</span> <span class="nb">type</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">firstName</span><span class="p">,</span> <span class="n">typeof</span> <span class="n">firstName</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">lastName</span><span class="p">,</span> <span class="n">typeof</span> <span class="n">lastName</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">typeof</span> <span class="n">age</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">isSchoolDay</span><span class="p">,</span> <span class="n">typeof</span> <span class="n">isSchoolDay</span><span class="p">)</span>
+
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<script>
+// create variables
+var firstName = "Rohan"
+var lastName = 'Juneja'
+var age = 17;
+var isSchoolDay = true; 
+
+// inspect values and type
+console.log(firstName, typeof firstName)
+console.log(lastName, typeof lastName)
+console.log(age, typeof age)
+console.log(isSchoolDay, typeof isSchoolDay)
+
+</script>
+
+<h1 id="string-operators">String Operators</h1>
+<ul>
+  <li>”+” concatenates string, same as combining text</li>
+  <li>”==” checks if strings are the same, if so it outputs <code class="language-plaintext highlighter-rouge">true</code>, otherwise <code class="language-plaintext highlighter-rouge">false</code>
+    <ul>
+      <li>”!==” is “not equal to” (opposite of equal to)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="assignment-operator">Assignment Operator</h2>
+<ul>
+  <li>”=” can be used to change the value of a variable
+    <ul>
+      <li>ie. if you already created “name1” you can reassign name1 = “New Name”</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">string</span> <span class="n">assignment</span>
+<span class="n">var</span> <span class="n">name1</span> <span class="o">=</span> <span class="s">"Doe"</span>
+<span class="n">var</span> <span class="n">name2</span> <span class="o">=</span> <span class="s">"Doe"</span>
+
+<span class="o">//</span> <span class="n">compare</span> <span class="n">names</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"String Comparison"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name1"</span><span class="p">,</span> <span class="n">name1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name2"</span><span class="p">,</span> <span class="n">name2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name1 == name2"</span><span class="p">,</span> <span class="n">name1</span> <span class="o">==</span> <span class="n">name2</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">changing</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">name1</span> <span class="ow">and</span> <span class="n">repeat</span> <span class="n">compare</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"String Comparison after change"</span><span class="p">)</span>
+<span class="n">name1</span> <span class="o">=</span> <span class="s">"John"</span>  <span class="o">//</span> <span class="n">reassign</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name1"</span><span class="p">,</span> <span class="n">name1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name2"</span><span class="p">,</span> <span class="n">name2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"name1 == name2"</span><span class="p">,</span> <span class="n">name1</span> <span class="o">==</span> <span class="n">name2</span><span class="p">)</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"String Concatenation"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">name1</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">name2</span><span class="p">)</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<script>
+// string assignment
+var name1 = "Doe"
+var name2 = "Doe"
+
+// compare names
+console.log("String Comparison")
+console.log("name1", name1)
+console.log("name2", name2)
+console.log("name1 == name2", name1 == name2)
+
+// changing the value of name1 and repeat compare
+console.log("String Comparison after change")
+name1 = "John"
+console.log("name1", name1)
+console.log("name2", name2)
+console.log("name1 == name2", name1 == name2)
+
+console.log("String Concatenation")
+console.log(name1 + " " + name2)
+</script>
+
+<h1 id="number-operators">Number Operators</h1>
+<ul>
+  <li>”+” adds numbers together</li>
+  <li>”-“ subtracts numbers, “/” divides numbers, “*” multiples numbers</li>
+  <li>”===” checks if two values are the same, if so it outputs <code class="language-plaintext highlighter-rouge">true</code>, otherwise <code class="language-plaintext highlighter-rouge">false</code>
+    <ul>
+      <li>”!==” is “not equal to” (opposite of equal to)</li>
+      <li>normal oeprators like “&lt;”, “&gt;”, “&gt;=” (greater than or equal to), “&lt;=” with numbers</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="assignment-operator-1">Assignment Operator</h2>
+<ul>
+  <li>”=” can be used to create or change the value of a variable</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">var</span> <span class="n">age1</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">var</span> <span class="n">age2</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">var</span> <span class="n">age3</span> <span class="o">=</span> <span class="s">'17'</span>
+
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Number Comparisons"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1:"</span><span class="p">,</span> <span class="n">age1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age2:"</span><span class="p">,</span> <span class="n">age2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age3:"</span><span class="p">,</span> <span class="n">age3</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 == age2"</span><span class="p">,</span> <span class="n">age1</span> <span class="o">==</span> <span class="n">age2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 == age3"</span><span class="p">,</span> <span class="n">age1</span> <span class="o">==</span> <span class="n">age3</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 === age3"</span><span class="p">,</span> <span class="n">age1</span> <span class="o">===</span> <span class="n">age3</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 &gt; age2"</span><span class="p">,</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 &lt; age2"</span><span class="p">,</span> <span class="n">age1</span> <span class="o">&lt;</span> <span class="n">age2</span><span class="p">)</span>
+
+<span class="n">var</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">var</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Arithmetic Operations"</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1:"</span><span class="p">,</span> <span class="n">num1</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num2:"</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1 + num2"</span><span class="p">,</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1 - num2"</span><span class="p">,</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1 * num2"</span><span class="p">,</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1 / num2"</span><span class="p">,</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span><span class="p">)</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"num1 % num2"</span><span class="p">,</span> <span class="n">num1</span> <span class="o">%</span> <span class="n">num2</span><span class="p">)</span>
+
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<script>
+var age1 = 17
+var age2 = 16
+var age3 = '17'
+
+console.log("Number Comparisons")
+console.log("age1:", age1)
+console.log("age2:", age2)
+console.log("age3:", age3)
+console.log("age1 == age2", age1 == age2)
+console.log("age1 == age3", age1 == age3)
+console.log("age1 === age3", age1 === age3)
+console.log("age1 > age2", age1 > age2)
+console.log("age1 < age2", age1 < age2)
+
+var num1 = 9
+var num2 = 5
+console.log("\n")
+console.log("Arithmetic Operations")
+console.log("num1:", num1)
+console.log("num2:", num2)
+console.log("num1 + num2", num1 + num2)
+console.log("num1 - num2", num1 - num2)
+console.log("num1 * num2", num1 * num2)
+console.log("num1 / num2", num1 / num2)
+console.log("num1 % num2", num1 % num2)
+
+</script>
+
+<h1 id="conditional-statements">Conditional Statements</h1>
+<ul>
+  <li>Think about any actions that you take: you usually take them based on information you take in
+    <ul>
+      <li>If tommorow is a school day, set an alarm for tomorrow at 8am</li>
+    </ul>
+  </li>
+  <li>We can also add additional clauses at the end
+    <ul>
+      <li>If tommorow is a school day, set an alarm for tomorrow at 8am, otherwise (else) set an alarm for tommorow at 10am</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">the</span> <span class="n">above</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">code</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Alarm Example"</span><span class="p">)</span>
+
+<span class="n">var</span> <span class="n">tommorowIsSchoolDay</span> <span class="o">=</span> <span class="n">false</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">tommorowIsSchoolDay</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">this</span> <span class="n">code</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">tommorw</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">school</span> <span class="n">day</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Setting alarm for 8am"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">this</span> <span class="n">code</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">tommorow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">school</span> <span class="n">day</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"Setting alarm for 10am"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<script>
+// the above example in code
+console.log("Alarm Example")
+
+var tommorowIsSchoolDay = false
+
+if (tommorowIsSchoolDay) {
+    // this code runs if tommorw is a school day
+    console.log("Setting alarm for 8am")
+} else {
+    // this code runs if tommorow is not a school day
+    console.log("Setting alarm for 10am")
+}
+</script>
+
+<h1 id="conditional-statements--operators">Conditional Statements + Operators</h1>
+<ul>
+  <li>Since many operators return a true/false value (equals, gerater than, etc.) we can use them inside “if” statements</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"If statements + Operators"</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">age1</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">var</span> <span class="n">age2</span> <span class="o">=</span> <span class="mi">37</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">age1</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">age2</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 is more than age2"</span><span class="p">)</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">age1</span> <span class="o">==</span> <span class="n">age2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">age1</span> <span class="ow">and</span> <span class="n">age2</span> <span class="n">are</span> <span class="n">the</span> <span class="n">same</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 is the same as age2"</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="p">(</span><span class="n">age1</span> <span class="o">&lt;</span> <span class="n">age2</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span>  <span class="p">{</span>
+    <span class="o">//</span> <span class="n">runs</span> <span class="k">if</span> <span class="n">age2</span> <span class="ow">is</span> <span class="n">more</span> <span class="n">than</span> <span class="n">age1</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">"age1 is less than age2"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<script>
+console.log("If statements + Operators")
+var age1 = 17
+var age2 = 37
+
+if (age1 > age2) {
+    // runs if age1 is more than age2
+    console.log("age1 is more than age2")
+
+} else if (age1 == age2) {
+    // runs if age1 and age2 are the same
+    console.log("age1 is the same as age2")
+
+// (age1 < age2)
+} else  {
+    // runs if age2 is more than age1
+    console.log("age1 is less than age2")
+}
+
+</script>
+
+<h1 id="hacks">Hacks</h1>
+<ul>
+  <li>Write a JavaScript program that compares two variables, a and b. Log “a is greater” if a is greater than b, “b is greater” if b is greater than a, and “both are equal” if a and b are equal. Make sure to use if statements and console.log</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">js</span>
+<span class="o">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">javascript</span> <span class="n">code</span> <span class="n">here</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;IPython.core.display.Javascript object&gt;
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/student2.0/basics/javascript" hidden></a>
+</article>

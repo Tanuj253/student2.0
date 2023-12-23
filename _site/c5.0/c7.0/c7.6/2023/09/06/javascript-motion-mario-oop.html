@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<style>
+  body {
+    background: #292b2f;
+  }
+  
+  h2 {
+      color: #FFFFEE;
+  }
+
+  h1 {
+    color: #FFFFFF
+  }
+
+  p {
+    color: #dddddd;
+  }
+
+  li {
+    color: #dddd;
+  }
+  
+</style><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>JS Mario Animation | Student 2.0</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="JS Mario Animation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Use JavaScript without external libararies to animate Mario moving across screen, OOP style." />
+<meta property="og:description" content="Use JavaScript without external libararies to animate Mario moving across screen, OOP style." />
+<link rel="canonical" href="http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-motion-mario-oop.html" />
+<meta property="og:url" content="http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-motion-mario-oop.html" />
+<meta property="og:site_name" content="Student 2.0" />
+<meta property="og:image" content="http://localhost:4100/student2.0/images/mario_animation.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-06T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4100/student2.0/images/mario_animation.png" />
+<meta property="twitter:title" content="JS Mario Animation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-09-06T00:00:00-07:00","datePublished":"2023-09-06T00:00:00-07:00","description":"Use JavaScript without external libararies to animate Mario moving across screen, OOP style.","headline":"JS Mario Animation","image":"http://localhost:4100/student2.0/images/mario_animation.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-motion-mario-oop.html"},"url":"http://localhost:4100/student2.0/c5.0/c7.0/c7.6/2023/09/06/javascript-motion-mario-oop.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/student2.0/assets/css/style.css"><link rel="shortcut icon" type="image/x-icon" href="/student2.0/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body>
+
+  <div class="wrapper">
+    <header><style>
+  
+    body {
+      background: #292b2f;
+    }
+  
+    .site-header {
+      font-family: monospace;
+      font-size: 15px;
+      
+      position: absolute;
+      transition: top 0.2s ease-in-out;
+      margin-top: 25px;
+      padding-top: 10px;
+      left: -80px;
+      margin-top: 275px;
+    }
+  
+    .site-footer {
+      text-align: left;
+      left: 240px;
+    }
+  
+    .headerbutton {
+      border: 1px solid #A455FF;
+  
+      background: rgb(0, 0, 0);
+      color:black;
+      font-weight: bold;
+      width: 270px;
+  
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+  
+    .headerbutton:hover {
+      background-color: #A455FF;
+    }
+  
+    img{
+      position:relative;
+      border: 3px solid;
+      border-color: #A455FF;
+    }
+  
+    .pfp {
+      border-radius: 30%;
+      position:absolute;
+      left: -100px;
+      object-fit: cover;
+      width: 260px;
+      height: 260px;
+    }
+  
+    a {
+      color: #C8A2C8;
+    }
+    
+    h2 {
+        color: #FFFFEE;
+    }
+  
+    h1 {
+      color: #FFFFFF
+    }
+  
+    p {
+      color: #dddddd;
+  
+    }
+  
+  </style>
+    <img src="/student/images/IMG_2714.jpg" class="pfp"> 
+  
+    <header class="site-header">
+    
+      <div id="header">
+        <nav>
+          <ul>
+              <li class="fork"><a href="/student2.0/">Home</a></li>
+              <li class="fork"><a href="/student2.0/timebox">Time Box</a></li>
+              <li class="fork"><a href="/student2.0/blogs">Blogs</a></li>
+              <li class="title"><a href="https://github.com/Tanuj253/student2.0#readme" target="_blank">View on GitHub</a></li>
+        </nav>
+      </div>
+    </header></header>
+
+
+    <section>
+      <p><!--- Liquid concatentation --->
+  <!--- Liquid list variable created from file containing mario metatdata for sprite --->
+ <!--- Liquid integer assignment ---></p>
+
+<!--- HTML for page contains <p> tag named "mario" and class properties for a "sprite"  -->
+
+<p id="mario" class="sprite"></p>
+
+<!--- Embedded Cascading Style Sheet (CSS) rules, defines how HTML elements look --->
+<style>
+
+  /*CSS style rules for the elements id and class above...
+  */
+  .sprite {
+    height: 256px;
+    width: 256px;
+    background-image: url('/student2.0/images/mario_animation.png');
+    background-repeat: no-repeat;
+  }
+
+  /*background position of sprite element
+  */
+  #mario {
+    background-position: calc( * 256 * -1px) calc( * 256* -1px);
+  }
+</style>
+
+<!--- Embedded executable code--->
+<script>
+  ////////// convert yml hash to javascript key value objects /////////
+
+  var mario_metadata = {}; //key, value object
+    
+  
+  var key = "Rest"  //key
+  var values = {} //values object
+  values["row"] = 0
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "RestL"  //key
+  var values = {} //values object
+  values["row"] = 1
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Walk"  //key
+  var values = {} //values object
+  values["row"] = 2
+  values["col"] = 0
+  values["frames"] = 8
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Tada"  //key
+  var values = {} //values object
+  values["row"] = 2
+  values["col"] = 11
+  values["frames"] = 3
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "WalkL"  //key
+  var values = {} //values object
+  values["row"] = 3
+  values["col"] = 0
+  values["frames"] = 8
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "TadaL"  //key
+  var values = {} //values object
+  values["row"] = 3
+  values["col"] = 11
+  values["frames"] = 3
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Run1"  //key
+  var values = {} //values object
+  values["row"] = 4
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Run1L"  //key
+  var values = {} //values object
+  values["row"] = 5
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Run2"  //key
+  var values = {} //values object
+  values["row"] = 6
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Run2L"  //key
+  var values = {} //values object
+  values["row"] = 7
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Puff"  //key
+  var values = {} //values object
+  values["row"] = 8
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "PuffL"  //key
+  var values = {} //values object
+  values["row"] = 9
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Cheer"  //key
+  var values = {} //values object
+  values["row"] = 10
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "CheerL"  //key
+  var values = {} //values object
+  values["row"] = 11
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "Flip"  //key
+  var values = {} //values object
+  values["row"] = 12
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+    
+  
+  var key = "FlipL"  //key
+  var values = {} //values object
+  values["row"] = 13
+  values["col"] = 0
+  values["frames"] = 15
+  mario_metadata[key] = values; //key with values added
+
+  
+
+  ////////// animation control object /////////
+
+  class Mario {
+    constructor(meta_data) {
+      this.tID = null;  //capture setInterval() task ID
+      this.positionX = 0;  // current position of sprite in X direction
+      this.currentSpeed = 0;
+      this.marioElement = document.getElementById("mario"); //HTML element of sprite
+      this.pixels = 256; //pixel offset of images in the sprite, set by liquid constant
+      this.interval = 100; //animation time interval
+      this.obj = meta_data;
+      this.marioElement.style.position = "absolute";
+    }
+
+    animate(obj, speed) {
+      let frame = 0;
+      const row = obj.row * this.pixels;
+      this.currentSpeed = speed;
+
+      this.tID = setInterval(() => {
+        const col = (frame + obj.col) * this.pixels;
+        this.marioElement.style.backgroundPosition = `-${col}px -${row}px`;
+        this.marioElement.style.left = `${this.positionX}px`;
+
+        this.positionX += speed;
+        frame = (frame + 1) % obj.frames;
+
+        const viewportWidth = window.innerWidth;
+        if (this.positionX > viewportWidth - this.pixels) {
+          document.documentElement.scrollLeft = this.positionX - viewportWidth + this.pixels;
+        }
+      }, this.interval);
+    }
+
+    startWalking() {
+      this.stopAnimate();
+      this.animate(this.obj["Walk"], 3);
+    }
+
+    startRunning() {
+      this.stopAnimate();
+      this.animate(this.obj["Run1"], 6);
+    }
+
+    startPuffing() {
+      this.stopAnimate();
+      this.animate(this.obj["Puff"], 0);
+    }
+
+    startCheering() {
+      this.stopAnimate();
+      this.animate(this.obj["Cheer"], 0);
+    }
+
+    startFlipping() {
+      this.stopAnimate();
+      this.animate(this.obj["Flip"], 0);
+    }
+
+    startResting() {
+      this.stopAnimate();
+      this.animate(this.obj["Rest"], 0);
+    }
+
+    stopAnimate() {
+      clearInterval(this.tID);
+    }
+  }
+
+  const mario = new Mario(mario_metadata);
+
+  ////////// event control /////////
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      if (event.repeat) {
+        mario.startCheering();
+      } else {
+        if (mario.currentSpeed === 0) {
+          mario.startWalking();
+        } else if (mario.currentSpeed === 3) {
+          mario.startRunning();
+        }
+      }
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      if (event.repeat) {
+        mario.stopAnimate();
+      } else {
+        mario.startPuffing();
+      }
+    }
+  });
+
+  //touch events that enable animations
+  window.addEventListener("touchstart", (event) => {
+    event.preventDefault(); // prevent default browser action
+    if (event.touches[0].clientX > window.innerWidth / 2) {
+      // move right
+      if (currentSpeed === 0) { // if at rest, go to walking
+        mario.startWalking();
+      } else if (currentSpeed === 3) { // if walking, go to running
+        mario.startRunning();
+      }
+    } else {
+      // move left
+      mario.startPuffing();
+    }
+  });
+
+  //stop animation on window blur
+  window.addEventListener("blur", () => {
+    mario.stopAnimate();
+  });
+
+  //start animation on window focus
+  window.addEventListener("focus", () => {
+     mario.startFlipping();
+  });
+
+  //start animation on page load or page refresh
+  document.addEventListener("DOMContentLoaded", () => {
+    // adjust sprite size for high pixel density devices
+    const scale = window.devicePixelRatio;
+    const sprite = document.querySelector(".sprite");
+    sprite.style.transform = `scale(${0.2 * scale})`;
+    mario.startResting();
+  });
+
+</script>
+
+<!--
+Show same code above on screen
+-->
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">table</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">/student2.0//images/logo.png</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">60</span><span class="dl">"</span> <span class="nx">title</span><span class="o">=</span><span class="dl">"</span><span class="s2">Frontend</span><span class="dl">"</span> <span class="nx">alt</span><span class="o">=</span><span class="dl">""</span><span class="o">&gt;&lt;</span><span class="sr">/td</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/student2.0/navigation/csse</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">CSSE</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="nx">td</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/student2.0/navigation/csp</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">CSP</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="nx">td</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/student2.0/navigation/csa</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">CSA</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="nx">td</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/student2.0/navigation/game</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Game</span><span class="o">&lt;</span><span class="sr">/a&gt;&lt;/</span><span class="nx">td</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/tr</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/table</span><span class="err">&gt;
+</span>
+  <span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">Liquid</span> <span class="nx">concatentation</span> <span class="o">---&gt;</span>
+  <span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">Liquid</span> <span class="nx">list</span> <span class="nx">variable</span> <span class="nx">created</span> <span class="k">from</span> <span class="nx">file</span> <span class="nx">containing</span> <span class="nx">mario</span> <span class="nx">metatdata</span> <span class="k">for</span> <span class="nx">sprite</span> <span class="o">---&gt;</span>
+ <span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">Liquid</span> <span class="nx">integer</span> <span class="nx">assignment</span> <span class="o">---&gt;</span>
+
+<span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">HTML</span> <span class="k">for</span> <span class="nx">page</span> <span class="nx">contains</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="nx">tag</span> <span class="nx">named</span> <span class="dl">"</span><span class="s2">mario</span><span class="dl">"</span> <span class="nx">and</span> <span class="kd">class</span> <span class="nx">properties</span> <span class="k">for</span> <span class="nx">a</span> <span class="dl">"</span><span class="s2">sprite</span><span class="dl">"</span>  <span class="o">--&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">mario</span><span class="dl">"</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">sprite</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>  
+<span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">Embedded</span> <span class="nx">Cascading</span> <span class="nx">Style</span> <span class="nx">Sheet</span> <span class="p">(</span><span class="nx">CSS</span><span class="p">)</span> <span class="nx">rules</span><span class="p">,</span> <span class="nx">defines</span> <span class="nx">how</span> <span class="nx">HTML</span> <span class="nx">elements</span> <span class="nx">look</span> <span class="o">---&gt;</span>
+<span class="o">&lt;</span><span class="nx">style</span><span class="o">&gt;</span>
+
+  <span class="cm">/*CSS style rules for the elements id and class above...
+  */</span>
+  <span class="p">.</span><span class="nx">sprite</span> <span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="mi">256</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="mi">256</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nx">background</span><span class="o">-</span><span class="nx">image</span><span class="p">:</span> <span class="nx">url</span><span class="p">(</span><span class="dl">'</span><span class="s1">/student2.0/images/mario_animation.png</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">background</span><span class="o">-</span><span class="nx">repeat</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">repeat</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/*background position of sprite element
+  */</span>
+  <span class="err">#</span><span class="nx">mario</span> <span class="p">{</span>
+    <span class="nx">background</span><span class="o">-</span><span class="nx">position</span><span class="p">:</span> <span class="nx">calc</span><span class="p">(</span> <span class="o">*</span> <span class="mi">256</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="nx">px</span><span class="p">)</span> <span class="nx">calc</span><span class="p">(</span> <span class="o">*</span> <span class="mi">256</span><span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="nx">px</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/style</span><span class="err">&gt;
+</span>
+<span class="c">&lt;!--</span><span class="o">-</span> <span class="nx">Embedded</span> <span class="nx">executable</span> <span class="nx">code</span><span class="o">---&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+  <span class="c1">////////// convert yml hash to javascript key value objects /////////</span>
+
+  <span class="kd">var</span> <span class="nx">mario_metadata</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">//key, value object</span>
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Rest</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">RestL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Walk</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Tada</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">WalkL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">TadaL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Run1</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Run1L</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Run2</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Run2L</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Puff</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">PuffL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Cheer</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">CheerL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Flip</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+    
+  
+  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">FlipL</span><span class="dl">"</span>  <span class="c1">//key</span>
+  <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//values object</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">13</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">col</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="nx">values</span><span class="p">[</span><span class="dl">"</span><span class="s2">frames</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="nx">mario_metadata</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span> <span class="c1">//key with values added</span>
+
+  
+
+  <span class="c1">////////// animation control object /////////</span>
+
+  <span class="kd">class</span> <span class="nx">Mario</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">meta_data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tID</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>  <span class="c1">//capture setInterval() task ID</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">positionX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// current position of sprite in X direction</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">currentSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">marioElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">mario</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//HTML element of sprite</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">pixels</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span> <span class="c1">//pixel offset of images in the sprite, set by liquid constant</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">//animation time interval</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">obj</span> <span class="o">=</span> <span class="nx">meta_data</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">marioElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">absolute</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">animate</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">speed</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">frame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="kd">const</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">row</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">pixels</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">currentSpeed</span> <span class="o">=</span> <span class="nx">speed</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">tID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">col</span> <span class="o">=</span> <span class="p">(</span><span class="nx">frame</span> <span class="o">+</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">col</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">pixels</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">marioElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundPosition</span> <span class="o">=</span> <span class="s2">`-</span><span class="p">${</span><span class="nx">col</span><span class="p">}</span><span class="s2">px -</span><span class="p">${</span><span class="nx">row</span><span class="p">}</span><span class="s2">px`</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">marioElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">positionX</span><span class="p">}</span><span class="s2">px`</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">positionX</span> <span class="o">+=</span> <span class="nx">speed</span><span class="p">;</span>
+        <span class="nx">frame</span> <span class="o">=</span> <span class="p">(</span><span class="nx">frame</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">frames</span><span class="p">;</span>
+
+        <span class="kd">const</span> <span class="nx">viewportWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">positionX</span> <span class="o">&gt;</span> <span class="nx">viewportWidth</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">pixels</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">positionX</span> <span class="o">-</span> <span class="nx">viewportWidth</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">pixels</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">interval</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startWalking</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Walk</span><span class="dl">"</span><span class="p">],</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startRunning</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Run1</span><span class="dl">"</span><span class="p">],</span> <span class="mi">6</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startPuffing</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Puff</span><span class="dl">"</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startCheering</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Cheer</span><span class="dl">"</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startFlipping</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Flip</span><span class="dl">"</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">startResting</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">animate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">[</span><span class="dl">"</span><span class="s2">Rest</span><span class="dl">"</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">stopAnimate</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tID</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">mario</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Mario</span><span class="p">(</span><span class="nx">mario_metadata</span><span class="p">);</span>
+
+  <span class="c1">////////// event control /////////</span>
+
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">keydown</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">ArrowRight</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">repeat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">mario</span><span class="p">.</span><span class="nx">startCheering</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">mario</span><span class="p">.</span><span class="nx">currentSpeed</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">mario</span><span class="p">.</span><span class="nx">startWalking</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">mario</span><span class="p">.</span><span class="nx">currentSpeed</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">mario</span><span class="p">.</span><span class="nx">startRunning</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">ArrowLeft</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">repeat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">mario</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">mario</span><span class="p">.</span><span class="nx">startPuffing</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="c1">//touch events that enable animations</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">touchstart</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">// prevent default browser action</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">touches</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">clientX</span> <span class="o">&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// move right</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">currentSpeed</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if at rest, go to walking</span>
+        <span class="nx">mario</span><span class="p">.</span><span class="nx">startWalking</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">currentSpeed</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// if walking, go to running</span>
+        <span class="nx">mario</span><span class="p">.</span><span class="nx">startRunning</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="c1">// move left</span>
+      <span class="nx">mario</span><span class="p">.</span><span class="nx">startPuffing</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="c1">//stop animation on window blur</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">blur</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">mario</span><span class="p">.</span><span class="nx">stopAnimate</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="c1">//start animation on window focus</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">focus</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nx">mario</span><span class="p">.</span><span class="nx">startFlipping</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="c1">//start animation on page load or page refresh</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">DOMContentLoaded</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// adjust sprite size for high pixel density devices</span>
+    <span class="kd">const</span> <span class="nx">scale</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">devicePixelRatio</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">sprite</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">.sprite</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">sprite</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="s2">`scale(</span><span class="p">${</span><span class="mf">0.2</span> <span class="o">*</span> <span class="nx">scale</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+    <span class="nx">mario</span><span class="p">.</span><span class="nx">startResting</span><span class="p">();</span>
+  <span class="p">});</span>
+
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+    </section>
+
+  </div>
+</body>
+
+
+</html>

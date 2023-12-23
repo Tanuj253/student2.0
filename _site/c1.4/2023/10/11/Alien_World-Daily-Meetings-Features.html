@@ -1,0 +1,111 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Daily Meeting Log</h1><p class="page-description">Start a game project</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-11T00:00:00-07:00" itemprop="datePublished">
+        Oct 11, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/student2.0/categories/cte#C1.4">C1.4</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#pbl-ideation-weeks">PBL Ideation Weeks</a></li></ul><h3 id="pbl-ideation-weeks">PBL Ideation Weeks</h3>
+
+<p>Learning outcome for week.  Start shared GitHub, learn how to plan.</p>
+
+<ul>
+  <li>Weekend - Do some exploration
+    <ul>
+      <li>Mr Lopez found and animated a Monkey Sprite (Gorilla)</li>
+      <li>Mr M got background to be continuous</li>
+      <li>Mr M put dog on background and added some effects</li>
+    </ul>
+  </li>
+  <li>Monday - Get together with Mr Lopez, Safin, and Rohan.
+    <ul>
+      <li>Mr M wants to work on Code Quality as there are too many globals and it caused a lot of problems.  Expectations are there will many elements to add to game and correction should be done now.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Layer</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">speedRatio</span><span class="p">,</span> <span class="nx">canvasWidth</span><span class="p">,</span> <span class="nx">canvasHeight</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nx">BackgroundLayer</span> <span class="kd">extends</span> <span class="nx">Layer</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nx">CharacterLayer</span> <span class="kd">extends</span> <span class="nx">Layer</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">initializeBackgroundLayer</span><span class="p">(</span><span class="nx">imageUrl</span><span class="p">,</span> <span class="nx">canvasId</span><span class="p">,</span> <span class="nx">canvasWidth</span><span class="p">,</span> <span class="nx">canvasHeight</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create and return an instance of BackgroundLayer</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">initializeCharacterLayer</span><span class="p">(</span><span class="nx">imageUrl</span><span class="p">,</span> <span class="nx">canvasId</span><span class="p">,</span> <span class="nx">canvasWidth</span><span class="p">,</span> <span class="nx">canvasHeight</span><span class="p">,</span> <span class="nx">characterType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create and return an instance of CharacterLayer</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">gameLoop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Update and draw all layers (background, characters, etc.)</span>
+    <span class="nx">backgroundLayer</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+    <span class="nx">characterLayer</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+
+    <span class="nx">backgroundLayer</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+    <span class="nx">characterLayer</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+
+    <span class="c1">// Handle user input, collision detection, etc.</span>
+    <span class="c1">// ...</span>
+
+    <span class="c1">// Request the next frame</span>
+    <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">gameLoop</span><span class="p">);</span>
+<span class="p">}</span>    
+</code></pre></div></div>
+
+<ul>
+  <li>To go with rework start restructuring files for easier maintenance</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project-root/
+    index.html
+    assets/
+        js/
+            layers/
+                Layer.js
+                BackgroundLayer.js
+                CharacterLayer.js
+    images/
+        alien_planet.jpg
+        dogSprite.png
+</code></pre></div></div>
+
+<ul>
+  <li>Tu Restructure Files, Experiment with Monkey added to Game, experiment with Shadow Dog</li>
+  <li>W  Tech Talk</li>
+  <li>Th Study and implement a Platform, Create Monkey as Main Character</li>
+  <li>Friday.  Review initial features with Teacher</li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/c1.4/2023/10/11/Alien_World-Daily-Meetings-Features.html" hidden></a>
+</article>

@@ -1,0 +1,194 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">API, Data Strategies</h1><p class="page-description">Resource guide to using and making APIs.  This includes AWS, Postman, 3rd Party APIs, and Code expertise.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-11T00:00:00-07:00" itemprop="datePublished">
+        Oct 11, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#api-data-resources">API, Data Resources</a><ul><li><a href="#api-terms-and-postman">API Terms and Postman</a></li><li><a href="#variation-off-of-jokes">Variation off of Jokes</a></li><li><a href="#alternative-to-jokes">Alternative to Jokes</a></li><li><a href="#100-and-cpt-project">100% and CPT project</a></li></ul></li><li><a href="#backend-session-on-jokes">Backend Session on Jokes</a><ul><li><a href="#setup-vscode-as-follows">Setup VSCode as Follows</a><ul><li><a href="#run-web-application-locally">Run Web Application Locally</a></li><li><a href="#run-observations-and-actions">Run Observations and actions</a></li></ul></li><li><a href="#review-apijokepy">Review api/joke.py</a></li><li><a href="#debug-apijokepy-with-browswer">Debug api/joke.py with Browswer</a><ul><li><a href="#debug-observations-and-actions">Debug Observations and actions</a></li></ul></li><li><a href="#debug-apijokepy-with-postman">Debug api/joke.py with Postman</a><ul><li><a href="#postman-observation-and-actions">Postman Observation and actions</a></li></ul></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="api-data-resources">API, Data Resources</h2>
+
+<p>Applications, Web Applications are nothing without data.  After many reviews, Teachers are concerned that many groups are not making the effort to understand and look at Data requirements for end of Trimester.</p>
+
+<h3 id="api-terms-and-postman">API Terms and Postman</h3>
+
+<p>Knowing Terms and Postman needs to be a part of your vocabular and demonstrations as you move into Feature, Integration, and Final reviews.</p>
+
+<ul>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/2023/01/19/PBL-control.html">API Control, Model, Postman</a>  Make your live review more interesting by completing and showing hacks discussed in this guide for your solution.</li>
+</ul>
+
+<h3 id="variation-off-of-jokes">Variation off of Jokes</h3>
+
+<p>Student teams have opportunity for 90% if they do a variation of Jokes.  However, this is considered about 10 hours of work for both frontend and backend development.   So, there would need to be a couple of variation to meet team goals for 4 people.</p>
+
+<ul>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/techtalk/webfrontend">Frontend Fetch of Jokes</a>.  In this code example you will learn many of the key Frontend requirements in displaying the Jokes API.  This meets 1/2 the requirements for this project.
+    <ul>
+      <li>JavaScript Fetch and Display
+        <ul>
+          <li>Use JavaScript “fetch” get, put, update operation with Python APIs</li>
+          <li>Use JavaScript to trap errors through invalid response</li>
+          <li>Use JavaScript to displays data by updating DOM</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/techtalk/webapi">Python Web API for Jokes</a>.  Review this document that describes how to make Model and Interface endpoints.
+    <ul>
+      <li>Python Endpoints and CRUD
+        <ul>
+          <li>Python public API endpoints is require definition on backend</li>
+          <li>Build Python CRUD operations to support endpoints</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="alternative-to-jokes">Alternative to Jokes</h3>
+
+<p>Student teams need could look into Python “requests” and learning <a href="https://pypi.org/project/python-dotenv/">dotenv</a> on AWS server to hide access keys.  This is fundamental for using ChatGPT.  Additionally, you will add your own API to be accessed by JavaScript “fetch”, this is a two step process.  This should be considered a requirement for anyone doing Food, Cars, Fitness or other common API categories.  Doing a JavaScript “fetch” is not enough.</p>
+
+<ul>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/techtalk/rapidapi">Python 3rd Party API</a>.  It can be beneficial to access APIs in the backend versus the frontend.  Plus, this multi step process will meet Frontend to Backend API requirements.
+    <ul>
+      <li>ChatGPT APIs keys are required to be hidden on server.</li>
+      <li>Rate limits can be controlled on backend.  Always ensuring result.</li>
+      <li>Python Endpoints and CRUD</li>
+      <li>JavaScript Fetch and Display</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="100-and-cpt-project">100% and CPT project</h3>
+
+<p>Starting to learn about persistent data and databases with APIs is something that will put you ahead of the game.  Above expectations would require some original work or thinking.</p>
+
+<ul>
+  <li><a href="https://nighthawkcoders.github.io/APCSP/2023/04/11/AP-writeup-sample.html">User Database API</a>.  This is a more advanced approach to APIs, but learning this will prepare you for requirements and language of Create Performance Task, the CSP project.
+    <ul>
+      <li>Developer learns CRUD operations and Database access</li>
+      <li>Python Endpoints and CRUD</li>
+      <li>JavaScript Fetch and Display</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="backend-session-on-jokes">Backend Session on Jokes</h2>
+
+<h3 id="setup-vscode-as-follows">Setup VSCode as Follows</h3>
+
+<p>Load three files that are pertinant to this excercise.</p>
+
+<ul>
+  <li>main.py, run the application with Debugging</li>
+  <li>api/joke.py, endpoint for each joke interface</li>
+  <li>model/jokes.py, model means data or data for jokes</li>
+</ul>
+
+<h4 id="run-web-application-locally">Run Web Application Locally</h4>
+
+<p><img src="/student2.0/images/jokes/run.png" alt="joke run" /></p>
+
+<h4 id="run-observations-and-actions">Run Observations and actions</h4>
+
+<p>This start the application use Python with Debugging on.  The objective is to load Web Server.  Look at Terminal for outputs.</p>
+
+<h3 id="review-apijokepy">Review api/joke.py</h3>
+
+<p>Now is a good time to look at code around this code.</p>
+
+<ul>
+  <li>Definition of joke_api with browser prefix /api/jokes.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">joke_api</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s">'joke_api'</span><span class="p">,</span> <span class="n">__name__</span><span class="p">,</span>
+                   <span class="n">url_prefix</span><span class="o">=</span><span class="s">'/api/jokes'</span><span class="p">)</span>
+
+<span class="c1"># API generator https://flask-restful.readthedocs.io/en/latest/api.html#id1
+</span><span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">joke_api</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>_Read resource is defined using “get” method</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">_Read</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">getJokes</span><span class="p">())</span>
+</code></pre></div></div>
+
+<ul>
+  <li>api /api/jokes/</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api</span><span class="p">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">_Read</span><span class="p">,</span> <span class="s">'/'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="debug-apijokepy-with-browswer">Debug api/joke.py with Browswer</h3>
+
+<p>Learn to setup break point and usage of play controls(continue, step over, step into, step out)</p>
+
+<p><img src="/student2.0/images/jokes/debug.png" alt="joke debug" /></p>
+
+<ul>
+  <li>Setup breakpoint in Code</li>
+  <li>Call endpoint from Browser</li>
+  <li>Observe code stopping and play controls</li>
+</ul>
+
+<h4 id="debug-observations-and-actions">Debug Observations and actions</h4>
+
+<ul>
+  <li>Open Locals self observe endpoint and method</li>
+  <li>Step into code observe that step takes you to jokes.py</li>
+  <li>Open Globals jokes_data</li>
+  <li>Hover over jokes_data in code</li>
+  <li>Press continue play control and observe data in browser</li>
+</ul>
+
+<h3 id="debug-apijokepy-with-postman">Debug api/joke.py with Postman</h3>
+
+<p>Similar debugging goals as previous, but now we can perform put method as well as get methond.</p>
+
+<h4 id="postman-observation-and-actions">Postman Observation and actions</h4>
+
+<ul>
+  <li><a href="https://www.postman.com/downloads/">Download Postman</a> for free</li>
+  <li>Build Collections
+    <ul>
+      <li>Get APIs</li>
+      <li>Put APIs</li>
+    </ul>
+  </li>
+  <li>Test Collections</li>
+  <li>Set Breakpoints in Code and Observe</li>
+</ul>
+
+<p><img src="/student2.0/images/jokes/postman.png" alt="joke run" /></p>
+
+<h2 id="hacks">Hacks</h2>
+
+<ul>
+  <li>Build Collection of API tests in Postman on localhost.</li>
+  <li>Try APIs off of a deployed server: <a href="https://flask.nighthawkcodingsociety.com/api/jokes">https://flask.nighthawkcodingsociety.com/api/jokes</a></li>
+  <li>Extra.  Write code for _Create method for Jokes, hint use Body to pass data versus command line</li>
+  <li>Extra.  Write your own frontend code to read your own Jokes API.   Here is example.
+    <ul>
+      <li><a href="https://nighthawkcoders.github.io/APCSP/data/jokes">Sample github.io Frontend Runtime</a> - <a href="https://raw.githubusercontent.com/nighthawkcoders/APCSP/master/_posts/2022-07-10-PBL-jokes.md">Sample github.io Raw Code</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2023/10/11/CSP-API-strategy.html" hidden></a>
+</article>

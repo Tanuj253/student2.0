@@ -1,0 +1,176 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Basics of HTML Guide</h1><p class="page-description">An introduction to basic HTML, and resources to learn more.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-28T00:00:00-07:00" itemprop="datePublished">
+        Aug 28, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Rohan Juneja</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><table>
+    <tr>
+        <td><img src="/student2.0//images/logo.png" height="60" title="Frontend" alt="" /></td>
+        <td><a href="/student2.0/basics/home">Home</a></td>
+        <td><a href="/student2.0/basics/html">HTML</a></td>
+        <td><a href="/student2.0/basics/datatypes">Data Types</a></td>
+        <td><a href="/student2.0/basics/dom">DOM</a></td>
+        <td><a href="/student2.0/basics/javascript">JavaScript</a></td>
+        <td><a href="/student2.0/basics/js-debug">JS Debugging</a></td>
+    </tr>
+</table>
+
+<h1 id="how-does-html-work">How does HTML work?</h1>
+<p>Similar function to Markdown, syntax defines how stuff should be displayed</p>
+<ul>
+  <li>HTML is based on beginning and closing tags <code class="language-plaintext highlighter-rouge">&lt;tagname&gt;content&lt;/tagname&gt;</code>
+    <ul>
+      <li>Note the “/” on the ending or closing tag of the pair</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="compare-markdown-to-html-below">Compare markdown to html below</h2>
+<p>This below example shows comparison of a <a href="https://www.w3schools.com/html/html_headings.asp">heading</a> and <a href="https://www.w3schools.com/html/html_paragraphs.asp">paragraph</a>.  Click on links to see many more HTML examples.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">markdown</span>
+
+<span class="c1">### Markdown: This is a Heading
+</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">paragraph</span>
+
+</code></pre></div></div>
+
+<h3 id="markdown-this-is-a-heading">Markdown: This is a Heading</h3>
+
+<p>This is a paragraph</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">HTML</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Heading</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">paragraph</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h3>HTML: This is a Heading</h3>
+<p>This is a paragraph.</p>
+
+<h1 id="attributes">Attributes</h1>
+<ul>
+  <li>Learn about <a href="https://www.w3schools.com/html/html_attributes.asp">attributes</a></li>
+  <li>Tags can have additional info in the form of attributes</li>
+  <li>Attributes usually come in name/value pairs like: name=”value”</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tagname</span> <span class="na">attribute_name=</span><span class="s">"attribute_value"</span> <span class="na">another_attribute=</span><span class="s">"another_value"</span><span class="nt">&gt;</span>inner html text<span class="nt">&lt;/tagname&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>href example with attribute for web link and inner html to describe link</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.w3schools.com/html/default.asp"</span><span class="nt">&gt;</span>Visit W3Schools HTML Page<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<h2 id="sample-markdown-vs-html-tags">Sample Markdown vs HTML Tags</h2>
+<p>Image Tag - Markdown</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">describe image</span><span class="p">](</span><span class="sx">link</span> to image)
+</code></pre></div></div>
+
+<p>Image Tag - HTML</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- no content so no end tag, width/height is optional (in pixels) --&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">"describe image"</span> <span class="na">src=</span><span class="s">"link to image"</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Link Tag - Markdown</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">link text</span><span class="p">](</span><span class="sx">link</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Link Tag - HTML</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"link"</span><span class="nt">&gt;</span>link text<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>Bolded Text - Markdown</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">**Bolded Text**</span>
+</code></pre></div></div>
+
+<p>Bolded Text - HTML</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;strong&gt;</span>Bolded Text<span class="nt">&lt;/strong&gt;</span>
+</code></pre></div></div>
+
+<p>Italic Text - Markdown</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ge">*Italic Text*</span>
+</code></pre></div></div>
+
+<p>Italic Text - HTML</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;i&gt;</span>Italic Text<span class="nt">&lt;/i&gt;</span>
+</code></pre></div></div>
+
+<h1 id="more-tags-not-really-in-markdown">More tags (not really in markdown)</h1>
+<p>P tag (just represeants a paragraph/normal text)</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>This is a paragraph<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Button</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button&gt;</span>some button text<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>Div (groups together related content)</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- first information --&gt;</span>
+<span class="nt">&lt;div&gt;</span>
+    <span class="c">&lt;!-- notice how tags can be put INSIDE eachother --&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is the first paragarph of section 1<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is the second paragraph of section 1<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- second information --&gt;</span>
+<span class="nt">&lt;div&gt;</span>
+    <span class="c">&lt;!-- notice how tags can be put INSIDE eachother --&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is the first paragarph of section 2<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>This is the second paragraph of section 2<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h1 id="resources">Resources</h1>
+<ul>
+  <li>https://www.w3schools.com/html/default.asp</li>
+  <li>I will show a demo of how to find information on this website</li>
+</ul>
+
+<h1 id="html-hacks">HTML Hacks</h1>
+<ul>
+  <li>Below is a wireframe for an HTML element you will create. A wireframe is a rough visual representation of HTML elements on a page and isn’t necessarily to scale or have the exact styling that the final HTML will have. Using the syntax above, try to create an HTML snippet that corresponds to the below wireframe.</li>
+  <li>The “a tags” can contain any links that you want</li>
+</ul>
+
+<p><img src="/student2.0/images/wireframe.png" alt="wireframe for html hacks" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">html</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">put</span> <span class="n">your</span> <span class="n">HTML</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">cell</span><span class="p">,</span> <span class="n">Make</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">press</span> <span class="n">the</span> <span class="n">Run</span> <span class="n">button</span> <span class="n">to</span> <span class="n">see</span> <span class="n">your</span> <span class="n">results</span> <span class="n">below</span> <span class="o">--&gt;</span>
+</code></pre></div></div>
+
+<!-- put your HTML code in this cell, Make sure to press the Run button to see your results below -->
+
+
+  </div><a class="u-url" href="/student2.0/basics/html" hidden></a>
+</article>

@@ -1,0 +1,441 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Collectable Lesson</h1><p class="page-description">Usage of compareTo and toString in Collectable framework. This example uses lots of abstraction and is able to</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-12-01T00:00:00-08:00" itemprop="datePublished">
+        Dec 1, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h2 id="pom-file-dependencies">POM File Dependencies</h2>
+<p>This project requires Jackson for JSON building.  The loadFromPOM cell must be oaded before proceeding.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">loadFromPOM</span>
+<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="na">fasterxml</span><span class="o">.</span><span class="na">jackson</span><span class="o">.</span><span class="na">core</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jackson</span><span class="o">-</span><span class="n">databind</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">2.12</span><span class="o">.</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span> <span class="o">&lt;!--</span> <span class="nc">Use</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">version</span> <span class="o">--&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="abstract-collectable">Abstract Collectable</h2>
+
+<p>Establish class heirarchy for Collectable.  The class is used to manage a catalog of items.</p>
+
+<ul>
+  <li>abstract class required child definitions in order to instantiate</li>
+  <li>abstract methods help enforce definitions</li>
+  <li>implements defines method compareTo to enable things like sorting</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+
+
+<span class="cm">/* This is parent class, objectives...
+   - Push functionality into parent Class 
+   - Enforce consistent definition of child Class
+
+ */</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Collectable</span> <span class="kd">implements</span> <span class="nc">Comparable</span> <span class="o">&lt;</span><span class="nc">Collectable</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">masterType</span> <span class="o">=</span> <span class="s">"Collectable"</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">type</span><span class="o">;</span>	<span class="c1">// extender should define their data type</span>
+
+	<span class="cm">/* Enumerated interface of key types 
+	 * an interface named KeyTypes is declared with a single method name(). 
+	 * the Collectable class contains an abstract method getKey(), 
+	 * which must be implemented by its subclasses. 
+	 * must provide a method that returns an object implementing the KeyTypes interface.
+	*/</span> 
+	<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">KeyTypes</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="nf">name</span><span class="o">();</span>
+	<span class="o">}</span>
+	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">KeyTypes</span> <span class="nf">getKey</span><span class="o">();</span>
+	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">KeyTypes</span> <span class="nf">getSortKey</span><span class="o">();</span>
+	<span class="kd">protected</span> <span class="kd">abstract</span> <span class="nc">String</span> <span class="nf">getSortKeyValue</span><span class="o">();</span>
+
+	<span class="c1">// getter</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getMasterType</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">masterType</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="c1">// getter</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">type</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="c1">// setter</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setType</span><span class="o">(</span><span class="nc">String</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">type</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="cm">/* This method is used to build JSON using Jackson
+	 * Object mapper add this attributes to JSON
+	 * Exeption returns empty JSON
+	*/</span>  
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">toJson</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">();</span>
+            <span class="k">return</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span> <span class="s">"{}"</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+	<span class="cm">/* 'Collectable' requires toString override for compareTo
+	 * JSON data is used and formed with keys: key, data 
+	 */</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="k">return</span> <span class="s">"{"</span>
+			<span class="o">+</span> <span class="s">"\"key\":\""</span> <span class="o">+</span> <span class="n">getSortKeyValue</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\","</span>
+			<span class="o">+</span> <span class="s">"\"data\":\""</span> <span class="o">+</span> <span class="n">toJson</span><span class="o">()</span> <span class="o">+</span> 
+			<span class="s">"}"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="cm">/* This method is used to compare toString of objects
+	 * the compareTo method is implemented from the Comparable interface
+	 * it compares the string representations of two Collectable objects 
+	 * using their toString methods
+	*/</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Collectable</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+	<span class="o">}</span>
+
+
+	<span class="cm">/* This method outputs a Collectable Array to console
+	 * the object uses toString to show contents
+	*/</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="nc">Collectable</span><span class="o">[]</span> <span class="n">objs</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// print "Collectable: Objects'</span>
+		<span class="k">for</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span> <span class="o">:</span> <span class="n">objs</span><span class="o">)</span>	<span class="c1">// observe that type is Opaque</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * Pet class extends Collectable and defines abstract methods
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pet</span> <span class="kd">extends</span> <span class="nc">Collectable</span> <span class="o">{</span>
+	<span class="c1">// Class data</span>
+	<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">KeyType</span> <span class="kd">implements</span> <span class="nc">KeyTypes</span> <span class="o">{</span><span class="n">title</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">,</span> <span class="n">color</span><span class="o">,</span> <span class="n">catalog</span><span class="o">}</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">KeyTypes</span> <span class="n">key</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span>  <span class="c1">// static initializer</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">KeyTypes</span> <span class="n">sortKey</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setOrder</span><span class="o">(</span><span class="nc">KeyTypes</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span> <span class="nc">Pet</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="nc">Collectable</span><span class="o">[]</span> <span class="n">c</span><span class="o">,</span> <span class="nc">KeyType</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span> 
+		<span class="nc">Pet</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> 
+		<span class="nc">Pet</span><span class="o">.</span><span class="na">sortKey</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> 
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> 
+		<span class="nc">Pet</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span> 
+	<span class="o">}</span>
+
+	<span class="c1">// Instance data</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">color</span><span class="o">;</span>
+
+	<span class="cm">/* constructor
+	 *
+	 */</span>
+	<span class="kd">public</span> <span class="nf">Pet</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="nc">String</span> <span class="n">color</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="kd">super</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"Pet"</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="cm">/* 'Collectable' requires getKey to help enforce KeyTypes usage */</span>
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="nc">KeyTypes</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Pet</span><span class="o">.</span><span class="na">key</span><span class="o">;</span> <span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="nc">KeyTypes</span> <span class="nf">getSortKey</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Pet</span><span class="o">.</span><span class="na">sortKey</span><span class="o">;</span> <span class="o">}</span>
+
+	<span class="cm">/* Getters / Accessors
+	 * 
+	 */</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">;</span> <span class="o">}</span>
+
+	<span class="cm">/* 'Collectable' requires getSortKeyValue override
+	 * provides key based off of Static Key setting
+	 */</span>
+	<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getSortKeyValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getName</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">age</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+			<span class="nc">String</span> <span class="n">zeroPad</span> <span class="o">=</span> <span class="s">"00"</span> <span class="o">+</span> <span class="n">getAge</span><span class="o">();</span>
+            <span class="k">return</span> <span class="n">zeroPad</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">zeroPad</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getColor</span><span class="o">();</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">catalog</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">getColor</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">getAge</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="c1">// Default is Type</span>
+        <span class="k">return</span> <span class="nf">getType</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// Test data initializer</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">Pet</span><span class="o">[]</span> <span class="nf">pets</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nc">Pet</span><span class="o">[]{</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Lion"</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="s">"Gold"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Pig"</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">"Pink"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Robin"</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="s">"Red"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Cat"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="s">"Black"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Kitty"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">"Calico"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Pet</span><span class="o">(</span><span class="s">"Dog"</span><span class="o">,</span> <span class="mi">14</span><span class="o">,</span> <span class="s">"Brown"</span><span class="o">)</span>
+		<span class="o">};</span>
+	<span class="o">}</span>
+	
+	<span class="cm">/* main to test Pet class
+	 * 
+	 */</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="c1">// print with title</span>
+		<span class="nc">Pet</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">);</span>
+		<span class="nc">Collectable</span><span class="o">[]</span> <span class="n">pets</span> <span class="o">=</span> <span class="nc">Pet</span><span class="o">.</span><span class="na">pets</span><span class="o">();</span>
+
+		<span class="k">for</span> <span class="o">(</span><span class="nc">Pet</span><span class="o">.</span><span class="na">KeyType</span> <span class="n">key</span> <span class="o">:</span> <span class="nc">Pet</span><span class="o">.</span><span class="na">KeyType</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">Pet</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">pets</span><span class="o">,</span> <span class="n">key</span><span class="o">);</span>
+			<span class="nc">Collectable</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">pets</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+<span class="nc">Pet</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"Pet","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+
+{"key":"Cat","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"Dog","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+{"key":"Kitty","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"Lion","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"Pig","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"Robin","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+
+{"key":"01","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"03","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"07","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+{"key":"08","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"10","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"14","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+
+{"key":"Black","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"Brown","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+{"key":"Calico","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"Gold","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"Pink","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"Red","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+
+{"key":"Cat Black 10","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"Dog Brown 14","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+{"key":"Kitty Calico 1","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"Lion Gold 8","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"Pig Pink 3","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"Robin Red 7","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * Car class extends Collectable and defines abstract methods
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span> <span class="kd">extends</span> <span class="nc">Collectable</span> <span class="o">{</span>
+	<span class="c1">// Class data</span>
+	<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">KeyType</span> <span class="kd">implements</span> <span class="nc">KeyTypes</span> <span class="o">{</span><span class="n">title</span><span class="o">,</span> <span class="n">make</span><span class="o">,</span> <span class="n">model</span><span class="o">,</span> <span class="n">year</span><span class="o">,</span> <span class="n">color</span><span class="o">,</span> <span class="n">catalog</span><span class="o">}</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">KeyTypes</span> <span class="n">key</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span>  <span class="c1">// static initializer</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">KeyTypes</span> <span class="n">sortKey</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setOrder</span><span class="o">(</span><span class="nc">KeyTypes</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span> <span class="nc">Car</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="nc">Collectable</span><span class="o">[]</span> <span class="n">c</span><span class="o">,</span> <span class="nc">KeyType</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span> 
+		<span class="nc">Car</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> 
+		<span class="nc">Car</span><span class="o">.</span><span class="na">sortKey</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span> 
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> 
+		<span class="nc">Car</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">;</span> 
+	<span class="o">}</span>
+
+	<span class="c1">// Instance data</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">make</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">model</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">year</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">color</span><span class="o">;</span>
+
+	<span class="cm">/* constructor
+	 *
+	 */</span>
+	<span class="kd">public</span> <span class="nf">Car</span><span class="o">(</span><span class="nc">String</span> <span class="n">make</span><span class="o">,</span> <span class="nc">String</span> <span class="n">model</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="nc">String</span> <span class="n">color</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="kd">super</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"Car"</span><span class="o">);</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">make</span> <span class="o">=</span> <span class="n">make</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="cm">/* 'Collectable' requires getKey to help enforce KeyTypes usage */</span>
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="nc">KeyTypes</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Car</span><span class="o">.</span><span class="na">key</span><span class="o">;</span> <span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">protected</span> <span class="nc">KeyTypes</span> <span class="nf">getSortKey</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Car</span><span class="o">.</span><span class="na">sortKey</span><span class="o">;</span> <span class="o">}</span>
+
+	<span class="cm">/* Getters / Accessors
+	 * 
+	 */</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getMake</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">make</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getModel</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">model</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getYear</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">year</span><span class="o">;</span> <span class="o">}</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">;</span> <span class="o">}</span>
+
+	<span class="cm">/* 'Collectable' requires getSortKeyValue override
+	 * toString provides data based off of Static Key setting
+	 */</span>
+	<span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getSortKeyValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">make</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getMake</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getModel</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">year</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">getYear</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getColor</span><span class="o">();</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">catalog</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">getSortKey</span><span class="o">()))</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nf">getMake</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">getModel</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">getYear</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="c1">// Default is Type</span>
+        <span class="k">return</span> <span class="nf">getType</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// Test data initializer</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">Car</span><span class="o">[]</span> <span class="nf">cars</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nc">Car</span><span class="o">[]{</span>
+				<span class="k">new</span> <span class="nf">Car</span><span class="o">(</span><span class="s">"Ford"</span><span class="o">,</span> <span class="s">"Fusion"</span><span class="o">,</span> <span class="mi">2015</span><span class="o">,</span> <span class="s">"Guard"</span><span class="o">),</span>
+				<span class="k">new</span> <span class="nf">Car</span><span class="o">(</span><span class="s">"Ford"</span><span class="o">,</span> <span class="s">"Excursion"</span><span class="o">,</span> <span class="mi">2003</span><span class="o">,</span> <span class="s">"Green"</span><span class="o">),</span>
+                <span class="k">new</span> <span class="nf">Car</span><span class="o">(</span><span class="s">"Ford"</span><span class="o">,</span> <span class="s">"F-350"</span><span class="o">,</span> <span class="mi">1997</span><span class="o">,</span> <span class="s">"Green"</span><span class="o">),</span>
+                <span class="k">new</span> <span class="nf">Car</span><span class="o">(</span><span class="s">"Cadillac"</span><span class="o">,</span> <span class="s">"Boughman"</span><span class="o">,</span> <span class="mi">1969</span><span class="o">,</span> <span class="s">"Black"</span><span class="o">),</span>
+                <span class="k">new</span> <span class="nf">Car</span><span class="o">(</span><span class="s">"Acura"</span><span class="o">,</span> <span class="s">"RL"</span><span class="o">,</span> <span class="mi">2006</span><span class="o">,</span> <span class="s">"Silver"</span><span class="o">)</span>
+		<span class="o">};</span>
+	<span class="o">}</span>
+	
+	<span class="cm">/* main to test Car class
+	 * 
+	 */</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="c1">// print with title</span>
+		<span class="nc">Car</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="nc">KeyType</span><span class="o">.</span><span class="na">title</span><span class="o">);</span>
+		<span class="nc">Collectable</span><span class="o">[]</span> <span class="n">cars</span> <span class="o">=</span> <span class="nc">Car</span><span class="o">.</span><span class="na">cars</span><span class="o">();</span>
+
+		<span class="k">for</span> <span class="o">(</span><span class="nc">Car</span><span class="o">.</span><span class="na">KeyType</span> <span class="n">key</span> <span class="o">:</span> <span class="nc">Car</span><span class="o">.</span><span class="na">KeyType</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">Car</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">cars</span><span class="o">,</span> <span class="n">key</span><span class="o">);</span>
+			<span class="nc">Collectable</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">cars</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+<span class="nc">Car</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"key":"Car","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+{"key":"Car","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Car","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"Car","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Car","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+
+{"key":"Acura","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+{"key":"Cadillac","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Ford","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"Ford","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Ford","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+
+{"key":"Boughman","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Excursion","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"F-350","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Fusion","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+{"key":"RL","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+
+{"key":"1969","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"1997","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"2003","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"2006","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+{"key":"2015","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+
+{"key":"Black","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Green","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"Green","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Guard","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+{"key":"Silver","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+
+{"key":"Acura RL 2006","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+{"key":"Cadillac Boughman 1969","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Ford Excursion 2003","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"Ford F-350 1997","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Ford Fusion 2015","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CollectionExample</span> <span class="o">{</span>
+	
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// use List with dynamic size capabilities for combining Arrays</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Collectable</span><span class="o">&gt;</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="c1">// use List.of to add Arrays to collection List</span>
+        <span class="n">collection</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nc">Pet</span><span class="o">.</span><span class="na">pets</span><span class="o">()));</span>
+        <span class="n">collection</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nc">Car</span><span class="o">.</span><span class="na">cars</span><span class="o">()));</span>
+
+        <span class="c1">// set Pet and Car to catalog ordering </span>
+        <span class="nc">Pet</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="nc">Pet</span><span class="o">.</span><span class="na">KeyType</span><span class="o">.</span><span class="na">catalog</span><span class="o">);</span>
+        <span class="nc">Car</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="nc">Car</span><span class="o">.</span><span class="na">KeyType</span><span class="o">.</span><span class="na">catalog</span><span class="o">);</span>
+
+        <span class="c1">// Sort will order based on compareTo</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">collection</span><span class="o">);</span>
+
+        <span class="c1">// Collectable object will output according to toString </span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Collectable</span> <span class="n">c</span> <span class="o">:</span> <span class="n">collection</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">CollectionExample</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"key":"Acura RL 2006","data":"{"masterType":"Collectable","type":"Car","make":"Acura","model":"RL","year":2006,"color":"Silver"}}
+{"key":"Cadillac Boughman 1969","data":"{"masterType":"Collectable","type":"Car","make":"Cadillac","model":"Boughman","year":1969,"color":"Black"}}
+{"key":"Cat Black 10","data":"{"masterType":"Collectable","type":"Pet","name":"Cat","age":10,"color":"Black"}}
+{"key":"Dog Brown 14","data":"{"masterType":"Collectable","type":"Pet","name":"Dog","age":14,"color":"Brown"}}
+{"key":"Ford Excursion 2003","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Excursion","year":2003,"color":"Green"}}
+{"key":"Ford F-350 1997","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"F-350","year":1997,"color":"Green"}}
+{"key":"Ford Fusion 2015","data":"{"masterType":"Collectable","type":"Car","make":"Ford","model":"Fusion","year":2015,"color":"Guard"}}
+{"key":"Kitty Calico 1","data":"{"masterType":"Collectable","type":"Pet","name":"Kitty","age":1,"color":"Calico"}}
+{"key":"Lion Gold 8","data":"{"masterType":"Collectable","type":"Pet","name":"Lion","age":8,"color":"Gold"}}
+{"key":"Pig Pink 3","data":"{"masterType":"Collectable","type":"Pet","name":"Pig","age":3,"color":"Pink"}}
+{"key":"Robin Red 7","data":"{"masterType":"Collectable","type":"Pet","name":"Robin","age":7,"color":"Red"}}
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+<p>Build your own Collectable class(es), combine them, and sort them.</p>
+
+  </div><a class="u-url" href="/student2.0/2023/12/01/java_compareTo_IPYNB_2_.html" hidden></a>
+</article>

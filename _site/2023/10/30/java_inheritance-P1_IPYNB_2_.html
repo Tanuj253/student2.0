@@ -1,0 +1,1073 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U9 | Inheritance | Student P1</h1><p class="page-description">Lesson on Java class hierarchy.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-30T00:00:00-07:00" itemprop="datePublished">
+        Oct 30, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">David, Alex, Drew, Derrick, Jishnu</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      22 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#91-superclasses-and-subclasses">9.1 Superclasses and Subclasses</a><ul><li><a href="#pre-requisites">Pre-Requisites</a><ul><li><a href="#scope-of-variables">Scope of Variables:</a></li></ul></li><li><a href="#class-hierarchy">Class Hierarchy</a><ul><li><a href="#extends-keyword"><code class="language-plaintext highlighter-rouge">extends</code> Keyword</a></li></ul></li></ul></li><li><a href="#92-writing-constructors-for-subclasses">9.2 Writing Constructors for Subclasses</a><ul><li><a href="#learning-objectives">Learning Objectives</a><ul><li><a href="#key-reminders">Key Reminders:</a></li></ul></li></ul></li><li><a href="#93-overriding-methods">9.3 Overriding Methods</a><ul><li><a href="#learning-objectives-1">Learning Objectives</a><ul><li><a href="#popcorn-hack">Popcorn Hack</a></li></ul></li></ul></li><li><a href="#94-super-keyword">9.4 Super Keyword</a><ul><li><a href="#using-the-super-keyword-to-call-a-superclasss-method">Using the super keyword to call a superclass’s method.</a></li><li><a href="#note">Note:</a><ul><li><a href="#however-if-we-were-to-write">However, if we were to write:</a></li></ul></li><li><a href="#what-if-we-use-2-super-keywords">What if we use 2 super keywords?</a></li><li><a href="#popcorn-hack-1">Popcorn Hack</a></li></ul></li><li><a href="#why-would-we-want-to-do-this">Why would we want to do this?</a></li><li><a href="#here-is-a-complete-example-of-the-inheritance-hierarchy-from-above">Here is a Complete Example of the Inheritance Hierarchy from above:</a></li><li><a href="#learning-objectives-2">Learning Objectives</a></li><li><a href="#what-is-polymorphism">What is Polymorphism?</a><ul><li><a href="#popcorn-hack-2">Popcorn hack</a></li></ul></li><li><a href="#static-and-dynamic-types">Static and Dynamic types</a></li><li><a href="#compile-time-vs-runtime-methods">Compile-time vs Runtime methods</a></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="91-superclasses-and-subclasses">9.1 Superclasses and Subclasses</h2>
+<blockquote>
+  <p>A hierarchy of classes is created, extending attributes into subclasses of information (ie. Automobile –&gt; Trucks and Sedans –&gt; Ford, BMW, Nissan, Toyota).</p>
+</blockquote>
+
+<h3 id="pre-requisites">Pre-Requisites</h3>
+
+<p>Before we start you need to remember what classes and methods are. Scopes of variables are also important to this section because you need to know which classes can access which variables before extending a variable across classes.</p>
+
+<h4 id="scope-of-variables">Scope of Variables:</h4>
+
+<p>Variables can be declared as private or public.</p>
+
+<blockquote>
+  <p><strong>Popcorn Hack:</strong> What are scope do private and public variables allow?</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Private</th>
+      <th>Public</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>only directly accessible within the class they are declared</td>
+      <td>accessible anywhere inside and outside their class</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are different types of variables. Only <code class="language-plaintext highlighter-rouge">INSTANCE</code> and <code class="language-plaintext highlighter-rouge">STATIC</code> variables can be declared as <strong>__ or __</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable Type</th>
+      <th>Definition</th>
+      <th>Scope within Class</th>
+      <th>Scope to Subclasses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>variables within methods</td>
+      <td>cannot be accessed outside method</td>
+      <td>cannot be accessed outside class</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>variables within a class but not inside a method</td>
+      <td>can be accessed in entire class</td>
+      <td>can be accessed in subclasses</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>variables that belong to a class, not instance</td>
+      <td>can be accessed in entire class</td>
+      <td>can be accessed in subclasses</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>variables specific in passing values to the method</td>
+      <td>cannot be accessed outside method</td>
+      <td>do not affect inheritance</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now we can go into class hierarchies.</p>
+
+<h3 id="class-hierarchy">Class Hierarchy</h3>
+
+<p><strong>Definitions</strong></p>
+<ul>
+  <li>Superclasses - a class that contains all the common <strong>__ and __</strong> that could be shared among other classes (a blueprint for subclasses)</li>
+  <li>Subclasses - extends the <em>__</em> to is specified by a superclass; can also have additional specific attributes</li>
+  <li>“Is-A” Relationship - the relationship when a subclass <em>__</em> a superclass (ie. Automobile –&gt; Sedan; a Sedan “is-a” automobile)</li>
+</ul>
+
+<h4 id="extends-keyword"><code class="language-plaintext highlighter-rouge">extends</code> Keyword</h4>
+<blockquote>
+  <p>extends the <strong>__ from the __</strong></p>
+</blockquote>
+
+<pre><code class="language-Java">class Automobile {
+  public String brand; // public instance var
+  private String model; // private instance var
+
+  public Automobile(String brand, String model) {
+    this.brand = brand;
+    this.model = model;
+  }
+
+  public void start() {
+    System.out.println("Car is starting");
+  }
+}
+
+class Truck extends Automobile {
+  public int cargoCapacity; // subclass specific var
+
+  // instance that is specific to the Truck subclass, with vars from Automobile class
+  public Truck(String brand, String model, int cargoCapacity) {
+    super(brand, model); // inherited vars
+    this.cargoCapacity = cargoCapacity;
+  }
+
+  // specific method to Truck
+  public void loadCargo() {
+    System.out.println("Loading cargo into the truck");
+  }
+}
+
+class Sedan extends Automobile {
+  public boolean isLuxury; // subclass specific var
+
+  // instance that is specific to the Sedan subclass, with vars from Automobile class
+  public Sedan(String brand, String model, boolean isLuxury) {
+    super(brand, model); // inherited vars
+    this.isLuxury = isLuxury;
+  }
+
+  // specific method to Sedan
+  public void accelerate() {
+    System.out.println("Sedan is accelerating");
+  }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Automobile car = new Automobile("Toyota", "Camry");
+        Truck truck = new Truck("Ford", "F-150", 1000);
+        Sedan sedan = new Sedan("BMW", "328i", true);
+
+        // automobile methods and variables
+        System.out.println(car.brand); // Accessing public variable
+        // System.out.println(car.model); // compilation error because of the private var
+        car.start();
+
+
+        // truck methods and variables
+        System.out.println(truck.brand); // inherited public var
+        System.out.println(truck.cargoCapacity); // public var specific to truck
+        truck.loadCargo();
+
+
+        // sedan methods and variables
+        System.out.println(sedan.brand); // inherited public var
+        System.out.println(sedan.isLuxury); // public var specific to sedan
+        sedan.accelerate();
+    }
+}
+
+Main.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Toyota
+Car is starting
+Ford
+1000
+Loading cargo into the truck
+BMW
+true
+Sedan is accelerating
+</code></pre></div></div>
+
+<p>This example shows how the <code class="language-plaintext highlighter-rouge">Automobile</code> class is extended twice, with the <code class="language-plaintext highlighter-rouge">Truck</code> and <code class="language-plaintext highlighter-rouge">Sedan</code> subclasses.</p>
+
+<blockquote>
+  <p><strong>Popcorn Hack:</strong> If I were to declare a variable <code class="language-plaintext highlighter-rouge">color</code> that is <code class="language-plaintext highlighter-rouge">private</code> in the class Automobile, would I be able to extend and directly access that variable to the subclass <code class="language-plaintext highlighter-rouge">Truck</code> or <code class="language-plaintext highlighter-rouge">Sedan</code>?</p>
+</blockquote>
+
+<p>A: No, you would need to encapsulate the private variable as shown above, through a method in the superclass and then inherit that var with <code class="language-plaintext highlighter-rouge">super()</code>, which will be explained later.</p>
+
+<h2 id="92-writing-constructors-for-subclasses">9.2 Writing Constructors for Subclasses</h2>
+
+<h3 id="learning-objectives">Learning Objectives</h3>
+
+<ul>
+  <li>Constructors are not inherited</li>
+  <li>When a subclass’s constructor doesn’t explicitly call a superclass’s constructor using <code class="language-plaintext highlighter-rouge">super</code>, Java inserts a call to the superclass’s no-argument constructor.</li>
+  <li>The actual parameters passed in the call to the superclass constructor provide values that the constructor can use to initialize the object’s instance variables.</li>
+  <li>Regardless of whether the superclass constructor is called implicitly or explicitly, the process of calling superclass constructors continues until the Object constructor is called. At this point, all of the constructors within the hierarchy execute beginning with the Object constructor.</li>
+</ul>
+
+<p><strong>Important note:</strong> Constructors are NOT inherited by the subclass. See this in action below.</p>
+
+<pre><code class="language-Java">// TO BE INCLUDED EARLIER IN THE LESSON. IT IS NECESSARY FOR THE FUNCTIONALITY OF THIS SECTION.
+
+class Vehicle {
+    public int year;
+    public String manufacturer;
+
+    public Vehicle(int year, String manufacturer) { // constructor for parent class
+        this.year = year;
+        this.manufacturer = manufacturer;
+    }
+
+    public Vehicle() {
+        this.year = 2000;
+        this.manufacturer = "Unknown";
+    }
+
+    // method to be used later
+    public void drive() {
+        System.out.println("The driver is driving the car.");
+    }
+}
+</code></pre>
+
+<pre><code class="language-Java">class Car extends Vehicle {
+    public String model;
+
+    public Car(String model) {
+        this.model = model;
+    }
+}
+
+public class VehicleDemonstration {
+    public static void main(String[] args) {
+        Car myCar = new Car("Altima");
+        System.out.println("Year: " + myCar.year);
+        System.out.println("Manufacturer: " + myCar.manufacturer);
+        System.out.println("Model: " + myCar.model);
+    }
+}
+
+VehicleDemonstration.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Year: 2000
+Manufacturer: Unknown
+Model: Altima
+</code></pre></div></div>
+
+<p>As you can see, the output uses the no-argument construction info from the base <code class="language-plaintext highlighter-rouge">Vehicle</code> constructor.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">super</code> keyword can be used to change parent constructor values.</p>
+
+<pre><code class="language-Java">class NewCar extends Vehicle {
+    public String model;
+
+    public NewCar(int year, String manufacturer, String model) {
+        super(year, manufacturer); // see the use of super here
+        // what happens if you use no arguments with super()? see reminders below
+        this.model = model;
+    }
+}
+
+public class VehicleDemonstration2 {
+    public static void main(String[] args) {
+        NewCar myCar = new NewCar(2016, "Nissan", "Altima");
+        System.out.println("Year: " + myCar.year);
+        System.out.println("Manufacturer: " + myCar.manufacturer);
+        System.out.println("Model: " + myCar.model);
+    }
+}
+
+VehicleDemonstration2.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Year: 2016
+Manufacturer: Nissan
+Model: Altima
+</code></pre></div></div>
+
+<h4 id="key-reminders">Key Reminders:</h4>
+
+<ol>
+  <li>If you do call <code class="language-plaintext highlighter-rouge">super()</code> in your constructor, it <mark>has to be the first line of the constructor</mark>.</li>
+  <li>You <mark>cannot</mark> assign values to parent attributes/variables without using <code class="language-plaintext highlighter-rouge">super()</code>.</li>
+  <li>If you call <code class="language-plaintext highlighter-rouge">super()</code> with no arguments, <mark>it will use the no-argument parent constructor</mark>. This also happens automatically if you don’t include any <code class="language-plaintext highlighter-rouge">super()</code> call.</li>
+</ol>
+
+<h2 id="93-overriding-methods">9.3 Overriding Methods</h2>
+
+<h3 id="learning-objectives-1">Learning Objectives</h3>
+
+<ul>
+  <li>Method overriding occurs when a public method in a subclass has the same method signature as a public method in the superclass.</li>
+  <li>Any method that is called must be defined within its own class or its superclass.</li>
+  <li>A subclass is usually designed to have modified (overwritten) or additional methods or instance variables.</li>
+  <li>A subclass will inherit all public methods from the superclass; these methods remain public in the subclass.</li>
+</ul>
+
+<p>There are three options for methods to be used by subclasses:</p>
+
+<ol>
+  <li>Methods inherited from the parent class</li>
+  <li>Unique methods written for the subclass</li>
+  <li>Override parent methods to modify its implementation</li>
+</ol>
+
+<p>The first two should make sense. Let’s see an example of overriding parent methods below.</p>
+
+<pre><code class="language-Java">public class NuroCar extends Vehicle {
+    private String deliveryItem;
+
+    // unique constructor
+    public NuroCar(int year, String manufacturer, String deliveryItem) {
+        super(year, manufacturer); // another use of super
+        this.deliveryItem = deliveryItem;
+    }
+
+    // HERE is the overridden function
+    public void drive() {
+        System.out.println("This car is driving itself!");
+    }
+}
+
+public class VehicleDemonstration3 {
+    public static void main(String[] args) {
+        NuroCar pizzaCar = new NuroCar(2023, "Nuro", "Pizza");
+        // here's the call to the overridden function
+        pizzaCar.drive();
+    }
+}
+
+VehicleDemonstration3.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This car is driving itself!
+</code></pre></div></div>
+
+<p>This can be very helpful if you want a certain parent method to function slightly differently for a certain subclass.</p>
+
+<h4 id="popcorn-hack">Popcorn Hack</h4>
+
+<p>A parent class <code class="language-plaintext highlighter-rouge">Animal</code> is often used to show how subclasses can differ from their parent classes. An <code class="language-plaintext highlighter-rouge">Animal</code> parent class is provided in the cell below. Create a subclass of a certain species that <mark>overrides a parent method</mark> and <mark>uses `super` to call to the parent's constructor while adding its own unique attributes</mark>.</p>
+
+<p>Hint: <button id="but1" onclick="hint(1)">See Hint</button></p>
+<div id="hint1" style="display:none;">Not all animals "run" like the `move()` function says...</div>
+<script>
+    function hint(number) {
+        document.getElementById("but" + String(number)).style.display = "none";
+        document.getElementById("hint" + String(number)).style.display = "block";
+    }
+</script>
+
+<pre><code class="language-Java">// parent class
+public class Animal {
+    private String species;
+    private int milesPerHour;
+
+    // no argument constructor
+    public Animal() {
+        this.species = "Unknown";
+        this.milesPerHour = 10;
+    }
+
+    // constructor with arguments
+    public Animal(String species, int milesPerHour) {
+        this.species = species;
+        this.milesPerHour = milesPerHour;
+    }
+
+    // parent method
+    public void move() {
+        System.out.println("The " + this.species.toLowerCase() + " runs at " + this.milesPerHour + " miles per hour.");
+    }
+}
+
+// your subclass goes here
+</code></pre>
+
+<h2 id="94-super-keyword">9.4 Super Keyword</h2>
+
+<h3 id="using-the-super-keyword-to-call-a-superclasss-method">Using the super keyword to call a superclass’s method.</h3>
+
+<pre><code class="language-Java">public class Performer { //superclass
+    public void practice(){
+        System.out.println("Honing my craft!");
+    }
+    public void perform(){
+        System.out.println("Performing for an audience!");
+    }
+}
+
+public class Dancer extends Performer { //subclass
+    public void perform(){
+        System.out.println("Dancing on the stage!");
+    }
+}
+
+public class BalletDancer extends Dancer { //subclass
+    public void jete(){
+        System.out.println("Leaping...");
+    }
+    public void pirouette(){
+        System.out.println("Spinning...");
+    }
+    public void perform(){
+        jete();
+        pirouette();
+    }
+        public static void main(String[] args){
+            BalletDancer derrick = new BalletDancer();
+            derrick.practice();
+            derrick.perform();
+        }
+}
+
+System.out.println("BalletDancer class: ");
+BalletDancer.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BalletDancer class: 
+Honing my craft!
+Leaping...
+Spinning...
+</code></pre></div></div>
+
+<pre><code class="language-Java">public class Performer { //superclass of Dancer class
+    public void practice(){
+        System.out.println("Honing my craft!");
+    }
+    public void perform(){
+        System.out.println("Performing for an audience!");
+    }
+}
+
+public class Dancer extends Performer { //superclass of BalletDancer class
+    public void perform(){
+        System.out.println("Dancing on the stage!");
+    }
+}
+
+public class BalletDancer extends Dancer {
+    public void jete(){
+        System.out.println("Leaping...");
+    }
+    public void pirouette(){
+        System.out.println("Spinning...");
+    }
+    public void perform(){ 
+        perform();//Why is this wrong?
+        jete();
+        pirouette();
+    }
+        public static void main(String[] args){
+            BalletDancer derrick = new BalletDancer();
+            derrick.practice();
+            derrick.perform();
+        }
+}
+
+System.out.println("BalletDancer class: ");
+BalletDancer.main(null);
+</code></pre>
+
+<h3 id="note">Note:</h3>
+<p>Super keyword can be placed in any order as it prints out chronologically.</p>
+
+<pre><code class="language-Java">public void perform(){ 
+    super.perform();
+    jete();
+    pirouette();
+}
+</code></pre>
+
+<pre><code class="language-Java">"Honing my craft!
+Dancing on the stage!
+Leaping...
+Spinning..."
+</code></pre>
+
+<h4 id="however-if-we-were-to-write">However, if we were to write:</h4>
+
+<pre><code class="language-Java">public void perform(){ 
+    jete();
+    pirouette();
+    super.perform();
+}
+</code></pre>
+
+<pre><code class="language-Java">"Honing my craft!
+Leaping...
+Spinning...
+Dancing on the stage!"
+</code></pre>
+
+<h3 id="what-if-we-use-2-super-keywords">What if we use 2 super keywords?</h3>
+
+<pre><code class="language-Java">public class Performer { //superclass
+    public void practice(){
+        System.out.println("Honing my craft!");
+    }
+    public void perform(){
+        System.out.println("Performing for an audience!");
+    }
+}
+
+public class Dancer extends Performer { //subclass
+    public void perform(){
+        super.perform();
+        System.out.println("Dancing on the stage!");
+    }
+}
+
+public class BalletDancer extends Dancer { //subclass
+    public void jete(){
+        System.out.println("Leaping...");
+    }
+    public void pirouette(){
+        System.out.println("Spinning...");
+    }
+    public void perform(){
+        super.perform();
+        jete();
+        pirouette();
+    }
+        public static void main(String[] args){
+            BalletDancer derrick = new BalletDancer();
+            derrick.practice();
+            derrick.perform();
+        }
+}
+
+System.out.println("BalletDancer class: ");
+BalletDancer.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BalletDancer class: 
+Honing my craft!
+Performing for an audience!
+Dancing on the stage!
+Leaping...
+Spinning...
+</code></pre></div></div>
+
+<h3 id="popcorn-hack-1">Popcorn Hack</h3>
+<p>Create a subclass and a superclass by calling the methods from the superclass from the subclass using the keyword super.</p>
+
+<pre><code class="language-Java">// place code here
+</code></pre>
+
+<h1 id="95-creating-references-using-inheritance-hierarchies">9.5 Creating References Using Inheritance Hierarchies</h1>
+
+<p>Inheritance Hierarchies is the idea that:</p>
+
+<ul>
+  <li>If we have a public superclass (A) that then has a public subclass (B) and that public subclass then has another public subclass (C), then the subclass C is also a subclass of the superclass A and so subclass C is extending superclass A</li>
+</ul>
+
+<p>Here is an example of this:</p>
+
+<pre><code class="language-Java">// Class Declarations:
+
+// Superclass (A)
+public class Vehicles{}
+// Subclass (B)
+public class Car extends Vehicles{}
+// Subclass (C)
+public class Sedan extends Car{}
+// Subclass (D)
+public class Truck extends Vehicles{}
+</code></pre>
+
+<p>Here is a diagram displaying this relationship:</p>
+
+<p><img src="https://raw.githubusercontent.com/JishnuS420/BlogCSA/main/images/inheritance-hierarchy-example.png" alt="Inheritance Hierarchy Example" /></p>
+
+<ul>
+  <li>
+    <p>This diagram shows the the vehicle superclass which then has two subclasses: Car and Truck, however, Car has another subclass called Sedan</p>
+  </li>
+  <li>
+    <p>Based on this diagram, we know that Truck has a “is-a” relationship with Vehicle, Car also has a “is-a” relationship with Vehicle, and since Car has an “is-a” relationship with Vehicle, so does Sedan</p>
+  </li>
+  <li>
+    <p>So Sedan also has a “is-a” relationship with Vehicle</p>
+  </li>
+</ul>
+
+<p>If we assume that all of the class contain a constructor with no arguments, this then allows for us to declare a superclass reference variable to hold a subclass object:</p>
+
+<pre><code class="language-Java">Vehicles v1 = new Truck();
+Vehicles v2 = new Car();
+
+// instead of doing
+Car v3 = new Sedan();
+// We have the option to do this instead
+Vehicles v4 = new Sedan();
+</code></pre>
+
+<p>However, it is important to remember that you can’t declare a Subclass variable and put in a Superclass object</p>
+
+<pre><code class="language-Java">// don't do this
+Sedan v5 = new Vehicle();
+</code></pre>
+
+<blockquote>
+  <p>Popcorn Hack: Using a superclass and subclasses of your choice, assuming that the classes contain a constructor with no arguments, create Class Declarations and Superclass References</p>
+</blockquote>
+
+<pre><code class="language-Java">// show here
+</code></pre>
+
+<h2 id="why-would-we-want-to-do-this">Why would we want to do this?</h2>
+
+<ul>
+  <li>
+    <p>When doing object oriented programming, we are able to create a superclass with common attributes and then have subclasses with more specific traits</p>
+  </li>
+  <li>
+    <p>By doing this, we get rid of code redundancy and it also makes the easier to reuse common aspects without needing to write them out every time while still presenting the option to override any attribute from the superclass to better represent the subclass</p>
+  </li>
+  <li>
+    <p>All the subclasses adhere to one superclass so this makes updates to code much easier and allows you to take advantage of <strong>polymorphism</strong> to unify the code and allow for more flexible and manageable code (more about this in 9.6)</p>
+  </li>
+</ul>
+
+<h2 id="here-is-a-complete-example-of-the-inheritance-hierarchy-from-above">Here is a Complete Example of the Inheritance Hierarchy from above:</h2>
+
+<pre><code class="language-Java">class Vehicle {
+    private String brand; // private instance variable
+    private int year; // private instance variable
+
+    public Vehicle(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
+
+    public void displayInfo() { // common variables for each vehicle
+        System.out.println("Brand: " + brand);
+        System.out.println("Year: " + year);
+    }
+}
+
+class Truck extends Vehicle {
+    // feature that only a truck can have
+    private double maxLoadCapacity;
+
+    public Truck(String brand, int year, double maxLoadCapacity) {
+        super(brand, year); // Inherits the variables from superclass
+        this.maxLoadCapacity = maxLoadCapacity;
+    }
+
+    @Override // Override allows for displayInfo to now also show the trait specific to the Truck while still keeping the main variables
+    public void displayInfo() {
+        super.displayInfo(); // Reuse the displayInfo method from the superclass
+        System.out.println("Max Load Capacity: " + maxLoadCapacity + " tons");
+    }
+}
+
+class Car extends Vehicle {
+    // something that cars have
+    private int numberOfDoors;
+
+    public Car(String brand, int year, int numberOfDoors) {
+        super(brand, year);
+        this.numberOfDoors = numberOfDoors;
+    }
+
+    @Override // Override allows for displayInfo to now also show the trait specific to the Car while still keeping the main variables
+    public void displayInfo() {
+        super.displayInfo(); // Reuse the displayInfo method from the superclass
+        System.out.println("Number of Doors: " + numberOfDoors);
+    }
+}
+
+class Sedan extends Car {
+    // Sedan is luxury so trait specific to sedan
+    private boolean leatherSeats;
+
+    public Sedan(String brand, int year, int numberOfDoors, boolean leatherSeats) {
+        super(brand, year, numberOfDoors);
+        this.leatherSeats = leatherSeats;
+    }
+
+    @Override // Override allows for displayInfo to now also show the trait specific to the Sedan while still keeping the main variables
+    public void displayInfo() {
+        super.displayInfo(); // Reuse the displayInfo method from the superclass
+        System.out.println("Leather Seats: " + leatherSeats);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle v1 = new Truck("Ford", 2023, 10.5);
+        Vehicle v2 = new Car("Toyota", 2023, 4);
+        Vehicle v3 = new Sedan("Honda", 2023, 4, true);
+
+        System.out.println("Truck Information:");
+        v1.displayInfo();
+        
+        System.out.println("\nCar Information:");
+        v2.displayInfo();
+        
+        System.out.println("\nSedan Information:");
+        v3.displayInfo();
+    }
+}
+Main.main(null)
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Truck Information:
+Brand: Ford
+Year: 2023
+Max Load Capacity: 10.5 tons
+
+Car Information:
+Brand: Toyota
+Year: 2023
+Number of Doors: 4
+
+Sedan Information:
+Brand: Honda
+Year: 2023
+Number of Doors: 4
+Leather Seats: true
+</code></pre></div></div>
+
+<blockquote>
+  <p>Popcorn Hack: In your own words describe the importance of Inheritance Hierarchies</p>
+</blockquote>
+
+<h1 id="96-polymorphism">9.6 Polymorphism</h1>
+
+<h2 id="learning-objectives-2">Learning Objectives</h2>
+<p><mark>MOD-3.D</mark>: Call methods in an inheritance relationship.<br />
+<mark>MOD-3.D.1</mark>: Utilize the Object class through inheritance.<br />
+<mark>MOD-3.D.2</mark>: At compile time, methods in or inherited by the declared type determine the correctness of a non-static method call.<br />
+<mark>MOD-3.D.3</mark>: At run-time, the method in the actual object type is executed for a non-static method call.</p>
+
+<h2 id="what-is-polymorphism">What is Polymorphism?</h2>
+<p><strong>Polymorphism</strong> is a greek word meaning many-formed (poly=many, morph=form). In the context of programming, Polymorphic behavior is defined as being able to reference objects of different types at different points during compilation.</p>
+
+<p>One example of Java polymorphism, is our ability to store references to objects instantiated from any class AND its <em>subclasses</em> in a variable. Another example is for methods, where we override the behavior of a method in a subclass such that it differs from the parent class. We successfully perform polymorphism when we override non-static methods and execute them from the correct, corresponding class at runtime.</p>
+
+<p>Here is a simple example of polymorphism:</p>
+
+<pre><code class="language-Java">// This is our Parent class
+class Shape {
+    public void draw() {
+        System.out.println("Drawing a shape");
+    }
+}
+
+// Subclass 1
+class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+// Subclass 2
+class Rectangle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        
+        // Here we have reference variables circle and rectangle defined with static type "Shape"
+        Shape circle = new Circle();            // Circle has dynamic type "Circle"
+        Shape rectangle = new Rectangle();      // Rectangle has dynamic type "Rectangle"
+        
+        // Calling the draw() method
+        circle.draw();    // Output: Drawing a circle
+        rectangle.draw(); // Output: Drawing a rectangle
+    }
+}
+
+Main.main(null);
+</code></pre>
+
+<p>Even though the circle and rectangle have identical data-types, the compiler knows to call the correct method at run-time. We have successfully performed polymorphism</p>
+
+<h3 id="popcorn-hack-2">Popcorn hack</h3>
+<ol>
+  <li>Create any example of polymorphism, perferably with a class from your project, with corresponding methods and attributes as well.</li>
+</ol>
+
+<pre><code class="language-Java">// Program your code here
+</code></pre>
+
+<h2 id="static-and-dynamic-types">Static and Dynamic types</h2>
+<p>Typically in Java, a reference variable storing an object instantiated from a child class can only store other objects of that class. If we try to store an object of another class, we’d get an error i.e.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">myNumber</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span>      <span class="c1">// Instantiates an Integer object</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myNumber</span><span class="o">);</span>           <span class="c1">// Would print Integer type 6 normally</span>
+<span class="n">myNumber</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Double</span><span class="o">(</span><span class="mf">6.1</span><span class="o">);</span>             <span class="c1">// Compile error occurs, incompatible types</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myNumber</span><span class="o">);</span>           <span class="c1">// This line is not reached</span>
+</code></pre></div></div>
+
+<p>But what if we want want a reference variable to store objects of other classes? We get an error</p>
+
+<h2 id="compile-time-vs-runtime-methods">Compile-time vs Runtime methods</h2>
+<p>Sometimes, when we perform polymorphism, we have to be careful to distinguish between our <strong>compile time</strong> and <strong>run-time</strong> methods. When we instantiate a dynamic variable that is of <em>a different type</em> from our static variable, our program at run time will attempt to search for the methods and attributes in the superclass, NOT the child class that we created. Although the compiled program will still output the correct outputs of the method in the child class, it will not be able to find a method that exists in the child class but not in the parent class.</p>
+
+<p>To resolve this issue, we need use <strong>Down-casting</strong>.</p>
+<ul>
+  <li><strong>Downcasting</strong>: Essentially telling the compiler to refer to a variable’s subclass (the programmer specifies this), instead of the static type. We are telling the compiler to search our dynamic type for the methods and attributes that we want to access.</li>
+</ul>
+
+<p>Below is an example of compile versus run-time methods and downcasting that I used in our group’s project.</p>
+
+<pre><code class="language-Java">import java.util.HashMap;
+// This is our parent class for all child classes that make up a graph
+public class GraphObject {
+    private int value;
+
+    // constructor
+    public GraphObject(int value) {
+        this.value = value;
+    }
+
+    // getter method
+    public int getValue() {
+        return this.value;
+    }
+
+    // setter method
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    // Method overloading to print object to terminal
+    @Override
+    public String toString() {
+        return Integer.toString(this.value);
+    }
+}
+
+// This is our child class. Represents a vertex or a node in a graph
+public class GraphNode extends GraphObject {
+    private HashMap&lt;Integer,Integer&gt; edges;     // Hashmap of destination vertices and weights of paths &lt;Target:Weight&gt;
+
+    // Constructor of child class
+    public GraphNode(int value, HashMap&lt;Integer,Integer&gt; edges){
+        super(value);                           // super keyword to run constructor of parent class, which sets the value of the node
+        this.edges = edges;                     // adds any needed edges
+    }
+
+    public HashMap&lt;Integer,Integer&gt; getEdges() {
+        return this.edges;
+    }
+
+    public void addEdge(int targetId, int weight) {
+        this.edges.put(targetId, weight);
+    }
+
+    public void removeEdge(int targetId) {
+        this.edges.remove(targetId);
+    }
+    
+    // Overloading the toString method of the parent class, using super to get the output of the parent class
+    @Override
+    public String toString() {
+        return "GraphNode[value=" + super.toString() + ",edges=" + this.edges + "]";
+    }
+} 
+HashMap&lt;Integer, Integer&gt; node1Connections = new HashMap&lt;Integer, Integer&gt;();
+node1Connections.put(2, 7);
+node1Connections.put(3, 2);
+node1Connections.put(4, 10);
+GraphObject node1 = new GraphNode(1, node1Connections);
+System.out.println(node1.toString());
+((GraphNode)node1).addEdge(5,6);        // Here, we downcast node1, which is a GraphObject, to what it references, which is GraphNode
+// node1.addEdge(5,6);                  // This wouldn't work as the compiler attempts to find addEdge() in GraphObject, which it can't, throwing an error  
+System.out.println(node1.toString());
+</code></pre>
+
+<h1 id="popcorn-hacks">Popcorn Hacks</h1>
+<ol>
+  <li>Define each of the following terms in your own words
+    <ul>
+      <li><strong>Downcasting</strong></li>
+      <li><strong>Static Type</strong></li>
+      <li><strong>Dynamic Type</strong></li>
+      <li><strong>Polymorphism</strong></li>
+      <li><strong>Compile-time method</strong></li>
+      <li><strong>Run-time method</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<pre><code class="language-Java">// Do popcorn hack here
+</code></pre>
+
+<h1 id="97-object-superclass">9.7 Object Superclass</h1>
+
+<ul>
+  <li>
+    <p>The Object class is the superclass of all other classes as well as data types and is a part of the java.lang package</p>
+  </li>
+  <li>
+    <p>If a parent class doesn’t specify by using the <code class="language-plaintext highlighter-rouge">extends</code> keyword, the class will inherit from the Object</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">String toString()</code> and <code class="language-plaintext highlighter-rouge">boolean equals(object other)</code> are the most frequently used and subclasses of Object override the equals and toString methods by using class-specific implementations</p>
+  </li>
+</ul>
+
+<p>Normally when you use the <code class="language-plaintext highlighter-rouge">toString</code> method without overriding it, it returns a hash code value as seen in the example below:</p>
+
+<pre><code class="language-Java">class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class ToStringNoOverride {
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 25);
+        // When you print this out, it will return the hash code since its using the default method for toString
+        System.out.println(person);
+    }
+}
+ToStringNoOverride.main(null)
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REPL.$JShell$18$Person@4da14117
+</code></pre></div></div>
+
+<p>However, we can fix this by creating a new method by <strong>overriding</strong> the normal <code class="language-plaintext highlighter-rouge">toString</code> method and building our own representation of the object</p>
+
+<pre><code class="language-Java">class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() { // We override the toString method here
+        return "Person Name: " + name + "\nPerson Age: " + age; // We then add our own custom string representation
+    }
+}
+
+public class ToStringOverride {
+    public static void main(String[] args) {
+        Person person = new Person("Alice", 25);
+
+        // When you print the person object, it calls the overridden toString method we made
+        System.out.println(person);
+    }
+}
+ToStringOverride.main(null)
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Person Name: Alice
+Person Age: 25
+</code></pre></div></div>
+
+<p>Now, we want to compare 2 people by using <code class="language-plaintext highlighter-rouge">boolean equals(Object other)</code> and determine if they are the same</p>
+
+<pre><code class="language-Java">class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person Name: " + name + "\nPerson Age: " + age;
+    }
+}
+
+public class EqualsNoOverride {
+    public static void main(String[] args) {
+        Person person1 = new Person("Alice", 25);
+        Person person2 = new Person("Bryce", 25);
+
+        System.out.println("Person 1 Age equals Person 2 Age: " + person1.equals(person2)); // use the equals method to compare the two people
+    }
+}
+EqualsNoOverride.main(null)
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Person 1 equals Person 2: false
+</code></pre></div></div>
+
+<p>False is returned when you use the <code class="language-plaintext highlighter-rouge">boolean equals(Object other)</code> because the parameters is of Type Object superclass is unable to detect them since the Object class saves them under two different memory addresses and to fix this, we have to make an override method for this.</p>
+
+<p>To do this, we use <code class="language-plaintext highlighter-rouge">instanceof</code> and casting</p>
+
+<pre><code class="language-Java">class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override // We override the equals method
+    public boolean equals(Object other) {
+        if (!(other instanceof Person)) // Using instanceof, we are making sure that the we compare objects of the same class
+            return false;
+        Person that = (Person) other; // Here we perform casting to make sure that other is converted to Person
+        return this.age == that.age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person Name: " + name + "\nPerson Age: " + age;
+    }
+}
+
+public class EqualsOverride {
+    public static void main(String[] args) {
+        Person person1 = new Person("Alice", 25);
+        Person person2 = new Person("Bryce", 25);
+
+        System.out.println("Person 1 Age equals Person 2 Age: " + person1.equals(person2));
+    }
+}
+EqualsOverride.main(null)
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Person 1 Age equals Person 2 Age: true
+</code></pre></div></div>
+
+<h2 id="hacks">Hacks</h2>
+
+<p>Create a superclass with at least 2 subclasses based on your own topic.</p>
+
+<ul>
+  <li>Create a DrawIO diagram for your structure and label them with superclasses and subclasses</li>
+  <li>Create a superclass on your own topic</li>
+  <li>Create at least two subclasses</li>
+  <li>Each class must create at least two methods, one private and public variable, and examples of local, static, instance, and parameter variables</li>
+  <li>Override at least one method</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">super</code> keyword at least once</li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/30/java_inheritance-P1_IPYNB_2_.html" hidden></a>
+</article>

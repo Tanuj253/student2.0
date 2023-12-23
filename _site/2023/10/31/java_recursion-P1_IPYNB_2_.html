@@ -1,0 +1,659 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U10 | Recursion | Student P1</h1><p class="page-description">Lesson on Java recursion.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-10-31T00:00:00-07:00" itemprop="datePublished">
+        Oct 31, 2023
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">David, Derrick</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      13 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#101-recursion">10.1 Recursion</a><ul><li><a href="#vocabulary">Vocabulary</a></li><li><a href="#method-calling-itself">Method Calling Itself</a></li><li><a href="#calling-with-different-parameters">Calling With Different Parameters</a></li><li><a href="#capturing-progression-through-recursion">Capturing Progression Through Recursion</a></li><li><a href="#converting-recursion-to-iteration">Converting Recursion to Iteration</a><ul><li><a href="#recursive-version">Recursive Version</a></li><li><a href="#iterative-version">Iterative Version</a></li></ul></li><li><a href="#traversing-with-recursion">Traversing With Recursion</a><ul><li><a href="#string-traversal">String Traversal</a></li><li><a href="#array-traversal">Array Traversal</a></li></ul></li><li><a href="#arraylist-object-traversal">ArrayList Object Traversal</a></li><li><a href="#conclusion">Conclusion</a></li></ul></li><li><a href="#102-binary-search">10.2 Binary Search</a><ul><li><a href="#binary-search-vs-linear-search">Binary Search vs Linear Search</a><ul><li><a href="#popcorn-hack">Popcorn hack:</a></li></ul></li><li><a href="#example-of-binary-search-with-recursion">Example of Binary Search with Recursion</a><ul><li><a href="#call-1">Call 1</a></li><li><a href="#call-2">Call 2</a></li><li><a href="#call-3">Call 3</a></li></ul></li><li><a href="#recursive-logic-behind-merge-sort">Recursive Logic behind Merge Sort</a></li><li><a href="#notes">Notes:</a><ul><li><a href="#notes-1">Notes:</a></li><li><a href="#notes-2">Notes:</a></li><li><a href="#important-concepts">Important concepts:</a></li><li><a href="#notes-3">Notes:</a></li><li><a href="#popcorn-hack-what-will-the-final-list-be">Popcorn Hack: What will the final list be?</a></li></ul></li><li><a href="#the-mergesort-method">The mergeSort Method</a><ul><li><a href="#steps">Steps:</a></li><li><a href="#popcorn-hack-what-will-the-final-array-return">Popcorn Hack: What will the final array return?</a></li><li><a href="#wait-but-theres-an-issue">Wait, but there’s an issue…</a></li></ul></li></ul></li><li><a href="#hacks">Hacks</a></li></ul><h2 id="101-recursion">10.1 Recursion</h2>
+<blockquote>
+  <p>A method calling itself to repeat a certain number of times.</p>
+</blockquote>
+
+<p><strong>Popcorn Hack:</strong> What is recursion?</p>
+
+<h3 id="vocabulary">Vocabulary</h3>
+<ul>
+  <li>Base Case - this sets the <strong>__ __</strong> for when the recursion will stop</li>
+  <li>Formal Parameters - <em>__</em> within the method (local variables)</li>
+</ul>
+
+<h3 id="method-calling-itself">Method Calling Itself</h3>
+
+<p>We will first be looking at how a method can call itself.</p>
+
+<pre><code class="language-Java">/* 
+DO NOT RUN THIS
+if you do run this accidentally press `ctrl + c` twice
+*/
+
+public class Recursion1 {
+  public static void recursionCount(int n) { // original method definition
+    System.out.println(n);
+    recursionCount(n - 1); // calling the method again
+  }
+
+  public static void main(String[] args) {
+    recursionCount(3); // original call of the method
+  }
+}
+
+Recursion1.main(null);
+</code></pre>
+
+<p>In this example, you will receive an overflow error because the method is calling itself infinitely. To avoid this you would create a <strong>__ __</strong>.</p>
+
+<p>A base case usually uses an <code class="language-plaintext highlighter-rouge">if-then</code> statement to turn the loop off after a certain condition is met.</p>
+
+<pre><code class="language-Java">public class Recursion2 {
+  public static void recursionCount(int n) {
+    if (n &lt;= 0) { // added base case, telling the program to stop when n is less than or equal to 0
+      System.out.println("done");
+    } else {
+      System.out.println(n);
+      recursionCount(n - 1); // method recursion
+    }
+  }
+
+  public static void main(String[] args) {
+    recursionCount(3); // calling original function
+  }
+}
+
+Recursion2.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+2
+1
+done
+</code></pre></div></div>
+
+<p><strong>Popcorn Hack:</strong> Create your own quick recursive program.</p>
+
+<pre><code class="language-Java">// Add code here
+</code></pre>
+
+<h3 id="calling-with-different-parameters">Calling With Different Parameters</h3>
+
+<p>You can also call the method with multiple different <strong>__ __</strong>, also known as local variables.</p>
+
+<p>In this example we call an integer and string.</p>
+
+<pre><code class="language-Java">public class Recursion3 {
+  public static void recursionPrint(int n, String a) { // formal parameters are within this method
+    if (n &lt;= 0) { // base case
+      System.out.println("done");
+      return;
+    }
+
+    System.out.println("n = " + n + " a = " + a); // printing each var with each call of the method
+
+    String addChar = a + "!"; // mutating string with each recursion
+    int addN = n - 1; // mutating integer with each recursion
+
+    recursionPrint(addN, addChar); // recursive function
+  }
+
+  public static void main(String[] args) {
+    recursionPrint(5, "test"); // initial call
+  }
+}
+Recursion3.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>n = 5 a = test
+n = 4 a = test!
+n = 3 a = test!!
+n = 2 a = test!!!
+n = 1 a = test!!!!
+done
+</code></pre></div></div>
+
+<p>Here we just <em>__</em> each string and subtract one from every previous number.</p>
+
+<h3 id="capturing-progression-through-recursion">Capturing Progression Through Recursion</h3>
+
+<p>You can also capture the progression through recursion. This is useful for doing specific tasks in specific steps through recursion.</p>
+
+<pre><code class="language-Java">public class Recursion4 {
+  public static void recursionCount(int n, int progress) {
+    if (n &lt;= 0) {
+      System.out.println("done");
+    } else {
+      if (n == progress) {
+        System.out.println("Reached halfway through the array."); // special action done only when the program has reached a certain point
+      }
+      System.out.println(n);
+      recursionCount(n - 1, progress); // recursive call
+    }
+  }
+
+  public static void main(String[] args) {
+    int n = 6;
+    int progress = n / 2; // progress is set to half of the array length
+    recursionCount(n, progress); // initial call
+  }
+}
+
+Recursion4.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6
+5
+4
+Reached halfway through the array.
+3
+2
+1
+done
+</code></pre></div></div>
+
+<p><strong>Popcorn Hack:</strong> What other situations could we use capturing progression for?</p>
+
+<h3 id="converting-recursion-to-iteration">Converting Recursion to Iteration</h3>
+
+<p>Any recursive process can be made iterative, however this is not needed for the AP test. It is, however, still useful.</p>
+
+<h4 id="recursive-version">Recursive Version</h4>
+
+<pre><code class="language-Java">public class Recursion5 {
+  public static void recursionCount(int n) {
+    if (n &lt;= 0){
+      System.out.println("done");
+    } else {
+      System.out.println(n);
+      recursionCount(n - 1); // recursive function
+    }
+  }
+
+  public static void main(String[] args) {
+    recursionCount(3); // initial call
+  }
+}
+
+Recursion5.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+2
+1
+done
+</code></pre></div></div>
+
+<h4 id="iterative-version">Iterative Version</h4>
+
+<pre><code class="language-Java">public class Iteration {
+  public static void iterationCount(int n) {
+    for (int i = n; i &gt;= 1; i--) { // using a for loop to iterate, notice we go only so i is greater than 1 and not 0
+      System.out.println(i);
+    }
+    System.out.println("done");
+  }
+  
+  public static void main(String[] args) {
+    iterationCount(3); // same initial call
+  }
+}
+
+Iteration.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+2
+1
+done
+</code></pre></div></div>
+
+<p><strong>Popcorn Hacks:</strong> We we go only so i is greater than or equal to 1 and not 0. Why?</p>
+
+<h3 id="traversing-with-recursion">Traversing With Recursion</h3>
+
+<p>You can traverse many things with recursion. Here I will show traversal through a string, array, and an <code class="language-plaintext highlighter-rouge">ArrayList</code> object.</p>
+
+<h4 id="string-traversal">String Traversal</h4>
+
+<p>You can traverse through a string, finding a specific character in the string.</p>
+
+<pre><code class="language-Java">public class FindChar {
+    public static boolean findChar(String s, char target, int index) {
+        if (index &gt;= s.length()) { // checks for if the index we are looking for is greater than the word length
+            return false;
+        }
+
+        if (s.charAt(index) == target) { // checks for if there is a character the index we are searching
+            return true;
+        }
+
+        return findChar(s, target, index + 1); // recalls method, recursion
+    }
+
+    public static void main(String[] args) {
+        String sampleString = "words"; // example string
+        char targetChar = 's'; // character we are looking for
+
+        System.out.println("Sample String: " + sampleString);
+
+        boolean isCharFound = findChar(sampleString, targetChar, 0); // checks if the character we are looking for is found, based on boolean
+
+        if (isCharFound) {
+            System.out.println("Character '" + targetChar + "' is found."); // if it is found, show this
+        } else {
+            System.out.println("Character '" + targetChar + "' is not found."); // if not show this
+        }
+    }
+}
+
+FindChar.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sample String: words
+Character 's' is found.
+</code></pre></div></div>
+
+<p>You can also find and print a certain range of characters from the string.</p>
+
+<pre><code class="language-Java">public class PrintRange {
+    public static void printRange(String s, int startIndex, int endIndex) {
+        if (startIndex &lt; 0 || endIndex &gt; s.length() || startIndex &gt;= endIndex) { // checks for invalid declaration or end (negative index, index larger than string length, index start has reached the end)
+            return;
+        }
+
+        System.out.print(s.charAt(startIndex)); // print the characters in the range
+        printRange(s, startIndex + 1, endIndex); // recursive calling
+    }
+
+    public static void main(String[] args) {
+        String sampleString = "example"; // string
+        int startIndex = 0;
+        int endIndex = 5;
+        
+        System.out.println("Word: " + sampleString);
+        System.out.println("Start: " + startIndex + ", End: " + endIndex);
+
+        System.out.print("Characters in the specified range: ");
+        printRange(sampleString, startIndex, endIndex); // initial call
+    }
+}
+
+PrintRange.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Word: example
+Start: 0, End: 5
+Characters in the specified range: examp
+</code></pre></div></div>
+
+<p><strong>Popcorn Hack:</strong> Make it so that we can find two different ranges and print them.</p>
+
+<pre><code class="language-Java">// Enter code here
+</code></pre>
+
+<h4 id="array-traversal">Array Traversal</h4>
+
+<p>You can also traverse arrays using recursion.</p>
+
+<pre><code class="language-Java">public class ArrayTraversal {
+  public static int findIndex(int[] arr, int targetIndex, int currentIndex) {
+    if (currentIndex &lt; 0 || currentIndex &gt;= arr.length) { // checks for invalid (index less than 0, index greater than array length)
+      return -1; // returns invalid
+    }
+
+    if (currentIndex == targetIndex) { // if the index is found
+      return currentIndex;
+    }
+
+    return findIndex(arr, targetIndex, currentIndex + 1); // recursion
+  }
+
+  public static void main(String[] args) {
+    int[] sampleArray = {1, 4, 6, 8, 4, 9, 12};
+    int targetIndex = 2; // target
+
+    int foundIndex = findIndex(sampleArray, targetIndex, 0);
+
+    if (foundIndex != -1) { // checks what has been outputted
+      int value = sampleArray[foundIndex]; // found index value
+      System.out.println("Index " + targetIndex + " is found in the array at position " + foundIndex + " with a value of " + value); // found
+    } else {
+      System.out.println("Index " + targetIndex + " is not found in the array."); // not found
+    }
+  }
+}
+
+ArrayTraversal.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index 2 is found in the array at position 2 with a value of 6
+</code></pre></div></div>
+
+<h3 id="arraylist-object-traversal">ArrayList Object Traversal</h3>
+
+<p>We can also traverse the <code class="language-plaintext highlighter-rouge">ArrayList</code> object.</p>
+
+<pre><code class="language-Java">import java.util.ArrayList;
+
+public class ArrayListTraversal {
+    public static int findIndex(ArrayList&lt;Integer&gt; list, int targetIndex, int currentIndex) {
+        if (currentIndex &lt; 0 || currentIndex &gt;= list.size()) { // checks for invalid
+            return -1;
+        }
+
+        if (currentIndex == targetIndex) { // finds index
+            return currentIndex;
+        }
+
+        return findIndex(list, targetIndex, currentIndex + 1); // recusion
+    }
+
+    public static void main(String[] args) {
+        ArrayList&lt;Integer&gt; sampleList = new ArrayList&lt;&gt;(); // created ArrayList object
+        sampleList.add(1);
+        sampleList.add(4);
+        sampleList.add(6);
+        sampleList.add(8);
+        sampleList.add(4);
+        sampleList.add(9);
+        sampleList.add(12);
+
+        int targetIndex = 2; // target
+
+        int foundIndex = findIndex(sampleList, targetIndex, 0);
+
+        if (foundIndex != -1) { // checks for if found or not
+            int value = sampleList.get(foundIndex); // gets found index from ArrayList object
+            System.out.println("Index " + targetIndex + " is found in the ArrayList at position " + foundIndex + " with a value of " + value);
+        } else {
+            System.out.println("Index " + targetIndex + " is not found in the ArrayList.");
+        }
+    }
+}
+
+ArrayListTraversal.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index 2 is found in the ArrayList at position 2 with a value of 6
+</code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Must Knows:</p>
+<ul>
+  <li>How to create recursive code (recalling a method within itself, with parameters that change)</li>
+  <li>Record progression through recursion (completing certain tasks through the progression)</li>
+  <li>Traversal of strings, arrays, and the <code class="language-plaintext highlighter-rouge">ArrayList</code> object</li>
+</ul>
+
+<p>Overall, recursion is useful as an alternative to iteration. Recursion is usually chosen for problems that can naturally be divided into parts, like sorting which will be talked about in the next part.</p>
+
+<h2 id="102-binary-search">10.2 Binary Search</h2>
+
+<h3 id="binary-search-vs-linear-search">Binary Search vs Linear Search</h3>
+
+<p>target number - 24</p>
+
+<p>intArray - 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40</p>
+
+<h4 id="popcorn-hack">Popcorn hack:</h4>
+<p>How many times iterated through for Linear Search?</p>
+
+<p>Answer:</p>
+
+<h3 id="example-of-binary-search-with-recursion">Example of Binary Search with Recursion</h3>
+
+<pre><code class="language-Java">public class BinarySearch {
+    public static void main(String[] args) {
+        int[] intArray = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40}; // Example array
+        int target = 24; // Example target value
+        int result = recBinarySearch(intArray, 0, intArray.length - 1, target);
+
+        if (result == -1) {
+            System.out.println("Target not found in the array.");
+        } else {
+            System.out.println("Target found at index: " + result);
+        }
+    }
+
+    public static int recBinarySearch(int[] intArray, int lowPosition, int highPosition, int target) { //method
+        if (lowPosition &gt; highPosition) {
+            return -1; // Element not found in the array
+        } else {
+            int midPosition = (lowPosition + highPosition) / 2;
+            if (intArray[midPosition] &lt; target) {
+                return recBinarySearch(intArray, midPosition + 1, highPosition, target);
+            } else if (intArray[midPosition] &gt; target) {
+                return recBinarySearch(intArray, lowPosition, midPosition - 1, target);
+            } else {
+                return midPosition; // Element found at midPosition
+            }
+        }
+    }
+}
+
+BinarySearch.main(null);
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Target found at index: 12
+</code></pre></div></div>
+
+<h4 id="call-1">Call 1</h4>
+<p>Index = 0 - 20, midPosition = 10, midPosition value = 20</p>
+
+<p>Since 24 &gt; 20,</p>
+
+<p>then…</p>
+
+<p>lowPosition = midPosition + 1 = 11
+highPosition = highPosition = 20</p>
+
+<h4 id="call-2">Call 2</h4>
+<p>Index = 11-20, midPosition index = 15, midPosition value = 30</p>
+
+<p>Since 24 &lt; 30,</p>
+
+<p>then…</p>
+
+<p>lowPosition = lowPosition = 11
+high position = midPosition - 1 = 14</p>
+
+<h4 id="call-3">Call 3</h4>
+<p>Index = 11-14, midPosition index = 12, midPosition value = 24</p>
+
+<p>Since 24 = 24,</p>
+
+<p>then…</p>
+
+<p>return midPosition;</p>
+
+<p>In total, our recursive calls to the method 3 times.</p>
+
+<h3 id="recursive-logic-behind-merge-sort">Recursive Logic behind Merge Sort</h3>
+
+<p>What is Merge Sort?
+Merge sort is a recursive sorting algorithm that can be used to sort elements in an array or ArrayList</p>
+
+<ul>
+  <li>Follows a divide and conquer approach</li>
+</ul>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168722443377057872/QUaMvjx.png?ex=6552cc98&amp;is=65405798&amp;hm=6f4a3f3612f2f1ccf4ccbe3741e9dfdc328453c10a27b83338a723ec1e68327b&amp;=&amp;width=337&amp;height=325" alt="Link" /></p>
+
+<h3 id="notes">Notes:</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>List: [38,27,43,3,9,82,10] 
+
+sudocode version:
+mergeSort(List) {
+    mergeSort(left)
+    mergeSort(right)
+    merge(left &amp; right)
+
+} 
+</code></pre></div></div>
+
+<ul>
+  <li>Must finish call above it in order to finish the call</li>
+</ul>
+
+<p>Call 1:</p>
+<ol>
+  <li>Splitting List into half</li>
+  <li>Left side: [38, 27, 43, 3]</li>
+  <li>Must finish call 1 in order to do the right side and do the merge</li>
+  <li>Recursively calls mergesort and splits the list in half again</li>
+</ol>
+
+<p>Call 2:</p>
+<ol>
+  <li>New Left side List: [38, 27]</li>
+  <li>Method calls are stacking on top of each other</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168730076439908374/image.png?ex=6552d3b4&amp;is=65405eb4&amp;hm=ec96b560869e656d80c5cd64322f7ddeb94f183e19340813edfbef754c8c2445&amp;=&amp;width=762&amp;height=425" alt="image" /></p>
+
+<h4 id="notes-1">Notes:</h4>
+<ol>
+  <li>Element 5 can’t be split into the left or the right, nor can it be merged with itself</li>
+  <li>Consider the left call complete!</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168731071916036166/image.png?ex=6552d4a1&amp;is=65405fa1&amp;hm=9014369cfbc0598eff54e91c567bb2281c07f4fa069e416cb6a1e846be283aeb&amp;=&amp;width=772&amp;height=425" alt="image" /></p>
+
+<h4 id="notes-2">Notes:</h4>
+<ol>
+  <li>Same thing applies with the right, element 25 can’t be split to the left or the right, nor can it merge with itself.</li>
+  <li>Now we will merge them back in order: [5, 25]</li>
+</ol>
+
+<h4 id="important-concepts">Important concepts:</h4>
+<ol>
+  <li>When making new recursive call, we are NOT making a new list, array, or a new set of elements.</li>
+  <li>Basically updating all the way back to the original list</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168731966858862733/image.png?ex=6552d576&amp;is=65406076&amp;hm=07b9e892835812449ea03f9e58a920611e0cb3f800bdface3f25078d64b2e4ba&amp;=&amp;width=725&amp;height=425" alt="img" /></p>
+
+<h4 id="notes-3">Notes:</h4>
+<ol>
+  <li>When merging back together, it will merge back from least to greatest.</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168732306685558844/image.png?ex=6552d5c7&amp;is=654060c7&amp;hm=6df03d3ea8adbcc67d5cc3a82cc617a96c56d0250ad26e51723b57850358e054&amp;=&amp;width=880&amp;height=425" alt="img" /></p>
+
+<h4 id="popcorn-hack-what-will-the-final-list-be">Popcorn Hack: What will the final list be?</h4>
+
+<p>Answer:</p>
+
+<h3 id="the-mergesort-method">The mergeSort Method</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//sudocode
+mergeSort(myArray, low, high) {
+    if (low &lt; high) {
+        middle = (low + high)/2; //find middle
+        mergeSort(myArray, low, middle); //make a recursive call from low to middle (look at left hand side)
+        mergeSort(myArray, middle + 1, high); //once low is no longer less than high, make a new recursive call (look at right hand side)
+        merge (myArray, low, middle, high); //merge back together
+    }
+}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int [] myArray = {3, 4, 6, 8, 1, 2, 5, 7};
+</code></pre></div></div>
+
+<h4 id="steps">Steps:</h4>
+
+<ol>
+  <li>Split the Array in half</li>
+  <li>Left side: {3, 4, 6, 8}; Right side {1, 2, 5, 7};</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168735841624006726/image.png?ex=6552d912&amp;is=65406412&amp;hm=7a20be09ae6e63eb0a0f998e5515c4ea6d02a7bb43ca0a8d4725c90cbb2d3727&amp;=&amp;width=662&amp;height=139" alt="img" /></p>
+
+<ol>
+  <li>Compare the first indexes in each individual array (which would be index 0 and index 4)</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168736588147212318/image.png?ex=6552d9c4&amp;is=654064c4&amp;hm=3d911c3eb088e3ae6b86ec96c96372f9b0314f86bbb8318a79d7719fa2d24fb3&amp;=&amp;width=587&amp;height=130" alt="img" /></p>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168736615351459901/image.png?ex=6552d9cb&amp;is=654064cb&amp;hm=8fb527126ca542b16242b2c5b18e319c2703c863d25caafc657db9a61d3564ef&amp;=&amp;width=824&amp;height=169" alt="img" /></p>
+
+<ol>
+  <li>Since 1&lt;3, our new index 0 value would be 1 when we merge the array back together</li>
+</ol>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168737089744023645/image.png?ex=6552da3c&amp;is=6540653c&amp;hm=d6f2ad0d1586f38a0fba7a3915fea07d22540a1106e461d012305eeae33697b6&amp;=&amp;width=578&amp;height=121" alt="img" /></p>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168737204764422144/image.png?ex=6552da57&amp;is=65406557&amp;hm=ba40fc527b3ad870931fd9228940ff66c3540385057d435bbb9d704b0906b054&amp;=&amp;width=837&amp;height=159" alt="img" /></p>
+
+<ol>
+  <li>Since 5&gt;3, our new index 2 value would be 3 when we merge the array back together</li>
+</ol>
+
+<h4 id="popcorn-hack-what-will-the-final-array-return">Popcorn Hack: What will the final array return?</h4>
+
+<p>Answer: {}</p>
+
+<h4 id="wait-but-theres-an-issue">Wait, but there’s an issue…</h4>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168738307308519504/image.png?ex=6552db5e&amp;is=6540665e&amp;hm=a4b49b1f7cc3c76823db034dc491fc625b80b0e8f5c2dbfae73f5e9e27c0d39a&amp;=&amp;width=586&amp;height=128" alt="img" /></p>
+
+<p><img src="https://media.discordapp.net/attachments/829194398364729365/1168738330993758318/image.png?ex=6552db64&amp;is=65406664&amp;hm=31a3de717babc4970f8234b1ed17170f092ab42b72fdcc737bba1a55f30b12ab&amp;=&amp;width=722&amp;height=157" alt="img" /></p>
+
+<ul>
+  <li>After comparing index 3 and index 7, we then need to compare index 3 and index, but there is no index 8…</li>
+  <li>Will recieve an index out of bounds exception.</li>
+</ul>
+
+<p>No worries! Since we are done with the sort, we can just move the rest of the elements to the end of the array because we are already done sorting.</p>
+
+<p>Index 3 will now become index 7.</p>
+
+<h2 id="hacks">Hacks</h2>
+
+<ul>
+  <li>Create a 2D array either with just a regular array variable that you can recursively traverse through.</li>
+  <li>Each value in this 2D array must be a string that you can individually traverse through.</li>
+  <li>You must output a result of all string values that have a user inputted letter.</li>
+</ul>
+
+<pre><code class="language-Java">import java.util.Scanner;
+
+public class String2DArrayTraversal {
+    public static void main(String[] args) {
+        // code in here
+    }
+
+    public static void traverseString2DArray(String[][] array, char letter, int row, int col) {
+        // code in here
+    }
+}
+
+String2DArrayTraversal.main(null);
+</code></pre>
+
+<p>Create your own merge chart (like the first image in this 10.2 lesson) with your own values from a list, array, or arraylist (doesn’t matter). Explain how recursion works in the merge chat.</p>
+
+<pre><code class="language-Java">// code in here
+</code></pre>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Tanuj253/student2.0"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/student2.0/2023/10/31/java_recursion-P1_IPYNB_2_.html" hidden></a>
+</article>
