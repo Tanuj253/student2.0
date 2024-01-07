@@ -1,10 +1,12 @@
 ---
-layout: post
 toc: True
-title: Quiz Corrections
-description: 12/22/2023
-courses: {'csa': {'week': 15}}
-type: ccc
+comments: True
+layout: post
+title: Collegeboard quiz
+description: CB quiz corrections
+type: collab
+courses: {'csp': {'week': 16}}
+author: Tanujsai N
 ---
 
 # Problem 10
