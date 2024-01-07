@@ -10,55 +10,55 @@ author: Tanujsai N
 ---
 
 # Problem 10
-The correct answer was B not C because regular guided tour tickets are set to 8, when they should be set to 10, and regular general admission tickets and child guided tour tickets are set to 6 when they should be set to 8. Additionally, adjusting these values aligns with the correct calculations.
+The correct answer was B not C because regular guided tour tickets are erroneously set to 8, when they should be adjusted to 10, aligning with the correct quantity. Similarly, regular general admission tickets and child guided tour tickets are incorrectly set to 6 when they should be modified to 8, reflecting the accurate values for these ticket types. Rectifying these values not only ensures consistency but also brings the calculations in line with the intended ticket pricing structure.
 
 # Problem 15
-The correct answer was A not C because the two programs initialize i to different values; the same values are printed inside the loop because program A prints i and then increments it, and program B increments i and then prints it. Modifying the loop structure will address this  discrepancy.
+The correct answer was A not C because the discrepancy arises from the distinct initializations of variable i in the two programs. Program A prints i and then increments it, while program B increments i and then prints it. Addressing this inconsistency requires adjusting the loop structure to ensure that both programs handle the variable i in a consistent manner, ultimately leading to the correct output.
 
 # Problem 16
-The correct answer was D not A because the index should be decremented, not incremented, and the decrement should be inserted between lines 7 and 8 to ensure that all elements are checked. This adjustment ensures proper iteration through the elements.
+The correct answer was D not A because the deviation occurs in the incorrect incrementation of the index. Contrary to the original code where the index is incremented, the correction involves decrementing the index. Placing this decrement between lines 7 and 8 ensures that all elements are correctly checked, aligning the loop with its intended functionality.
 
 # Problem 27
-The correct answer was D not C because problems that can be solved computationally can be solved without a connection to the Internet. Recognizing the independence of computational problem-solving from internet connectivity is essential for the correct choice.
+The correct answer was D not C because the misconception lies in the belief that problems solvable computationally are dependent on an internet connection. The correction involves recognizing that problems that can be solved computationally do not necessarily require an internet connection. Understanding this distinction is crucial for accurately selecting the appropriate choice.
 
 # Problem 28
-The correct answer was B not D because both variables are assigned the initial value of alpha instead of different variables. Modifying the assignments to distinct variables is crucial for the correct functioning of the program.
+The correct answer was B not D because the issue stems from both variables being erroneously assigned the initial value of alpha. To rectify this, the correction involves assigning distinct variables their respective values, ensuring that the program operates as intended and produces the correct results.
 
 # Problem 29
-The correct answer was A not C because removing a file’s metadata does not allow for the reconstruction of the original data. Understanding the limitations of metadata removal ensures a more accurate assessment of the situation.
+The correct answer was A not C because the misunderstanding lies in the assumption that removing a file's metadata allows for the reconstruction of the original data. Clarifying this concept reveals that removing metadata does not facilitate the reconstruction of the original data. Recognizing this limitation is essential for a more precise evaluation.
 
 # Problem 34
-The correct answer was C not A because the third call to BotMover attempts to move the robot forward off the edge of the grid. Ensuring that the robot's movement stays within the grid is crucial for correct implementation.
+The correct answer was C not A because the mistake is in the third call to BotMover, where the robot attempts to move forward off the edge of the grid. The correction involves ensuring that the robot's movement stays within the defined grid boundaries, preventing unintended consequences and ensuring the correct execution of the program.
 
 # Problem 50
-The correct answer was D not B because Algorithm I and II worked in a reasonable time, as well as III. Acknowledging the efficiency of all algorithms is important for the correct evaluation of their performance.
+The correct answer was D not B because the misconception lies in the belief that Algorithm I and II worked in a reasonable time but Algorithm III did not. Acknowledging that all three algorithms worked efficiently is crucial for the accurate evaluation of their performance, leading to the correct choice.
 
 # Problem 56
-The correct answer was A not D because version II takes longer than version I. Recognizing the relative efficiency of different versions is essential for the accurate assessment of their performance.
+The correct answer was A not D because the discrepancy arises from the incorrect assumption that version II takes less time than version I. Recognizing that version II actually takes longer than version I is crucial for the accurate assessment of their relative efficiency.
 
 # Problem 58
-The correct answer was C not A because the expression y = z evaluates to false, so false is returned as intended. Understanding the logic and evaluation of expressions is crucial for correct interpretation.
+The correct answer was C not A because the misunderstanding stems from the false evaluation of the expression y = z. Recognizing that this expression evaluates to false ensures that the intended result of false is returned, aligning with the correct interpretation of the code.
 
 # Problem 59
-The correct answer was C not D because open-source software can be continually updated without the original developers once it becomes available to the public. Recognizing the nature of open-source development is vital for a proper understanding.
+The correct answer was C not D because the misconception lies in the assumption that open-source software can be continually updated by the original developers. Clarifying this concept reveals that open-source software can be updated by the public even without the involvement of the original developers. Understanding this nature is essential for a more accurate understanding of open-source development.
 
 # Problem 60
-The correct answer was D not A because the third line of code assigns to count the length of bothList (12) minus the length of bothList (7), producing the incorrect result 5. Correcting the calculation is crucial for accurate results.
+The correct answer was D not A because the error occurs in the third line of code, where count is incorrectly assigned as the length of bothList (12) minus the length of bothList (7). Correcting this calculation to determine the correct length ensures that the program produces the intended result and avoids the incorrect outcome.
 
 # Problem 62
-The correct answer was A and B not D because x AND y evaluates to false; the body of the IF statement is not executed, and nothing is displayed. Understanding the logical conditions is essential for correct control flow.
+The correct answer was A and B not D because the misconception arises from the false evaluation of x AND y, which leads to the body of the IF statement not being executed. Understanding the logic of the AND operation ensures the correct interpretation of the code and accurate control flow.
 
 # Problem 63
-The correct answer was A and B not A and D because the quantity available for each book is multiplied by its selling price to determine the total amount of money received for selling all copies of the book. Identifying the correct calculation is crucial for accurate financial assessment.
+The correct answer was A and B not A and D because the misunderstanding lies in the incorrect assessment of how the total amount of money for selling all copies of a book is calculated. The correction involves recognizing that the quantity available for each book is multiplied by its selling price, leading to the accurate calculation of the total amount of money received.
 
 # Problem 64
-The correct answer was B & D not C because the procedure repeatedly adds -2 to result five times, resulting in the intended product -10 instead of the unintended product. Recognizing the correct application of the procedure ensures accurate outcomes.
+The correct answer was B & D not C because the mistake is in the repeated addition of -2 to the result five times, resulting in the intended product of -10. Understanding the correct application of the procedure ensures that the program produces the intended product instead of an unintended one.
 
 # Problem 65
-The correct answer was B & C not A & D because it concatenates the substring "lope" and "jacka," storing the result "lopejacka" in animal. Understanding the correct string concatenation is crucial for the intended result.
+The correct answer was B & C not A & D because the misconception lies in the assumption that the code concatenates substrings "lope" and "jacka" in a different way. Recognizing that the code correctly concatenates these substrings and stores the result as "lopejacka" in the variable 'animal' ensures the accurate interpretation of the code.
 
 # Problem 66
-The correct answer was A & C not B & D because the variable count should increase by 1 when currentNum is a perfect number, so it should be incremented in the body of the IF statement, and every integer from start to end should be checked, so currentNum should be incremented inside the loop but outside the body of the IF statement. Adjusting the loop structure ensures correct counting of perfect numbers.
+The correct answer was A & C not B & D because the misunderstanding arises from the incorrect incrementation of the variable count and the placement of currentNum inside the loop. The correction involves incrementing count within the body of the IF statement when currentNum is a perfect number and ensuring that currentNum is incremented inside the loop but outside the body of the IF statement. These adjustments ensure the correct counting of perfect numbers within the specified range.
 
 # Problem 67
-The correct answer was A&B and not C because the chosen code finds the intended output instead of the unintended output. Recognizing the correct code for the intended output is crucial for the accurate interpretation of the program.
+The correct answer was A&B and not C because the chosen code accurately produces the intended output, contrary to the assumption of unintended output. Recognizing the correct code for the intended output is crucial for the accurate interpretation of the program and selecting the correct option.
