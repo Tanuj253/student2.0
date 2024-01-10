@@ -62,3 +62,8 @@ The correct answer was A & C not B & D because the misunderstanding arises from 
 
 # Problem 67
 The correct answer was A&B and not C because the chosen code accurately produces the intended output, contrary to the assumption of unintended output. Recognizing the correct code for the intended output is crucial for the accurate interpretation of the program and selecting the correct option.
+
+
+
+# Reflection
+While I am not entirely satisfied with my score of 49 out of 67, I view it as an opportunity for personal development. Analyzing my mistakes will enable me to concentrate on areas where I face challenges and enhance my understanding. To review and reinforce my knowledge, I plan to revisit team lectures and watch instructional YouTube videos explaining the intricacies of each topic and what is expected by College Board. Despite my reservations about the score, I believe I have gained valuable insights and knowledge, contributing to my overall progress and growth throughout this trimester and in this specific class. Having a new team gives me optimism, as I anticipate receiving support from my teammates to address and improve upon my weaknesses in the course.
