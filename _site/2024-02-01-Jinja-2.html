@@ -1,0 +1,207 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Jinja 2 Lesson</h1><p class="page-description">Week 20 Plans</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="" itemprop="datePublished">
+        
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Nitin, Sergi, Ishan, Saathvik, Akshay</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#jinja-2-overview">Jinja 2 Overview</a></li><li><a href="#creating-and-migrating-database">Creating and Migrating database</a></li><li><a href="#in-depth-look-of-this-piece">In-depth look of this piece</a></li></ul><h2 id="jinja-2-overview">Jinja 2 Overview</h2>
+<ul>
+  <li>Jinja2 is a templating engine for Python.</li>
+  <li>Widely used in web development frameworks like Flask and Django.</li>
+  <li>Supports template inheritance for creating modular and reusable code.</li>
+  <li>Provides flexible syntax for embedding Python-like expressions in templates.</li>
+  <li>Offers built-in filters for data manipulation and formatting.</li>
+  <li>Supports control structures like loops and conditionals.</li>
+  <li>Automatically escapes HTML characters by default, enhancing web application security.</li>
+</ul>
+
+<h2 id="creating-and-migrating-database">Creating and Migrating database</h2>
+<p>The first object is to create and migrate a database. Run the script below to ensure database is created, primed, and has some starting data. Anytime a developer changes schema, this script needs to be run.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Setup database and init data</span>
+<span class="c"># open terminal to root directory of project</span>
+./migrate.sh
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set environment variables</span>
+<span class="nb">export </span><span class="nv">FLASK_APP</span><span class="o">=</span>main
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>.:<span class="nv">$PYTHONPATH</span>
+</code></pre></div></div>
+
+<ul>
+  <li>These lines set environment variables. FLASK_APP is set to main, indicating the main Flask application to be run. PYTHONPATH is updated to include the current directory, allowing Python to find modules and packages in the current directory.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if sqlite3 is installed</span>
+<span class="k">if</span> <span class="o">!</span> <span class="nb">command</span> <span class="nt">-v</span> sqlite3 &amp;&gt; /dev/null<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Error: sqlite3 is not installed. Please install it before running this script."</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+</code></pre></div></div>
+<ul>
+  <li>This block checks if the sqlite3 command is available. If not, it displays an error message and exits with a status code of 1.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if python3 is installed</span>
+<span class="k">if</span> <span class="o">!</span> <span class="nb">command</span> <span class="nt">-v</span> python3 &amp;&gt; /dev/null<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Error: python3 is not installed. Please install it before running this script."</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+</code></pre></div></div>
+<ul>
+  <li>Similar to the previous block, this one checks for the presence of python3 command and exits with an error message if it’s not found.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if Flask is installed</span>
+<span class="k">if</span> <span class="o">!</span> python3 <span class="nt">-m</span> flask <span class="nt">--version</span> &amp;&gt; /dev/null<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Error: Flask is not installed. Please install it before running this script."</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+</code></pre></div></div>
+<ul>
+  <li>This block checks if Flask is installed by attempting to run python3 -m flask –version. If Flask is not found, it exits with an error message.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if the migration directory exists</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"migrations"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Initializing migration for the first time..."</span>
+    python3 <span class="nt">-m</span> flask db init
+<span class="k">fi</span>
+</code></pre></div></div>
+<ul>
+  <li>This section checks if the directory migrations exists. If not, it initializes Flask database migrations using python3 -m flask db init.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># . restore from backup before migration</span>
+<span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite.db"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite-backup.db"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"No sqlite.db found, using sqlite-backup.db to generate the file."</span>
+    
+    <span class="c"># Copy backup file to primary (sqlite.db)</span>
+    <span class="nb">cp</span> <span class="s2">"instance/volumes/sqlite-backup.db"</span> <span class="s2">"instance/volumes/sqlite.db"</span>
+
+    <span class="c"># Extract the new Alembic version from the backup database</span>
+    <span class="nv">backup_version</span><span class="o">=</span><span class="si">$(</span>sqlite3 instance/volumes/sqlite.db <span class="s2">"SELECT version_num FROM alembic_version;"</span><span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Version </span><span class="k">${</span><span class="nv">backup_version</span><span class="k">}</span><span class="s2"> detected"</span>
+
+    python3 <span class="nt">-m</span> flask db stamp <span class="s2">"</span><span class="k">${</span><span class="nv">backup_version</span><span class="k">}</span><span class="s2">"</span>
+
+<span class="c"># Check if sqlite.db exists</span>
+<span class="c"># . backup before migration</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite.db"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c"># Create a timestamp for the backup file</span>
+    <span class="nv">timestamp</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> <span class="s2">"+%Y%m%d%H%M%S"</span><span class="si">)</span>
+    <span class="nv">backup_file</span><span class="o">=</span><span class="s2">"instance/volumes/sqlite-backup-</span><span class="k">${</span><span class="nv">timestamp</span><span class="k">}</span><span class="s2">.db"</span>
+
+    <span class="c"># Backup SQLite database</span>
+    sqlite3 instance/volumes/sqlite.db <span class="s2">".backup instance/volumes/sqlite-backup.db"</span>
+    sqlite3 instance/volumes/sqlite.db <span class="s2">".backup </span><span class="k">${</span><span class="nv">backup_file</span><span class="k">}</span><span class="s2">"</span>
+<span class="k">fi</span>
+
+<span class="c"># Perform database migrations</span>
+python3 <span class="nt">-m</span> flask db migrate
+
+<span class="c"># Perform database upgrade</span>
+python3 <span class="nt">-m</span> flask db upgrade
+
+<span class="c"># Run a custom command to generate data</span>
+python3 <span class="nt">-m</span> flask custom generate_data
+</code></pre></div></div>
+<h2 id="in-depth-look-of-this-piece">In-depth look of this piece</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite.db"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite-backup.db"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</code></pre></div></div>
+<ul>
+  <li>This line checks if sqlite.db does not exist (! -e “instance/volumes/sqlite.db”) AND sqlite-backup.db exists (-e “instance/volumes/sqlite-backup.db”). If both conditions are true, the code block inside the if statement will be executed.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"No sqlite.db found, using sqlite-backup.db to generate the file."</span>
+</code></pre></div></div>
+<ul>
+  <li>This line simply prints a message indicating that sqlite.db is not found and sqlite-backup.db will be used to generate the file.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> <span class="s2">"instance/volumes/sqlite-backup.db"</span> <span class="s2">"instance/volumes/sqlite.db"</span>
+</code></pre></div></div>
+<ul>
+  <li>This line copies the contents of sqlite-backup.db to sqlite.db, essentially restoring the database from the backup file.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">backup_version</span><span class="o">=</span><span class="si">$(</span>sqlite3 instance/volumes/sqlite.db <span class="s2">"SELECT version_num FROM alembic_version;"</span><span class="si">)</span>
+<span class="nb">echo</span> <span class="s2">"Version </span><span class="k">${</span><span class="nv">backup_version</span><span class="k">}</span><span class="s2"> detected"</span>
+</code></pre></div></div>
+<ul>
+  <li>Here, it retrieves the version number (version_num) from the alembic_version table of the newly restored database (sqlite.db) using the sqlite3 command-line tool. It then prints out the detected version number.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> flask db stamp <span class="s2">"</span><span class="k">${</span><span class="nv">backup_version</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+<ul>
+  <li>This line runs a Flask database migration command (python3 -m flask db stamp) and passes the detected version number (“${backup_version}”) as an argument. This essentially stamps the database with the detected version number, indicating that it is up to date with the migrations corresponding to that version.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">elif</span> <span class="o">[</span> <span class="nt">-e</span> <span class="s2">"instance/volumes/sqlite.db"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</code></pre></div></div>
+<ul>
+  <li>The elif part of the script handles the situation where sqlite.db already exists:</li>
+  <li>This line checks if sqlite.db exists. If it does, the code block inside the elif statement will be executed.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">timestamp</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> <span class="s2">"+%Y%m%d%H%M%S"</span><span class="si">)</span>
+<span class="nv">backup_file</span><span class="o">=</span><span class="s2">"instance/volumes/sqlite-backup-</span><span class="k">${</span><span class="nv">timestamp</span><span class="k">}</span><span class="s2">.db"</span>
+</code></pre></div></div>
+<ul>
+  <li>These lines generate a timestamp and create a unique backup file name based on the timestamp.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sqlite3 instance/volumes/sqlite.db <span class="s2">".backup instance/volumes/sqlite-backup.db"</span>
+sqlite3 instance/volumes/sqlite.db <span class="s2">".backup </span><span class="k">${</span><span class="nv">backup_file</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+<ul>
+  <li>This pair of commands backs up the existing sqlite.db database. It first creates a general backup named sqlite-backup.db and then creates a timestamped backup file (sqlite-backup-${timestamp}.db).</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> flask db migrate
+</code></pre></div></div>
+<ul>
+  <li>Initiates database migrations using Flask’s migration system.</li>
+  <li>These migration scripts capture changes such as adding or modifying tables, columns, or indexes in the database schema.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> flask db upgrade
+</code></pre></div></div>
+<ul>
+  <li>Applies database migrations to the database.</li>
+  <li>After running this command, the database structure reflects the changes specified in the migration scripts.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> flask custom generate_data
+</code></pre></div></div>
+<ul>
+  <li>Executes a custom Flask command to generate data.</li>
+  <li>The custom command generate_data may perform tasks such as populating the database with initial data, creating sample records for testing purposes, or performing any other data generation tasks required by the application.</li>
+</ul>
+
+<h1 id="summary-and-purpose">Summary and Purpose</h1>
+<ul>
+  <li>Database Environment Setup: It ensures that the necessary environment variables are set to facilitate the Flask application’s operation.</li>
+  <li>Dependency Checks: It checks if essential dependencies (sqlite3, python3, and Flask) are installed on the system. This helps ensure that the script can run successfully.</li>
+  <li>Flask Migration Initialization: If the migrations directory doesn’t exist, it initializes Flask database migrations. This is a crucial step in managing database schema changes over time.</li>
+  <li>Database Backup and Restore: It handles scenarios where the main database (sqlite.db) may need to be restored from a backup (sqlite-backup.db) before migration. This ensures data integrity during the migration process.</li>
+  <li>Database Migration: It performs database migrations using Flask’s migration commands. This step is essential for applying schema changes and updates to the database structure.</li>
+  <li>Data Generation: Finally, it executes a custom command (generate_data) to generate additional data, which can be useful for testing or initializing the application with some starting data.</li>
+</ul>
+
+  </div><a class="u-url" href="/student2.0/2024-02-01-Jinja-2.html" hidden></a>
+</article>

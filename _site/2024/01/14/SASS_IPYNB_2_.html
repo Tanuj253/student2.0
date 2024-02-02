@@ -1,0 +1,353 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 | SASS</h1><p class="page-description">Team Teach On SASS</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2024-01-14T00:00:00-08:00" itemprop="datePublished">
+        Jan 14, 2024
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h1 id="introduction-to-basic-sass">Introduction to Basic SASS</h1>
+
+<h2 id="what-is-sass">What is SASS?</h2>
+<ul>
+  <li>A preprocessor language that’s interpreted into CSS
+    <ul>
+      <li>Takes input data and converts it to an output that’s used as input by another program.</li>
+      <li>Basically converting your code to CSS to be run by browser</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="scss-vs-css">SCSS vs CSS</h2>
+<ul>
+  <li>CSS changes the style of your webpage
+    <ul>
+      <li>CSS can be really annoying to use as it lacks features</li>
+      <li>Ex: Layout inconsistency across phones and webpages; lacking nesting (where objects contain other similar objects); creating responsive designs that adapt to different screen sizes; and more</li>
+    </ul>
+  </li>
+  <li>SCSS is basically a CSS version on crack. So like much better
+    <ul>
+      <li>SCSS just has more features that makes things more convenient</li>
+    </ul>
+  </li>
+  <li>CSS better for simple styling in small projects with little customization</li>
+  <li>SCSS better for complex styling and working in projects with multiple pages with lots of customization</li>
+</ul>
+
+<h2 id="sass-benefits">SASS benefits</h2>
+<ul>
+  <li>Nesting Capabilities: A way of writing CSS styles that mimics the structure of your HTML. Instead of writing separate selectors, you can nest them inside each other.
+    <ul>
+      <li>In the example below: In the nested example, the p selector is inside the .container selector. This can make your styles more readable and mirrors the HTML structure. Just be mindful not to over-nest, as it may lead to overly specific and harder-to-maintain styles.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CSS</span><span class="p">:</span>
+<span class="p">.</span><span class="n">container</span> <span class="p">{</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="n">container</span> <span class="n">p</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="c1">#333;
+</span><span class="p">}</span>
+
+
+<span class="n">SCSS</span><span class="p">:</span>
+<span class="p">.</span><span class="n">container</span> <span class="p">{</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+
+  <span class="n">p</span> <span class="p">{</span>
+    <span class="n">color</span><span class="p">:</span> <span class="c1">#333;
+</span>  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Modular Approach: Split CSS into partial files, enhancing project organization.</li>
+  <li>Use of Variables: Easily update and maintain consistency with defined variables.
+    <ul>
+      <li>Ex: in CSS to make something blue you’d have to constantly write “color: #0000FF”. In SCSS you can define “$blue: #0000FF”, and then for the rest of the code just write “color: $blue” to make something blue</li>
+    </ul>
+  </li>
+  <li>Mixins for Reusable Code: Create reusable code pieces for elements like buttons and forms.</li>
+  <li>Extend/Inheritance: Share CSS properties between selectors, reducing code redundancy.</li>
+  <li>Control Directives: Use if/else statements and for/each loops in CSS.</li>
+  <li>Built-in Functions: Functions for color manipulation, mathematics, and more.</li>
+  <li>Compatibility: Automatically handles browser prefixing for cross-browser support.</li>
+</ul>
+
+<h2 id="modular-scss">Modular SCSS</h2>
+<ul>
+  <li>Organizing your CSS code into smaller pieces
+    <ul>
+      <li>better readability, reusability, and maintenance</li>
+    </ul>
+  </li>
+  <li>Each piece (module) focuses on a specific part
+    <ul>
+      <li>easier to work with, collaborate, and update.</li>
+    </ul>
+  </li>
+  <li>Think of it like having separate folders for different types of styles, so your code is more organized and manageable.</li>
+  <li>To use it: Add _ before the filenames (e.g., _filename.scss) to create partials. Import partials into the main SCSS file without the _.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">//</span> <span class="n">_header</span><span class="p">.</span><span class="n">scss</span>
+<span class="p">.</span><span class="n">header</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Styles</span> <span class="k">for</span> <span class="n">header</span> <span class="n">component</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">_footer</span><span class="p">.</span><span class="n">scss</span>
+<span class="p">.</span><span class="n">footer</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Styles</span> <span class="k">for</span> <span class="n">footer</span> <span class="n">component</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">main</span><span class="p">.</span><span class="n">scss</span>
+<span class="o">@</span><span class="k">import</span> <span class="s">'header'</span><span class="p">;</span> <span class="o">//</span> <span class="n">No</span> <span class="n">need</span> <span class="k">for</span> <span class="n">the</span> <span class="n">underscore</span>
+<span class="o">@</span><span class="k">import</span> <span class="s">'footer'</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Styles</span> <span class="k">for</span> <span class="n">other</span> <span class="n">components</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">main</span> <span class="nb">file</span>
+</code></pre></div></div>
+
+<h2 id="advanced-sass">Advanced SASS</h2>
+
+<h1 id="operators">Operators:</h1>
+<ul>
+  <li>Developers use operators to perform dynamic calculations within stylesheets. For example, they can use mathematical operators (+, -, *, /) to dynamically adjust sizes, positions, or other style properties based on certain conditions or user interactions.</li>
+</ul>
+
+<h1 id="conditional-statements">Conditional Statements:</h1>
+<ul>
+  <li>Conditional statements like @if, @else, and @else if allow developers to apply different styles based on conditions. This is crucial for creating interactive interfaces where styles change dynamically in response to user actions or application state.</li>
+</ul>
+
+<h1 id="loops">Loops:</h1>
+<ul>
+  <li>Loops, such as @for and @each, enable developers to iterate through lists of values or apply styles multiple times. This is useful for creating repetitive elements in a dynamic way or for handling dynamic data structures.</li>
+</ul>
+
+<h1 id="functions">Functions:</h1>
+<ul>
+  <li>Functions in SASS enable developers to encapsulate complex logic and calculations. This is valuable for creating dynamic styles that respond to various inputs or conditions. For instance, developers can use functions to calculate and set styles based on user preferences or device characteristics.</li>
+</ul>
+
+<h1 id="built-in-functions">Built-in Functions:</h1>
+<ul>
+  <li>Developers leverage built-in functions for math, color manipulation, and string manipulation to dynamically generate styles. This can be especially useful in creating color schemes, responsive layouts, and other interactive design elements.</li>
+</ul>
+
+<h1 id="extending--inheritance">Extending &amp; Inheritance:</h1>
+<ul>
+  <li>Extending styles with @extend allows developers to share common styles among selectors, reducing redundancy. This is beneficial for creating consistent and easily maintainable styles. In interactive designs, maintaining consistency becomes crucial as styles may change dynamically.</li>
+</ul>
+
+<h2 id="gamelevels-submenu-and-sidebar">GameLevels Submenu and Sidebar</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">///</span> <span class="n">platformer</span><span class="o">-</span><span class="n">styles</span><span class="p">.</span><span class="n">scss</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">This</span> <span class="n">stylesheet</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">style</span> <span class="n">the</span> <span class="n">platformer</span> <span class="n">game</span><span class="p">.</span>
+
+<span class="o">///</span> <span class="n">Coding</span> <span class="n">Syles</span> <span class="ow">in</span> <span class="n">SCCS</span> <span class="p">(</span><span class="n">Sass</span><span class="p">),</span> <span class="k">from</span> <span class="n">code</span> <span class="n">below</span><span class="p">:</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">mixin</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">block</span> <span class="n">of</span> <span class="n">CSS</span> <span class="n">declarations</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">reused</span> <span class="ow">in</span> <span class="n">other</span> <span class="n">classes</span><span class="p">,</span> <span class="n">see</span> <span class="o">@</span><span class="n">mixin</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">include</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">include</span> <span class="n">a</span> <span class="n">mixin</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">class</span><span class="p">,</span> <span class="n">see</span> <span class="o">@</span><span class="n">include</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">extend</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">extend</span> <span class="n">a</span> <span class="k">class</span> <span class="nc">with</span> <span class="n">another</span> <span class="n">class</span><span class="p">,</span> <span class="n">see</span> <span class="o">%</span><span class="n">button</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="err">$</span><span class="n">variable</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">variable</span><span class="p">,</span> <span class="n">see</span> <span class="err">$</span><span class="n">spacing</span><span class="o">-</span><span class="n">unit</span><span class="p">,</span> <span class="err">$</span><span class="n">high</span><span class="o">-</span><span class="n">emph</span><span class="p">,</span> <span class="err">$</span><span class="n">dark</span><span class="o">-</span><span class="n">grey</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="c1">#id is used to define an id, see #gameBegin, #gameOver, #settings below.
+</span><span class="o">///</span> <span class="p">.</span><span class="k">class</span> <span class="nc">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">class</span><span class="p">,</span> <span class="n">see</span> <span class="p">.</span><span class="n">sidebar</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">&amp;</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">reference</span> <span class="n">the</span> <span class="n">parent</span> <span class="n">selector</span><span class="p">,</span> <span class="n">see</span> <span class="o">&amp;</span><span class="p">:</span><span class="n">hover</span> <span class="n">below</span><span class="p">.</span>
+<span class="o">///</span> <span class="n">the</span> <span class="n">double</span> <span class="n">slash</span> <span class="n">comments</span> <span class="p">(</span><span class="o">//</span><span class="p">)</span> <span class="n">are</span> <span class="n">considered</span> <span class="n">regular</span> <span class="n">comments</span> <span class="ow">in</span> <span class="n">Sass</span><span class="p">.</span>
+<span class="o">///</span> <span class="n">the</span> <span class="n">triple</span> <span class="n">slash</span> <span class="n">comments</span> <span class="p">(</span><span class="o">///</span><span class="p">)</span> <span class="n">are</span> <span class="n">considered</span> <span class="n">documentation</span> <span class="n">comments</span> <span class="ow">in</span> <span class="n">Sass</span><span class="p">.</span>
+<span class="o">///</span> <span class="n">comments</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">included</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">compiled</span> <span class="n">CSS</span> <span class="nb">file</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="kn">import</span> <span class="nn">is</span> <span class="n">used</span> <span class="n">to</span> <span class="kn">import</span> <span class="nn">other</span> <span class="n">stylesheets</span><span class="p">,</span> <span class="n">see</span> <span class="o">@</span><span class="kn">import</span> <span class="nn">of</span> <span class="n">this</span> <span class="nb">file</span> <span class="ow">in</span> <span class="s">"_sass/minima/custom-styles.sccs"</span><span class="p">.</span>
+<span class="o">///</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sass</span><span class="o">-</span><span class="n">lang</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">documentation</span><span class="o">/</span><span class="n">syntax</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="p">.</span>
+
+<span class="o">///</span> <span class="n">Score</span> <span class="k">for</span> <span class="n">the</span> <span class="n">game</span>  
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">This</span> <span class="n">ID</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">style</span> <span class="n">the</span> <span class="n">score</span> <span class="k">for</span> <span class="n">the</span> <span class="n">game</span><span class="p">,</span> <span class="n">key</span> <span class="n">style</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">ensure</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">on</span> <span class="n">top</span> <span class="n">of</span> <span class="n">other</span> <span class="n">elements</span><span class="p">.</span>
+<span class="c1">#score { 
+</span>  <span class="n">position</span><span class="p">:</span> <span class="n">relative</span><span class="p">;</span> 
+  <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span> <span class="o">//</span> <span class="n">z</span><span class="o">-</span><span class="n">index</span> <span class="n">position</span> <span class="n">ensures</span> <span class="n">these</span> <span class="n">buttons</span> <span class="n">are</span> <span class="n">on</span> <span class="n">top</span><span class="p">.</span>
+  <span class="n">padding</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">dt</span><span class="o">-</span><span class="n">red</span> <span class="err">!</span><span class="n">important</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">high</span><span class="o">-</span><span class="n">emphasis</span> <span class="n">color</span> <span class="k">for</span> <span class="n">the</span> <span class="n">text</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Game</span> <span class="n">Begin</span><span class="p">,</span> <span class="n">Game</span> <span class="n">Over</span><span class="p">,</span> <span class="n">Settings</span> <span class="n">IDs</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">These</span> <span class="n">IDs</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">buttons</span> <span class="ow">in</span> <span class="n">game</span> <span class="n">screen</span><span class="p">.</span> <span class="n">Key</span> <span class="n">styling</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">ensure</span> <span class="n">they</span> <span class="n">are</span> <span class="n">on</span> <span class="n">top</span> <span class="n">of</span> <span class="n">other</span> <span class="n">elements</span><span class="p">.</span> 
+<span class="c1">#gameBegin, #gameOver, #settings, #leaderboard {
+</span>  <span class="n">position</span><span class="p">:</span> <span class="n">relative</span><span class="p">;</span>
+  <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">;</span> <span class="o">//</span> <span class="n">z</span><span class="o">-</span><span class="n">index</span> <span class="n">position</span> <span class="n">ensures</span> <span class="n">these</span> <span class="n">buttons</span> <span class="n">are</span> <span class="n">on</span> <span class="n">top</span><span class="p">.</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Color</span> <span class="n">mixin</span> 
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">This</span> <span class="n">mixin</span> <span class="ow">is</span> <span class="n">defined</span> <span class="n">to</span> <span class="n">share</span> <span class="n">colors</span> <span class="k">with</span> <span class="n">classes</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">stylesheet</span><span class="p">.</span>
+<span class="o">@</span><span class="n">mixin</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">high</span><span class="o">-</span><span class="n">emph</span> <span class="err">!</span><span class="n">important</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">high</span><span class="o">-</span><span class="n">emphasis</span> <span class="n">color</span> <span class="k">for</span> <span class="n">the</span> <span class="n">text</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">dark</span><span class="o">-</span><span class="n">grey</span> <span class="err">!</span><span class="n">important</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">dark</span> <span class="n">grey</span> <span class="n">color</span> <span class="k">for</span> <span class="n">the</span> <span class="n">background</span>
+  <span class="n">border</span><span class="p">:</span> <span class="mi">1</span><span class="n">px</span> <span class="n">solid</span> <span class="err">$</span><span class="n">dt</span><span class="o">-</span><span class="n">blue</span><span class="p">;</span> <span class="o">//</span> <span class="k">from</span> <span class="n">dracula</span><span class="o">-</span><span class="n">highlight</span><span class="p">.</span><span class="n">scss</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Horizontal</span> <span class="n">Submenu</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">This</span> <span class="k">class</span> <span class="nc">styles</span> <span class="n">the</span> <span class="n">horizontal</span> <span class="n">submenu</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">and</span> <span class="n">buttons</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">game</span><span class="p">.</span> <span class="n">It</span> <span class="n">has</span> <span class="n">many</span> <span class="n">style</span> <span class="n">elements</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">placing</span> <span class="n">submenu</span> <span class="n">below</span> <span class="n">header</span><span class="p">).</span>
+<span class="p">.</span><span class="n">submenu</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">dark</span> <span class="n">mode</span> <span class="n">color</span> <span class="n">scheme</span>
+  <span class="n">border</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span> <span class="o">//</span> <span class="n">remove</span> <span class="n">setting</span> <span class="k">as</span> <span class="n">submenu</span> 
+  <span class="n">position</span><span class="p">:</span> <span class="n">fixed</span><span class="p">;</span>
+  <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="p">:</span> <span class="mi">3</span><span class="p">;</span> <span class="o">//</span> <span class="n">Position</span> <span class="n">on</span> <span class="n">Top</span> <span class="n">of</span> <span class="n">other</span> <span class="n">elements</span><span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span> <span class="n">ID</span> <span class="n">buttons</span> <span class="n">above</span>
+  <span class="n">top</span><span class="p">:</span> <span class="err">$</span><span class="n">spacing</span><span class="o">-</span><span class="n">unit</span> <span class="o">*</span> <span class="mf">1.865</span><span class="p">;</span>  <span class="o">//</span> <span class="n">matches</span> <span class="n">minima</span> <span class="s">".site-header min-height height"</span><span class="p">,</span> <span class="n">reference</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span><span class="n">minima</span><span class="o">/</span><span class="n">blob</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">_sass</span><span class="o">/</span><span class="n">minima</span><span class="o">/</span><span class="n">_layout</span><span class="p">.</span><span class="n">scss</span>
+
+  <span class="o">//</span> <span class="n">Styles</span> <span class="k">for</span> <span class="n">the</span> <span class="n">score</span> <span class="ow">and</span> <span class="n">buttons</span>
+  <span class="c1">#score, #gameBegin, #gameOver, #settings, #leaderboard {
+</span>    <span class="n">display</span><span class="p">:</span> <span class="n">inline</span><span class="o">-</span><span class="n">block</span><span class="p">;</span> <span class="o">//</span> <span class="n">Make</span> <span class="n">the</span> <span class="n">score</span> <span class="ow">and</span> <span class="n">buttons</span> <span class="n">inline</span>
+    <span class="n">margin</span><span class="o">-</span><span class="n">right</span><span class="p">:</span> <span class="err">$</span><span class="n">spacing</span><span class="o">-</span><span class="n">unit</span><span class="p">;</span> <span class="o">//</span> <span class="n">Add</span> <span class="n">some</span> <span class="n">margin</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span> <span class="n">of</span> <span class="n">each</span> <span class="n">item</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Sidebar</span> <span class="k">class</span>
+<span class="err">/// @</span><span class="nc">description</span> <span class="n">This</span> <span class="k">class</span> <span class="nc">styles</span> <span class="n">the</span> <span class="n">sidebar</span> <span class="k">for</span> <span class="n">settings</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">game</span><span class="p">.</span> <span class="n">It</span> <span class="n">has</span> <span class="n">many</span> <span class="n">style</span> <span class="n">elements</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">placing</span> <span class="n">sidebar</span> <span class="n">below</span> <span class="n">header</span><span class="p">).</span>
+<span class="p">.</span><span class="n">sidebar</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">dark</span> <span class="n">mode</span> <span class="n">color</span> <span class="n">scheme</span>
+  <span class="n">border</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span> <span class="o">//</span> <span class="n">remove</span> <span class="n">setting</span> <span class="k">as</span> <span class="n">sidebar</span> <span class="n">collapse</span> <span class="n">leaves</span> <span class="n">residue</span> <span class="n">line</span>
+  <span class="n">position</span><span class="p">:</span> <span class="n">fixed</span><span class="p">;</span>
+  <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="p">:</span> <span class="mi">3</span><span class="p">;</span> <span class="o">//</span> <span class="n">Position</span> <span class="n">on</span> <span class="n">Top</span> <span class="n">of</span> <span class="n">other</span> <span class="n">elements</span><span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="k">as</span> <span class="n">ID</span> <span class="n">buttons</span> <span class="n">above</span>
+  <span class="o">//</span> <span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="nb">set</span> <span class="n">the</span> <span class="n">sidebar</span> <span class="n">to</span> <span class="n">be</span> <span class="n">on</span> <span class="n">the</span> <span class="n">left</span> <span class="n">side</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span>
+  <span class="n">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="n">calculated</span> <span class="n">to</span> <span class="n">be</span> <span class="n">below</span> <span class="n">the</span> <span class="n">header</span> <span class="ow">and</span> <span class="n">submenu</span> 
+  <span class="n">padding</span><span class="o">-</span><span class="n">top</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span> 
+  <span class="n">padding</span><span class="o">-</span><span class="n">bottom</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">overflow</span><span class="o">-</span><span class="n">x</span><span class="p">:</span> <span class="n">hidden</span><span class="p">;</span> <span class="o">/*</span> <span class="n">Disable</span> <span class="n">horizontal</span> <span class="n">scroll</span> <span class="o">*/</span>
+  <span class="n">transition</span><span class="p">:</span> <span class="mf">0.5</span><span class="n">s</span><span class="p">;</span> <span class="o">/*</span> <span class="mf">0.5</span><span class="o">-</span><span class="n">second</span> <span class="n">transition</span> <span class="n">effect</span> <span class="n">to</span> <span class="n">slide</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">sidebar</span> <span class="o">*/</span>
+  <span class="o">//</span> <span class="n">following</span> <span class="n">are</span> <span class="n">changed</span> <span class="n">by</span> <span class="n">JavaScript</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">0</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">padding</span><span class="o">-</span><span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="n">px</span><span class="p">;</span> 
+  <span class="n">padding</span><span class="o">-</span><span class="n">right</span><span class="p">:</span> <span class="mi">0</span><span class="n">px</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Table</span> <span class="k">class</span>
+<span class="err">/// @</span><span class="nc">description</span> <span class="n">Key</span> <span class="n">style</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">present</span> <span class="n">game</span> <span class="n">levels</span> <span class="ow">and</span> <span class="n">make</span> <span class="n">it</span> <span class="n">responsive</span> <span class="k">with</span> <span class="n">hover</span> <span class="n">highlighting</span><span class="p">.</span>
+<span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="n">levels</span> <span class="p">{</span>
+  <span class="n">tr</span> <span class="p">{</span>
+    <span class="n">cursor</span><span class="p">:</span> <span class="n">pointer</span><span class="p">;</span> <span class="o">//</span> <span class="n">Change</span> <span class="n">the</span> <span class="n">cursor</span> <span class="n">to</span> <span class="n">a</span> <span class="n">pointer</span> <span class="n">when</span> <span class="n">it</span> <span class="n">hovers</span> <span class="n">over</span> <span class="n">a</span> <span class="n">row</span>
+    <span class="n">td</span> <span class="p">{</span>
+      <span class="n">border</span><span class="p">:</span> <span class="mi">1</span><span class="n">px</span> <span class="n">solid</span> <span class="err">$</span><span class="n">dt</span><span class="o">-</span><span class="n">blue</span><span class="p">;</span> <span class="o">//</span> <span class="k">from</span> <span class="n">dracula</span><span class="o">-</span><span class="n">highlight</span><span class="p">.</span><span class="n">scss</span>
+    <span class="p">}</span>
+    <span class="o">&amp;</span><span class="p">:</span><span class="n">hover</span> <span class="p">{</span> <span class="o">//</span> <span class="n">Change</span> <span class="n">the</span> <span class="n">background</span> <span class="n">when</span> <span class="n">a</span> <span class="n">row</span> <span class="ow">is</span> <span class="n">hovered</span> <span class="n">over</span>
+      <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">dt</span><span class="o">-</span><span class="n">blue</span><span class="p">;</span> <span class="o">//</span> <span class="k">from</span> <span class="n">dracula</span><span class="o">-</span><span class="n">highlight</span><span class="p">.</span><span class="n">scss</span>
+
+      <span class="n">td</span> <span class="p">{</span>
+        <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="n">inherit</span><span class="p">;</span> <span class="o">//</span> <span class="n">Make</span> <span class="n">the</span> <span class="n">background</span> <span class="n">color</span> <span class="n">of</span> <span class="n">the</span> <span class="n">td</span> <span class="n">elements</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">the</span> <span class="n">tr</span> <span class="n">element</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Input</span> <span class="n">mixin</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">description</span> <span class="n">This</span> <span class="n">mixin</span> <span class="n">sets</span> <span class="n">some</span> <span class="n">common</span> <span class="n">styles</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="n">color</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="k">for</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">fields</span><span class="p">,</span> <span class="n">avoiding</span> <span class="n">duplication</span> <span class="n">of</span> <span class="n">common</span> <span class="n">styles</span> <span class="ow">in</span> <span class="n">each</span> <span class="nb">input</span> <span class="n">class</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">Number</span><span class="p">}</span> <span class="n">width</span> <span class="o">-</span> <span class="n">The</span> <span class="n">width</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">how</span> <span class="n">wide</span> <span class="n">it</span> <span class="ow">is</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">Number</span><span class="p">}</span> <span class="n">height</span> <span class="o">-</span> <span class="n">The</span> <span class="n">height</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">how</span> <span class="n">tall</span> <span class="n">it</span> <span class="ow">is</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">Color</span><span class="p">}</span> <span class="n">border</span> <span class="o">-</span> <span class="n">The</span> <span class="n">border</span> <span class="n">color</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">the</span> <span class="n">outline</span> <span class="n">color</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">Number</span><span class="p">}</span> <span class="n">border</span><span class="o">-</span><span class="n">radius</span> <span class="o">-</span> <span class="n">The</span> <span class="n">border</span> <span class="n">radius</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">rounded</span> <span class="n">corners</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">Number</span><span class="p">}</span> <span class="n">padding</span> <span class="o">-</span> <span class="n">The</span> <span class="n">padding</span> <span class="n">inside</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">space</span> <span class="n">between</span> <span class="n">the</span> <span class="n">border</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">text</span><span class="p">.</span>
+<span class="o">///</span> <span class="o">@</span><span class="n">param</span> <span class="p">{</span><span class="n">String</span><span class="p">}</span> <span class="n">text</span><span class="o">-</span><span class="n">align</span> <span class="o">-</span> <span class="n">The</span> <span class="n">text</span> <span class="n">alignment</span> <span class="n">inside</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="ow">or</span> <span class="n">center</span><span class="p">.</span>
+<span class="o">@</span><span class="n">mixin</span> <span class="nb">input</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="n">dark</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">color</span><span class="p">;</span> <span class="o">//</span> <span class="n">use</span> <span class="n">the</span> <span class="n">dark</span> <span class="n">mode</span> <span class="n">color</span> <span class="n">scheme</span>
+  <span class="n">height</span><span class="p">:</span> <span class="mi">30</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">border</span><span class="o">-</span><span class="n">radius</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">padding</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Input</span> <span class="k">class</span>
+<span class="err">/// @</span><span class="nc">description</span> <span class="n">This</span> <span class="k">class</span> <span class="nc">styles</span> <span class="n">the</span> <span class="n">userID</span> <span class="nb">input</span> <span class="n">field</span><span class="p">,</span> <span class="n">key</span> <span class="n">style</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">make</span> <span class="n">it</span> <span class="n">wider</span><span class="p">.</span>
+<span class="p">.</span><span class="nb">input</span><span class="p">.</span><span class="n">userID</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="nb">input</span><span class="p">;</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="n">px</span><span class="p">;</span>  <span class="o">//</span> <span class="n">customize</span> <span class="n">width</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span>
+<span class="p">}</span>
+
+<span class="o">///</span> <span class="n">Input</span> <span class="k">class</span>
+<span class="err">/// @</span><span class="nc">description</span> <span class="n">This</span> <span class="k">class</span> <span class="nc">styles</span> <span class="n">the</span> <span class="n">gameSpeed</span> <span class="ow">and</span> <span class="n">gravity</span> <span class="nb">input</span> <span class="n">fields</span><span class="p">,</span> <span class="n">key</span> <span class="n">style</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">right</span><span class="o">-</span><span class="n">align</span> <span class="n">the</span> <span class="n">text</span><span class="p">.</span>
+<span class="p">.</span><span class="nb">input</span><span class="p">.</span><span class="n">gameSpeed</span><span class="p">,</span> <span class="p">.</span><span class="nb">input</span><span class="p">.</span><span class="n">gravity</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="nb">input</span><span class="p">;</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">40</span><span class="n">px</span><span class="p">;</span>  <span class="o">//</span> <span class="n">customize</span> <span class="n">width</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">field</span>
+  <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span> <span class="o">//</span> <span class="n">right</span><span class="o">-</span><span class="n">align</span> <span class="nb">input</span> <span class="k">for</span> <span class="n">numbers</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="how-does-this-html-code-use-sass">How does this HTML code use SASS?</h2>
+<ul>
+  <li>There are different variables included within the code using variables such as ($spacing-unit) and ($high-emph)</li>
+</ul>
+
+<h2 id="how-do-submenus-and-sidebars-show-up">How do submenus and sidebars show up?</h2>
+<ul>
+  <li>To make these show up they use a specfic class and they all start with “.” or “#” but to make spefic things such as a submenu or a side bar you would have to start the code with (#submenu) or (.sidebar) in order for those to work and it should work for other things such as table levels. The action would just need to begin with a . or #.</li>
+</ul>
+
+<h2 id="how-does-it-look">How does it look?</h2>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button Example</title>
+
+  <!-- Compiled SCSS into CSS file> -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Example usage of the styled buttons -->
+  <button class="button-primary">Primary Button</button>
+  <button class="button-secondary">Secondary Button</button>
+</body>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Example</span> <span class="n">SCSS</span> <span class="n">Code</span><span class="p">:</span>
+
+<span class="o">//</span> <span class="n">button</span> <span class="n">styling</span>
+<span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#3498db;
+</span><span class="err">$</span><span class="n">secondary</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#2ecc71;
+</span>
+<span class="o">@</span><span class="n">mixin</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">(</span><span class="err">$</span><span class="n">bg</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="err">$</span><span class="n">hover</span><span class="o">-</span><span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">display</span><span class="p">:</span> <span class="n">inline</span><span class="o">-</span><span class="n">block</span><span class="p">;</span>
+  <span class="n">padding</span><span class="p">:</span> <span class="mi">10</span><span class="n">px</span> <span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">color</span><span class="p">:</span> <span class="c1">#fff;
+</span>  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">bg</span><span class="o">-</span><span class="n">color</span><span class="p">;</span>
+  <span class="n">border</span><span class="p">:</span> <span class="n">none</span><span class="p">;</span>
+  <span class="n">border</span><span class="o">-</span><span class="n">radius</span><span class="p">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+  <span class="n">cursor</span><span class="p">:</span> <span class="n">pointer</span><span class="p">;</span>
+  <span class="n">transition</span><span class="p">:</span> <span class="n">background</span><span class="o">-</span><span class="n">color</span> <span class="mf">0.3</span><span class="n">s</span> <span class="n">ease</span><span class="p">;</span>
+
+  <span class="o">&amp;</span><span class="p">:</span><span class="n">hover</span> <span class="p">{</span>
+    <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="err">$</span><span class="n">hover</span><span class="o">-</span><span class="n">color</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="n">button</span><span class="o">-</span><span class="n">primary</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">(</span><span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="n">darken</span><span class="p">(</span><span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="mi">10</span><span class="o">%</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="n">button</span><span class="o">-</span><span class="n">secondary</span> <span class="p">{</span>
+  <span class="o">@</span><span class="n">include</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">(</span><span class="err">$</span><span class="n">secondary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="n">darken</span><span class="p">(</span><span class="err">$</span><span class="n">secondary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="mi">10</span><span class="o">%</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="o">//</span> <span class="n">responsive</span> <span class="n">styling</span>
+<span class="o">//</span><span class="n">changes</span> <span class="n">hover</span> <span class="n">colors</span> <span class="n">when</span> <span class="n">width</span> <span class="n">of</span> <span class="n">window</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">1024</span><span class="n">px</span>
+<span class="o">@</span><span class="n">media</span> <span class="n">screen</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">max</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mi">1024</span><span class="n">px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">changes</span> <span class="n">hover</span> <span class="n">colors</span> <span class="n">when</span> <span class="n">width</span> <span class="n">of</span> <span class="n">window</span> <span class="ow">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">1024</span><span class="n">px</span>
+  <span class="p">.</span><span class="n">button</span><span class="o">-</span><span class="n">primary</span> <span class="p">{</span>
+    <span class="o">@</span><span class="n">include</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">(</span><span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="n">lighten</span><span class="p">(</span><span class="err">$</span><span class="n">primary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="mi">20</span><span class="o">%</span><span class="p">));</span>
+  <span class="p">}</span>
+  
+  <span class="p">.</span><span class="n">button</span><span class="o">-</span><span class="n">secondary</span> <span class="p">{</span>
+    <span class="o">@</span><span class="n">include</span> <span class="n">button</span><span class="o">-</span><span class="n">styles</span><span class="p">(</span><span class="err">$</span><span class="n">secondary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="n">lighten</span><span class="p">(</span><span class="err">$</span><span class="n">secondary</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="mi">20</span><span class="o">%</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+  </div><a class="u-url" href="/student2.0/2024/01/14/SASS_IPYNB_2_.html" hidden></a>
+</article>

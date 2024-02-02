@@ -2,7 +2,7 @@
 toc: False
 comments: True
 layout: notebook
-title: IPYNB Table, Code
+title: IRouting and computing
 description: Team teach on routing and computing
 type: collab
 courses: {'csp': {'week': 16}}

@@ -1,0 +1,267 @@
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P2 | Python/Flask</h1><p class="page-description">Team Teach On Python/Flask</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2024-01-16T00:00:00-08:00" itemprop="datePublished">
+        Jan 16, 2024
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h2 id="flask--sqlalchemy">Flask &amp; SQLAlchemy!</h2>
+
+<h3 id="overview">Overview</h3>
+<ul>
+  <li>SQLAlchemy: Python tool for interacting with SQL databases
+    <ul>
+      <li>“Pythonic” way of interacting with databases</li>
+      <li>Flask-SQLAlchemy: Extension for Flask, bridging Python and SQL databases</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="setup-to-install-flask-sqlalchemy">Setup to install Flask-SQLAlchemy</h2>
+
+<ul>
+  <li>Use pip to install Flask-SQLAlchemy in your virtual environment
+    <ul>
+      <li>SQLAlchemy supports different SQL database systems like mySQL. Additional modules might be required for specific databases</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basics-of-using-a-database-with-flask">Basics of using a database with Flask</h2>
+
+<ul>
+  <li>Establish a connection between your Flask app and an existing SQL database
+    <ul>
+      <li>
+        <p>Understand database username, password, and connection details</p>
+      </li>
+      <li>Username and password for authentication</li>
+      <li>
+        <p>Connection specifies the location and characteristics of the database server, including its address and port number.</p>
+      </li>
+      <li>learn Flask-SQLAlchemy syntax for reading data</li>
+    </ul>
+
+    <p>Go over later in example</p>
+  </li>
+</ul>
+
+<h2 id="database-interaction-scenarios">Database Interaction Scenarios</h2>
+
+<ul>
+  <li>Reading from the database - retrieve information from the database to display in your Flask application</li>
+  <li>Allowing user input to write to the database - enable users to submit data through your Flask application, which gets stored in the database</li>
+  <li>Populating the database from a CSV file (text file format that uses commas to separate values which stores tabular data)</li>
+  <li>
+    <p>Web Forms for Database Interaction</p>
+  </li>
+  <li>Allow users to input data through a user-friendly interface. Use form libraries like WTForms to create web forms in your Flask application which define the structure of the data you want to collect, and they can include various field types (text, checkboxes, dropdowns, etc.).</li>
+</ul>
+
+<h2 id="connecting-a-database-to-a-flask-app">Connecting a Database to a Flask App</h2>
+
+<ul>
+  <li>Understand a basic script for testing database connection</li>
+  <li>Verify the connection by running the script and checking the browser</li>
+</ul>
+
+<h2 id="sql-and-flask-objects">SQL and Flask Objects</h2>
+
+<h1 id="database-and-sqlalchemy">Database and SQLAlchemy:</h1>
+<ul>
+  <li>Use SQLite for data management.</li>
+  <li>SQLAlchemy facilitates interaction with the database.</li>
+  <li>Debugging aids in object examination.</li>
+</ul>
+
+<h1 id="imports-and-flask-objects">Imports and Flask Objects:</h1>
+<ul>
+  <li>
+    <p>Flask app object: The Flask app object represents the core of a Flask web application. It is created using the Flask() constructor and serves as the central point for configuring the application, defining routes, and managing various components.</p>
+  </li>
+  <li>
+    <p>SQLAlchemy (SQLA) db object: The SQLAlchemy db object is an instance of the SQLAlchemy class, acting as a bridge between a Flask application and the database. It simplifies database interactions by allowing developers to work with Python objects as if they were database entities, providing a high-level interface for tasks like defining models and performing queries.</p>
+  </li>
+</ul>
+
+<h1 id="model-definition---user-class">Model Definition - User Class:</h1>
+<p>Inherit from db.Model.
+Define columns, initialization, and CRUD methods.
+Discuss @property, @<column>.setter, and purpose of CRUD methods.</column></p>
+
+<h1 id="initial-data">Initial Data:</h1>
+<p>Use db.create_all() for table initialization.
+Comment on the process.</p>
+
+<h1 id="user-object-constructors">User Object Constructors:</h1>
+<p>Implement try/except for exception handling.
+Discuss the purpose of constructors.</p>
+
+<h1 id="checking-for-credentials-and-orm-queries">Checking for Credentials and ORM Queries:</h1>
+<p>Verify credentials using ORM Query objects.
+Comment on the purpose of ORM queries.</p>
+
+<h1 id="creating-a-new-user">Creating a New User:</h1>
+<p>Use SQLAlchemy and custom methods for user creation.
+Comment on the process.</p>
+
+<h1 id="reading-users-table">Reading Users Table:</h1>
+<p>Employ SQLAlchemy’s query.all for data retrieval.
+Comment on the purpose and List Comprehension.</p>
+
+<h1 id="introduction-to-python-and-flask">Introduction to Python and Flask</h1>
+<ul>
+  <li>Python: A versatile programming language known for its readability and wide range of applications. Essential in web development, data science, automation, and more.</li>
+  <li>Flask:  A lightweight web framework for Python, ideal for small to medium web applications. Flask allows for easy setup and flexible application structure.</li>
+</ul>
+
+<h2 id="setting-up-the-environment">Setting up the Environment</h2>
+<ul>
+  <li>Installing Python: Download Python from python.org. Choose the version compatible with your operating system.</li>
+  <li>Installing Flask: Use pip, Python’s package installer. Run pip install flask in your command line.</li>
+</ul>
+
+<h2 id="introduction-to-sql-and-databases">Introduction to SQL and Databases</h2>
+<ul>
+  <li>SQL Basics: A language used to communicate with databases. Commands like SELECT, INSERT, UPDATE, and DELETE allow for data manipulation.</li>
+  <li>Database Tables and Relationships: Tables store data in rows and columns. Primary keys uniquely identify a row, while foreign keys establish a link between tables.</li>
+</ul>
+
+<h2 id="creating-a-user-table-in-sql">Creating a User Table in SQL</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">users</span> <span class="p">(</span>
+    <span class="nb">id</span> <span class="n">INT</span> <span class="n">AUTO_INCREMENT</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span>
+    <span class="n">username</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">password</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span>
+    <span class="n">email</span> <span class="n">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Security best Practices: Store passwords securely using hashing (e.g., bcrypt). Never store plain text passwords.</li>
+</ul>
+
+<h2 id="integrating-flask-with-sql">Integrating Flask with SQL</h2>
+<ul>
+  <li>Flask-SQL_Alchemy: An extension that adds support for SQLAlchemy to your Flask application.</li>
+  <li>Connecting Flask to a Database: python</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///site.db'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="crud-operions-in-flask">CRUD Operions in Flask</h2>
+<ul>
+  <li>Create (Inserting Data): Python</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/add_user'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_user</span><span class="p">():</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'username'</span><span class="p">]</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'password'</span><span class="p">]</span>
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s">'User added'</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Read (Querying Data): Python</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/users'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">users</span><span class="p">():</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'users.html'</span><span class="p">,</span> <span class="n">users</span><span class="o">=</span><span class="n">users</span><span class="p">)</span>
+<span class="n">Update</span> <span class="ow">and</span> <span class="n">Delete</span><span class="p">:</span> <span class="n">Similar</span> <span class="n">structure</span> <span class="n">to</span> <span class="n">Create</span> <span class="ow">and</span> <span class="n">Read</span><span class="p">,</span> <span class="k">with</span> <span class="n">appropriate</span> <span class="n">SQL</span> <span class="n">commands</span><span class="p">.</span>
+<span class="n">Building</span> <span class="n">a</span> <span class="n">User</span> <span class="n">Registration</span> <span class="n">Form</span>
+<span class="n">HTML</span> <span class="n">Form</span><span class="p">:</span>
+<span class="n">html</span>
+<span class="n">Copy</span> <span class="n">code</span>
+<span class="o">&lt;</span><span class="n">form</span> <span class="n">action</span><span class="o">=</span><span class="s">"/add_user"</span> <span class="n">method</span><span class="o">=</span><span class="s">"post"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text"</span> <span class="n">name</span><span class="o">=</span><span class="s">"username"</span> <span class="n">placeholder</span><span class="o">=</span><span class="s">"Username"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"password"</span> <span class="n">name</span><span class="o">=</span><span class="s">"password"</span> <span class="n">placeholder</span><span class="o">=</span><span class="s">"Password"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="n">value</span><span class="o">=</span><span class="s">"Register"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Handling Form Data in Flask: Use the request object to access form data</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Recap the importance of integrating Flask with SQL for user management. Encourgae further exploration of Flask and more comples SQL operations.</p>
+
+<h2 id="database-and-sqlalchemy-1">Database and SQLAlchemy</h2>
+
+<h3 id="overview-1">Overview</h3>
+<p>This section introduces the use of SQLAlchemy with a SQLite database to demonstrate how programs interact with data, emphasizing the iterative, interactive nature of processing information and managing data using classes and tables. It aligns with the College Board’s emphasis on program usage, managing data, insight, filter systems, and application in programming.</p>
+
+<h2 id="imports-and-flask-objects-1">Imports and Flask Objects</h2>
+<h3 id="purpose">Purpose</h3>
+<p>The imports initialize the Flask app and SQLAlchemy, which are essential for creating a web application connected to a database.</p>
+<h3 id="flask-app-object">Flask app object</h3>
+<p>This is the core of the Flask application, used for handling web requests.</p>
+<h3 id="sqlalchemy-db-object">SQLAlchemy db object</h3>
+<p>This is the core of the ORM, used for database interactions in an object-oriented manner.</p>
+
+<h2 id="model-definition">Model Definition</h2>
+
+<h3 id="class-user-and-dbmodel-inheritance">Class User and db.Model Inheritance</h3>
+<p>This is where the User model is defined, inheriting from db.Model of SQLAlchemy, which facilitates database operations in an object-oriented way.</p>
+<h3 id="init-method-and-property-decorators">Init Method and Property Decorators</h3>
+<p>The init method sets up the initial state of the User object, while @property and setter methods define how to access and modify the object’s attributes.</p>
+<h3 id="crud-methods">CRUD Methods</h3>
+<p>Methods for creating, reading, updating, and deleting records in the database are defined here, making use of SQLAlchemy’s ORM capabilities for streamlined database interactions.</p>
+
+<h2 id="inital-data">Inital Data</h2>
+
+<h3 id="function-initusers">Function initUsers</h3>
+<p>This function initializes the database and populates it with test data using User model instances. The use of try/except blocks ensures graceful handling of errors, such as duplicate data.
+Check for Given Credentials</p>
+
+<h3 id="fuctionality">Fuctionality</h3>
+<p>The find_by_uid function retrieves a user from the database based on the unique identifier, while check_credentials validates user credentials.</p>
+
+<h3 id="sqlalchemy-use">SQLAlchemy Use</h3>
+<p>Utilizes SQLAlchemy’s query-building methods for efficient database searches.</p>
+
+<h2 id="create-a-new-user">Create a New User</h2>
+
+<h3 id="process">Process</h3>
+<p>The create function demonstrates adding a new user to the database, showcasing input handling, object initialization, and error management.</p>
+
+<h3 id="user-creation-logic">User Creation Logic</h3>
+<p>Involves checking for existing users, handling date inputs, and using the custom create method of the User model for database insertion.</p>
+
+<h2 id="reading-users-table-1">Reading Users Table</h2>
+
+<h3 id="method">Method</h3>
+<p>The read function uses SQLAlchemy’s query.all method to retrieve all users from the database.</p>
+
+<h3 id="data-formatting">Data Formatting</h3>
+<p>Implements list comprehension to format the user data into a JSON-friendly structure, making it easier to handle in web applications.</p>
+
+<h2 id="hacks-suggestions-for-extension">Hacks (Suggestions for Extension)</h2>
+<h3 id="persionalization">Persionalization</h3>
+<p>Encourages reader to implement these examples in their own projects, adapting and expanding upon the CRUD fuctionality.</p>
+<h3 id="enhancements">Enhancements</h3>
+<p>Suggests adding update and delete functionalities to provide a comprehensive undetstanding of CRUD operations in a databsae context</p>
+
+  </div><a class="u-url" href="/student2.0/2024/01/16/Python_Flask_IPYNB_2_.html" hidden></a>
+</article>

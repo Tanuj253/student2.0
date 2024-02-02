@@ -29,6 +29,9 @@ The digital divide is the gap between those who have access to modern informatio
 
 How might age, education level, or occupation affect someone's ability to access the internet?
 
+Some people who are older or in an older population are found to be slower at adapting while a population too young may not be able to handle the responsibility of devices.
+
+
 ## The digital divide can have a huge impact on society
 (IOC-1.C.4)
 ### Digital divide raises multiple beneficial and detrimental aspects:
@@ -46,6 +49,8 @@ How might age, education level, or occupation affect someone's ability to access
 
 Imagine you are an exchange student from another country visiting our community, you have grown up without using the internet and now you go to Del Norte. State 2-3 reasons you might be at a disadvantage to other students your age.
 
+Answer:The person would be at a disadvantage as they are not used to some of the resources provided. Some examples are typing skills, ability to use a website like PLTW, or even familiarity to the campus and its schedule.
+
 
 ### The digital divide can be positively and negatively influnced by both individuals and groups.
 (IOC-1.C.3 + IOC-1.C.5)
@@ -62,6 +67,8 @@ Imagine you are an exchange student from another country visiting our community,
 ## Popcorn Hack 3
 
 Using the provided graphic and what you have just learned, pick one country that is heavily impacted by the digital divide, and give three reasons why that might be. 
+
+answer: Pakistan is very heavily impacted with many political and social problems existing within it.
 
 ![]({{site.baseurl}}/images/pophack3.png)
 

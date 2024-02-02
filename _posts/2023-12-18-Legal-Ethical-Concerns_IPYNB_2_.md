@@ -1,7 +1,6 @@
 ---
 toc: False
 layout: post
-hide: False
 title: P2 | 5.6 -
 description: Team Teach On Legal and Ethical Concerns
 type: collab
