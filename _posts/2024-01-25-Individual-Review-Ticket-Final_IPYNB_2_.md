@@ -41,7 +41,7 @@ My feature is an image database that holds and brings Memes up for users to see.
 
 | Collegeboard Requirements                                | Me                                                                   |
 |----------------------------------------------------------|----------------------------------------------------------------------|
-| Input to program                                         | Seen in video, uploading meme                                        |
+| Input to program                                         | Seen in video, uploading meme.                                       |
 | At least one aspect of the functionality of your program | Generate feature pulling image uploaded                              |
 | Output produced by program:                              | When clicking "Generate", different memes output.                    |
 | My video does not have:                                  | Any distinguishing information and voice narration                   |
