@@ -1,10 +1,12 @@
 ---
+toc: True
 comments: True
 layout: post
-title: Tri 2 Individual Review
-description: Review of Tri two project
-type: hacks
-courses: {'compsci': {'week': 23}}
+title: Individual Review Ticket
+description: CB quiz corrections
+type: collab
+courses: {'csp': {'week': 16}}
+author: Tanujsai N
 ---
 
 # Project Overview
@@ -21,7 +23,19 @@ My feature is an image database that holds and brings Memes up for users to see.
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----|
 | Instructions for input from one of the following: the user, a device, an online datas stream, a file.                                                                          |    |
 | Use of at least one list (or other collection type) to represent a collectino of data that is stored and used to manage program complexity and help fulfill the users purpose. |    |
-| At least one procedure that contirubted to the program’s intened purpose where you have defined: the name, return type, one or more parameters:                                |    |
-| An algorithm that includes sequencing, selection, and iteration that is in the body of the selected procedure                                                                  |    |
-| Calls to your student-developed prodcedure:                                                                                                                                    |    |
-| Instructions for output (tactile, audible, visual, or ) based on input and program functionality                                                                               |    |
+| At least one procedure that contirubted to the program’s intened purpose where you have defined: the name, return type, one or more parameters:                                |<a href="https://ibb.co/thxbJMr"><img src="https://i.ibb.co/FW0BDbT/Screenshot-2024-02-26-144750.png" alt="Screenshot-2024-02-26-144750" border="0"></a>|
+| An algorithm that includes sequencing, selection, and iteration that is in the body of the selected procedure                                                                  |<a href="https://ibb.co/Lnhrh21"><img src="https://i.ibb.co/KFzDz3W/Screenshot-2024-02-26-145427.png" alt="Screenshot-2024-02-26-145427" border="0"></a>|
+| Calls to your student-developed prodcedure:                                                                                                                                    |<a href="https://ibb.co/jypb6CP"><img src="https://i.ibb.co/rxWF7BR/Screenshot-2024-02-26-145910.png" alt="Screenshot-2024-02-26-145910" border="0"></a>|
+| Instructions for output (tactile, audible, visual, or ) based on input and program functionality                                                                               |<a href="https://ibb.co/4236GZn"><img src="https://i.ibb.co/HC3WsDf/Screenshot-2024-02-26-150207.png" alt="Screenshot-2024-02-26-150207" border="0"></a>|
+
+# Component B:Video
+
+
+
+| Collegeboard Requirements                                | Me                                                                   |
+|----------------------------------------------------------|----------------------------------------------------------------------|
+| Input to program                                         | Seen in video, uploading meme                                        |
+| At least one aspect of the functionality of your program | Generate feature pulling image uploaded                              |
+| Output produced by program:                              | When clicking "Generate", different memes output.                    |
+| My video does not have:                                  | Any distinguishing information and voice narration                   |
+| My video is                                              | A .webmb, less than 1 minute in length, less than 30MB in file size. |
